@@ -1,0 +1,21 @@
+http://localhost:8080/swagger-ui.html
+http://localhost:8080/swagger-ui/index.html
+
+
+
+要求：
+1. 所有类必须有类注释
+2. 所有字段必须有字段注释
+3. 所有接口必须有 Swagger 注释
+4. 所有方法必须有方法注释
+5. DTO/VO 必须写 @Schema
+6. Controller 必须写 @Tag
+7. 接口必须写 @Operation
+8. 所有代码符合 AI 可读性
+9. 所有变量名语义化
+10. 不要省略业务注释
+
+
+
+
+微信 code → openid → 查 user → 发 JWT
