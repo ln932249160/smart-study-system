@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(start *)",
+      "WebSearch",
+      "Bash(claude plugin *)",
+      "Bash(npx gstack *)",
+      "Bash(powershell *)",
+      "Bash(npm info *)",
+      "Bash(mvn validate *)",
+      "Bash(mvn compile *)"
+    ]
+  }
+}
