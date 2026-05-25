@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.time.LocalDateTime;
 
 /**
- * 系统用户持久化实体，严格映射 sys_user 表（15 列全部覆盖）。
+ * 系统用户持久化实体，严格映射 sys_user 表（16 列全部覆盖）。
  */
 @TableName("sys_user")
 public class SysUserEntity {
@@ -16,8 +16,11 @@ public class SysUserEntity {
     @TableId(type = IdType.AUTO)
     private Long id;
 
-    /** 账号 */
+    /** 账号（登录用，唯一） */
     private String account;
+
+    /** 姓名（显示名，非唯一） */
+    private String name;
 
     /** 密码（BCrypt 加密） */
     private String password;
@@ -65,6 +68,9 @@ public class SysUserEntity {
 
     public String getAccount() { return account; }
     public void setAccount(String account) { this.account = account; }
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }

@@ -57,6 +57,7 @@ public class DataInitializer implements CommandLineRunner {
 
         SysUserEntity admin = new SysUserEntity();
         admin.setAccount(DEFAULT_ACCOUNT);
+        admin.setName("管理员");
         admin.setPassword(passwordEncoder.encode(DEFAULT_PASSWORD));
         admin.setRole(DEFAULT_ROLE);
         admin.setStatus(STATUS_ACTIVE);

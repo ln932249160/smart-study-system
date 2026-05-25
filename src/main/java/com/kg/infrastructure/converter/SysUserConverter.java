@@ -5,7 +5,7 @@ import com.kg.infrastructure.entity.SysUserEntity;
 
 /**
  * 防腐层转换器 —— domain.SysUser ↔ infra.SysUserEntity 双向映射。
- * 15 个字段全部映射，不省略任何列。
+ * 16 个字段全部映射，不省略任何列。
  */
 public class SysUserConverter {
 
@@ -23,6 +23,7 @@ public class SysUserConverter {
         SysUser domain = new SysUser();
         domain.setId(entity.getId());
         domain.setAccount(entity.getAccount());
+        domain.setName(entity.getName());
         domain.setPassword(entity.getPassword());
         domain.setRole(entity.getRole());
         domain.setGender(entity.getGender());
@@ -49,6 +50,7 @@ public class SysUserConverter {
         SysUserEntity entity = new SysUserEntity();
         entity.setId(domain.getId());
         entity.setAccount(domain.getAccount());
+        entity.setName(domain.getName());
         entity.setPassword(domain.getPassword());
         entity.setRole(domain.getRole());
         entity.setGender(domain.getGender());

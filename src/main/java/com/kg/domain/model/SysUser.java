@@ -10,8 +10,11 @@ public class SysUser {
     /** 主键ID */
     private Long id;
 
-    /** 账号 */
+    /** 账号（登录用，唯一） */
     private String account;
+
+    /** 姓名（显示名，非唯一） */
+    private String name;
 
     /** 密码（BCrypt 密文） */
     private String password;
@@ -60,6 +63,9 @@ public class SysUser {
     public String getAccount() { return account; }
     public void setAccount(String account) { this.account = account; }
 
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
 
@@ -101,6 +107,6 @@ public class SysUser {
 
     @Override
     public String toString() {
-        return "SysUser{id=" + id + ", account='" + account + "', role='" + role + "', status=" + status + "}";
+        return "SysUser{id=" + id + ", account='" + account + "', name='" + name + "', role='" + role + "'}";
     }
 }

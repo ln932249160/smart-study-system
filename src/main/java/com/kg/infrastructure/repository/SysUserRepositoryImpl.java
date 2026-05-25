@@ -1,6 +1,7 @@
 package com.kg.infrastructure.repository;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.kg.domain.model.SysUser;
 import com.kg.domain.repository.SysUserRepository;
 import com.kg.infrastructure.converter.SysUserConverter;
@@ -8,7 +9,10 @@ import com.kg.infrastructure.entity.SysUserEntity;
 import com.kg.infrastructure.mapper.SysUserMapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * 系统用户仓储实现 —— 使用 MyBatis-Plus 操作 MySQL。
@@ -23,10 +27,131 @@ public class SysUserRepositoryImpl implements SysUserRepository {
     }
 
     @Override
+    public void save(SysUser user) {
+        SysUserEntity entity = SysUserConverter.toEntity(user);
+        sysUserMapper.insert(entity);
+        user.setId(entity.getId());
+    }
+
+    @Override
     public Optional<SysUser> findByAccount(String account) {
         LambdaQueryWrapper<SysUserEntity> query = new LambdaQueryWrapper<>();
         query.eq(SysUserEntity::getAccount, account);
         SysUserEntity entity = sysUserMapper.selectOne(query);
         return Optional.ofNullable(SysUserConverter.toDomain(entity));
+    }
+
+    @Override
+    public List<SysUser> pageByNameAndRoles(String name, List<String> roles, int offset, int limit) {
+        LambdaQueryWrapper<SysUserEntity> query = new LambdaQueryWrapper<>();
+        query.in(roles != null && !roles.isEmpty(), SysUserEntity::getRole, roles);
+        query.like(name != null && !name.isEmpty(), SysUserEntity::getName, name);
+        query.orderByDesc(SysUserEntity::getId);
+        query.last("LIMIT " + offset + "," + limit);
+        List<SysUserEntity> entities = sysUserMapper.selectList(query);
+        if (entities == null || entities.isEmpty()) {
+            return Collections.emptyList();
+        }
+        return entities.stream().map(SysUserConverter::toDomain).collect(Collectors.toList());
+    }
+
+    @Override
+    public long countByNameAndRoles(String name, List<String> roles) {
+        LambdaQueryWrapper<SysUserEntity> query = new LambdaQueryWrapper<>();
+        query.in(roles != null && !roles.isEmpty(), SysUserEntity::getRole, roles);
+        query.like(name != null && !name.isEmpty(), SysUserEntity::getName, name);
+        return sysUserMapper.selectCount(query);
+    }
+
+    @Override
+    public void update(SysUser user) {
+        LambdaUpdateWrapper<SysUserEntity> wrapper = new LambdaUpdateWrapper<>();
+        wrapper.eq(SysUserEntity::getId, user.getId());
+        if (user.getAccount() != null) {
+            wrapper.set(SysUserEntity::getAccount, user.getAccount());
+        }
+        if (user.getName() != null) {
+            wrapper.set(SysUserEntity::getName, user.getName());
+        }
+        if (user.getRole() != null) {
+            wrapper.set(SysUserEntity::getRole, user.getRole());
+        }
+        if (user.getGender() != null) {
+            wrapper.set(SysUserEntity::getGender, user.getGender());
+        }
+        if (user.getEmail() != null) {
+            wrapper.set(SysUserEntity::getEmail, user.getEmail());
+        }
+        if (user.getPhone() != null) {
+            wrapper.set(SysUserEntity::getPhone, user.getPhone());
+        }
+        if (user.getDescription() != null) {
+            wrapper.set(SysUserEntity::getDescription, user.getDescription());
+        }
+        if (user.getClassId() != null) {
+            wrapper.set(SysUserEntity::getClassId, user.getClassId());
+        }
+        if (user.getStatus() != null) {
+            wrapper.set(SysUserEntity::getStatus, user.getStatus());
+        }
+        if (user.getUpdateBy() != null) {
+            wrapper.set(SysUserEntity::getUpdateBy, user.getUpdateBy());
+        }
+        sysUserMapper.update(null, wrapper);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        sysUserMapper.deleteById(id);
+    }
+
+    @Override
+    public List<SysUser> findByClassId(Long classId) {
+        LambdaQueryWrapper<SysUserEntity> query = new LambdaQueryWrapper<>();
+        query.eq(SysUserEntity::getClassId, classId);
+        List<SysUserEntity> entities = sysUserMapper.selectList(query);
+        if (entities == null || entities.isEmpty()) {
+            return Collections.emptyList();
+        }
+        return entities.stream().map(SysUserConverter::toDomain).collect(Collectors.toList());
+    }
+
+    @Override
+    public long countByClassId(Long classId) {
+        LambdaQueryWrapper<SysUserEntity> query = new LambdaQueryWrapper<>();
+        query.eq(SysUserEntity::getClassId, classId);
+        return sysUserMapper.selectCount(query);
+    }
+
+    @Override
+    public void clearClassId(Long classId) {
+        LambdaUpdateWrapper<SysUserEntity> wrapper = new LambdaUpdateWrapper<>();
+        wrapper.eq(SysUserEntity::getClassId, classId);
+        wrapper.set(SysUserEntity::getClassId, null);
+        sysUserMapper.update(null, wrapper);
+    }
+
+    @Override
+    public void batchUpdateClassId(List<Long> userIds, Long classId) {
+        if (userIds == null || userIds.isEmpty()) {
+            return;
+        }
+        LambdaUpdateWrapper<SysUserEntity> wrapper = new LambdaUpdateWrapper<>();
+        wrapper.in(SysUserEntity::getId, userIds);
+        wrapper.set(SysUserEntity::getClassId, classId);
+        sysUserMapper.update(null, wrapper);
+    }
+
+    @Override
+    public List<SysUser> listStudentsByRole(String role) {
+        LambdaQueryWrapper<SysUserEntity> query = new LambdaQueryWrapper<>();
+        query.eq(SysUserEntity::getRole, role);
+        query.eq(SysUserEntity::getStatus, 1);
+        query.orderByAsc(SysUserEntity::getAccount);
+        List<SysUserEntity> entities = sysUserMapper.selectList(query);
+        if (entities == null || entities.isEmpty()) {
+            return Collections.emptyList();
+        }
+        return entities.stream().map(SysUserConverter::toDomain).collect(Collectors.toList());
     }
 }
