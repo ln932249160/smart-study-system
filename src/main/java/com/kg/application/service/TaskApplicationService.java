@@ -3,14 +3,14 @@ package com.kg.application.service;
 import com.kg.context.UserContext;
 import com.kg.domain.model.SysUser;
 import com.kg.domain.model.Task;
-import com.kg.domain.model.TaskScore;
 import com.kg.domain.model.TaskUser;
 import com.kg.domain.repository.SysUserRepository;
 import com.kg.domain.repository.TaskRepository;
 import com.kg.domain.repository.TaskScoreRepository;
 import com.kg.domain.repository.TaskUserRepository;
+import com.kg.enums.RoleEnum;
+import com.kg.enums.TaskStatusEnum;
 import com.kg.exception.BusinessException;
-import com.kg.interfaces.dto.TaskCompleteRequest;
 import com.kg.interfaces.dto.TaskCreateRequest;
 import com.kg.interfaces.dto.TaskUpdateRequest;
 import com.kg.interfaces.dto.TaskVO;
@@ -19,25 +19,22 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * 任务管理应用服务 —— 编排任务的 CRUD 及完成业务流程。
+ * 任务管理应用服务 —— 角色权限：teacher 全部、headmaster 本班、student 本人。
  */
 @Service
 public class TaskApplicationService {
 
     private static final Logger log = LoggerFactory.getLogger(TaskApplicationService.class);
-    private static final String ROLE_STUDENT = "student";
-    private static final String STATUS_UNFINISHED = "0";
-    private static final String STATUS_FINISHED = "1";
     private static final DateTimeFormatter FMT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     private final TaskRepository taskRepository;
@@ -58,18 +55,44 @@ public class TaskApplicationService {
     // ======================== 分页查询 ========================
 
     /**
-     * 分页查询任务列表（不含模板任务）。
+     * 分页查询任务。
+     * teacher → 全部任务 | headmaster → 本班任务 | student → 分配给我的任务
      */
     public Map<String, Object> page(int pageNum, int pageSize) {
+        SysUser currentUser = requireCurrentUser();
+        String role = currentUser.getRole();
         int offset = (pageNum - 1) * pageSize;
-        long total = taskRepository.count();
-        List<Task> tasks = taskRepository.page(offset, pageSize);
 
-        // 查 task_user 统计每个任务的完成/未完成人数
+        List<Task> tasks;
+        long total;
+
+        if (RoleEnum.isStudent(role)) {
+            // 学生：查我分配的任务
+            List<TaskUser> myTaskUsers = taskUserRepository.findByUserId(currentUser.getId());
+            List<Long> taskIds = myTaskUsers.stream().map(TaskUser::getTaskId).distinct().collect(Collectors.toList());
+            if (taskIds.isEmpty()) {
+                return emptyPageResult();
+            }
+            tasks = taskRepository.pageByIds(taskIds, offset, pageSize);
+            total = taskRepository.countByIds(taskIds);
+        } else if (RoleEnum.isHeadmaster(role)) {
+            // 班长：查本班任务
+            Long classId = currentUser.getClassId();
+            if (classId == null) {
+                return emptyPageResult();
+            }
+            tasks = taskRepository.pageByClassId(classId, offset, pageSize);
+            total = taskRepository.countByClassId(classId);
+        } else {
+            // 老师：全部
+            tasks = taskRepository.page(offset, pageSize);
+            total = taskRepository.count();
+        }
+
         List<TaskVO> list = tasks.stream().map(t -> {
             TaskVO vo = toVO(t);
             List<TaskUser> taskUsers = taskUserRepository.findByTaskId(t.getId());
-            long completed = taskUsers.stream().filter(tu -> "1".equals(tu.getStatus())).count();
+            long completed = taskUsers.stream().filter(tu -> TaskStatusEnum.FINISHED.getCode().equals(tu.getStatus())).count();
             long uncompleted = taskUsers.size() - completed;
             vo.setCompletedCount((int) completed);
             vo.setUncompletedCount((int) uncompleted);
@@ -87,73 +110,55 @@ public class TaskApplicationService {
         return result;
     }
 
-    // ======================== 新增 ========================
+    // ======================== 新增（仅 teacher） ========================
 
-    /**
-     * 新增任务，自动为被分配的学生/班级生成 task_user 记录。
-     * 模板任务不生成 task_user。
-     */
     @Transactional(rollbackFor = Exception.class)
     public void create(TaskCreateRequest request) {
-        Long currentUserId = getCurrentUserId();
-
-        // 1. 插入 task
+        Long currentUserId = requireTeacher();
         Task task = buildTask(request, currentUserId);
         taskRepository.save(task);
         Long taskId = task.getId();
-        log.info("创建任务成功: id={}, taskName={}, isTemplate={}", taskId, request.getTaskName(), request.getIsTemplate());
+        log.info("创建任务成功: id={}, taskName={}", taskId, request.getTaskName());
 
-        // 2. 模板任务不生成分配记录
         if (request.getIsTemplate() != null && request.getIsTemplate() == 1) {
             return;
         }
 
-        // 3. 确定分配给哪些学生
         List<Long> userIds = resolveStudentIds(request);
-        if (userIds.isEmpty()) {
-            return;
-        }
+        if (userIds.isEmpty()) return;
 
-        // 4. 批量生成 task_user
-        List<TaskUser> taskUsers = new ArrayList<>(userIds.size());
-        for (Long userId : userIds) {
+        List<TaskUser> taskUsers = new ArrayList<>();
+        for (Long uid : userIds) {
             TaskUser tu = new TaskUser();
             tu.setTaskId(taskId);
-            tu.setUserId(userId);
-            tu.setStatus(STATUS_UNFINISHED);
+            tu.setUserId(uid);
+            tu.setStatus(TaskStatusEnum.UNFINISHED.getCode());
             tu.setCreateBy(currentUserId);
             taskUsers.add(tu);
         }
         taskUserRepository.batchSave(taskUsers);
-        log.info("分配任务 {} 给 {} 名学生", taskId, userIds.size());
+        log.info("分配任务 {} 给 {} 人", taskId, userIds.size());
     }
 
-    // ======================== 编辑 ========================
+    // ======================== 编辑（仅 teacher） ========================
 
-    /**
-     * 编辑任务：更新 task 记录，删除原分配并按新规则重新生成 task_user。
-     */
     @Transactional(rollbackFor = Exception.class)
     public void update(Long id, TaskUpdateRequest request) {
-        Long currentUserId = getCurrentUserId();
-
-        // 1. 更新 task
+        Long currentUserId = requireTeacher();
         Task task = buildUpdateTask(id, request, currentUserId);
         taskRepository.update(task);
 
-        // 2. 删除旧 task_user + task_score
         taskScoreRepository.deleteByTaskId(id);
         taskUserRepository.deleteByTaskId(id);
 
-        // 3. 按新规则重新生成 task_user
         List<Long> userIds = resolveUpdateStudentIds(request);
         if (!userIds.isEmpty()) {
-            List<TaskUser> taskUsers = new ArrayList<>(userIds.size());
-            for (Long userId : userIds) {
+            List<TaskUser> taskUsers = new ArrayList<>();
+            for (Long uid : userIds) {
                 TaskUser tu = new TaskUser();
                 tu.setTaskId(id);
-                tu.setUserId(userId);
-                tu.setStatus(STATUS_UNFINISHED);
+                tu.setUserId(uid);
+                tu.setStatus(TaskStatusEnum.UNFINISHED.getCode());
                 tu.setCreateBy(currentUserId);
                 taskUsers.add(tu);
             }
@@ -162,101 +167,49 @@ public class TaskApplicationService {
         log.info("编辑任务成功: id={}", id);
     }
 
-    // ======================== 删除 ========================
+    // ======================== 删除（仅 teacher） ========================
 
-    /**
-     * 删除任务及其所有关联的 task_user、task_score。
-     */
     @Transactional(rollbackFor = Exception.class)
     public void delete(Long id) {
+        requireTeacher();
         taskScoreRepository.deleteByTaskId(id);
         taskUserRepository.deleteByTaskId(id);
         taskRepository.deleteById(id);
         log.info("删除任务成功: id={}", id);
     }
 
-    // ======================== 完成任务 ========================
-
-    /**
-     * 当前用户完成任务。
-     * 更新 task_user 完成状态，若提供了成绩明细则写入 task_score。
-     */
-    @Transactional(rollbackFor = Exception.class)
-    public void complete(TaskCompleteRequest request) {
-        Long currentUserId = getCurrentUserId();
-        Long taskId = request.getTaskId();
-
-        // 查找当前用户的 task_user 记录
-        TaskUser taskUser = taskUserRepository.findByTaskIdAndUserId(taskId, currentUserId);
-        if (taskUser == null) {
-            throw new BusinessException("未找到您的任务分配记录");
-        }
-
-        // 更新完成状态
-        taskUser.setStatus(STATUS_FINISHED);
-        taskUser.setFinishTime(LocalDateTime.now());
-        taskUser.setSubmitTime(LocalDateTime.now());
-        taskUser.setDurationMinutes(request.getDurationMinutes());
-        taskUser.setRemark(request.getRemark());
-        taskUser.setUpdateBy(currentUserId);
-
-        // 成绩处理
-        BigDecimal totalScore = request.getTotalScore();
-        if (totalScore != null) {
-            taskUser.setTotalScore(totalScore);
-        }
-
-        taskUserRepository.update(taskUser);
-
-        // 写入成绩明细
-        List<TaskCompleteRequest.ScoreItem> scores = request.getScores();
-        if (scores != null && !scores.isEmpty()) {
-            List<TaskScore> scoreList = new ArrayList<>(scores.size());
-            for (TaskCompleteRequest.ScoreItem item : scores) {
-                TaskScore ts = new TaskScore();
-                ts.setTaskUserId(taskUser.getId());
-                ts.setModuleName(item.getModuleName());
-                ts.setScore(item.getScore());
-                ts.setCreateBy(currentUserId);
-                scoreList.add(ts);
-            }
-            taskScoreRepository.batchSave(scoreList);
-
-            // 若未传 totalScore，用明细求和
-            if (totalScore == null) {
-                BigDecimal sum = BigDecimal.ZERO;
-                for (TaskScore ts : scoreList) {
-                    if (ts.getScore() != null) {
-                        sum = sum.add(ts.getScore());
-                    }
-                }
-                taskUser.setTotalScore(sum);
-                taskUserRepository.update(taskUser);
-            }
-        }
-
-        log.info("完成任务成功: taskId={}, userId={}", taskId, currentUserId);
-    }
-
     // ======================== 模板下拉 ========================
 
-    /**
-     * 查询所有模板任务，供下拉选择。
-     */
     public List<TaskVO> listTemplates() {
         return taskRepository.listTemplates().stream().map(this::toVO).collect(Collectors.toList());
     }
 
-    // ======================== 私有方法 ========================
+    // ======================== 权限校验 ========================
 
-    /** 获取当前登录用户ID */
-    private Long getCurrentUserId() {
+    private SysUser requireCurrentUser() {
         SysUser user = UserContext.getUser();
-        if (user == null) throw new BusinessException("未登录");
+        if (user == null) throw new BusinessException(401, "未登录");
+        return user;
+    }
+
+    /** 仅老师可操作，返回当前用户ID */
+    private Long requireTeacher() {
+        SysUser user = requireCurrentUser();
+        if (!RoleEnum.isTeacher(user.getRole())) {
+            throw new BusinessException(403, "仅老师可操作");
+        }
         return user.getId();
     }
 
-    /** 构造新增 Task */
+    // ======================== 私有方法 ========================
+
+    private Map<String, Object> emptyPageResult() {
+        Map<String, Object> r = new LinkedHashMap<>();
+        r.put("total", 0);
+        r.put("list", Collections.emptyList());
+        return r;
+    }
+
     private Task buildTask(TaskCreateRequest r, Long createBy) {
         Task t = new Task();
         t.setTaskName(r.getTaskName());
@@ -275,7 +228,6 @@ public class TaskApplicationService {
         return t;
     }
 
-    /** 构造更新 Task */
     private Task buildUpdateTask(Long id, TaskUpdateRequest r, Long updateBy) {
         Task t = new Task();
         t.setId(id);
@@ -294,25 +246,19 @@ public class TaskApplicationService {
         return t;
     }
 
-    /** 新增时：确定分配学生列表 */
     private List<Long> resolveStudentIds(TaskCreateRequest r) {
-        // 班级优先
         if (r.getClassId() != null) {
-            List<SysUser> users = sysUserRepository.findByClassId(r.getClassId());
-            return users.stream().map(SysUser::getId).collect(Collectors.toList());
+            return sysUserRepository.findByClassId(r.getClassId()).stream().map(SysUser::getId).collect(Collectors.toList());
         }
-        // 指定学生
         if (r.getStudentIds() != null && !r.getStudentIds().isEmpty()) {
             return r.getStudentIds();
         }
         return new ArrayList<>();
     }
 
-    /** 编辑时：确定分配学生列表 */
     private List<Long> resolveUpdateStudentIds(TaskUpdateRequest r) {
         if (r.getClassId() != null) {
-            List<SysUser> users = sysUserRepository.findByClassId(r.getClassId());
-            return users.stream().map(SysUser::getId).collect(Collectors.toList());
+            return sysUserRepository.findByClassId(r.getClassId()).stream().map(SysUser::getId).collect(Collectors.toList());
         }
         if (r.getStudentIds() != null && !r.getStudentIds().isEmpty()) {
             return r.getStudentIds();
@@ -320,7 +266,6 @@ public class TaskApplicationService {
         return new ArrayList<>();
     }
 
-    /** Task → TaskVO */
     private TaskVO toVO(Task t) {
         TaskVO vo = new TaskVO();
         vo.setId(t.getId());

@@ -10,24 +10,29 @@ import java.util.Optional;
  */
 public interface TaskRepository {
 
-    /** 新增任务，回填主键 */
     void save(Task task);
-
-    /** 按主键更新（只更新非 null 字段） */
     void update(Task task);
-
-    /** 按主键物理删除 */
     void deleteById(Long id);
-
-    /** 按主键查询 */
     Optional<Task> findById(Long id);
 
-    /** 分页查询（不含模板任务） */
+    /** 分页查询全部非模板任务 */
     List<Task> page(int offset, int limit);
 
-    /** 非模板任务总数 */
+    /** 全部非模板任务总数 */
     long count();
 
-    /** 查询所有模板任务（is_template=1），用于下拉选择 */
+    /** 查询所有模板任务 */
     List<Task> listTemplates();
+
+    /** 按班级ID分页（headmaster 视角） */
+    List<Task> pageByClassId(Long classId, int offset, int limit);
+
+    /** 按班级ID统计任务数 */
+    long countByClassId(Long classId);
+
+    /** 按任务ID列表分页（student 视角） */
+    List<Task> pageByIds(List<Long> ids, int offset, int limit);
+
+    /** 按任务ID列表统计 */
+    long countByIds(List<Long> ids);
 }

@@ -1,6 +1,7 @@
 package com.kg.config;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.kg.enums.RoleEnum;
 import com.kg.infrastructure.entity.SysUserEntity;
 import com.kg.infrastructure.mapper.SysUserMapper;
 import org.slf4j.Logger;
@@ -27,7 +28,7 @@ public class DataInitializer implements CommandLineRunner {
     private static final String DEFAULT_PASSWORD = "000000";
 
     /** 默认管理员角色 */
-    private static final String DEFAULT_ROLE = "teacher";
+    private static final String DEFAULT_ROLE = RoleEnum.TEACHER.getCode();
 
     /** 正常状态 */
     private static final int STATUS_ACTIVE = 1;

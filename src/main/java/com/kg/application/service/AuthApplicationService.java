@@ -2,6 +2,7 @@ package com.kg.application.service;
 
 import com.kg.domain.model.SysUser;
 import com.kg.domain.repository.SysUserRepository;
+import com.kg.exception.BusinessException;
 import com.kg.interfaces.dto.LoginResponse;
 import com.kg.util.JwtUtil;
 import org.slf4j.Logger;
@@ -39,25 +40,25 @@ public class AuthApplicationService {
      * @param account  账号
      * @param password 明文密码
      * @return 登录响应（含 JWT Token 和用户基本信息）
-     * @throws IllegalArgumentException 账号不存在、被禁用或密码错误
+     * @throws BusinessException 账号不存在、被禁用或密码错误
      */
     public LoginResponse login(String account, String password) {
         SysUser sysUser = sysUserRepository.findByAccount(account)
                 .orElseThrow(() -> {
                     log.warn("登录失败 — 账号不存在: account={}", account);
-                    return new IllegalArgumentException("账号或密码错误");
+                    return new BusinessException(401, "账号或密码错误");
                 });
 
         // 检查账号状态
         if (sysUser.getStatus() == null || sysUser.getStatus() != STATUS_ACTIVE) {
             log.warn("登录失败 — 账号已禁用: account={}, status={}", account, sysUser.getStatus());
-            throw new IllegalArgumentException("账号已被禁用");
+            throw new BusinessException(401, "账号已被禁用");
         }
 
         // BCrypt 密码校验
         if (!passwordEncoder.matches(password, sysUser.getPassword())) {
             log.warn("登录失败 — 密码错误: account={}", account);
-            throw new IllegalArgumentException("账号或密码错误");
+            throw new BusinessException(401, "账号或密码错误");
         }
 
         String token = JwtUtil.generateToken(sysUser.getId(), sysUser.getRole());

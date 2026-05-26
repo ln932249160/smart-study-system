@@ -6,10 +6,12 @@ import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.tags.Tag;
+import org.springdoc.core.customizers.OpenApiCustomiser;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -19,6 +21,11 @@ import java.util.List;
 public class OpenApiConfig {
 
     private static final String SECURITY_SCHEME_NAME = "BearerAuth";
+
+    /** 标签展示顺序 */
+    private static final List<String> TAG_ORDER = Arrays.asList(
+            "认证", "首页统计", "我的任务", "个人中心", "字典", "学生管理", "班级管理", "任务管理"
+    );
 
     @Bean
     public OpenAPI customOpenAPI() {
@@ -33,19 +40,23 @@ public class OpenApiConfig {
                                         .name(SECURITY_SCHEME_NAME)
                                         .type(SecurityScheme.Type.HTTP)
                                         .scheme("bearer")
-                                        .bearerFormat("JWT")))
-                .tags(orderedTags());
+                                        .bearerFormat("JWT")));
     }
 
     /**
-     * 标签顺序即 Swagger UI 中的展示顺序。
+     * 在所有 @Tag 注解处理完后，按 TAG_ORDER 重排标签顺序。
      */
-    private List<Tag> orderedTags() {
-        return Arrays.asList(
-                new Tag().name("认证").description("登录相关接口"),
-                new Tag().name("学生管理").description("学生与班主任的增删改查"),
-                new Tag().name("班级管理").description("班级增删改查与学生分配"),
-                new Tag().name("任务管理").description("任务的增删改查与完成")
-        );
+    @Bean
+    public OpenApiCustomiser sortTagsCustomiser() {
+        return openApi -> {
+            List<Tag> tags = openApi.getTags();
+            if (tags != null) {
+                tags.sort(Comparator.comparingInt(
+                        t -> {
+                            int idx = TAG_ORDER.indexOf(t.getName());
+                            return idx >= 0 ? idx : Integer.MAX_VALUE;
+                        }));
+            }
+        };
     }
 }

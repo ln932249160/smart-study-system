@@ -1,0 +1,67 @@
+package com.kg.interfaces.dto;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+
+/**
+ * 我的任务列表项 VO
+ */
+@Schema(description = "我的任务")
+public class MyTaskVO {
+
+    /** 任务ID */
+    @Schema(description = "任务ID")
+    private Long taskId;
+
+    /** 任务名称 */
+    @Schema(description = "任务名称")
+    private String taskName;
+
+    /** 任务类型：0每日复盘 1打卡 2学习 3刷题 */
+    @Schema(description = "任务类型")
+    private String taskType;
+
+    /** 是否强制：1强制 2不强制 */
+    @Schema(description = "是否强制")
+    private Integer forceFlag;
+
+    /** 任务开始时间 */
+    @Schema(description = "开始时间")
+    private String startTime;
+
+    /** 任务结束时间 */
+    @Schema(description = "结束时间")
+    private String endTime;
+
+    /** 完成状态：0未完成 1已完成 */
+    @Schema(description = "完成状态")
+    private String status;
+
+    /** 总成绩 */
+    @Schema(description = "总成绩")
+    private java.math.BigDecimal totalScore;
+
+    /** 提交时间 */
+    @Schema(description = "提交时间")
+    private String submitTime;
+
+    // ======================== getters / setters ========================
+
+    public Long getTaskId() { return taskId; }
+    public void setTaskId(Long taskId) { this.taskId = taskId; }
+    public String getTaskName() { return taskName; }
+    public void setTaskName(String taskName) { this.taskName = taskName; }
+    public String getTaskType() { return taskType; }
+    public void setTaskType(String taskType) { this.taskType = taskType; }
+    public Integer getForceFlag() { return forceFlag; }
+    public void setForceFlag(Integer forceFlag) { this.forceFlag = forceFlag; }
+    public String getStartTime() { return startTime; }
+    public void setStartTime(String startTime) { this.startTime = startTime; }
+    public String getEndTime() { return endTime; }
+    public void setEndTime(String endTime) { this.endTime = endTime; }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
+    public java.math.BigDecimal getTotalScore() { return totalScore; }
+    public void setTotalScore(java.math.BigDecimal totalScore) { this.totalScore = totalScore; }
+    public String getSubmitTime() { return submitTime; }
+    public void setSubmitTime(String submitTime) { this.submitTime = submitTime; }
+}

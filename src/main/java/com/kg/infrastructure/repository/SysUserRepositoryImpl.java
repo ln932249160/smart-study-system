@@ -73,6 +73,9 @@ public class SysUserRepositoryImpl implements SysUserRepository {
         if (user.getName() != null) {
             wrapper.set(SysUserEntity::getName, user.getName());
         }
+        if (user.getPassword() != null) {
+            wrapper.set(SysUserEntity::getPassword, user.getPassword());
+        }
         if (user.getRole() != null) {
             wrapper.set(SysUserEntity::getRole, user.getRole());
         }

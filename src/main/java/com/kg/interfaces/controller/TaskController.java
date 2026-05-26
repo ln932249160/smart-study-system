@@ -1,7 +1,6 @@
 package com.kg.interfaces.controller;
 
 import com.kg.application.service.TaskApplicationService;
-import com.kg.interfaces.dto.TaskCompleteRequest;
 import com.kg.interfaces.dto.TaskCreateRequest;
 import com.kg.interfaces.dto.TaskPageRequest;
 import com.kg.interfaces.dto.TaskUpdateRequest;
@@ -24,7 +23,7 @@ import java.util.Map;
 /**
  * 任务管理控制器。
  */
-@Tag(name = "任务管理", description = "任务的增删改查与完成")
+@Tag(name = "任务管理", description = "任务的增删改查（仅老师）")
 @RestController
 public class TaskController {
 
@@ -71,16 +70,6 @@ public class TaskController {
         taskApplicationService.delete(id);
         Map<String, Object> r = new LinkedHashMap<>();
         r.put("code", 200); r.put("message", "删除成功");
-        return r;
-    }
-
-    /** 完成任务 */
-    @Operation(summary = "完成任务（学生/班长）")
-    @PostMapping("/task/complete")
-    public Map<String, Object> complete(@Valid @RequestBody TaskCompleteRequest req) {
-        taskApplicationService.complete(req);
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "提交成功");
         return r;
     }
 

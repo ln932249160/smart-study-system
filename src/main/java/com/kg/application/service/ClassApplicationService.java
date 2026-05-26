@@ -5,6 +5,7 @@ import com.kg.domain.model.ClassInfo;
 import com.kg.domain.model.SysUser;
 import com.kg.domain.repository.ClassInfoRepository;
 import com.kg.domain.repository.SysUserRepository;
+import com.kg.enums.RoleEnum;
 import com.kg.exception.BusinessException;
 import com.kg.interfaces.dto.ClassCreateRequest;
 import com.kg.interfaces.dto.ClassUpdateRequest;
@@ -24,24 +25,15 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * 班级管理应用服务 —— 编排班级 CRUD 及学生分配业务流程。
- * <p>
- * 单班制：一个学生只能属于一个班级。新增/编辑班级时通过 class_id 关联学生。
- * </p>
+ * 班级管理应用服务 —— teacher 全部操作，headmaster 仅看本班，student 无权限。
  */
 @Service
 public class ClassApplicationService {
 
     private static final Logger log = LoggerFactory.getLogger(ClassApplicationService.class);
-
-    /** 学生角色标识 */
-    private static final String ROLE_STUDENT = "student";
-
-    /** 启用状态 */
     private static final int STATUS_ACTIVE = 1;
 
     private final ClassInfoRepository classInfoRepository;
-
     private final SysUserRepository sysUserRepository;
 
     public ClassApplicationService(ClassInfoRepository classInfoRepository,
@@ -53,19 +45,36 @@ public class ClassApplicationService {
     // ======================== 分页查询 ========================
 
     /**
-     * 分页查询班级，附带各班学生人数。
+     * teacher → 全部班级 | headmaster → 仅本班 | student → 无权限
      */
     public Map<String, Object> page(int pageNum, int pageSize) {
-        int offset = (pageNum - 1) * pageSize;
-        long total = classInfoRepository.count();
-        List<ClassInfo> classes = classInfoRepository.page(offset, pageSize);
+        SysUser currentUser = requireCurrentUser();
+        String role = currentUser.getRole();
+
+        if (RoleEnum.isStudent(role)) {
+            throw new BusinessException(403, "无权查看班级列表");
+        }
+
+        List<ClassInfo> classes;
+        long total;
+
+        if (RoleEnum.isHeadmaster(role)) {
+            Long classId = currentUser.getClassId();
+            if (classId == null) return emptyPageResult();
+            ClassInfo c = classInfoRepository.findById(classId).orElse(null);
+            classes = c != null ? Collections.singletonList(c) : Collections.emptyList();
+            total = classes.size();
+        } else {
+            int offset = (pageNum - 1) * pageSize;
+            total = classInfoRepository.count();
+            classes = classInfoRepository.page(offset, pageSize);
+        }
 
         List<ClassVO> list = classes.stream().map(c -> {
             ClassVO vo = new ClassVO();
             vo.setId(c.getId());
             vo.setClassName(c.getClassName());
             vo.setDescription(c.getDescription());
-            // 统计该班级下的学生人数
             vo.setStudentCount(sysUserRepository.countByClassId(c.getId()));
             if (c.getCreateTime() != null) {
                 vo.setCreateTime(c.getCreateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
@@ -79,21 +88,12 @@ public class ClassApplicationService {
         return result;
     }
 
-    // ======================== 新增班级 ========================
+    // ======================== 新增（仅 teacher） ========================
 
-    /**
-     * 新增班级并将选中学生分配到该班级。
-     * <p>
-     * 1. 插入 class_info 记录（create_by = 当前用户）<br>
-     * 2. 批量更新选中学生的 class_id 为新增班级的 ID
-     * </p>
-     */
     @Transactional(rollbackFor = Exception.class)
     public void create(ClassCreateRequest request) {
-        SysUser currentUser = UserContext.getUser();
-        Long currentUserId = currentUser != null ? currentUser.getId() : null;
+        Long currentUserId = requireTeacher();
 
-        // 1. 插入班级
         ClassInfo classInfo = new ClassInfo();
         classInfo.setClassName(request.getClassName());
         classInfo.setDescription(request.getDescription());
@@ -103,94 +103,99 @@ public class ClassApplicationService {
         classInfoRepository.save(classInfo);
 
         Long newClassId = classInfo.getId();
-        log.info("新增班级成功: id={}, className={}, createdBy={}", newClassId, request.getClassName(), currentUserId);
+        log.info("新增班级: id={}, className={}", newClassId, request.getClassName());
 
-        // 2. 将选中学生分配到新班级
         List<Long> studentIds = request.getStudentIds();
         if (studentIds != null && !studentIds.isEmpty()) {
-            // 先解除这些学生的原班级关联，再绑定新班级
             sysUserRepository.batchUpdateClassId(studentIds, null);
             sysUserRepository.batchUpdateClassId(studentIds, newClassId);
             log.info("分配 {} 名学生到班级 {}", studentIds.size(), newClassId);
         }
     }
 
-    // ======================== 编辑班级 ========================
+    // ======================== 编辑（仅 teacher） ========================
 
-    /**
-     * 编辑班级信息并重新分配学生。
-     * <p>
-     * 1. 更新 class_info<br>
-     * 2. 将原属该班级的所有学生 class_id 置为 NULL<br>
-     * 3. 将新选中的学生 class_id 更新为当前班级 ID
-     * </p>
-     */
     @Transactional(rollbackFor = Exception.class)
     public void update(Long id, ClassUpdateRequest request) {
-        SysUser currentUser = UserContext.getUser();
-        Long currentUserId = currentUser != null ? currentUser.getId() : null;
+        Long currentUserId = requireTeacher();
 
-        // 校验班级存在
         classInfoRepository.findById(id)
                 .orElseThrow(() -> new BusinessException("班级不存在"));
 
-        // 1. 更新班级信息
         ClassInfo classInfo = new ClassInfo();
         classInfo.setId(id);
         classInfo.setClassName(request.getClassName());
         classInfo.setDescription(request.getDescription());
         classInfo.setUpdateBy(currentUserId);
         classInfoRepository.update(classInfo);
-        log.info("编辑班级信息: id={}", id);
 
-        // 2. 解除原有学生关联
         sysUserRepository.clearClassId(id);
 
-        // 3. 绑定新选中的学生
         List<Long> studentIds = request.getStudentIds();
         if (studentIds != null && !studentIds.isEmpty()) {
-            // 先解除这些学生与其原班级的关联，再绑定当前班级
             sysUserRepository.batchUpdateClassId(studentIds, null);
             sysUserRepository.batchUpdateClassId(studentIds, id);
         }
-        log.info("重新分配学生到班级 {}: {} 人", id, studentIds != null ? studentIds.size() : 0);
+        log.info("编辑班级: id={}", id);
     }
 
-    // ======================== 删除班级 ========================
+    // ======================== 删除（仅 teacher） ========================
 
-    /**
-     * 删除班级，并将该班级下所有学生的 class_id 置为 NULL。
-     */
     @Transactional(rollbackFor = Exception.class)
     public void delete(Long id) {
-        // 校验班级存在
+        requireTeacher();
         classInfoRepository.findById(id)
                 .orElseThrow(() -> new BusinessException("班级不存在"));
-
-        // 1. 解除学生关联
         sysUserRepository.clearClassId(id);
-
-        // 2. 删除班级记录
         classInfoRepository.deleteById(id);
-        log.info("删除班级成功: id={}", id);
+        log.info("删除班级: id={}", id);
     }
 
-    // ======================== 学生选项列表 ========================
+    // ======================== 学生选项 ========================
 
     /**
-     * 获取所有启用状态的学生列表，用于班级新增/编辑时的复选框。
-     * <p>
-     * 返回字段：id、name（姓名）、classId（当前所属班级）。
-     * 前端可根据 classId 判断学生已归属哪个班级。
-     * </p>
+     * teacher → 全部学生 | headmaster → 本班学生
      */
     public List<StudentOptionVO> listStudentOptions() {
-        List<SysUser> students = sysUserRepository.listStudentsByRole(ROLE_STUDENT);
-        if (students.isEmpty()) {
-            return Collections.emptyList();
+        SysUser currentUser = requireCurrentUser();
+        List<SysUser> students;
+
+        if (RoleEnum.isHeadmaster(currentUser.getRole())) {
+            Long classId = currentUser.getClassId();
+            if (classId == null) return Collections.emptyList();
+            students = sysUserRepository.findByClassId(classId).stream()
+                    .filter(u -> RoleEnum.isStudent(u.getRole()))
+                    .collect(Collectors.toList());
+        } else {
+            students = sysUserRepository.listStudentsByRole(RoleEnum.STUDENT.getCode());
         }
+
+        if (students.isEmpty()) return Collections.emptyList();
         return students.stream()
                 .map(s -> StudentOptionVO.of(s.getId(), s.getName(), s.getClassId()))
                 .collect(Collectors.toList());
+    }
+
+    // ======================== 权限 ========================
+
+    private SysUser requireCurrentUser() {
+        SysUser user = UserContext.getUser();
+        if (user == null) throw new BusinessException(401, "未登录");
+        return user;
+    }
+
+    private Long requireTeacher() {
+        SysUser user = requireCurrentUser();
+        if (!RoleEnum.isTeacher(user.getRole())) {
+            throw new BusinessException(403, "仅老师可操作");
+        }
+        return user.getId();
+    }
+
+    private Map<String, Object> emptyPageResult() {
+        Map<String, Object> r = new LinkedHashMap<>();
+        r.put("total", 0);
+        r.put("list", Collections.emptyList());
+        return r;
     }
 }

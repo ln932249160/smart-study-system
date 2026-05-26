@@ -28,9 +28,9 @@ public class TaskRepositoryImpl implements TaskRepository {
 
     @Override
     public void save(Task task) {
-        TaskEntity entity = TaskConverter.toEntity(task);
-        taskMapper.insert(entity);
-        task.setId(entity.getId());
+        TaskEntity e = TaskConverter.toEntity(task);
+        taskMapper.insert(e);
+        task.setId(e.getId());
     }
 
     @Override
@@ -53,9 +53,7 @@ public class TaskRepositoryImpl implements TaskRepository {
     }
 
     @Override
-    public void deleteById(Long id) {
-        taskMapper.deleteById(id);
-    }
+    public void deleteById(Long id) { taskMapper.deleteById(id); }
 
     @Override
     public Optional<Task> findById(Long id) {
@@ -64,20 +62,12 @@ public class TaskRepositoryImpl implements TaskRepository {
 
     @Override
     public List<Task> page(int offset, int limit) {
-        LambdaQueryWrapper<TaskEntity> q = new LambdaQueryWrapper<>();
-        q.eq(TaskEntity::getIsTemplate, 0);
-        q.orderByDesc(TaskEntity::getId);
-        q.last("LIMIT " + offset + "," + limit);
-        List<TaskEntity> entities = taskMapper.selectList(q);
-        if (entities == null || entities.isEmpty()) return Collections.emptyList();
-        return entities.stream().map(TaskConverter::toDomain).collect(Collectors.toList());
+        return queryPage(null, null, offset, limit);
     }
 
     @Override
     public long count() {
-        LambdaQueryWrapper<TaskEntity> q = new LambdaQueryWrapper<>();
-        q.eq(TaskEntity::getIsTemplate, 0);
-        return taskMapper.selectCount(q);
+        return queryCount(null, null);
     }
 
     @Override
@@ -88,5 +78,48 @@ public class TaskRepositoryImpl implements TaskRepository {
         List<TaskEntity> entities = taskMapper.selectList(q);
         if (entities == null || entities.isEmpty()) return Collections.emptyList();
         return entities.stream().map(TaskConverter::toDomain).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Task> pageByClassId(Long classId, int offset, int limit) {
+        return queryPage(classId, null, offset, limit);
+    }
+
+    @Override
+    public long countByClassId(Long classId) {
+        return queryCount(classId, null);
+    }
+
+    @Override
+    public List<Task> pageByIds(List<Long> ids, int offset, int limit) {
+        if (ids == null || ids.isEmpty()) return Collections.emptyList();
+        return queryPage(null, ids, offset, limit);
+    }
+
+    @Override
+    public long countByIds(List<Long> ids) {
+        if (ids == null || ids.isEmpty()) return 0;
+        return queryCount(null, ids);
+    }
+
+    private List<Task> queryPage(Long classId, List<Long> ids, int offset, int limit) {
+        LambdaQueryWrapper<TaskEntity> q = buildCommonQuery(classId, ids);
+        q.orderByDesc(TaskEntity::getId);
+        q.last("LIMIT " + offset + "," + limit);
+        List<TaskEntity> entities = taskMapper.selectList(q);
+        if (entities == null || entities.isEmpty()) return Collections.emptyList();
+        return entities.stream().map(TaskConverter::toDomain).collect(Collectors.toList());
+    }
+
+    private long queryCount(Long classId, List<Long> ids) {
+        return taskMapper.selectCount(buildCommonQuery(classId, ids));
+    }
+
+    private LambdaQueryWrapper<TaskEntity> buildCommonQuery(Long classId, List<Long> ids) {
+        LambdaQueryWrapper<TaskEntity> q = new LambdaQueryWrapper<>();
+        q.eq(TaskEntity::getIsTemplate, 0);
+        if (classId != null) q.eq(TaskEntity::getClassId, classId);
+        if (ids != null && !ids.isEmpty()) q.in(TaskEntity::getId, ids);
+        return q;
     }
 }
