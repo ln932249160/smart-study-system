@@ -13,6 +13,9 @@ public interface SysUserRepository {
     /** 新增用户，插入后回填主键 ID */
     void save(SysUser user);
 
+    /** 根据主键查询 */
+    Optional<SysUser> findById(Long id);
+
     /** 根据账号查询 */
     Optional<SysUser> findByAccount(String account);
 
@@ -52,6 +55,11 @@ public interface SysUserRepository {
      * @param classId 班级 ID
      */
     void batchUpdateClassId(List<Long> userIds, Long classId);
+
+    /**
+     * 查询指定角色的所有启用用户，用于定时任务批量分配
+     */
+    List<SysUser> listByRoles(List<String> roles);
 
     /**
      * 查询所有学生（role = student），用于班级学生复选框

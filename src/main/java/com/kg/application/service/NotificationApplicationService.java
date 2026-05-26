@@ -1,0 +1,105 @@
+package com.kg.application.service;
+
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import com.kg.context.UserContext;
+import com.kg.domain.model.SysUser;
+import com.kg.exception.BusinessException;
+import com.kg.infrastructure.entity.NotificationMessageEntity;
+import com.kg.infrastructure.mapper.NotificationMessageMapper;
+import com.kg.interfaces.dto.NotificationVO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+
+import java.time.format.DateTimeFormatter;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+/**
+ * 通知消息应用服务 —— 查询列表 + 单条已读。
+ */
+@Service
+public class NotificationApplicationService {
+
+    private static final Logger log = LoggerFactory.getLogger(NotificationApplicationService.class);
+    private static final DateTimeFormatter FMT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private static final int READ = 1;
+
+    private final NotificationMessageMapper notificationMessageMapper;
+
+    public NotificationApplicationService(NotificationMessageMapper notificationMessageMapper) {
+        this.notificationMessageMapper = notificationMessageMapper;
+    }
+
+    /**
+     * 分页查询当前用户的消息，按创建时间倒序。
+     */
+    public Map<String, Object> page(int pageNum, int pageSize) {
+        Long userId = requireUserId();
+        int offset = (pageNum - 1) * pageSize;
+
+        LambdaQueryWrapper<NotificationMessageEntity> countQ = new LambdaQueryWrapper<>();
+        countQ.eq(NotificationMessageEntity::getUserId, userId);
+        long total = notificationMessageMapper.selectCount(countQ);
+
+        LambdaQueryWrapper<NotificationMessageEntity> q = new LambdaQueryWrapper<>();
+        q.eq(NotificationMessageEntity::getUserId, userId);
+        q.orderByDesc(NotificationMessageEntity::getCreatedAt);
+        q.last("LIMIT " + offset + "," + pageSize);
+        List<NotificationMessageEntity> entities = notificationMessageMapper.selectList(q);
+
+        List<NotificationVO> list;
+        if (entities == null || entities.isEmpty()) {
+            list = Collections.emptyList();
+        } else {
+            list = entities.stream().map(e -> {
+                NotificationVO vo = new NotificationVO();
+                vo.setId(e.getId());
+                vo.setTitle(e.getTitle());
+                vo.setContent(e.getContent());
+                vo.setType(e.getType());
+                vo.setRelatedId(e.getRelatedId());
+                vo.setIsRead(e.getIsRead());
+                if (e.getCreatedAt() != null) {
+                    vo.setCreatedAt(e.getCreatedAt().format(FMT));
+                }
+                return vo;
+            }).collect(Collectors.toList());
+        }
+
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("total", total);
+        result.put("list", list);
+        return result;
+    }
+
+    /**
+     * 单条消息标记为已读，校验 user_id 归属。
+     */
+    public void markRead(Long messageId) {
+        Long userId = requireUserId();
+        NotificationMessageEntity entity = notificationMessageMapper.selectById(messageId);
+        if (entity == null) {
+            throw new BusinessException("消息不存在");
+        }
+        if (!userId.equals(entity.getUserId())) {
+            throw new BusinessException(403, "无权操作此消息");
+        }
+
+        LambdaUpdateWrapper<NotificationMessageEntity> w = new LambdaUpdateWrapper<>();
+        w.eq(NotificationMessageEntity::getId, messageId);
+        w.set(NotificationMessageEntity::getIsRead, READ);
+        notificationMessageMapper.update(null, w);
+        log.info("消息已读: messageId={}, userId={}", messageId, userId);
+    }
+
+    private Long requireUserId() {
+        SysUser user = UserContext.getUser();
+        if (user == null) throw new BusinessException(401, "未登录");
+        return user.getId();
+    }
+}

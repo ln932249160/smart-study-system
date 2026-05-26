@@ -34,6 +34,11 @@ public class SysUserRepositoryImpl implements SysUserRepository {
     }
 
     @Override
+    public Optional<SysUser> findById(Long id) {
+        return Optional.ofNullable(SysUserConverter.toDomain(sysUserMapper.selectById(id)));
+    }
+
+    @Override
     public Optional<SysUser> findByAccount(String account) {
         LambdaQueryWrapper<SysUserEntity> query = new LambdaQueryWrapper<>();
         query.eq(SysUserEntity::getAccount, account);
@@ -143,6 +148,16 @@ public class SysUserRepositoryImpl implements SysUserRepository {
         wrapper.in(SysUserEntity::getId, userIds);
         wrapper.set(SysUserEntity::getClassId, classId);
         sysUserMapper.update(null, wrapper);
+    }
+
+    @Override
+    public List<SysUser> listByRoles(List<String> roles) {
+        LambdaQueryWrapper<SysUserEntity> q = new LambdaQueryWrapper<>();
+        q.in(SysUserEntity::getRole, roles);
+        q.eq(SysUserEntity::getStatus, 1);
+        List<SysUserEntity> entities = sysUserMapper.selectList(q);
+        if (entities == null || entities.isEmpty()) return Collections.emptyList();
+        return entities.stream().map(SysUserConverter::toDomain).collect(Collectors.toList());
     }
 
     @Override

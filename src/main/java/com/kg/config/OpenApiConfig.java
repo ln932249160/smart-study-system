@@ -24,7 +24,7 @@ public class OpenApiConfig {
 
     /** 标签展示顺序 */
     private static final List<String> TAG_ORDER = Arrays.asList(
-            "认证", "首页统计", "我的任务", "个人中心", "字典", "学生管理", "班级管理", "任务管理"
+            "认证", "首页统计", "我的任务", "个人中心", "通知消息", "字典", "学生管理", "班级管理", "任务管理"
     );
 
     @Bean

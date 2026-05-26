@@ -36,53 +36,62 @@ public class ProfileApplicationService {
      * 获取当前用户个人信息。
      */
     public ProfileVO getProfile() {
-        SysUser user = requireUser();
-        return toVO(user);
+        SysUser fullUser = loadFullUser();
+        return toVO(fullUser);
     }
 
     /**
      * 修改个人信息（name / gender / email / phone / description）。
      */
     public void updateProfile(ProfileUpdateRequest request) {
-        SysUser user = requireUser();
+        Long userId = getCurrentUserId();
         SysUser update = new SysUser();
-        update.setId(user.getId());
+        update.setId(userId);
         if (request.getName() != null) update.setName(request.getName().trim());
         if (request.getGender() != null) update.setGender(request.getGender());
         if (request.getEmail() != null) update.setEmail(request.getEmail());
         if (request.getPhone() != null) update.setPhone(request.getPhone().trim());
         if (request.getDescription() != null) update.setDescription(request.getDescription());
-        update.setUpdateBy(user.getId());
+        update.setUpdateBy(userId);
         sysUserRepository.update(update);
-        log.info("修改个人信息成功: userId={}", user.getId());
+        log.info("修改个人信息成功: userId={}", userId);
     }
 
     /**
-     * 修改密码：验证原密码 → BCrypt 加密新密码 → 更新。
+     * 修改密码：从 DB 查出完整用户（含 BCrypt 密码）→ 验原密码 → 加密新密码 → 更新。
      */
     public void changePassword(PasswordChangeRequest request) {
-        SysUser user = requireUser();
+        Long userId = getCurrentUserId();
+        // 从 DB 加载完整用户，ThreadLocal 里只有 id + role，没有 password
+        SysUser fullUser = sysUserRepository.findById(userId)
+                .orElseThrow(() -> new BusinessException("用户不存在"));
 
-        // 验证原密码
-        if (!passwordEncoder.matches(request.getOldPassword(), user.getPassword())) {
+        // BCrypt 验证原密码
+        if (!passwordEncoder.matches(request.getOldPassword(), fullUser.getPassword())) {
             throw new BusinessException("原密码错误");
         }
 
-        // 更新为新密码
+        // BCrypt 加密新密码
         SysUser update = new SysUser();
-        update.setId(user.getId());
+        update.setId(userId);
         update.setPassword(passwordEncoder.encode(request.getNewPassword()));
-        update.setUpdateBy(user.getId());
+        update.setUpdateBy(userId);
         sysUserRepository.update(update);
-        log.info("修改密码成功: userId={}", user.getId());
+        log.info("修改密码成功: userId={}", userId);
     }
 
     // ======================== 工具 ========================
 
-    private SysUser requireUser() {
+    private Long getCurrentUserId() {
         SysUser user = UserContext.getUser();
         if (user == null) throw new BusinessException(401, "未登录");
-        return user;
+        return user.getId();
+    }
+
+    /** 从 DB 加载完整用户信息 */
+    private SysUser loadFullUser() {
+        return sysUserRepository.findById(getCurrentUserId())
+                .orElseThrow(() -> new BusinessException("用户不存在"));
     }
 
     private ProfileVO toVO(SysUser user) {
