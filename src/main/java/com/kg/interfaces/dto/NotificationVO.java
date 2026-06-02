@@ -14,6 +14,7 @@ public class NotificationVO {
     @Schema(description = "类型") private String type;
     @Schema(description = "关联任务ID") private Long relatedId;
     @Schema(description = "是否已读") private Integer isRead;
+    @Schema(description = "优先级") private Integer priority;
     @Schema(description = "创建时间") private String createdAt;
     @Schema(description = "通知生效时间") private String notifyTime;
 
@@ -29,6 +30,8 @@ public class NotificationVO {
     public void setRelatedId(Long relatedId) { this.relatedId = relatedId; }
     public Integer getIsRead() { return isRead; }
     public void setIsRead(Integer isRead) { this.isRead = isRead; }
+    public Integer getPriority() { return priority; }
+    public void setPriority(Integer priority) { this.priority = priority; }
     public String getCreatedAt() { return createdAt; }
     public void setCreatedAt(String createdAt) { this.createdAt = createdAt; }
     public String getNotifyTime() { return notifyTime; }

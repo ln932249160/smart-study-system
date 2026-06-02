@@ -19,6 +19,7 @@ public class DictConverter {
         if (d == null) return null;
         DictEntity e = new DictEntity();
         e.setId(d.getId()); e.setDictCode(d.getDictCode()); e.setDictName(d.getDictName());
+        e.setDictLabel(d.getDictLabel());
         e.setDictValue(d.getDictValue()); e.setSortNo(d.getSortNo()); e.setStatus(d.getStatus());
         e.setCreateBy(d.getCreateBy()); e.setCreateTime(d.getCreateTime());
         e.setUpdateBy(d.getUpdateBy()); e.setUpdateTime(d.getUpdateTime());

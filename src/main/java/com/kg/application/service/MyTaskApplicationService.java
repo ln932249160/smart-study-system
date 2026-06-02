@@ -9,8 +9,12 @@ import com.kg.domain.repository.TaskUserRepository;
 import com.kg.enums.RoleEnum;
 import com.kg.enums.TaskStatusEnum;
 import com.kg.exception.BusinessException;
+import com.kg.infrastructure.entity.TaskUserEntity;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.kg.infrastructure.mapper.MyTaskMapper;
+import com.kg.infrastructure.mapper.TaskUserMapper;
 import com.kg.interfaces.dto.MyTaskCompleteRequest;
+import com.kg.interfaces.dto.MyTaskPageRequest;
 import com.kg.interfaces.dto.MyTaskVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,30 +42,35 @@ public class MyTaskApplicationService {
     private static final DateTimeFormatter FMT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     private final MyTaskMapper myTaskMapper;
+    private final TaskUserMapper taskUserMapper;
     private final TaskUserRepository taskUserRepository;
     private final TaskScoreRepository taskScoreRepository;
 
     public MyTaskApplicationService(MyTaskMapper myTaskMapper,
+                                    TaskUserMapper taskUserMapper,
                                     TaskUserRepository taskUserRepository,
                                     TaskScoreRepository taskScoreRepository) {
         this.myTaskMapper = myTaskMapper;
+        this.taskUserMapper = taskUserMapper;
         this.taskUserRepository = taskUserRepository;
         this.taskScoreRepository = taskScoreRepository;
     }
 
     /**
-     * 分页查询当前用户的任务列表。
-     *
-     * @param status   状态过滤：0未完成 1已完成，null 查全部
-     * @param pageNum  页码
-     * @param pageSize 每页条数
+     * 分页查询当前用户的任务列表，支持多条件筛选。
      */
-    public Map<String, Object> page(String status, int pageNum, int pageSize) {
-        Long userId = getCurrentUserId();
-        int offset = (pageNum - 1) * pageSize;
+    public Map<String, Object> page(MyTaskPageRequest req) {
+        Long userId = resolveUserId(req.getUserId());
+        int offset = (req.getPageNum() - 1) * req.getPageSize();
 
-        long total = myTaskMapper.count(userId, status);
-        List<Map<String, Object>> rows = myTaskMapper.page(userId, status, offset, pageSize);
+        long total = myTaskMapper.count(userId,
+                req.getStatus(), req.getTaskName(), req.getTaskType(),
+                req.getForceFlag(), req.getStartTimeBegin(), req.getStartTimeEnd(),
+                req.getEndTimeBegin(), req.getEndTimeEnd());
+        List<Map<String, Object>> rows = myTaskMapper.page(userId,
+                req.getStatus(), req.getTaskName(), req.getTaskType(),
+                req.getForceFlag(), req.getStartTimeBegin(), req.getStartTimeEnd(),
+                req.getEndTimeBegin(), req.getEndTimeEnd(), offset, req.getPageSize());
 
         List<MyTaskVO> list;
         if (rows == null || rows.isEmpty()) {
@@ -141,7 +150,40 @@ public class MyTaskApplicationService {
         log.info("完成任务成功: taskId={}, userId={}", taskId, currentUserId);
     }
 
+    /**
+     * 统计用户待办/已办数量。
+     * @param reqUserId 可选，不传则用当前登录用户
+     */
+    public Map<String, Object> stats(Long reqUserId) {
+        Long userId = resolveUserId(reqUserId);
+        LambdaQueryWrapper<TaskUserEntity> q = new LambdaQueryWrapper<>();
+        q.eq(TaskUserEntity::getUserId, userId);
+        q.eq(TaskUserEntity::getStatus, TaskStatusEnum.UNFINISHED.getCode());
+        long unfinished = taskUserMapper.selectCount(q);
+
+        LambdaQueryWrapper<TaskUserEntity> q2 = new LambdaQueryWrapper<>();
+        q2.eq(TaskUserEntity::getUserId, userId);
+        q2.eq(TaskUserEntity::getStatus, TaskStatusEnum.FINISHED.getCode());
+        long finished = taskUserMapper.selectCount(q2);
+
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("unfinished", unfinished);
+        result.put("finished", finished);
+        return result;
+    }
+
     // ======================== 工具方法 ========================
+
+    /** 有入参用入参，否则用上下文用户 */
+    private Long resolveUserId(Long reqUserId) {
+        if (reqUserId != null) {
+            // 入参指定了用户ID，只需校验登录
+            SysUser user = UserContext.getUser();
+            if (user == null) throw new BusinessException(401, "未登录");
+            return reqUserId;
+        }
+        return getCurrentUserId();
+    }
 
     private Long getCurrentUserId() {
         SysUser user = UserContext.getUser();

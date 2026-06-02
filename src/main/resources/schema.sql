@@ -38,3 +38,17 @@ INSERT INTO sys_dict (dict_code,dict_name,dict_value,sort_no,status,create_by,cr
 	 ('module_name','申论-小题','6',6,1,NULL,'2026-05-26 21:36:08',NULL,'2026-05-26 21:36:08'),
 	 ('module_name','申论-大作文','7',7,1,NULL,'2026-05-26 21:36:08',NULL,'2026-05-26 21:36:08');
 
+CREATE TABLE IF NOT EXISTS `notification_message` (
+    `id`          BIGINT(20)   NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+    `user_id`     BIGINT(20)   NOT NULL COMMENT '接收用户',
+    `title`       VARCHAR(100) DEFAULT NULL COMMENT '标题',
+    `content`     VARCHAR(500) DEFAULT NULL COMMENT '内容',
+    `priority`    INT(11)      DEFAULT '0' COMMENT '消息优先级',
+    `type`        VARCHAR(30)  DEFAULT NULL COMMENT '消息类型',
+    `related_id`  BIGINT(20)   DEFAULT NULL COMMENT '关联业务id',
+    `is_read`     TINYINT(4)   DEFAULT '0' COMMENT '是否已读',
+    `created_at`  DATETIME     DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `notify_time` DATETIME     DEFAULT NULL COMMENT '通知生效时间',
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='通知消息表';
+

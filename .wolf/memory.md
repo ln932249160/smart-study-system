@@ -168,3 +168,49 @@
 | 17:34 | Created CLAUDE.md | — | ~1167 |
 | 17:34 | /init: rewrote CLAUDE.md from 5-line stub to comprehensive guide with build commands, architecture, conventions | CLAUDE.md | done | ~300 |
 | 17:34 | Session end: 1 writes across 1 files (CLAUDE.md) | 5 reads | ~6270 tok |
+| 20:00 | Edited src/main/java/com/kg/infrastructure/converter/DictConverter.java | 2→3 lines | ~62 |
+| 20:00 | Fixed DictConverter.toEntity missing setDictLabel | DictConverter.java | compile pass | ~50 |
+| 20:00 | Session end: 2 writes across 2 files (CLAUDE.md, DictConverter.java) | 8 reads | ~7645 tok |
+| 20:01 | Session end: 2 writes across 2 files (CLAUDE.md, DictConverter.java) | 8 reads | ~7645 tok |
+
+## Session: 2026-06-02 20:22
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 20:24 | Edited src/main/resources/schema.sql | expanded (+14 lines) | ~281 |
+| 20:24 | Session end: 1 writes across 1 files (schema.sql) | 1 reads | ~1039 tok |
+| 20:45 | Created src/main/java/com/kg/interfaces/dto/NotificationPageRequest.java | — | ~526 |
+| 20:45 | Edited src/main/java/com/kg/interfaces/dto/NotificationVO.java | 2→3 lines | ~47 |
+| 20:45 | Edited src/main/java/com/kg/interfaces/dto/NotificationVO.java | modified getIsRead() | ~66 |
+| 20:45 | Edited src/main/java/com/kg/application/service/NotificationApplicationService.java | added 3 import(s) | ~232 |
+| 20:46 | Edited src/main/java/com/kg/application/service/NotificationApplicationService.java | added 7 condition(s) | ~753 |
+| 20:46 | Edited src/main/java/com/kg/interfaces/controller/NotificationController.java | added 2 import(s) | ~161 |
+| 20:46 | Edited src/main/java/com/kg/interfaces/controller/NotificationController.java | modified list() | ~127 |
+| 20:46 | Added filter params to /notification/list: title, type, isRead, priority, relatedId, notifyTime range | NotificationController, NotificationApplicationService, NotificationPageRequest(new), NotificationVO | compile pass | ~200 |
+| 20:46 | Session end: 8 writes across 5 files (schema.sql, NotificationPageRequest.java, NotificationVO.java, NotificationApplicationService.java, NotificationController.java) | 6 reads | ~6450 tok |
+| 21:03 | Created src/main/java/com/kg/interfaces/dto/MyTaskPageRequest.java | — | ~613 |
+| 21:04 | Created src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java | — | ~1055 |
+| 21:04 | Edited src/main/java/com/kg/application/service/MyTaskApplicationService.java | added 1 import(s) | ~37 |
+| 21:04 | Edited src/main/java/com/kg/application/service/MyTaskApplicationService.java | modified page() | ~211 |
+| 21:04 | Edited src/main/java/com/kg/interfaces/controller/MyTaskController.java | modified list() | ~81 |
+| 21:04 | Edited src/main/java/com/kg/interfaces/controller/MyTaskController.java | 3→2 lines | ~32 |
+| 21:04 | Added filter params to /my-task/list: taskName, taskType, forceFlag, startTime range, endTime range | MyTaskController, MyTaskApplicationService, MyTaskPageRequest, MyTaskMapper | compile pass | ~150 |
+| 21:04 | Session end: 14 writes across 9 files (schema.sql, NotificationPageRequest.java, NotificationVO.java, NotificationApplicationService.java, NotificationController.java) | 12 reads | ~13211 tok |
+| 21:21 | Edited src/main/java/com/kg/application/service/MyTaskApplicationService.java | added 2 import(s) | ~78 |
+| 21:21 | Edited src/main/java/com/kg/application/service/MyTaskApplicationService.java | modified MyTaskApplicationService() | ~187 |
+| 21:21 | Edited src/main/java/com/kg/application/service/MyTaskApplicationService.java | added 1 import(s) | ~33 |
+| 21:22 | Edited src/main/java/com/kg/application/service/MyTaskApplicationService.java | modified stats() | ~235 |
+| 21:22 | Edited src/main/java/com/kg/interfaces/controller/MyTaskController.java | modified stats() | ~121 |
+| 21:22 | Edited src/main/java/com/kg/interfaces/controller/MyTaskController.java | added 1 import(s) | ~65 |
+| 21:22 | Added GET /my-task/stats returning unfinished/finished counts | MyTaskController, MyTaskApplicationService | compile pass | ~50 |
+| 21:23 | Created README.md | — | ~1920 |
+| 21:23 | Regenerated README.md: 42 endpoints, 10 controllers, full permission matrix, key design | README.md | done | ~800 |
+| 21:23 | Session end: 21 writes across 10 files (schema.sql, NotificationPageRequest.java, NotificationVO.java, NotificationApplicationService.java, NotificationController.java) | 21 reads | ~23693 tok |
+| 00:10 | Edited src/main/java/com/kg/interfaces/dto/MyTaskPageRequest.java | 2→5 lines | ~38 |
+| 00:10 | Edited src/main/java/com/kg/interfaces/dto/MyTaskPageRequest.java | modified getUserId() | ~56 |
+| 00:10 | Edited src/main/java/com/kg/application/service/MyTaskApplicationService.java | modified page() | ~31 |
+| 00:10 | Edited src/main/java/com/kg/application/service/MyTaskApplicationService.java | getCurrentUserId() → resolveUserId() | ~47 |
+| 00:10 | Edited src/main/java/com/kg/application/service/MyTaskApplicationService.java | added 2 condition(s) | ~119 |
+| 00:10 | Edited src/main/java/com/kg/interfaces/controller/MyTaskController.java | added 1 import(s) | ~81 |
+| 00:10 | Edited src/main/java/com/kg/interfaces/controller/MyTaskController.java | 4→4 lines | ~61 |
+| 00:10 | Session end: 28 writes across 10 files (schema.sql, NotificationPageRequest.java, NotificationVO.java, NotificationApplicationService.java, NotificationController.java) | 21 reads | ~24703 tok |

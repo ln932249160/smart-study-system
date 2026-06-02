@@ -352,6 +352,134 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-06-01T16:25:03.300Z"
+    },
+    {
+      "id": "bug-023",
+      "timestamp": "2026-06-02T12:45:45.061Z",
+      "error_message": "Incorrect value in code",
+      "file": "src/main/java/com/kg/interfaces/dto/NotificationVO.java",
+      "root_cause": "Had \"创建时间\"",
+      "fix": "Changed to \"优先级\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-02T12:45:45.061Z"
+    },
+    {
+      "id": "bug-024",
+      "timestamp": "2026-06-02T12:46:13.556Z",
+      "error_message": "Wrong operator: <= should be &&",
+      "file": "src/main/java/com/kg/application/service/NotificationApplicationService.java",
+      "root_cause": "Used \"<=\" instead of \"&&\"",
+      "fix": "Changed operator <= → &&",
+      "tags": [
+        "auto-detected",
+        "operator-fix",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-02T12:46:13.556Z"
+    },
+    {
+      "id": "bug-025",
+      "timestamp": "2026-06-02T13:04:09.093Z",
+      "error_message": "Wrong reference: MyTaskVO should be MyTaskPageRequest",
+      "file": "src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+      "root_cause": "Used \"MyTaskVO\" instead of \"MyTaskPageRequest\"",
+      "fix": "Changed MyTaskVO → MyTaskPageRequest",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-02T13:04:09.093Z"
+    },
+    {
+      "id": "bug-026",
+      "timestamp": "2026-06-02T13:04:15.986Z",
+      "error_message": "Significant refactor of ",
+      "file": "src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+      "root_cause": "9 lines replaced/restructured",
+      "fix": "Rewrote 13→15 lines (9 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-02T13:04:15.986Z"
+    },
+    {
+      "id": "bug-027",
+      "timestamp": "2026-06-02T16:10:10.745Z",
+      "error_message": "Wrong return value",
+      "file": "src/main/java/com/kg/interfaces/dto/MyTaskPageRequest.java",
+      "root_cause": "Was returning: status; }",
+      "fix": "Now returns: userId; }",
+      "tags": [
+        "auto-detected",
+        "return-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-02T16:10:10.745Z"
+    },
+    {
+      "id": "bug-028",
+      "timestamp": "2026-06-02T16:10:20.946Z",
+      "error_message": "Wrong reference: getCurrentUserId should be resolveUserId",
+      "file": "src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+      "root_cause": "Used \"getCurrentUserId\" instead of \"resolveUserId\"",
+      "fix": "Changed getCurrentUserId → resolveUserId",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-02T16:10:20.946Z"
+    },
+    {
+      "id": "bug-029",
+      "timestamp": "2026-06-02T16:10:26.508Z",
+      "error_message": "Significant refactor of ",
+      "file": "src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+      "root_cause": "3 lines replaced/restructured",
+      "fix": "Rewrote 5→6 lines (3 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-02T16:10:26.508Z"
+    },
+    {
+      "id": "bug-030",
+      "timestamp": "2026-06-02T16:10:31.709Z",
+      "error_message": "Null/undefined access in ",
+      "file": "src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-02T16:10:31.709Z"
     }
   ]
 }

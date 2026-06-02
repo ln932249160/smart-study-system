@@ -1,6 +1,7 @@
 package com.kg.interfaces.controller;
 
 import com.kg.application.service.NotificationApplicationService;
+import com.kg.interfaces.dto.NotificationPageRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -26,13 +28,12 @@ public class NotificationController {
     }
 
     /**
-     * 分页查询当前用户的通知消息。
+     * 分页查询当前用户的通知消息，支持多条件筛选。
      */
     @Operation(summary = "消息列表")
-    @GetMapping("/notification/list")
-    public Map<String, Object> list(@RequestParam(defaultValue = "1") int pageNum,
-                                    @RequestParam(defaultValue = "10") int pageSize) {
-        Map<String, Object> data = notificationApplicationService.page(pageNum, pageSize);
+    @PostMapping("/notification/list")
+    public Map<String, Object> list(@Valid @RequestBody NotificationPageRequest req) {
+        Map<String, Object> data = notificationApplicationService.page(req);
         Map<String, Object> result = new LinkedHashMap<>();
         result.put("code", 200);
         result.put("message", "查询成功");
@@ -46,7 +47,7 @@ public class NotificationController {
     @Operation(summary = "标记已读")
     @PostMapping("/notification/read")
     public Map<String, Object> markRead(@RequestBody Map<String, Long> body) {
-        Long messageId = body.get("messageId");
+        Long messageId = body.get("id");
         notificationApplicationService.markRead(messageId);
         Map<String, Object> result = new LinkedHashMap<>();
         result.put("code", 200);

@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -28,15 +29,27 @@ public class MyTaskController {
     }
 
     /**
-     * 分页查询当前用户的任务列表。
-     * status: 0未完成 / 1已完成 / 不传查全部。
+     * 分页查询当前用户的任务列表，支持多条件筛选。
      * 排序：强制任务优先 → 创建时间倒序。
      */
     @Operation(summary = "我的任务列表")
-    @GetMapping("/my-task/list")
-    public Map<String, Object> list(@Valid MyTaskPageRequest request) {
-        Map<String, Object> data = myTaskApplicationService.page(
-                request.getStatus(), request.getPageNum(), request.getPageSize());
+    @PostMapping("/my-task/list")
+    public Map<String, Object> list(@Valid @RequestBody MyTaskPageRequest request) {
+        Map<String, Object> data = myTaskApplicationService.page(request);
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("code", 200);
+        result.put("message", "查询成功");
+        result.put("data", data);
+        return result;
+    }
+
+    /**
+     * 统计当前用户待办/已办数量。
+     */
+    @Operation(summary = "待办已办统计")
+    @PostMapping("/my-task/stats")
+    public Map<String, Object> stats(@RequestBody MyTaskPageRequest request) {
+        Map<String, Object> data = myTaskApplicationService.stats(request.getUserId());
         Map<String, Object> result = new LinkedHashMap<>();
         result.put("code", 200);
         result.put("message", "查询成功");

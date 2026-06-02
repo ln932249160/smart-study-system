@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-06-02T09:34:32.350Z
-> Files: 161 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-06-02T16:10:40.251Z
+> Files: 162 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -10,7 +10,7 @@
 - `CLAUDE.md` — CLAUDE.md (~1094 tok)
 - `hello.html` — Hello World (~211 tok)
 - `pom.xml` — Maven project configuration (~977 tok)
-- `README.md` — Project documentation (~1324 tok)
+- `README.md` — Project documentation (~1800 tok)
 
 ## .claude/
 
@@ -46,8 +46,8 @@
 - `ClassApplicationService.java` — 班级管理应用服务 —— teacher 全部操作，headmaster 仅看本班，student 无权限。 (~2430 tok)
 - `DictApplicationService.java` — 字典管理应用服务 — 按 dict_code 分组管理 (~1260 tok)
 - `HomeApplicationService.java` — 首页统计应用服务 —— 基于聚合 SQL 提供 teacher / headmaster / student 三种视角的统计数据。 (~1832 tok)
-- `MyTaskApplicationService.java` — 我的任务应用服务 —— 个人任务列表 + 完成任务。 (~1864 tok)
-- `NotificationApplicationService.java` — 通知消息应用服务 —— 查询列表 + 已读 + 未读数。 (~1186 tok)
+- `MyTaskApplicationService.java` — 我的任务应用服务 —— 个人任务列表 + 完成任务。 (~2257 tok)
+- `NotificationApplicationService.java` — 通知消息应用服务 —— 查询列表 + 已读 + 未读数。 (~1520 tok)
 - `NotificationService.java` — 通知消息生成服务 —— 封装消息生成逻辑，在任务创建/编辑时调用。 (~1357 tok)
 - `ProfileApplicationService.java` — 个人中心应用服务 —— 查看/修改个人信息、修改密码。 (~1172 tok)
 - `StudentApplicationService.java` — 学生管理应用服务 —— teacher 全部操作，headmaster 看本班，student 无权限。 (~3522 tok)
@@ -109,7 +109,7 @@
 
 - `.gitkeep` (~0 tok)
 - `ClassInfoConverter.java` — 防腐层转换器 —— domain.ClassInfo ↔ infra.ClassInfoEntity 双向映射。 (~456 tok)
-- `DictConverter.java` — DictItem ↔ DictEntity (~325 tok)
+- `DictConverter.java` — DictItem ↔ DictEntity (~336 tok)
 - `SysUserConverter.java` — 防腐层转换器 —— domain.SysUser ↔ infra.SysUserEntity 双向映射。 (~659 tok)
 - `TaskConverter.java` — 防腐层转换器 —— domain.Task ↔ infra.TaskEntity（14 列）。 (~517 tok)
 - `TaskScoreConverter.java` — 防腐层转换器 —— domain.TaskScore ↔ infra.TaskScoreEntity (~342 tok)
@@ -136,7 +136,7 @@
 - `ClassInfoMapper.java` — 班级 Mapper，操作 class_info 表。 (~90 tok)
 - `DictMapper.java` — 字典 Mapper (~80 tok)
 - `HomeMapper.java` — 首页统计 Mapper —— 聚合 SQL，一次查询完成统计，禁止 N+1。 (~1104 tok)
-- `MyTaskMapper.java` — 我的任务 Mapper —— 以 task_user 为核心 JOIN task，一次 SQL 查完。 (~451 tok)
+- `MyTaskMapper.java` — 我的任务 Mapper —— 以 task_user 为核心 JOIN task，一次 SQL 查完。 (~1055 tok)
 - `NotificationMessageMapper.java` — 通知消息 Mapper，操作 notification_message 表。 (~102 tok)
 - `SysUserMapper.java` — 系统用户 Mapper，操作 sys_user 表。 (~88 tok)
 - `TaskMapper.java` — 任务 Mapper (~80 tok)
@@ -169,8 +169,8 @@
 - `DictController.java` — 字典管理控制器 (~1231 tok)
 - `HelloController.java` — RestController: HelloController (1 endpoints) (~198 tok)
 - `HomeController.java` — 首页统计控制器。 (~468 tok)
-- `MyTaskController.java` — 我的任务控制器 —— 个人任务列表 + 完成任务。 (~567 tok)
-- `NotificationController.java` — 通知消息控制器。 (~629 tok)
+- `MyTaskController.java` — 我的任务控制器 —— 个人任务列表 + 完成任务。 (~646 tok)
+- `NotificationController.java` — 通知消息控制器。 (~626 tok)
 - `ProfileController.java` — 个人中心控制器。 (~657 tok)
 - `StudentController.java` — 用户管理控制器 —— 管理 student / headmaster 角色用户。 (~1856 tok)
 - `TaskController.java` — 任务管理控制器。 (~792 tok)
@@ -195,10 +195,11 @@
 - `LoginResponse.java` — 登录响应 DTO (~399 tok)
 - `LowCompletedTaskVO.java` — 完成率最低任务 VO (~505 tok)
 - `MyTaskCompleteRequest.java` — 我的任务完成请求 DTO (~529 tok)
-- `MyTaskPageRequest.java` — 我的任务分页请求 DTO (~304 tok)
+- `MyTaskPageRequest.java` — 我的任务分页请求 DTO (~659 tok)
 - `MyTaskVO.java` — 我的任务列表项 VO (~628 tok)
 - `NearEndTaskVO.java` — 即将截止任务 VO (~227 tok)
-- `NotificationVO.java` — 通知消息列表项 VO (~419 tok)
+- `NotificationPageRequest.java` — 通知消息分页查询请求 (~526 tok)
+- `NotificationVO.java` — 通知消息列表项 VO (~470 tok)
 - `PasswordChangeRequest.java` — 修改密码请求 DTO (~231 tok)
 - `ProfileUpdateRequest.java` — 修改个人资料请求 DTO (~302 tok)
 - `ProfileVO.java` — 个人信息 VO (~589 tok)
@@ -235,7 +236,7 @@
 - `1.json` (~58 tok)
 - `2.json` (~91 tok)
 - `application.yml` (~207 tok)
-- `schema.sql` — Database schema (~738 tok)
+- `schema.sql` — Database schema (~890 tok)
 
 ## src/main/resources/static/
 

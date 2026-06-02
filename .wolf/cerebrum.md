@@ -6,7 +6,7 @@
 
 ## User Preferences
 
-<!-- How the user likes things done. Code style, tools, patterns, communication. -->
+- 查询接口（分页列表）必须要有复用性，查询条件要覆盖数据库表中有实际含义的字段。不能只给 pageNum + pageSize 两个参数，type、status、title 模糊、时间范围等字段都要暴露出来。
 
 ## Key Learnings
 
@@ -15,8 +15,7 @@
 
 ## Do-Not-Repeat
 
-<!-- Mistakes made and corrected. Each entry prevents the same mistake recurring. -->
-<!-- Format: [YYYY-MM-DD] Description of what went wrong and what to do instead. -->
+- [2026-06-02] DictConverter.toEntity 漏掉了 dictLabel 字段映射。**规则：新增字段时必须同步更新 Converter 双向映射（toDomain + toEntity），以及所有手动构造对象的代码（Service 层 new DomainModel()、Repository 层 update 方法）。少一个方向就会丢数据。**
 
 ## Decision Log
 

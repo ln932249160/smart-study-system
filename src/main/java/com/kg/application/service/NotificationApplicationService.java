@@ -7,12 +7,15 @@ import com.kg.domain.model.SysUser;
 import com.kg.exception.BusinessException;
 import com.kg.infrastructure.entity.NotificationMessageEntity;
 import com.kg.infrastructure.mapper.NotificationMessageMapper;
+import com.kg.interfaces.dto.NotificationPageRequest;
 import com.kg.interfaces.dto.NotificationVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -37,20 +40,41 @@ public class NotificationApplicationService {
     }
 
     /**
-     * 分页查询当前用户消息。
-     * 仅返回已生效的消息（notify_time <= now），按通知时间倒序。
+     * 分页查询当前用户消息，支持多条件筛选。
      */
-    public Map<String, Object> page(int pageNum, int pageSize) {
+    public Map<String, Object> page(NotificationPageRequest req) {
         Long userId = requireUserId();
-        int offset = (pageNum - 1) * pageSize;
+        int offset = (req.getPageNum() - 1) * req.getPageSize();
 
         LambdaQueryWrapper<NotificationMessageEntity> q = new LambdaQueryWrapper<>();
         q.eq(NotificationMessageEntity::getUserId, userId);
         q.le(NotificationMessageEntity::getNotifyTime, LocalDateTime.now());
+        // 筛选条件
+        if (req.getTitle() != null && !req.getTitle().isEmpty()) {
+            q.like(NotificationMessageEntity::getTitle, req.getTitle());
+        }
+        if (req.getType() != null && !req.getType().isEmpty()) {
+            q.eq(NotificationMessageEntity::getType, req.getType());
+        }
+        if (req.getIsRead() != null) {
+            q.eq(NotificationMessageEntity::getIsRead, req.getIsRead());
+        }
+        if (req.getPriority() != null) {
+            q.eq(NotificationMessageEntity::getPriority, req.getPriority());
+        }
+        if (req.getRelatedId() != null) {
+            q.eq(NotificationMessageEntity::getRelatedId, req.getRelatedId());
+        }
+        if (req.getNotifyTimeBegin() != null && !req.getNotifyTimeBegin().isEmpty()) {
+            q.ge(NotificationMessageEntity::getNotifyTime, LocalDateTime.parse(req.getNotifyTimeBegin(), FMT));
+        }
+        if (req.getNotifyTimeEnd() != null && !req.getNotifyTimeEnd().isEmpty()) {
+            q.le(NotificationMessageEntity::getNotifyTime, LocalDateTime.parse(req.getNotifyTimeEnd(), FMT));
+        }
         q.orderByDesc(NotificationMessageEntity::getNotifyTime);
         long total = notificationMessageMapper.selectCount(q);
 
-        q.last("LIMIT " + offset + "," + pageSize);
+        q.last("LIMIT " + offset + "," + req.getPageSize());
         List<NotificationMessageEntity> entities = notificationMessageMapper.selectList(q);
 
         List<NotificationVO> list;
@@ -65,6 +89,7 @@ public class NotificationApplicationService {
                 vo.setType(e.getType());
                 vo.setRelatedId(e.getRelatedId());
                 vo.setIsRead(e.getIsRead());
+                vo.setPriority(e.getPriority());
                 if (e.getCreatedAt() != null) vo.setCreatedAt(e.getCreatedAt().format(FMT));
                 if (e.getNotifyTime() != null) vo.setNotifyTime(e.getNotifyTime().format(FMT));
                 return vo;
