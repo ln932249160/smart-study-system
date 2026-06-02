@@ -21,3 +21,20 @@ CREATE TABLE IF NOT EXISTS `sys_user` (
     PRIMARY KEY (`id`),
     UNIQUE KEY `account` (`account`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
+
+delete from sys_dict;
+INSERT INTO sys_dict (dict_code,dict_name,dict_value,sort_no,status,create_by,create_time,update_by,update_time) VALUES
+	 ('role','老师','1',1,1,NULL,'2026-05-26 21:36:08',NULL,'2026-05-26 21:36:08'),
+	 ('role','班长','2',2,1,NULL,'2026-05-26 21:36:08',NULL,'2026-05-26 21:36:08'),
+	 ('role','学生','3',3,1,NULL,'2026-05-26 21:36:08',NULL,'2026-05-26 21:36:08'),
+	 ('task_status','未完成','0',1,1,NULL,'2026-05-26 21:36:08',NULL,'2026-05-26 21:36:08'),
+	 ('task_status','已完成','1',2,1,NULL,'2026-05-26 21:36:08',NULL,'2026-05-26 21:36:08'),
+	 ('module_name','行测-常识','1',1,1,NULL,'2026-05-26 21:36:08',NULL,'2026-05-26 21:36:08'),
+	 ('module_name','行测-言语','2',2,1,NULL,'2026-05-26 21:36:08',NULL,'2026-05-26 21:36:08'),
+	 ('module_name','行测-数量','3',3,1,NULL,'2026-05-26 21:36:08',NULL,'2026-05-26 21:36:08'),
+	 ('module_name','行测-判断推理','4',4,1,NULL,'2026-05-26 21:36:08',NULL,'2026-05-26 21:36:08'),
+	 ('module_name','行测-资料分析','5',5,1,NULL,'2026-05-26 21:36:08',NULL,'2026-05-26 21:36:08');
+INSERT INTO sys_dict (dict_code,dict_name,dict_value,sort_no,status,create_by,create_time,update_by,update_time) VALUES
+	 ('module_name','申论-小题','6',6,1,NULL,'2026-05-26 21:36:08',NULL,'2026-05-26 21:36:08'),
+	 ('module_name','申论-大作文','7',7,1,NULL,'2026-05-26 21:36:08',NULL,'2026-05-26 21:36:08');
+

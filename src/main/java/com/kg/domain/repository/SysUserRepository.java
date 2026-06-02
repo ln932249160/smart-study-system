@@ -20,12 +20,15 @@ public interface SysUserRepository {
     Optional<SysUser> findByAccount(String account);
 
     /**
-     * 根据账号模糊 + 角色列表分页查询
+     * 多条件分页查询：name/roles/phone/userId/classIds 均可选
      */
-    List<SysUser> pageByNameAndRoles(String name, List<String> roles, int offset, int limit);
+    List<SysUser> pageByFilters(String name, String role, String phone, Long userId,
+                                List<Long> classIds, List<String> managedRoles,
+                                int offset, int limit);
 
-    /** 统计分页总数 */
-    long countByNameAndRoles(String name, List<String> roles);
+    /** 多条件统计总数 */
+    long countByFilters(String name, String role, String phone, Long userId,
+                        List<Long> classIds, List<String> managedRoles);
 
     /** 按主键更新（只更新非 null 字段） */
     void update(SysUser user);

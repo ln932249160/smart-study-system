@@ -10,6 +10,7 @@ import com.kg.interfaces.dto.ClassOptionVO;
 import com.kg.interfaces.dto.StudentCreateRequest;
 import com.kg.interfaces.dto.StudentUpdateRequest;
 import com.kg.interfaces.dto.StudentVO;
+import com.kg.interfaces.dto.UserImportDTO;
 import com.kg.exception.BusinessException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -32,8 +34,12 @@ import java.util.stream.Collectors;
 public class StudentApplicationService {
 
     private static final Logger log = LoggerFactory.getLogger(StudentApplicationService.class);
-    private static final List<String> MANAGED_ROLES = Arrays.asList(
+    /** headmaster / student */
+    private static final List<String> MANAGEABLE_ROLES = Arrays.asList(
             RoleEnum.HEADMASTER.getCode(), RoleEnum.STUDENT.getCode());
+    /** 全部角色 */
+    private static final List<String> ALL_ROLES = Arrays.asList(
+            RoleEnum.TEACHER.getCode(), RoleEnum.HEADMASTER.getCode(), RoleEnum.STUDENT.getCode());
     private static final String DEFAULT_PASSWORD = "123456";
     private static final int STATUS_ACTIVE = 1;
 
@@ -52,45 +58,68 @@ public class StudentApplicationService {
     // ======================== 分页查询 ========================
 
     /**
-     * teacher → 全部 | headmaster → 仅本班 | student → 无权限
+     * teacher → 全部角色 | headmaster → 本班学生+班长 | student → 无权限
      */
-    public Map<String, Object> page(String name, int pageNum, int pageSize) {
+    public Map<String, Object> page(String name, String role, String phone, Long userId,
+                                     Long classId, String className, int pageNum, int pageSize) {
         SysUser currentUser = requireCurrentUser();
-        String role = currentUser.getRole();
+        String currentRole = currentUser.getRole();
         int offset = (pageNum - 1) * pageSize;
 
-        if (RoleEnum.isStudent(role)) {
-            throw new BusinessException(403, "无权查看学生列表");
+        if (RoleEnum.isStudent(currentRole)) {
+            throw new BusinessException(403, "无权查看用户列表");
+        }
+
+        // 班级名模糊匹配 → 查 class_info 获取 classIds
+        List<Long> classIds = null;
+        if (className != null && !className.trim().isEmpty()) {
+            classIds = classInfoRepository.findIdsByClassNameLike(className.trim());
+            if (classIds.isEmpty()) {
+                return emptyPageResult();
+            }
+        } else if (classId != null) {
+            classIds = Collections.singletonList(classId);
         }
 
         List<SysUser> users;
         long total;
+        List<String> searchRoles; // 当前角色可搜索的范围
 
-        if (RoleEnum.isHeadmaster(role)) {
-            Long classId = currentUser.getClassId();
-            if (classId == null) {
+        if (RoleEnum.isHeadmaster(currentRole)) {
+            // 班长只能看本班学生+班长
+            Long currentClassId = currentUser.getClassId();
+            if (currentClassId == null) {
                 return emptyPageResult();
             }
-            // 查本班用户，内存过滤角色 + 模糊名 + 分页
-            List<SysUser> allInClass = sysUserRepository.findByClassId(classId);
-            List<SysUser> filtered = allInClass.stream()
-                    .filter(u -> MANAGED_ROLES.contains(u.getRole()))
-                    .filter(u -> name == null || name.isEmpty() || (u.getName() != null && u.getName().contains(name)))
-                    .collect(Collectors.toList());
-            total = filtered.size();
-            int to = Math.min(offset + pageSize, filtered.size());
-            users = offset < filtered.size() ? filtered.subList(offset, to) : Collections.emptyList();
+            if (classIds != null && !classIds.contains(currentClassId)) {
+                return emptyPageResult();
+            }
+            classIds = Collections.singletonList(currentClassId);
+            searchRoles = MANAGEABLE_ROLES;
         } else {
-            // teacher
-            total = sysUserRepository.countByNameAndRoles(name, MANAGED_ROLES);
-            users = sysUserRepository.pageByNameAndRoles(name, MANAGED_ROLES, offset, pageSize);
+            // 老师能看全部角色
+            searchRoles = ALL_ROLES;
         }
+
+        total = sysUserRepository.countByFilters(name, role, phone, userId,
+                classIds, searchRoles);
+        users = sysUserRepository.pageByFilters(name, role, phone, userId,
+                classIds, searchRoles, offset, pageSize);
 
         List<StudentVO> list = users.stream().map(this::toVO).collect(Collectors.toList());
         Map<String, Object> result = new LinkedHashMap<>();
         result.put("total", total);
         result.put("list", list);
         return result;
+    }
+
+    // ======================== 详情 ========================
+
+    /** 查看用户详情 */
+    public StudentVO getById(Long id) {
+        SysUser user = sysUserRepository.findById(id)
+                .orElseThrow(() -> new BusinessException("用户不存在"));
+        return toVO(user);
     }
 
     // ======================== 新增（仅 teacher） ========================
@@ -158,6 +187,88 @@ public class StudentApplicationService {
         return classInfoRepository.listActiveClasses().stream()
                 .map(c -> ClassOptionVO.of(c.getId(), c.getClassName()))
                 .collect(Collectors.toList());
+    }
+
+    // ======================== Excel 批量导入 ========================
+
+    /**
+     * 批量导入用户。
+     *
+     * @param list Excel 解析后的用户列表
+     * @return { success: 成功数, fail: 失败数, errors: ["行2: 手机号为空", ...] }
+     */
+    public Map<String, Object> importUsers(List<UserImportDTO> list) {
+        Long currentUserId = requireTeacher();
+        int success = 0;
+        int fail = 0;
+        List<String> errors = new ArrayList<>();
+
+        for (int i = 0; i < list.size(); i++) {
+            UserImportDTO dto = list.get(i);
+            int row = i + 2; // Excel 行号（第1行是表头）
+            try {
+                // 基本校验
+                if (dto.getPhone() == null || dto.getPhone().trim().isEmpty()) {
+                    errors.add("行" + row + ": 手机号为空，跳过");
+                    fail++;
+                    continue;
+                }
+                if (dto.getName() == null || dto.getName().trim().isEmpty()) {
+                    errors.add("行" + row + ": 姓名为空，跳过");
+                    fail++;
+                    continue;
+                }
+
+                String account = (dto.getAccount() != null && !dto.getAccount().trim().isEmpty())
+                        ? dto.getAccount().trim()
+                        : dto.getPhone().trim();
+
+                // 账号去重
+                if (sysUserRepository.findByAccount(account).isPresent()) {
+                    errors.add("行" + row + ": 账号已存在 " + account + "，跳过");
+                    fail++;
+                    continue;
+                }
+
+                SysUser sysUser = new SysUser();
+                sysUser.setAccount(account);
+                sysUser.setName(dto.getName().trim());
+                sysUser.setPassword(passwordEncoder.encode(DEFAULT_PASSWORD));
+                sysUser.setRole(dto.getRole() != null ? dto.getRole() : RoleEnum.STUDENT.getCode());
+                sysUser.setGender(dto.getGender() != null ? dto.getGender() : 0);
+                sysUser.setPhone(dto.getPhone().trim());
+                sysUser.setEmail(dto.getEmail());
+                sysUser.setDescription(dto.getDescription());
+                // 班级名称 → 班级ID
+                if (dto.getClassName() != null && !dto.getClassName().trim().isEmpty()) {
+                    ClassInfo cls = classInfoRepository.findByClassName(dto.getClassName().trim())
+                            .orElse(null);
+                    if (cls == null) {
+                        errors.add("行" + row + ": 班级不存在 " + dto.getClassName() + "，跳过");
+                        fail++;
+                        continue;
+                    }
+                    sysUser.setClassId(cls.getId());
+                }
+                sysUser.setStatus(STATUS_ACTIVE);
+                sysUser.setCreateBy(currentUserId);
+                sysUser.setCreateTime(LocalDateTime.now());
+
+                sysUserRepository.save(sysUser);
+                success++;
+            } catch (Exception e) {
+                log.warn("导入行 {} 失败: {}", row, e.getMessage());
+                errors.add("行" + row + ": " + e.getMessage());
+                fail++;
+            }
+        }
+
+        log.info("批量导入完成: 成功{}人, 失败{}人", success, fail);
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("success", success);
+        result.put("fail", fail);
+        result.put("errors", errors);
+        return result;
     }
 
     // ======================== 权限 ========================

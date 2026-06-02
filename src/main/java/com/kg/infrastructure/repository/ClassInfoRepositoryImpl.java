@@ -93,4 +93,36 @@ public class ClassInfoRepositoryImpl implements ClassInfoRepository {
         }
         return entities.stream().map(ClassInfoConverter::toDomain).collect(Collectors.toList());
     }
+
+    @Override
+    public boolean existsByClassName(String className) {
+        LambdaQueryWrapper<ClassInfoEntity> q = new LambdaQueryWrapper<>();
+        q.eq(ClassInfoEntity::getClassName, className);
+        return classInfoMapper.selectCount(q) > 0;
+    }
+
+    @Override
+    public boolean existsByClassNameExcludingId(String className, Long excludeId) {
+        LambdaQueryWrapper<ClassInfoEntity> q = new LambdaQueryWrapper<>();
+        q.eq(ClassInfoEntity::getClassName, className);
+        q.ne(ClassInfoEntity::getId, excludeId);
+        return classInfoMapper.selectCount(q) > 0;
+    }
+
+    @Override
+    public Optional<ClassInfo> findByClassName(String className) {
+        LambdaQueryWrapper<ClassInfoEntity> q = new LambdaQueryWrapper<>();
+        q.eq(ClassInfoEntity::getClassName, className);
+        return Optional.ofNullable(ClassInfoConverter.toDomain(classInfoMapper.selectOne(q)));
+    }
+
+    @Override
+    public List<Long> findIdsByClassNameLike(String className) {
+        LambdaQueryWrapper<ClassInfoEntity> q = new LambdaQueryWrapper<>();
+        q.like(className != null, ClassInfoEntity::getClassName, className);
+        q.select(ClassInfoEntity::getId);
+        List<ClassInfoEntity> entities = classInfoMapper.selectList(q);
+        if (entities == null || entities.isEmpty()) return Collections.emptyList();
+        return entities.stream().map(ClassInfoEntity::getId).collect(Collectors.toList());
+    }
 }

@@ -6,9 +6,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 /**
- * 新增学生请求 DTO
+ * 新增用户请求 DTO
  */
-@Schema(description = "新增学生请求")
+@Schema(description = "新增用户请求")
 public class StudentCreateRequest {
 
     /** 姓名（对应 name 字段） */
@@ -19,9 +19,9 @@ public class StudentCreateRequest {
     @Schema(description = "账号（非必填，默认使用手机号）", example = "zhangsan")
     private String account;
 
-    /** 角色：student / headmaster */
+    /** 角色：1老师 2班长 3学生 */
     @NotBlank(message = "角色不能为空")
-    @Schema(description = "角色：student / headmaster", example = "student", requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(description = "角色：1老师 2班长 3学生", example = "3", requiredMode = Schema.RequiredMode.REQUIRED)
     private String role;
 
     /** 性别：0未知 1男 2女 */
@@ -42,9 +42,8 @@ public class StudentCreateRequest {
     @Schema(description = "描述", example = "新生入学")
     private String description;
 
-    /** 班级ID */
-    @NotNull(message = "班级ID不能为空")
-    @Schema(description = "班级ID", example = "1", requiredMode = Schema.RequiredMode.REQUIRED)
+    /** 班级ID（老师可不填） */
+    @Schema(description = "班级ID（老师可不填）", example = "1")
     private Long classId;
 
     // ======================== getters / setters ========================

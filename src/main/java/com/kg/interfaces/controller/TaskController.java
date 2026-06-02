@@ -23,7 +23,7 @@ import java.util.Map;
 /**
  * 任务管理控制器。
  */
-@Tag(name = "任务管理", description = "任务的增删改查（仅老师）")
+@Tag(name = "任务列表", description = "任务的增删改查")
 @RestController
 public class TaskController {
 
@@ -37,9 +37,18 @@ public class TaskController {
     @Operation(summary = "分页查询任务")
     @PostMapping("/task/page")
     public Map<String, Object> page(@Valid @RequestBody TaskPageRequest req) {
-        Map<String, Object> data = taskApplicationService.page(req.getPageNum(), req.getPageSize());
+        Map<String, Object> data = taskApplicationService.page(req);
         Map<String, Object> r = new LinkedHashMap<>();
         r.put("code", 200); r.put("message", "查询成功"); r.put("data", data);
+        return r;
+    }
+
+    /** 任务详情 */
+    @Operation(summary = "任务详情")
+    @GetMapping("/task/{id}")
+    public Map<String, Object> getById(@PathVariable Long id) {
+        Map<String, Object> r = new LinkedHashMap<>();
+        r.put("code", 200); r.put("message", "查询成功"); r.put("data", taskApplicationService.getById(id));
         return r;
     }
 
@@ -73,13 +82,4 @@ public class TaskController {
         return r;
     }
 
-    /** 模板下拉 */
-    @Operation(summary = "模板任务下拉")
-    @GetMapping("/task/templates")
-    public Map<String, Object> listTemplates() {
-        List<TaskVO> templates = taskApplicationService.listTemplates();
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "查询成功"); r.put("data", templates);
-        return r;
-    }
 }

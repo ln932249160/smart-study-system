@@ -35,4 +35,16 @@ public interface ClassInfoRepository {
 
     /** 查询所有启用状态的班级，用于下拉列表 */
     List<ClassInfo> listActiveClasses();
+
+    /** 检查班级名称是否已存在 */
+    boolean existsByClassName(String className);
+
+    /** 检查班级名称是否已存在（排除自身），用于编辑时校验 */
+    boolean existsByClassNameExcludingId(String className, Long excludeId);
+
+    /** 根据班级名称查询班级 */
+    Optional<ClassInfo> findByClassName(String className);
+
+    /** 班级名模糊匹配，返回匹配的班级ID列表 */
+    List<Long> findIdsByClassNameLike(String className);
 }

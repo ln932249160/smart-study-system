@@ -1,0 +1,8 @@
+delete  from sys_user where account!='root';
+delete from class_info;
+delete from notification_message ;
+delete from sys_user ;
+delete from task ;
+delete from task_template ;
+delete from task_score ;
+delete from task_user ;

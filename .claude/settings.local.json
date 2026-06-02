@@ -10,7 +10,9 @@
       "Bash(mvn validate *)",
       "Bash(mvn compile *)",
       "Bash(echo \"EXIT: $?\")",
-      "Bash(mysql *)"
+      "Bash(mysql *)",
+      "Bash(claude plugins *)",
+      "WebFetch(domain:raw.githubusercontent.com)"
     ]
   }
 }

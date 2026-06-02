@@ -4,7 +4,7 @@ import com.kg.domain.model.Task;
 import com.kg.infrastructure.entity.TaskEntity;
 
 /**
- * 防腐层转换器 —— domain.Task ↔ infra.TaskEntity（15 列）。
+ * 防腐层转换器 —— domain.Task ↔ infra.TaskEntity（14 列）。
  */
 public class TaskConverter {
 
@@ -14,8 +14,7 @@ public class TaskConverter {
         d.setId(e.getId());
         d.setTaskName(e.getTaskName());
         d.setTaskType(e.getTaskType());
-        d.setIsTemplate(e.getIsTemplate());
-        d.setTemplateTaskId(e.getTemplateTaskId());
+        d.setTemplateId(e.getTemplateId());
         d.setRoundNo(e.getRoundNo());
         d.setIsMandatory(e.getIsMandatory());
         d.setTaskDescription(e.getTaskDescription());
@@ -23,6 +22,8 @@ public class TaskConverter {
         d.setTaskEndTime(e.getTaskEndTime());
         d.setPriority(e.getPriority());
         d.setClassId(e.getClassId());
+        d.setTargetType(e.getTargetType());
+        d.setTargetIds(e.getTargetIds());
         d.setCreateBy(e.getCreateBy());
         d.setCreateTime(e.getCreateTime());
         d.setUpdateBy(e.getUpdateBy());
@@ -36,8 +37,7 @@ public class TaskConverter {
         e.setId(d.getId());
         e.setTaskName(d.getTaskName());
         e.setTaskType(d.getTaskType());
-        e.setIsTemplate(d.getIsTemplate());
-        e.setTemplateTaskId(d.getTemplateTaskId());
+        e.setTemplateId(d.getTemplateId());
         e.setRoundNo(d.getRoundNo());
         e.setIsMandatory(d.getIsMandatory());
         e.setTaskDescription(d.getTaskDescription());
@@ -45,6 +45,8 @@ public class TaskConverter {
         e.setTaskEndTime(d.getTaskEndTime());
         e.setPriority(d.getPriority());
         e.setClassId(d.getClassId());
+        e.setTargetType(d.getTargetType());
+        e.setTargetIds(d.getTargetIds());
         e.setCreateBy(d.getCreateBy());
         e.setCreateTime(d.getCreateTime());
         e.setUpdateBy(d.getUpdateBy());

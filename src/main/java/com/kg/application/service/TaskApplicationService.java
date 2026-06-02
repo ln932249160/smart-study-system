@@ -2,16 +2,23 @@ package com.kg.application.service;
 
 import com.kg.context.UserContext;
 import com.kg.domain.model.SysUser;
+import com.kg.domain.model.ClassInfo;
 import com.kg.domain.model.Task;
+import com.kg.domain.model.TaskTemplate;
 import com.kg.domain.model.TaskUser;
+import com.kg.domain.repository.ClassInfoRepository;
 import com.kg.domain.repository.SysUserRepository;
 import com.kg.domain.repository.TaskRepository;
 import com.kg.domain.repository.TaskScoreRepository;
+import com.kg.domain.repository.TaskTemplateRepository;
 import com.kg.domain.repository.TaskUserRepository;
 import com.kg.enums.RoleEnum;
 import com.kg.enums.TaskStatusEnum;
 import com.kg.exception.BusinessException;
+import com.kg.interfaces.dto.ClassOptionVO;
+import com.kg.interfaces.dto.StudentOptionVO;
 import com.kg.interfaces.dto.TaskCreateRequest;
+import com.kg.interfaces.dto.TaskPageRequest;
 import com.kg.interfaces.dto.TaskUpdateRequest;
 import com.kg.interfaces.dto.TaskVO;
 import org.slf4j.Logger;
@@ -40,16 +47,25 @@ public class TaskApplicationService {
     private final TaskRepository taskRepository;
     private final TaskUserRepository taskUserRepository;
     private final TaskScoreRepository taskScoreRepository;
+    private final TaskTemplateRepository taskTemplateRepository;
+    private final ClassInfoRepository classInfoRepository;
     private final SysUserRepository sysUserRepository;
+    private final NotificationService notificationService;
 
     public TaskApplicationService(TaskRepository taskRepository,
                                   TaskUserRepository taskUserRepository,
                                   TaskScoreRepository taskScoreRepository,
-                                  SysUserRepository sysUserRepository) {
+                                  TaskTemplateRepository taskTemplateRepository,
+                                  ClassInfoRepository classInfoRepository,
+                                  SysUserRepository sysUserRepository,
+                                  NotificationService notificationService) {
         this.taskRepository = taskRepository;
         this.taskUserRepository = taskUserRepository;
         this.taskScoreRepository = taskScoreRepository;
+        this.taskTemplateRepository = taskTemplateRepository;
+        this.classInfoRepository = classInfoRepository;
         this.sysUserRepository = sysUserRepository;
+        this.notificationService = notificationService;
     }
 
     // ======================== 分页查询 ========================
@@ -58,10 +74,10 @@ public class TaskApplicationService {
      * 分页查询任务。
      * teacher → 全部任务 | headmaster → 本班任务 | student → 分配给我的任务
      */
-    public Map<String, Object> page(int pageNum, int pageSize) {
+    public Map<String, Object> page(TaskPageRequest req) {
         SysUser currentUser = requireCurrentUser();
         String role = currentUser.getRole();
-        int offset = (pageNum - 1) * pageSize;
+        int offset = (req.getPageNum() - 1) * req.getPageSize();
 
         List<Task> tasks;
         long total;
@@ -73,7 +89,7 @@ public class TaskApplicationService {
             if (taskIds.isEmpty()) {
                 return emptyPageResult();
             }
-            tasks = taskRepository.pageByIds(taskIds, offset, pageSize);
+            tasks = taskRepository.pageByIds(taskIds, offset, req.getPageSize());
             total = taskRepository.countByIds(taskIds);
         } else if (RoleEnum.isHeadmaster(role)) {
             // 班长：查本班任务
@@ -81,12 +97,15 @@ public class TaskApplicationService {
             if (classId == null) {
                 return emptyPageResult();
             }
-            tasks = taskRepository.pageByClassId(classId, offset, pageSize);
+            tasks = taskRepository.pageByClassId(classId, offset, req.getPageSize());
             total = taskRepository.countByClassId(classId);
         } else {
-            // 老师：全部
-            tasks = taskRepository.page(offset, pageSize);
-            total = taskRepository.count();
+            // 老师：全部 + 过滤
+            tasks = taskRepository.pageWithFilters(req.getTaskType(), req.getTaskName(), req.getIsMandatory(),
+                    req.getStartTimeBegin(), req.getStartTimeEnd(), req.getEndTimeBegin(), req.getEndTimeEnd(),
+                    offset, req.getPageSize());
+            total = taskRepository.countWithFilters(req.getTaskType(), req.getTaskName(), req.getIsMandatory(),
+                    req.getStartTimeBegin(), req.getStartTimeEnd(), req.getEndTimeBegin(), req.getEndTimeEnd());
         }
 
         List<TaskVO> list = tasks.stream().map(t -> {
@@ -101,6 +120,7 @@ public class TaskApplicationService {
             } else {
                 vo.setCompletionPercent((int) Math.round(completed * 100.0 / taskUsers.size()));
             }
+            populateSelectedLists(t, vo);
             return vo;
         }).collect(Collectors.toList());
 
@@ -108,6 +128,55 @@ public class TaskApplicationService {
         result.put("total", total);
         result.put("list", list);
         return result;
+    }
+
+    // ======================== 详情 ========================
+
+    /** 任务详情（含完成统计） */
+    public TaskVO getById(Long id) {
+        Task t = taskRepository.findById(id)
+                .orElseThrow(() -> new BusinessException("任务不存在"));
+        TaskVO vo = toVO(t);
+        List<TaskUser> taskUsers = taskUserRepository.findByTaskId(t.getId());
+        long completed = taskUsers.stream().filter(tu -> TaskStatusEnum.FINISHED.getCode().equals(tu.getStatus())).count();
+        long uncompleted = taskUsers.size() - completed;
+        vo.setCompletedCount((int) completed);
+        vo.setUncompletedCount((int) uncompleted);
+        if (taskUsers.isEmpty()) {
+            vo.setCompletionPercent(0);
+        } else {
+            vo.setCompletionPercent((int) Math.round(completed * 100.0 / taskUsers.size()));
+        }
+        // 分配快照回显
+        populateSelectedLists(t, vo);
+        return vo;
+    }
+
+    /** 根据 target_type/target_ids 回显选中的班级/学生 */
+    private void populateSelectedLists(Task t, TaskVO vo) {
+        if (t.getTargetType() == null || t.getTargetIds() == null || t.getTargetIds().isEmpty()) return;
+        String[] idArr = t.getTargetIds().split(",");
+        if (t.getTargetType() == 1) {
+            List<ClassOptionVO> classes = new ArrayList<>();
+            for (String s : idArr) {
+                try {
+                    Long cid = Long.valueOf(s.trim());
+                    classInfoRepository.findById(cid).ifPresent(c ->
+                        classes.add(ClassOptionVO.of(c.getId(), c.getClassName())));
+                } catch (NumberFormatException ignored) {}
+            }
+            vo.setSelectedClassList(classes);
+        } else if (t.getTargetType() == 2) {
+            List<StudentOptionVO> students = new ArrayList<>();
+            for (String s : idArr) {
+                try {
+                    Long uid = Long.valueOf(s.trim());
+                    sysUserRepository.findById(uid).ifPresent(u ->
+                        students.add(StudentOptionVO.of(u.getId(), u.getName(), u.getClassId())));
+                } catch (NumberFormatException ignored) {}
+            }
+            vo.setSelectedStudentList(students);
+        }
     }
 
     // ======================== 新增（仅 teacher） ========================
@@ -119,10 +188,6 @@ public class TaskApplicationService {
         taskRepository.save(task);
         Long taskId = task.getId();
         log.info("创建任务成功: id={}, taskName={}", taskId, request.getTaskName());
-
-        if (request.getIsTemplate() != null && request.getIsTemplate() == 1) {
-            return;
-        }
 
         List<Long> userIds = resolveStudentIds(request);
         if (userIds.isEmpty()) return;
@@ -138,6 +203,8 @@ public class TaskApplicationService {
         }
         taskUserRepository.batchSave(taskUsers);
         log.info("分配任务 {} 给 {} 人", taskId, userIds.size());
+        // 生成通知消息
+        notificationService.regenerateForTask(task);
     }
 
     // ======================== 编辑（仅 teacher） ========================
@@ -164,6 +231,8 @@ public class TaskApplicationService {
             }
             taskUserRepository.batchSave(taskUsers);
         }
+        // 重新生成通知消息（内部会先删除旧未触发消息）
+        notificationService.regenerateForTask(taskRepository.findById(id).orElse(null));
         log.info("编辑任务成功: id={}", id);
     }
 
@@ -176,12 +245,6 @@ public class TaskApplicationService {
         taskUserRepository.deleteByTaskId(id);
         taskRepository.deleteById(id);
         log.info("删除任务成功: id={}", id);
-    }
-
-    // ======================== 模板下拉 ========================
-
-    public List<TaskVO> listTemplates() {
-        return taskRepository.listTemplates().stream().map(this::toVO).collect(Collectors.toList());
     }
 
     // ======================== 权限校验 ========================
@@ -212,19 +275,39 @@ public class TaskApplicationService {
 
     private Task buildTask(TaskCreateRequest r, Long createBy) {
         Task t = new Task();
-        t.setTaskName(r.getTaskName());
-        t.setTaskType(r.getTaskType());
-        t.setIsTemplate(r.getIsTemplate());
-        t.setTemplateTaskId(r.getTemplateTaskId());
-        t.setRoundNo(r.getRoundNo());
+        t.setTemplateId(r.getTemplateId());
         t.setIsMandatory(r.getIsMandatory());
         t.setTaskDescription(r.getTaskDescription());
         t.setTaskStartTime(parseDateTime(r.getTaskStartTime()));
         t.setTaskEndTime(parseDateTime(r.getTaskEndTime()));
         t.setPriority(r.getPriority());
-        t.setClassId(r.getClassId());
         t.setCreateBy(createBy);
+        // 分配快照：记录创建时的选择范围
+        if (r.getClassIds() != null && !r.getClassIds().isEmpty()) {
+            t.setTargetType(1);
+            t.setTargetIds(r.getClassIds().stream().map(String::valueOf).collect(Collectors.joining(",")));
+        } else if (r.getStudentIds() != null && !r.getStudentIds().isEmpty()) {
+            t.setTargetType(2);
+            t.setTargetIds(r.getStudentIds().stream().map(String::valueOf).collect(Collectors.joining(",")));
+        }
         t.setCreateTime(LocalDateTime.now());
+        // 模板模式：useTemplate=1 → 根据 templateId 查模板，自动填充字段 + 计算轮次
+        if (r.getUseTemplate() != null && r.getUseTemplate() == 1 && r.getTemplateId() != null) {
+            TaskTemplate tmpl = taskTemplateRepository.findById(r.getTemplateId())
+                    .orElseThrow(() -> new BusinessException("模板不存在"));
+            t.setTaskType(tmpl.getTaskType());
+            int nextRound = taskRepository.maxRoundNoByTemplateId(r.getTemplateId()) + 1;
+            t.setRoundNo(nextRound);
+            t.setTaskName(tmpl.getTemplateName() + " 第" + nextRound + "轮");
+            if (t.getIsMandatory() == null) t.setIsMandatory(tmpl.getIsMandatory());
+            if (t.getTaskDescription() == null) t.setTaskDescription(tmpl.getTaskDescription());
+            if (t.getPriority() == null) t.setPriority(tmpl.getDefaultPriority());
+        } else {
+            // 普通模式
+            t.setTaskName(r.getTaskName());
+            t.setTaskType(r.getTaskType());
+            t.setRoundNo(r.getRoundNo());
+        }
         return t;
     }
 
@@ -233,22 +316,32 @@ public class TaskApplicationService {
         t.setId(id);
         t.setTaskName(r.getTaskName());
         t.setTaskType(r.getTaskType());
-        t.setIsTemplate(r.getIsTemplate());
-        t.setTemplateTaskId(r.getTemplateTaskId());
+        t.setTemplateId(r.getTemplateId());
         t.setRoundNo(r.getRoundNo());
         t.setIsMandatory(r.getIsMandatory());
         t.setTaskDescription(r.getTaskDescription());
         t.setTaskStartTime(parseDateTime(r.getTaskStartTime()));
         t.setTaskEndTime(parseDateTime(r.getTaskEndTime()));
         t.setPriority(r.getPriority());
-        t.setClassId(r.getClassId());
+        // 分配快照
+        if (r.getClassIds() != null && !r.getClassIds().isEmpty()) {
+            t.setTargetType(1);
+            t.setTargetIds(r.getClassIds().stream().map(String::valueOf).collect(Collectors.joining(",")));
+        } else if (r.getStudentIds() != null && !r.getStudentIds().isEmpty()) {
+            t.setTargetType(2);
+            t.setTargetIds(r.getStudentIds().stream().map(String::valueOf).collect(Collectors.joining(",")));
+        }
         t.setUpdateBy(updateBy);
         return t;
     }
 
     private List<Long> resolveStudentIds(TaskCreateRequest r) {
-        if (r.getClassId() != null) {
-            return sysUserRepository.findByClassId(r.getClassId()).stream().map(SysUser::getId).collect(Collectors.toList());
+        if (r.getClassIds() != null && !r.getClassIds().isEmpty()) {
+            List<Long> ids = new ArrayList<>();
+            for (Long cid : r.getClassIds()) {
+                ids.addAll(sysUserRepository.findByClassId(cid).stream().map(SysUser::getId).collect(Collectors.toList()));
+            }
+            return ids;
         }
         if (r.getStudentIds() != null && !r.getStudentIds().isEmpty()) {
             return r.getStudentIds();
@@ -257,8 +350,12 @@ public class TaskApplicationService {
     }
 
     private List<Long> resolveUpdateStudentIds(TaskUpdateRequest r) {
-        if (r.getClassId() != null) {
-            return sysUserRepository.findByClassId(r.getClassId()).stream().map(SysUser::getId).collect(Collectors.toList());
+        if (r.getClassIds() != null && !r.getClassIds().isEmpty()) {
+            List<Long> ids = new ArrayList<>();
+            for (Long cid : r.getClassIds()) {
+                ids.addAll(sysUserRepository.findByClassId(cid).stream().map(SysUser::getId).collect(Collectors.toList()));
+            }
+            return ids;
         }
         if (r.getStudentIds() != null && !r.getStudentIds().isEmpty()) {
             return r.getStudentIds();
@@ -271,8 +368,7 @@ public class TaskApplicationService {
         vo.setId(t.getId());
         vo.setTaskName(t.getTaskName());
         vo.setTaskType(t.getTaskType());
-        vo.setIsTemplate(t.getIsTemplate());
-        vo.setTemplateTaskId(t.getTemplateTaskId());
+        vo.setTemplateId(t.getTemplateId());
         vo.setRoundNo(t.getRoundNo());
         vo.setIsMandatory(t.getIsMandatory());
         vo.setTaskDescription(t.getTaskDescription());
@@ -280,6 +376,8 @@ public class TaskApplicationService {
         vo.setTaskEndTime(t.getTaskEndTime() != null ? t.getTaskEndTime().format(FMT) : null);
         vo.setPriority(t.getPriority());
         vo.setClassId(t.getClassId());
+        vo.setTargetType(t.getTargetType());
+        vo.setTargetIds(t.getTargetIds());
         vo.setCreateTime(t.getCreateTime() != null ? t.getCreateTime().format(FMT) : null);
         return vo;
     }

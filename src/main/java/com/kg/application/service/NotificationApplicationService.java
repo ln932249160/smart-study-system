@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -20,7 +21,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * 通知消息应用服务 —— 查询列表 + 单条已读。
+ * 通知消息应用服务 —— 查询列表 + 已读 + 未读数。
  */
 @Service
 public class NotificationApplicationService {
@@ -36,19 +37,19 @@ public class NotificationApplicationService {
     }
 
     /**
-     * 分页查询当前用户的消息，按创建时间倒序。
+     * 分页查询当前用户消息。
+     * 仅返回已生效的消息（notify_time <= now），按通知时间倒序。
      */
     public Map<String, Object> page(int pageNum, int pageSize) {
         Long userId = requireUserId();
         int offset = (pageNum - 1) * pageSize;
 
-        LambdaQueryWrapper<NotificationMessageEntity> countQ = new LambdaQueryWrapper<>();
-        countQ.eq(NotificationMessageEntity::getUserId, userId);
-        long total = notificationMessageMapper.selectCount(countQ);
-
         LambdaQueryWrapper<NotificationMessageEntity> q = new LambdaQueryWrapper<>();
         q.eq(NotificationMessageEntity::getUserId, userId);
-        q.orderByDesc(NotificationMessageEntity::getCreatedAt);
+        q.le(NotificationMessageEntity::getNotifyTime, LocalDateTime.now());
+        q.orderByDesc(NotificationMessageEntity::getNotifyTime);
+        long total = notificationMessageMapper.selectCount(q);
+
         q.last("LIMIT " + offset + "," + pageSize);
         List<NotificationMessageEntity> entities = notificationMessageMapper.selectList(q);
 
@@ -64,9 +65,8 @@ public class NotificationApplicationService {
                 vo.setType(e.getType());
                 vo.setRelatedId(e.getRelatedId());
                 vo.setIsRead(e.getIsRead());
-                if (e.getCreatedAt() != null) {
-                    vo.setCreatedAt(e.getCreatedAt().format(FMT));
-                }
+                if (e.getCreatedAt() != null) vo.setCreatedAt(e.getCreatedAt().format(FMT));
+                if (e.getNotifyTime() != null) vo.setNotifyTime(e.getNotifyTime().format(FMT));
                 return vo;
             }).collect(Collectors.toList());
         }
@@ -75,6 +75,16 @@ public class NotificationApplicationService {
         result.put("total", total);
         result.put("list", list);
         return result;
+    }
+
+    /** 未读消息数（仅已生效的） */
+    public long unreadCount() {
+        Long userId = requireUserId();
+        LambdaQueryWrapper<NotificationMessageEntity> q = new LambdaQueryWrapper<>();
+        q.eq(NotificationMessageEntity::getUserId, userId);
+        q.eq(NotificationMessageEntity::getIsRead, 0);
+        q.le(NotificationMessageEntity::getNotifyTime, LocalDateTime.now());
+        return notificationMessageMapper.selectCount(q);
     }
 
     /**

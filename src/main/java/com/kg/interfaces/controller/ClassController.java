@@ -51,6 +51,18 @@ public class ClassController {
         return result;
     }
 
+    // ======================== 详情 ========================
+
+    @Operation(summary = "班级详情")
+    @GetMapping("/class/{id}")
+    public Map<String, Object> getById(@PathVariable Long id) {
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("code", 200);
+        result.put("message", "查询成功");
+        result.put("data", classApplicationService.getById(id));
+        return result;
+    }
+
     // ======================== 新增班级 ========================
 
     /**

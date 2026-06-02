@@ -74,7 +74,6 @@ public class BatchTaskService {
         task.setTaskName(taskName);
         task.setTaskType(taskType);
         task.setIsMandatory(forceFlag);
-        task.setIsTemplate(0);
         task.setTaskStartTime(LocalDateTime.of(today, LocalTime.of(startHour, 0)));
         task.setTaskEndTime(LocalDateTime.of(today, LocalTime.of(23, 59)));
         task.setCreateBy(SYSTEM_USER_ID);

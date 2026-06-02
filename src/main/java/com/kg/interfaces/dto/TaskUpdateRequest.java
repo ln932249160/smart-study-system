@@ -14,10 +14,8 @@ public class TaskUpdateRequest {
     private String taskName;
     @Schema(description = "任务类型")
     private String taskType;
-    @Schema(description = "是否模板")
-    private Integer isTemplate;
-    @Schema(description = "模板任务ID")
-    private Long templateTaskId;
+    @Schema(description = "模板ID")
+    private Long templateId;
     @Schema(description = "轮次")
     private Integer roundNo;
     @Schema(description = "是否强制")
@@ -30,8 +28,8 @@ public class TaskUpdateRequest {
     private String taskEndTime;
     @Schema(description = "优先级")
     private Integer priority;
-    @Schema(description = "班级ID")
-    private Long classId;
+    @Schema(description = "班级ID列表（多选）")
+    private List<Long> classIds;
     @Schema(description = "学生ID列表")
     private List<Long> studentIds;
 
@@ -39,10 +37,8 @@ public class TaskUpdateRequest {
     public void setTaskName(String taskName) { this.taskName = taskName; }
     public String getTaskType() { return taskType; }
     public void setTaskType(String taskType) { this.taskType = taskType; }
-    public Integer getIsTemplate() { return isTemplate; }
-    public void setIsTemplate(Integer isTemplate) { this.isTemplate = isTemplate; }
-    public Long getTemplateTaskId() { return templateTaskId; }
-    public void setTemplateTaskId(Long templateTaskId) { this.templateTaskId = templateTaskId; }
+    public Long getTemplateId() { return templateId; }
+    public void setTemplateId(Long templateId) { this.templateId = templateId; }
     public Integer getRoundNo() { return roundNo; }
     public void setRoundNo(Integer roundNo) { this.roundNo = roundNo; }
     public Integer getIsMandatory() { return isMandatory; }
@@ -55,8 +51,7 @@ public class TaskUpdateRequest {
     public void setTaskEndTime(String taskEndTime) { this.taskEndTime = taskEndTime; }
     public Integer getPriority() { return priority; }
     public void setPriority(Integer priority) { this.priority = priority; }
-    public Long getClassId() { return classId; }
-    public void setClassId(Long classId) { this.classId = classId; }
+    public List<Long> getClassIds() { return classIds; } public void setClassIds(List<Long> l) { this.classIds = l; }
     public List<Long> getStudentIds() { return studentIds; }
     public void setStudentIds(List<Long> studentIds) { this.studentIds = studentIds; }
 }

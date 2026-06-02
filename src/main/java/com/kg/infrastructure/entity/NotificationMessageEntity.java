@@ -40,6 +40,9 @@ public class NotificationMessageEntity {
     /** 创建时间 */
     private LocalDateTime createdAt;
 
+    /** 通知生效时间（任务创建时计算，到达后才对用户可见） */
+    private LocalDateTime notifyTime;
+
     // ======================== getters / setters ========================
 
     public Long getId() { return id; }
@@ -60,4 +63,6 @@ public class NotificationMessageEntity {
     public void setIsRead(Integer isRead) { this.isRead = isRead; }
     public LocalDateTime getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+    public LocalDateTime getNotifyTime() { return notifyTime; }
+    public void setNotifyTime(LocalDateTime notifyTime) { this.notifyTime = notifyTime; }
 }

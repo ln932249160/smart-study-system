@@ -53,4 +53,15 @@ public class NotificationController {
         result.put("message", "已读");
         return result;
     }
+
+    @Operation(summary = "未读消息数")
+    @GetMapping("/notification/unread-count")
+    public Map<String, Object> unreadCount() {
+        long count = notificationApplicationService.unreadCount();
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("code", 200);
+        result.put("message", "查询成功");
+        result.put("data", count);
+        return result;
+    }
 }

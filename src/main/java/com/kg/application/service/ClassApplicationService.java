@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -88,11 +89,33 @@ public class ClassApplicationService {
         return result;
     }
 
+    // ======================== 详情 ========================
+
+    /** 班级详情（含学生人数） */
+    public ClassVO getById(Long id) {
+        ClassInfo c = classInfoRepository.findById(id)
+                .orElseThrow(() -> new BusinessException("班级不存在"));
+        ClassVO vo = new ClassVO();
+        vo.setId(c.getId());
+        vo.setClassName(c.getClassName());
+        vo.setDescription(c.getDescription());
+        vo.setStudentCount(sysUserRepository.countByClassId(c.getId()));
+        if (c.getCreateTime() != null) {
+            vo.setCreateTime(c.getCreateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        }
+        return vo;
+    }
+
     // ======================== 新增（仅 teacher） ========================
 
     @Transactional(rollbackFor = Exception.class)
     public void create(ClassCreateRequest request) {
         Long currentUserId = requireTeacher();
+
+        // 班级名称唯一
+        if (classInfoRepository.existsByClassName(request.getClassName())) {
+            throw new BusinessException("班级名称已存在：" + request.getClassName());
+        }
 
         ClassInfo classInfo = new ClassInfo();
         classInfo.setClassName(request.getClassName());
@@ -121,6 +144,11 @@ public class ClassApplicationService {
 
         classInfoRepository.findById(id)
                 .orElseThrow(() -> new BusinessException("班级不存在"));
+
+        // 班级名称唯一（排除自身）
+        if (classInfoRepository.existsByClassNameExcludingId(request.getClassName(), id)) {
+            throw new BusinessException("班级名称已存在：" + request.getClassName());
+        }
 
         ClassInfo classInfo = new ClassInfo();
         classInfo.setId(id);
@@ -154,24 +182,25 @@ public class ClassApplicationService {
     // ======================== 学生选项 ========================
 
     /**
-     * teacher → 全部学生 | headmaster → 本班学生
+     * teacher → 全部学生+班长 | headmaster → 本班学生+班长
      */
     public List<StudentOptionVO> listStudentOptions() {
         SysUser currentUser = requireCurrentUser();
-        List<SysUser> students;
+        List<String> roles = Arrays.asList(RoleEnum.HEADMASTER.getCode(), RoleEnum.STUDENT.getCode());
+        List<SysUser> users;
 
         if (RoleEnum.isHeadmaster(currentUser.getRole())) {
             Long classId = currentUser.getClassId();
             if (classId == null) return Collections.emptyList();
-            students = sysUserRepository.findByClassId(classId).stream()
-                    .filter(u -> RoleEnum.isStudent(u.getRole()))
+            users = sysUserRepository.findByClassId(classId).stream()
+                    .filter(u -> roles.contains(u.getRole()))
                     .collect(Collectors.toList());
         } else {
-            students = sysUserRepository.listStudentsByRole(RoleEnum.STUDENT.getCode());
+            users = sysUserRepository.listByRoles(roles);
         }
 
-        if (students.isEmpty()) return Collections.emptyList();
-        return students.stream()
+        if (users.isEmpty()) return Collections.emptyList();
+        return users.stream()
                 .map(s -> StudentOptionVO.of(s.getId(), s.getName(), s.getClassId()))
                 .collect(Collectors.toList());
     }

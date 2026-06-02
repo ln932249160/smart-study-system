@@ -47,25 +47,35 @@ public class SysUserRepositoryImpl implements SysUserRepository {
     }
 
     @Override
-    public List<SysUser> pageByNameAndRoles(String name, List<String> roles, int offset, int limit) {
-        LambdaQueryWrapper<SysUserEntity> query = new LambdaQueryWrapper<>();
-        query.in(roles != null && !roles.isEmpty(), SysUserEntity::getRole, roles);
-        query.like(name != null && !name.isEmpty(), SysUserEntity::getName, name);
-        query.orderByDesc(SysUserEntity::getId);
-        query.last("LIMIT " + offset + "," + limit);
-        List<SysUserEntity> entities = sysUserMapper.selectList(query);
-        if (entities == null || entities.isEmpty()) {
-            return Collections.emptyList();
-        }
+    public List<SysUser> pageByFilters(String name, String role, String phone, Long userId,
+                                        List<Long> classIds, List<String> managedRoles,
+                                        int offset, int limit) {
+        LambdaQueryWrapper<SysUserEntity> q = buildFilterQuery(name, role, phone, userId, classIds, managedRoles);
+        q.orderByDesc(SysUserEntity::getId);
+        q.last("LIMIT " + offset + "," + limit);
+        List<SysUserEntity> entities = sysUserMapper.selectList(q);
+        if (entities == null || entities.isEmpty()) return Collections.emptyList();
         return entities.stream().map(SysUserConverter::toDomain).collect(Collectors.toList());
     }
 
     @Override
-    public long countByNameAndRoles(String name, List<String> roles) {
-        LambdaQueryWrapper<SysUserEntity> query = new LambdaQueryWrapper<>();
-        query.in(roles != null && !roles.isEmpty(), SysUserEntity::getRole, roles);
-        query.like(name != null && !name.isEmpty(), SysUserEntity::getName, name);
-        return sysUserMapper.selectCount(query);
+    public long countByFilters(String name, String role, String phone, Long userId,
+                                List<Long> classIds, List<String> managedRoles) {
+        return sysUserMapper.selectCount(buildFilterQuery(name, role, phone, userId, classIds, managedRoles));
+    }
+
+    /** 构建多条件过滤查询 */
+    private LambdaQueryWrapper<SysUserEntity> buildFilterQuery(String name, String role, String phone,
+                                                                Long userId, List<Long> classIds,
+                                                                List<String> managedRoles) {
+        LambdaQueryWrapper<SysUserEntity> q = new LambdaQueryWrapper<>();
+        q.in(managedRoles != null && !managedRoles.isEmpty(), SysUserEntity::getRole, managedRoles);
+        q.eq(role != null && !role.isEmpty(), SysUserEntity::getRole, role);
+        q.like(name != null && !name.isEmpty(), SysUserEntity::getName, name);
+        q.like(phone != null && !phone.isEmpty(), SysUserEntity::getPhone, phone);
+        q.eq(userId != null, SysUserEntity::getId, userId);
+        q.in(classIds != null && !classIds.isEmpty(), SysUserEntity::getClassId, classIds);
+        return q;
     }
 
     @Override
