@@ -592,6 +592,22 @@
       "related_bugs": [],
       "occurrences": 2,
       "last_seen": "2026-06-06T06:39:04.223Z"
+    },
+    {
+      "id": "bug-038",
+      "timestamp": "2026-06-06T09:01:00.727Z",
+      "error_message": "Incorrect value in code",
+      "file": "src/main/java/com/kg/config/OpenApiConfig.java",
+      "root_cause": "Had \"我的任务\"",
+      "fix": "Changed to \"打卡统计\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-06T09:01:00.727Z"
     }
   ]
 }

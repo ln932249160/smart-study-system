@@ -288,3 +288,12 @@
 | 14:48 | Edited src/main/java/com/kg/infrastructure/mapper/LeaveRequestMapper.java | 28→32 lines | ~597 |
 | 14:48 | Edited src/main/java/com/kg/application/service/LeaveRequestApplicationService.java | modified pageMine() | ~136 |
 | 14:48 | Session end: 46 writes across 22 files (NotificationMessageEntity.java, NotificationVO.java, NotificationPageRequest.java, NotificationApplicationService.java, NotificationService.java) | 15 reads | ~34926 tok |
+| 15:49 | Created src/main/java/com/kg/interfaces/controller/BatchTaskController.java | — | ~366 |
+| 15:50 | Session end: 47 writes across 23 files (NotificationMessageEntity.java, NotificationVO.java, NotificationPageRequest.java, NotificationApplicationService.java, NotificationService.java) | 17 reads | ~35898 tok |
+| 17:00 | Created src/main/java/com/kg/interfaces/dto/CheckinStatVO.java | — | ~227 |
+| 17:00 | Created src/main/java/com/kg/interfaces/dto/CheckinCalendarVO.java | — | ~101 |
+| 17:00 | Created src/main/java/com/kg/infrastructure/mapper/StudentCheckinMapper.java | — | ~190 |
+| 17:00 | Created src/main/java/com/kg/application/service/StudentCheckinApplicationService.java | — | ~749 |
+| 17:00 | Created src/main/java/com/kg/interfaces/controller/StudentCheckinController.java | — | ~424 |
+| 17:01 | Edited src/main/java/com/kg/config/OpenApiConfig.java | inline fix | ~29 |
+| 17:01 | Session end: 53 writes across 28 files (NotificationMessageEntity.java, NotificationVO.java, NotificationPageRequest.java, NotificationApplicationService.java, NotificationService.java) | 17 reads | ~37740 tok |

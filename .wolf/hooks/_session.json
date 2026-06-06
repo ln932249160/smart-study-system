@@ -33,8 +33,8 @@
       "first_read": "2026-06-06T05:04:54.713Z"
     },
     "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/BatchTaskService.java": {
-      "count": 1,
-      "tokens": 1834,
+      "count": 2,
+      "tokens": 1859,
       "first_read": "2026-06-06T05:04:55.345Z"
     },
     "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/NotificationPageRequest.java": {
@@ -76,6 +76,16 @@
       "count": 1,
       "tokens": 346,
       "first_read": "2026-06-06T06:47:29.326Z"
+    },
+    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/scheduler/DailyCheckInScheduler.java": {
+      "count": 1,
+      "tokens": 278,
+      "first_read": "2026-06-06T07:49:46.518Z"
+    },
+    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/scheduler/DailyReviewScheduler.java": {
+      "count": 1,
+      "tokens": 277,
+      "first_read": "2026-06-06T07:49:47.182Z"
     }
   },
   "files_written": [
@@ -354,6 +364,48 @@
       "action": "edit",
       "tokens": 145,
       "at": "2026-06-06T06:48:16.994Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/BatchTaskController.java",
+      "action": "create",
+      "tokens": 392,
+      "at": "2026-06-06T07:49:59.302Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/CheckinStatVO.java",
+      "action": "create",
+      "tokens": 243,
+      "at": "2026-06-06T09:00:28.207Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/CheckinCalendarVO.java",
+      "action": "create",
+      "tokens": 108,
+      "at": "2026-06-06T09:00:29.977Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/StudentCheckinMapper.java",
+      "action": "create",
+      "tokens": 204,
+      "at": "2026-06-06T09:00:36.418Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/StudentCheckinApplicationService.java",
+      "action": "create",
+      "tokens": 802,
+      "at": "2026-06-06T09:00:47.891Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/StudentCheckinController.java",
+      "action": "create",
+      "tokens": 454,
+      "at": "2026-06-06T09:00:55.912Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/config/OpenApiConfig.java",
+      "action": "edit",
+      "tokens": 31,
+      "at": "2026-06-06T09:01:00.724Z"
     }
   ],
   "edit_counts": {
@@ -376,13 +428,19 @@
     "src/main/java/com/kg/interfaces/dto/LeaveVO.java": 1,
     "src/main/java/com/kg/application/service/LeaveRequestApplicationService.java": 7,
     "src/main/java/com/kg/interfaces/controller/LeaveRequestController.java": 1,
-    "src/main/java/com/kg/config/OpenApiConfig.java": 1,
+    "src/main/java/com/kg/config/OpenApiConfig.java": 2,
     "src/main/java/com/kg/domain/repository/SysUserRepository.java": 2,
-    "src/main/java/com/kg/infrastructure/repository/SysUserRepositoryImpl.java": 2
+    "src/main/java/com/kg/infrastructure/repository/SysUserRepositoryImpl.java": 2,
+    "src/main/java/com/kg/interfaces/controller/BatchTaskController.java": 1,
+    "src/main/java/com/kg/interfaces/dto/CheckinStatVO.java": 1,
+    "src/main/java/com/kg/interfaces/dto/CheckinCalendarVO.java": 1,
+    "src/main/java/com/kg/infrastructure/mapper/StudentCheckinMapper.java": 1,
+    "src/main/java/com/kg/application/service/StudentCheckinApplicationService.java": 1,
+    "src/main/java/com/kg/interfaces/controller/StudentCheckinController.java": 1
   },
-  "anatomy_hits": 15,
+  "anatomy_hits": 17,
   "anatomy_misses": 0,
-  "repeated_reads_warned": 6,
+  "repeated_reads_warned": 7,
   "cerebrum_warnings": 0,
-  "stop_count": 6
+  "stop_count": 8
 }

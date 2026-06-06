@@ -2,14 +2,14 @@
   "version": 1,
   "created_at": "2026-05-30T07:19:17.874Z",
   "lifetime": {
-    "total_tokens_estimated": 416589,
-    "total_reads": 256,
-    "total_writes": 620,
+    "total_tokens_estimated": 490227,
+    "total_reads": 290,
+    "total_writes": 720,
     "total_sessions": 13,
-    "anatomy_hits": 256,
+    "anatomy_hits": 290,
     "anatomy_misses": 0,
-    "repeated_reads_blocked": 128,
-    "estimated_savings_vs_bare_cli": 398269
+    "repeated_reads_blocked": 142,
+    "estimated_savings_vs_bare_cli": 445947
   },
   "sessions": [
     {
@@ -5037,6 +5037,744 @@
         "writes_count": 46,
         "repeated_reads_blocked": 6,
         "anatomy_lookups": 15
+      }
+    },
+    {
+      "id": "session-2026-06-06-1254",
+      "started": "2026-06-06T04:54:52.216Z",
+      "ended": "2026-06-06T07:50:15.750Z",
+      "reads": [
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/entity/NotificationMessageEntity.java",
+          "tokens_estimated": 592,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationService.java",
+          "tokens_estimated": 1357,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationApplicationService.java",
+          "tokens_estimated": 1520,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/NotificationMessageMapper.java",
+          "tokens_estimated": 102,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/NotificationVO.java",
+          "tokens_estimated": 470,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/NotificationController.java",
+          "tokens_estimated": 626,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/BatchTaskService.java",
+          "tokens_estimated": 1859,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/NotificationPageRequest.java",
+          "tokens_estimated": 526,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/resources/schema.sql",
+          "tokens_estimated": 270,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/repository/SysUserRepository.java",
+          "tokens_estimated": 456,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/config/OpenApiConfig.java",
+          "tokens_estimated": 574,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/LeaveRequestApplicationService.java",
+          "tokens_estimated": 4510,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/repository/SysUserRepositoryImpl.java",
+          "tokens_estimated": 2203,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/LeaveRequestMapper.java",
+          "tokens_estimated": 87,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/LeavePageRequest.java",
+          "tokens_estimated": 346,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/scheduler/DailyCheckInScheduler.java",
+          "tokens_estimated": 278,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/scheduler/DailyReviewScheduler.java",
+          "tokens_estimated": 277,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/entity/NotificationMessageEntity.java",
+          "tokens_estimated": 45,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/entity/NotificationMessageEntity.java",
+          "tokens_estimated": 67,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/NotificationVO.java",
+          "tokens_estimated": 52,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/NotificationVO.java",
+          "tokens_estimated": 67,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/NotificationPageRequest.java",
+          "tokens_estimated": 37,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/NotificationPageRequest.java",
+          "tokens_estimated": 59,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationApplicationService.java",
+          "tokens_estimated": 126,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationApplicationService.java",
+          "tokens_estimated": 40,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationApplicationService.java",
+          "tokens_estimated": 142,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationApplicationService.java",
+          "tokens_estimated": 86,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationService.java",
+          "tokens_estimated": 154,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationService.java",
+          "tokens_estimated": 64,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationService.java",
+          "tokens_estimated": 59,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationService.java",
+          "tokens_estimated": 68,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationService.java",
+          "tokens_estimated": 146,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/BatchTaskService.java",
+          "tokens_estimated": 40,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/BatchTaskService.java",
+          "tokens_estimated": 134,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/resources/schema.sql",
+          "tokens_estimated": 289,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/model/LeaveRequest.java",
+          "tokens_estimated": 1000,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/repository/LeaveRequestRepository.java",
+          "tokens_estimated": 296,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/entity/LeaveRequestEntity.java",
+          "tokens_estimated": 1065,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/LeaveRequestMapper.java",
+          "tokens_estimated": 93,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/converter/LeaveRequestConverter.java",
+          "tokens_estimated": 546,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/repository/LeaveRequestRepositoryImpl.java",
+          "tokens_estimated": 1649,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/LeaveCreateRequest.java",
+          "tokens_estimated": 465,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/LeavePageRequest.java",
+          "tokens_estimated": 371,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/LeaveApproveRequest.java",
+          "tokens_estimated": 267,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/LeaveVO.java",
+          "tokens_estimated": 972,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/LeaveRequestApplicationService.java",
+          "tokens_estimated": 4838,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/LeaveRequestController.java",
+          "tokens_estimated": 870,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/resources/schema.sql",
+          "tokens_estimated": 465,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/config/OpenApiConfig.java",
+          "tokens_estimated": 28,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/repository/SysUserRepository.java",
+          "tokens_estimated": 39,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/repository/SysUserRepositoryImpl.java",
+          "tokens_estimated": 134,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/LeaveRequestApplicationService.java",
+          "tokens_estimated": 44,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/LeaveRequestApplicationService.java",
+          "tokens_estimated": 16,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/LeaveRequestApplicationService.java",
+          "tokens_estimated": 514,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/repository/SysUserRepository.java",
+          "tokens_estimated": 20,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/repository/SysUserRepositoryImpl.java",
+          "tokens_estimated": 20,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/LeaveRequestMapper.java",
+          "tokens_estimated": 1337,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/LeaveRequestApplicationService.java",
+          "tokens_estimated": 1198,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/LeaveRequestApplicationService.java",
+          "tokens_estimated": 633,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/LeavePageRequest.java",
+          "tokens_estimated": 47,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/LeavePageRequest.java",
+          "tokens_estimated": 66,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/LeaveRequestMapper.java",
+          "tokens_estimated": 640,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/LeaveRequestApplicationService.java",
+          "tokens_estimated": 145,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/BatchTaskController.java",
+          "tokens_estimated": 392,
+          "action": "create"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 16053,
+        "output_tokens_estimated": 19845,
+        "reads_count": 17,
+        "writes_count": 47,
+        "repeated_reads_blocked": 7,
+        "anatomy_lookups": 17
+      }
+    },
+    {
+      "id": "session-2026-06-06-1254",
+      "started": "2026-06-06T04:54:52.216Z",
+      "ended": "2026-06-06T09:01:16.266Z",
+      "reads": [
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/entity/NotificationMessageEntity.java",
+          "tokens_estimated": 592,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationService.java",
+          "tokens_estimated": 1357,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationApplicationService.java",
+          "tokens_estimated": 1520,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/NotificationMessageMapper.java",
+          "tokens_estimated": 102,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/NotificationVO.java",
+          "tokens_estimated": 470,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/NotificationController.java",
+          "tokens_estimated": 626,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/BatchTaskService.java",
+          "tokens_estimated": 1859,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/NotificationPageRequest.java",
+          "tokens_estimated": 526,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/resources/schema.sql",
+          "tokens_estimated": 270,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/repository/SysUserRepository.java",
+          "tokens_estimated": 456,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/config/OpenApiConfig.java",
+          "tokens_estimated": 574,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/LeaveRequestApplicationService.java",
+          "tokens_estimated": 4510,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/repository/SysUserRepositoryImpl.java",
+          "tokens_estimated": 2203,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/LeaveRequestMapper.java",
+          "tokens_estimated": 87,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/LeavePageRequest.java",
+          "tokens_estimated": 346,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/scheduler/DailyCheckInScheduler.java",
+          "tokens_estimated": 278,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/scheduler/DailyReviewScheduler.java",
+          "tokens_estimated": 277,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/entity/NotificationMessageEntity.java",
+          "tokens_estimated": 45,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/entity/NotificationMessageEntity.java",
+          "tokens_estimated": 67,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/NotificationVO.java",
+          "tokens_estimated": 52,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/NotificationVO.java",
+          "tokens_estimated": 67,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/NotificationPageRequest.java",
+          "tokens_estimated": 37,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/NotificationPageRequest.java",
+          "tokens_estimated": 59,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationApplicationService.java",
+          "tokens_estimated": 126,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationApplicationService.java",
+          "tokens_estimated": 40,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationApplicationService.java",
+          "tokens_estimated": 142,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationApplicationService.java",
+          "tokens_estimated": 86,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationService.java",
+          "tokens_estimated": 154,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationService.java",
+          "tokens_estimated": 64,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationService.java",
+          "tokens_estimated": 59,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationService.java",
+          "tokens_estimated": 68,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationService.java",
+          "tokens_estimated": 146,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/BatchTaskService.java",
+          "tokens_estimated": 40,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/BatchTaskService.java",
+          "tokens_estimated": 134,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/resources/schema.sql",
+          "tokens_estimated": 289,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/model/LeaveRequest.java",
+          "tokens_estimated": 1000,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/repository/LeaveRequestRepository.java",
+          "tokens_estimated": 296,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/entity/LeaveRequestEntity.java",
+          "tokens_estimated": 1065,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/LeaveRequestMapper.java",
+          "tokens_estimated": 93,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/converter/LeaveRequestConverter.java",
+          "tokens_estimated": 546,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/repository/LeaveRequestRepositoryImpl.java",
+          "tokens_estimated": 1649,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/LeaveCreateRequest.java",
+          "tokens_estimated": 465,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/LeavePageRequest.java",
+          "tokens_estimated": 371,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/LeaveApproveRequest.java",
+          "tokens_estimated": 267,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/LeaveVO.java",
+          "tokens_estimated": 972,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/LeaveRequestApplicationService.java",
+          "tokens_estimated": 4838,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/LeaveRequestController.java",
+          "tokens_estimated": 870,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/resources/schema.sql",
+          "tokens_estimated": 465,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/config/OpenApiConfig.java",
+          "tokens_estimated": 28,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/repository/SysUserRepository.java",
+          "tokens_estimated": 39,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/repository/SysUserRepositoryImpl.java",
+          "tokens_estimated": 134,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/LeaveRequestApplicationService.java",
+          "tokens_estimated": 44,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/LeaveRequestApplicationService.java",
+          "tokens_estimated": 16,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/LeaveRequestApplicationService.java",
+          "tokens_estimated": 514,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/repository/SysUserRepository.java",
+          "tokens_estimated": 20,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/repository/SysUserRepositoryImpl.java",
+          "tokens_estimated": 20,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/LeaveRequestMapper.java",
+          "tokens_estimated": 1337,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/LeaveRequestApplicationService.java",
+          "tokens_estimated": 1198,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/LeaveRequestApplicationService.java",
+          "tokens_estimated": 633,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/LeavePageRequest.java",
+          "tokens_estimated": 47,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/LeavePageRequest.java",
+          "tokens_estimated": 66,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/LeaveRequestMapper.java",
+          "tokens_estimated": 640,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/LeaveRequestApplicationService.java",
+          "tokens_estimated": 145,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/BatchTaskController.java",
+          "tokens_estimated": 392,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/CheckinStatVO.java",
+          "tokens_estimated": 243,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/CheckinCalendarVO.java",
+          "tokens_estimated": 108,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/StudentCheckinMapper.java",
+          "tokens_estimated": 204,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/StudentCheckinApplicationService.java",
+          "tokens_estimated": 802,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/StudentCheckinController.java",
+          "tokens_estimated": 454,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/config/OpenApiConfig.java",
+          "tokens_estimated": 31,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 16053,
+        "output_tokens_estimated": 21687,
+        "reads_count": 17,
+        "writes_count": 53,
+        "repeated_reads_blocked": 7,
+        "anatomy_lookups": 17
       }
     }
   ],

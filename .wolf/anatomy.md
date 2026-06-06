@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-06-06T06:48:16.977Z
-> Files: 174 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-06-06T09:01:00.710Z
+> Files: 180 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -52,6 +52,7 @@
 - `NotificationService.java` — 通知消息生成服务 —— 封装消息生成逻辑，在任务创建/编辑时调用。 (~1412 tok)
 - `ProfileApplicationService.java` — 个人中心应用服务 —— 查看/修改个人信息、修改密码。 (~1172 tok)
 - `StudentApplicationService.java` — 学生管理应用服务 —— teacher 全部操作，headmaster 看本班，student 无权限。 (~3522 tok)
+- `StudentCheckinApplicationService.java` — 学生打卡统计服务 —— 连续天数 + 本月次数 + 日历。 (~749 tok)
 - `TaskApplicationService.java` — 任务管理应用服务 —— 角色权限：teacher 全部、headmaster 本班、student 本人。 (~4426 tok)
 - `TaskTemplateApplicationService.java` — 模板任务应用服务 — 仅 teacher (~1168 tok)
 - `UserApplicationService.java` — 应用层服务 — 编排业务流程。 (~150 tok)
@@ -59,7 +60,7 @@
 ## src/main/java/com/kg/config/
 
 - `DataInitializer.java` — 数据初始化器 —— 启动时检查并创建默认管理员账号。 (~626 tok)
-- `OpenApiConfig.java` — OpenAPI 配置 —— 声明 JWT Bearer Token 认证方式与标签展示顺序。 (~576 tok)
+- `OpenApiConfig.java` — OpenAPI 配置 —— 声明 JWT Bearer Token 认证方式与标签展示顺序。 (~578 tok)
 - `WebMvcConfig.java` — Web MVC 配置 —— 注册 JWT 认证拦截器。 (~310 tok)
 
 ## src/main/java/com/kg/context/
@@ -144,6 +145,7 @@
 - `LeaveRequestMapper.java` — 请假申请 Mapper，操作 leave_request 表。 (~1332 tok)
 - `MyTaskMapper.java` — 我的任务 Mapper —— 以 task_user 为核心 JOIN task，一次 SQL 查完。 (~1055 tok)
 - `NotificationMessageMapper.java` — 通知消息 Mapper，操作 notification_message 表。 (~102 tok)
+- `StudentCheckinMapper.java` — 学生打卡 Mapper —— 查询当前学生所有已完成打卡日期。 (~190 tok)
 - `SysUserMapper.java` — 系统用户 Mapper，操作 sys_user 表。 (~88 tok)
 - `TaskMapper.java` — 任务 Mapper (~80 tok)
 - `TaskScoreMapper.java` — 任务成绩明细 Mapper (~85 tok)
@@ -172,6 +174,7 @@
 
 - `.gitkeep` (~0 tok)
 - `AuthController.java` — 认证接口控制器 (~396 tok)
+- `BatchTaskController.java` — 批处理任务测试入口。 (~366 tok)
 - `ClassController.java` — 班级管理控制器 —— 班级的增删改查及学生分配。 (~1222 tok)
 - `DictController.java` — 字典管理控制器 (~1231 tok)
 - `HelloController.java` — RestController: HelloController (1 endpoints) (~198 tok)
@@ -180,6 +183,7 @@
 - `MyTaskController.java` — 我的任务控制器 —— 个人任务列表 + 完成任务。 (~646 tok)
 - `NotificationController.java` — 通知消息控制器。 (~626 tok)
 - `ProfileController.java` — 个人中心控制器。 (~657 tok)
+- `StudentCheckinController.java` — 学生打卡统计控制器。 (~424 tok)
 - `StudentController.java` — 用户管理控制器 —— 管理 student / headmaster 角色用户。 (~1856 tok)
 - `TaskController.java` — 任务管理控制器。 (~792 tok)
 - `TaskTemplateController.java` — 模板任务管理控制器 (~858 tok)
@@ -188,6 +192,8 @@
 ## src/main/java/com/kg/interfaces/dto/
 
 - `.gitkeep` (~0 tok)
+- `CheckinCalendarVO.java` — 打卡日历 VO (~101 tok)
+- `CheckinStatVO.java` — 学生打卡统计 VO (~227 tok)
 - `ClassCreateRequest.java` — 新增班级请求 DTO (~314 tok)
 - `ClassOptionVO.java` — 班级下拉选项 VO (~211 tok)
 - `ClassPageRequest.java` — 班级分页查询请求 DTO (~245 tok)
