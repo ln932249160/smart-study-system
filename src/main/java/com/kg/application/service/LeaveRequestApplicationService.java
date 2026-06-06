@@ -310,8 +310,8 @@ public class LeaveRequestApplicationService {
         if (startDate == null || endDate == null) {
             throw new IllegalArgumentException("请假日期不能为空");
         }
-        int startSegment = Integer.parseInt(startPeriod);
-        int endSegment = Integer.parseInt(endPeriod);
+        int startSegment = periodToInt(startPeriod);
+        int endSegment = periodToInt(endPeriod);
         long days = ChronoUnit.DAYS.between(startDate, endDate);
         long segmentCount = days * 3 + (endSegment - startSegment) + 1;
         if (segmentCount <= 0) {
@@ -321,7 +321,14 @@ public class LeaveRequestApplicationService {
                 .divide(BigDecimal.valueOf(3), 2, RoundingMode.HALF_UP);
     }
 
-
+    private static int periodToInt(String period) {
+        switch (period) {
+            case "AM": return 1;
+            case "PM": return 2;
+            case "EV": return 3;
+            default: throw new IllegalArgumentException("无效时段: " + period);
+        }
+    }
 
     // ======================== 工具方法 ========================
 
