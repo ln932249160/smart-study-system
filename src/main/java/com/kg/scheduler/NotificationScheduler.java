@@ -23,13 +23,13 @@ public class NotificationScheduler {
     /**
      * 每分钟整点执行：扫描 task 开始/即将截止/结束，生成通知消息。
      */
-    @Scheduled(cron = "0 * * * * ?")
-    public void execute() {
-        log.debug("NotificationScheduler 开始执行");
-        try {
-            batchTaskService.generateNotifications();
-        } catch (Exception e) {
-            log.error("NotificationScheduler 执行异常", e);
-        }
-    }
+//    @Scheduled(cron = "0 * * * * ?")
+//    public void execute() {
+//        log.debug("NotificationScheduler 开始执行");
+//        try {
+//            batchTaskService.generateNotifications();
+//        } catch (Exception e) {
+//            log.error("NotificationScheduler 执行异常", e);
+//        }
+//    }
 }
