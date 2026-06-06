@@ -214,3 +214,77 @@
 | 00:10 | Edited src/main/java/com/kg/interfaces/controller/MyTaskController.java | added 1 import(s) | ~81 |
 | 00:10 | Edited src/main/java/com/kg/interfaces/controller/MyTaskController.java | 4→4 lines | ~61 |
 | 00:10 | Session end: 28 writes across 10 files (schema.sql, NotificationPageRequest.java, NotificationVO.java, NotificationApplicationService.java, NotificationController.java) | 21 reads | ~24703 tok |
+
+## Session: 2026-06-03 11:30
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-06-03 11:42
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-06-06 09:52
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-06-06 12:54
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 13:05 | Edited src/main/java/com/kg/infrastructure/entity/NotificationMessageEntity.java | 5→8 lines | ~42 |
+| 13:05 | Edited src/main/java/com/kg/infrastructure/entity/NotificationMessageEntity.java | modified getStatus() | ~63 |
+| 13:05 | Edited src/main/java/com/kg/interfaces/dto/NotificationVO.java | 2→3 lines | ~48 |
+| 13:05 | Edited src/main/java/com/kg/interfaces/dto/NotificationVO.java | modified getStatus() | ~63 |
+| 13:05 | Edited src/main/java/com/kg/interfaces/dto/NotificationPageRequest.java | 1→2 lines | ~35 |
+| 13:05 | Edited src/main/java/com/kg/interfaces/dto/NotificationPageRequest.java | modified getStatus() | ~55 |
+| 13:05 | Edited src/main/java/com/kg/application/service/NotificationApplicationService.java | modified getStatus() | ~118 |
+| 13:06 | Edited src/main/java/com/kg/application/service/NotificationApplicationService.java | 2→3 lines | ~37 |
+| 13:06 | Edited src/main/java/com/kg/application/service/NotificationApplicationService.java | modified unreadCount() | ~133 |
+| 13:06 | Edited src/main/java/com/kg/application/service/NotificationApplicationService.java | modified markRead() | ~80 |
+| 13:06 | Edited src/main/java/com/kg/application/service/NotificationService.java | added 1 import(s) | ~143 |
+| 13:06 | Edited src/main/java/com/kg/application/service/NotificationService.java | deletePendingForTask() → invalidatePendingForTask() | ~59 |
+| 13:06 | Edited src/main/java/com/kg/application/service/NotificationService.java | 4→5 lines | ~55 |
+| 13:06 | Edited src/main/java/com/kg/application/service/NotificationService.java | 4→5 lines | ~63 |
+| 13:06 | Edited src/main/java/com/kg/application/service/NotificationService.java | modified invalidatePendingForTask() | ~136 |
+| 13:06 | Edited src/main/java/com/kg/application/service/BatchTaskService.java | 3→4 lines | ~38 |
+| 13:06 | Edited src/main/java/com/kg/application/service/BatchTaskService.java | modified notificationExists() | ~125 |
+| 13:07 | Created src/main/resources/schema.sql | — | ~270 |
+| 13:07 | Synced notification_message status field: Entity/DTO/VO/Service/Mapper all updated, delete→status='1' | NotificationMessageEntity, NotificationVO, NotificationPageRequest, NotificationApplicationService, NotificationService, BatchTaskService, schema.sql | compile pass | ~400 |
+| 13:07 | Session end: 18 writes across 7 files (NotificationMessageEntity.java, NotificationVO.java, NotificationPageRequest.java, NotificationApplicationService.java, NotificationService.java) | 9 reads | ~9592 tok |
+| 13:14 | Created src/main/java/com/kg/domain/model/LeaveRequest.java | — | ~933 |
+| 13:14 | Created src/main/java/com/kg/domain/repository/LeaveRequestRepository.java | — | ~276 |
+| 13:14 | Created src/main/java/com/kg/infrastructure/entity/LeaveRequestEntity.java | — | ~994 |
+| 13:14 | Created src/main/java/com/kg/infrastructure/mapper/LeaveRequestMapper.java | — | ~87 |
+| 13:14 | Created src/main/java/com/kg/infrastructure/converter/LeaveRequestConverter.java | — | ~510 |
+| 13:14 | Created src/main/java/com/kg/infrastructure/repository/LeaveRequestRepositoryImpl.java | — | ~1539 |
+| 13:14 | Created src/main/java/com/kg/interfaces/dto/LeaveCreateRequest.java | — | ~434 |
+| 13:15 | Created src/main/java/com/kg/interfaces/dto/LeavePageRequest.java | — | ~346 |
+| 13:15 | Created src/main/java/com/kg/interfaces/dto/LeaveApproveRequest.java | — | ~249 |
+| 13:15 | Created src/main/java/com/kg/interfaces/dto/LeaveVO.java | — | ~907 |
+| 13:16 | Created src/main/java/com/kg/application/service/LeaveRequestApplicationService.java | — | ~4515 |
+| 13:16 | Created src/main/java/com/kg/interfaces/controller/LeaveRequestController.java | — | ~812 |
+| 13:16 | Edited src/main/resources/schema.sql | expanded (+27 lines) | ~434 |
+| 13:16 | Edited src/main/java/com/kg/config/OpenApiConfig.java | inline fix | ~27 |
+| 13:17 | Developed leave_request module: 11 new files, CREATE + PAGE + APPROVE endpoints, DD + notification integration | LeaveRequestController, LeaveRequestApplicationService, domain/infra layer files, 4 DTOs, schema.sql, OpenApiConfig | compile pass | ~1500 |
+| 13:17 | Session end: 32 writes across 20 files (NotificationMessageEntity.java, NotificationVO.java, NotificationPageRequest.java, NotificationApplicationService.java, NotificationService.java) | 11 reads | ~22927 tok |
+| 14:19 | Edited src/main/java/com/kg/domain/repository/SysUserRepository.java | 2→4 lines | ~36 |
+| 14:19 | Edited src/main/java/com/kg/infrastructure/repository/SysUserRepositoryImpl.java | added 2 condition(s) | ~126 |
+| 14:19 | Edited src/main/java/com/kg/application/service/LeaveRequestApplicationService.java | added 4 import(s) | ~41 |
+| 14:19 | Edited src/main/java/com/kg/application/service/LeaveRequestApplicationService.java | 6→2 lines | ~15 |
+| 14:19 | Edited src/main/java/com/kg/application/service/LeaveRequestApplicationService.java | added 1 condition(s) | ~480 |
+| 14:19 | Session end: 37 writes across 22 files (NotificationMessageEntity.java, NotificationVO.java, NotificationPageRequest.java, NotificationApplicationService.java, NotificationService.java) | 13 reads | ~30392 tok |
+| 14:37 | Edited src/main/java/com/kg/domain/repository/SysUserRepository.java | 4→2 lines | ~19 |
+| 14:37 | Edited src/main/java/com/kg/infrastructure/repository/SysUserRepositoryImpl.java | removed 10 lines | ~19 |
+| 14:37 | Created src/main/java/com/kg/infrastructure/mapper/LeaveRequestMapper.java | — | ~1248 |
+| 14:38 | Edited src/main/java/com/kg/application/service/LeaveRequestApplicationService.java | modified pageMine() | ~1119 |
+| 14:39 | Edited src/main/java/com/kg/application/service/LeaveRequestApplicationService.java | added 5 condition(s) | ~591 |
+| 14:39 | Session end: 42 writes across 22 files (NotificationMessageEntity.java, NotificationVO.java, NotificationPageRequest.java, NotificationApplicationService.java, NotificationService.java) | 14 reads | ~33682 tok |
+| 14:41 | Session end: 42 writes across 22 files (NotificationMessageEntity.java, NotificationVO.java, NotificationPageRequest.java, NotificationApplicationService.java, NotificationService.java) | 14 reads | ~33682 tok |
+| 14:47 | Edited src/main/java/com/kg/interfaces/dto/LeavePageRequest.java | 3→4 lines | ~44 |
+| 14:47 | Edited src/main/java/com/kg/interfaces/dto/LeavePageRequest.java | modified getStartDateEnd() | ~62 |
+| 14:48 | Edited src/main/java/com/kg/infrastructure/mapper/LeaveRequestMapper.java | 28→32 lines | ~597 |
+| 14:48 | Edited src/main/java/com/kg/application/service/LeaveRequestApplicationService.java | modified pageMine() | ~136 |
+| 14:48 | Session end: 46 writes across 22 files (NotificationMessageEntity.java, NotificationVO.java, NotificationPageRequest.java, NotificationApplicationService.java, NotificationService.java) | 15 reads | ~34926 tok |

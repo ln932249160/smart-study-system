@@ -1,5 +1,6 @@
 package com.kg.application.service;
 
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.kg.domain.model.SysUser;
 import com.kg.domain.model.Task;
 import com.kg.domain.repository.SysUserRepository;
@@ -37,11 +38,11 @@ public class NotificationService {
 
     /**
      * 任务创建/编辑后调用：生成 TASK_START + TASK_DEADLINE 两条通知。
-     * 先删除该任务的旧未触发消息，再生成新消息。
+     * 先将该任务的旧未触发消息置为失效，再生成新消息。
      */
     public void regenerateForTask(Task task) {
-        // 1. 删除旧未触发消息
-        deletePendingForTask(task.getId());
+        // 1. 旧未触发消息标记失效
+        invalidatePendingForTask(task.getId());
         // 2. 解析接收用户
         List<Long> userIds = resolveUserIds(task);
         if (userIds.isEmpty()) return;
@@ -58,6 +59,7 @@ public class NotificationService {
             startMsg.setPriority(1);
             startMsg.setType(TYPE_START);
             startMsg.setRelatedId(task.getId());
+            startMsg.setStatus("0");
             startMsg.setIsRead(0);
             startMsg.setCreatedAt(now);
             startMsg.setNotifyTime(task.getTaskStartTime());
@@ -75,6 +77,7 @@ public class NotificationService {
                 deadlineMsg.setPriority(1);
                 deadlineMsg.setType(TYPE_DEADLINE);
                 deadlineMsg.setRelatedId(task.getId());
+                deadlineMsg.setStatus("0");
                 deadlineMsg.setIsRead(0);
                 deadlineMsg.setCreatedAt(now);
                 deadlineMsg.setNotifyTime(deadlineNotifyTime);
@@ -117,12 +120,13 @@ public class NotificationService {
         return new ArrayList<>();
     }
 
-    /** 删除任务相关的未触发消息（notify_time > now） */
-    public void deletePendingForTask(Long taskId) {
-        com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper<NotificationMessageEntity> q =
-                new com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper<>();
-        q.eq(NotificationMessageEntity::getRelatedId, taskId);
-        q.gt(NotificationMessageEntity::getNotifyTime, LocalDateTime.now());
-        messageMapper.delete(q);
+    /** 将任务相关的未触发消息（notify_time > now）置为失效（status='1'），不再物理删除 */
+    public void invalidatePendingForTask(Long taskId) {
+        LambdaUpdateWrapper<NotificationMessageEntity> w = new LambdaUpdateWrapper<>();
+        w.eq(NotificationMessageEntity::getRelatedId, taskId);
+        w.eq(NotificationMessageEntity::getStatus, "0");
+        w.gt(NotificationMessageEntity::getNotifyTime, LocalDateTime.now());
+        w.set(NotificationMessageEntity::getStatus, "1");
+        messageMapper.update(null, w);
     }
 }

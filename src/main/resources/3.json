@@ -1,0 +1,9 @@
+INSERT INTO sys_dict (dict_code,dict_name,dict_label,dict_value,sort_no,status,create_by,create_time,update_by,update_time) VALUES
+('leave_status','请假类型','待审批','1',1,1,NULL,'2026-05-26 21:36:08',NULL,'2026-06-02 00:27:00')
+,('leave_status','请假类型','通过','2',2,2,NULL,'2026-05-26 21:36:08',NULL,'2026-06-02 00:27:00')
+,('leave_status','请假类型','拒绝','3',3,3,NULL,'2026-05-26 21:36:08',NULL,'2026-06-02 00:27:00')
+;
+状态：
+APPROVED
+
+REJECTED

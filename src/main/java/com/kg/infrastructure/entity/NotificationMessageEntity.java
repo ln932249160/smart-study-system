@@ -34,6 +34,9 @@ public class NotificationMessageEntity {
     /** 关联业务ID（task_id） */
     private Long relatedId;
 
+    /** 状态：0有效 1失效 */
+    private String status;
+
     /** 是否已读：0未读 1已读 */
     private Integer isRead;
 
@@ -59,6 +62,8 @@ public class NotificationMessageEntity {
     public void setType(String type) { this.type = type; }
     public Long getRelatedId() { return relatedId; }
     public void setRelatedId(Long relatedId) { this.relatedId = relatedId; }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
     public Integer getIsRead() { return isRead; }
     public void setIsRead(Integer isRead) { this.isRead = isRead; }
     public LocalDateTime getCreatedAt() { return createdAt; }

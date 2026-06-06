@@ -6,3 +6,6 @@ delete from task ;
 delete from task_template ;
 delete from task_score ;
 delete from task_user ;
+
+
+

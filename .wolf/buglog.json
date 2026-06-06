@@ -480,6 +480,118 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-06-02T16:10:31.709Z"
+    },
+    {
+      "id": "bug-031",
+      "timestamp": "2026-06-06T05:05:29.587Z",
+      "error_message": "Wrong return value",
+      "file": "src/main/java/com/kg/infrastructure/entity/NotificationMessageEntity.java",
+      "root_cause": "Was returning: isRead; }",
+      "fix": "Now returns: status; }",
+      "tags": [
+        "auto-detected",
+        "return-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-06T05:05:29.587Z"
+    },
+    {
+      "id": "bug-032",
+      "timestamp": "2026-06-06T05:05:33.934Z",
+      "error_message": "Incorrect value in code",
+      "file": "src/main/java/com/kg/interfaces/dto/NotificationVO.java",
+      "root_cause": "Had \"是否已读\"",
+      "fix": "Changed to \"状态：0有效 1失效\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-06T05:05:33.934Z"
+    },
+    {
+      "id": "bug-033",
+      "timestamp": "2026-06-06T05:05:38.223Z",
+      "error_message": "Wrong return value",
+      "file": "src/main/java/com/kg/interfaces/dto/NotificationVO.java",
+      "root_cause": "Was returning: isRead; }",
+      "fix": "Now returns: status; }",
+      "tags": [
+        "auto-detected",
+        "return-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-06T05:05:38.223Z"
+    },
+    {
+      "id": "bug-034",
+      "timestamp": "2026-06-06T05:05:43.438Z",
+      "error_message": "Incorrect value in code",
+      "file": "src/main/java/com/kg/interfaces/dto/NotificationPageRequest.java",
+      "root_cause": "Had \"是否已读：0未读 1已读\"",
+      "fix": "Changed to \"状态：0有效 1失效\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-06T05:05:43.438Z"
+    },
+    {
+      "id": "bug-035",
+      "timestamp": "2026-06-06T05:05:47.854Z",
+      "error_message": "Wrong return value",
+      "file": "src/main/java/com/kg/interfaces/dto/NotificationPageRequest.java",
+      "root_cause": "Was returning: isRead; } public void setIsRead(Integer i) { this.",
+      "fix": "Now returns: status; } public void setStatus(String s) { this.s",
+      "tags": [
+        "auto-detected",
+        "return-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-06T05:05:47.854Z"
+    },
+    {
+      "id": "bug-036",
+      "timestamp": "2026-06-06T05:16:47.700Z",
+      "error_message": "Incorrect value in code",
+      "file": "src/main/java/com/kg/config/OpenApiConfig.java",
+      "root_cause": "Had \"用户管理\"",
+      "fix": "Changed to \"请假管理\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-06T05:16:47.700Z"
+    },
+    {
+      "id": "bug-037",
+      "timestamp": "2026-06-06T06:38:48.102Z",
+      "error_message": "Missing guard clause",
+      "file": "src/main/java/com/kg/application/service/LeaveRequestApplicationService.java",
+      "root_cause": "No early return/throw for edge case: RoleEnum.isTeacher(role",
+      "fix": "Added guard clause: if (RoleEnum.isTeacher(role)",
+      "tags": [
+        "auto-detected",
+        "guard-clause",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-06-06T06:39:04.223Z"
     }
   ]
 }

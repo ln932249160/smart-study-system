@@ -49,6 +49,8 @@ public class NotificationApplicationService {
         LambdaQueryWrapper<NotificationMessageEntity> q = new LambdaQueryWrapper<>();
         q.eq(NotificationMessageEntity::getUserId, userId);
         q.le(NotificationMessageEntity::getNotifyTime, LocalDateTime.now());
+        // 默认只查有效消息，可传入 status 覆盖
+        q.eq(NotificationMessageEntity::getStatus, req.getStatus() != null ? req.getStatus() : "0");
         // 筛选条件
         if (req.getTitle() != null && !req.getTitle().isEmpty()) {
             q.like(NotificationMessageEntity::getTitle, req.getTitle());
@@ -88,6 +90,7 @@ public class NotificationApplicationService {
                 vo.setContent(e.getContent());
                 vo.setType(e.getType());
                 vo.setRelatedId(e.getRelatedId());
+                vo.setStatus(e.getStatus());
                 vo.setIsRead(e.getIsRead());
                 vo.setPriority(e.getPriority());
                 if (e.getCreatedAt() != null) vo.setCreatedAt(e.getCreatedAt().format(FMT));
@@ -102,12 +105,13 @@ public class NotificationApplicationService {
         return result;
     }
 
-    /** 未读消息数（仅已生效的） */
+    /** 未读消息数（仅已生效的有效消息） */
     public long unreadCount() {
         Long userId = requireUserId();
         LambdaQueryWrapper<NotificationMessageEntity> q = new LambdaQueryWrapper<>();
         q.eq(NotificationMessageEntity::getUserId, userId);
         q.eq(NotificationMessageEntity::getIsRead, 0);
+        q.eq(NotificationMessageEntity::getStatus, "0");
         q.le(NotificationMessageEntity::getNotifyTime, LocalDateTime.now());
         return notificationMessageMapper.selectCount(q);
     }
@@ -118,7 +122,7 @@ public class NotificationApplicationService {
     public void markRead(Long messageId) {
         Long userId = requireUserId();
         NotificationMessageEntity entity = notificationMessageMapper.selectById(messageId);
-        if (entity == null) {
+        if (entity == null || !"0".equals(entity.getStatus())) {
             throw new BusinessException("消息不存在");
         }
         if (!userId.equals(entity.getUserId())) {

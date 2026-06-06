@@ -12,6 +12,7 @@ public class NotificationPageRequest {
     @NotNull @Min(1) @Schema(description = "每页条数", requiredMode = Schema.RequiredMode.REQUIRED) private Integer pageSize;
     @Schema(description = "标题（模糊）") private String title;
     @Schema(description = "消息类型：TASK_START / TASK_DEADLINE") private String type;
+    @Schema(description = "状态：0有效 1失效") private String status;
     @Schema(description = "是否已读：0未读 1已读") private Integer isRead;
     @Schema(description = "优先级") private Integer priority;
     @Schema(description = "关联任务ID") private Long relatedId;
@@ -22,6 +23,7 @@ public class NotificationPageRequest {
     public Integer getPageSize() { return pageSize; } public void setPageSize(Integer i) { this.pageSize = i; }
     public String getTitle() { return title; } public void setTitle(String s) { this.title = s; }
     public String getType() { return type; } public void setType(String s) { this.type = s; }
+    public String getStatus() { return status; } public void setStatus(String s) { this.status = s; }
     public Integer getIsRead() { return isRead; } public void setIsRead(Integer i) { this.isRead = i; }
     public Integer getPriority() { return priority; } public void setPriority(Integer i) { this.priority = i; }
     public Long getRelatedId() { return relatedId; } public void setRelatedId(Long l) { this.relatedId = l; }

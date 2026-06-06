@@ -13,6 +13,7 @@ public class NotificationVO {
     @Schema(description = "内容") private String content;
     @Schema(description = "类型") private String type;
     @Schema(description = "关联任务ID") private Long relatedId;
+    @Schema(description = "状态：0有效 1失效") private String status;
     @Schema(description = "是否已读") private Integer isRead;
     @Schema(description = "优先级") private Integer priority;
     @Schema(description = "创建时间") private String createdAt;
@@ -28,6 +29,8 @@ public class NotificationVO {
     public void setType(String type) { this.type = type; }
     public Long getRelatedId() { return relatedId; }
     public void setRelatedId(Long relatedId) { this.relatedId = relatedId; }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
     public Integer getIsRead() { return isRead; }
     public void setIsRead(Integer isRead) { this.isRead = isRead; }
     public Integer getPriority() { return priority; }

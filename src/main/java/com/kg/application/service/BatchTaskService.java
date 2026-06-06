@@ -153,6 +153,7 @@ public class BatchTaskService {
                 msg.setContent(title);
                 msg.setType(type);
                 msg.setRelatedId(task.getId());
+                msg.setStatus("0");
                 msg.setPriority(1);
                 msg.setIsRead(0);
                 toInsert.add(msg);
@@ -172,6 +173,7 @@ public class BatchTaskService {
         q.eq(NotificationMessageEntity::getUserId, userId);
         q.eq(NotificationMessageEntity::getRelatedId, taskId);
         q.eq(NotificationMessageEntity::getType, type);
+        q.eq(NotificationMessageEntity::getStatus, "0");
         return notificationMessageMapper.selectCount(q) > 0;
     }
 

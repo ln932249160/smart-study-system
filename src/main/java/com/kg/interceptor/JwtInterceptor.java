@@ -3,9 +3,11 @@ package com.kg.interceptor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kg.context.UserContext;
 import com.kg.domain.model.SysUser;
+import com.kg.domain.repository.SysUserRepository;
 import com.kg.util.JwtUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * JWT 认证拦截器。
@@ -34,6 +37,9 @@ public class JwtInterceptor implements HandlerInterceptor {
     private static final String BEARER_PREFIX = "Bearer ";
 
     private final ObjectMapper objectMapper = new ObjectMapper();
+
+    @Autowired
+    private SysUserRepository sysUserRepository;
 
     /**
      * 请求前置处理：提取 Token → 校验 → 解析 → 存入 UserContext。
@@ -81,10 +87,12 @@ public class JwtInterceptor implements HandlerInterceptor {
         }
 
         // 6. 构建 SysUser 存入 ThreadLocal
-        SysUser sysUser = new SysUser();
-        sysUser.setId(userId);
-        sysUser.setRole(role);
-        UserContext.setUser(sysUser);
+        Optional<SysUser> byId = sysUserRepository.findById(userId);
+        if(!byId.isPresent()){
+            writeUnauthorized(response, "用户有误");
+            return false;
+        }
+        UserContext.setUser(byId.get());
 
         return true;
     }
