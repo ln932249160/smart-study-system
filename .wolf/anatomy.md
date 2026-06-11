@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-06-06T09:01:00.710Z
-> Files: 180 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-06-11T16:00:22.032Z
+> Files: 185 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -47,14 +47,14 @@
 - `DictApplicationService.java` — 字典管理应用服务 — 按 dict_code 分组管理 (~1260 tok)
 - `HomeApplicationService.java` — 首页统计应用服务 —— 基于聚合 SQL 提供 teacher / headmaster / student 三种视角的统计数据。 (~1832 tok)
 - `LeaveRequestApplicationService.java` — 请假申请应用服务 —— 学生请假、老师/班长审批。 (~4590 tok)
-- `MyTaskApplicationService.java` — 我的任务应用服务 —— 个人任务列表 + 完成任务。 (~2257 tok)
+- `MyTaskApplicationService.java` — 我的任务应用服务 —— 个人任务列表 + 完成任务 + 详情 + 修改 + 模板统计。 (~4717 tok)
 - `NotificationApplicationService.java` — 通知消息应用服务 —— 查询列表 + 已读 + 未读数。 (~1594 tok)
 - `NotificationService.java` — 通知消息生成服务 —— 封装消息生成逻辑，在任务创建/编辑时调用。 (~1412 tok)
 - `ProfileApplicationService.java` — 个人中心应用服务 —— 查看/修改个人信息、修改密码。 (~1172 tok)
 - `StudentApplicationService.java` — 学生管理应用服务 —— teacher 全部操作，headmaster 看本班，student 无权限。 (~3522 tok)
 - `StudentCheckinApplicationService.java` — 学生打卡统计服务 —— 连续天数 + 本月次数 + 日历。 (~749 tok)
-- `TaskApplicationService.java` — 任务管理应用服务 —— 角色权限：teacher 全部、headmaster 本班、student 本人。 (~4426 tok)
-- `TaskTemplateApplicationService.java` — 模板任务应用服务 — 仅 teacher (~1168 tok)
+- `TaskApplicationService.java` — 任务管理应用服务 —— 角色权限：teacher/headmaster 全部、student 本人。 (~4439 tok)
+- `TaskTemplateApplicationService.java` — 模板任务应用服务 — teacher + headmaster 可管理 (~1188 tok)
 - `UserApplicationService.java` — 应用层服务 — 编排业务流程。 (~150 tok)
 
 ## src/main/java/com/kg/config/
@@ -88,7 +88,7 @@
 - `LeaveRequestRepository.java` — 请假申请仓储接口 (~276 tok)
 - `SysUserRepository.java` — 系统用户仓储接口 —— 定义 sys_user 的数据访问契约。 (~425 tok)
 - `TaskRepository.java` — 任务仓储接口 —— 定义 task 表的数据访问契约。 (~338 tok)
-- `TaskScoreRepository.java` — 任务成绩明细仓储接口 —— 定义 task_score 表的数据访问契约。 (~112 tok)
+- `TaskScoreRepository.java` — 任务成绩明细仓储接口 —— 定义 task_score 表的数据访问契约。 (~126 tok)
 - `TaskTemplateRepository.java` — 模板任务仓储接口 (~172 tok)
 - `TaskUserRepository.java` — 任务分配仓储接口 —— 定义 task_user 表的数据访问契约。 (~187 tok)
 - `UserRepository.java` — 仓储接口 — 只定义契约，不依赖数据库实现。 (~66 tok)
@@ -143,7 +143,7 @@
 - `DictMapper.java` — 字典 Mapper (~80 tok)
 - `HomeMapper.java` — 首页统计 Mapper —— 聚合 SQL，一次查询完成统计，禁止 N+1。 (~1104 tok)
 - `LeaveRequestMapper.java` — 请假申请 Mapper，操作 leave_request 表。 (~1332 tok)
-- `MyTaskMapper.java` — 我的任务 Mapper —— 以 task_user 为核心 JOIN task，一次 SQL 查完。 (~1055 tok)
+- `MyTaskMapper.java` — 我的任务 Mapper —— 以 task_user 为核心 JOIN task。 (~2521 tok)
 - `NotificationMessageMapper.java` — 通知消息 Mapper，操作 notification_message 表。 (~102 tok)
 - `StudentCheckinMapper.java` — 学生打卡 Mapper —— 查询当前学生所有已完成打卡日期。 (~190 tok)
 - `SysUserMapper.java` — 系统用户 Mapper，操作 sys_user 表。 (~88 tok)
@@ -161,7 +161,7 @@
 - `LeaveRequestRepositoryImpl.java` — 请假申请仓储实现 (~1539 tok)
 - `SysUserRepositoryImpl.java` — 系统用户仓储实现 —— 使用 MyBatis-Plus 操作 MySQL。 (~2056 tok)
 - `TaskRepositoryImpl.java` — 任务仓储实现。 (~1877 tok)
-- `TaskScoreRepositoryImpl.java` — 任务成绩明细仓储实现。 (~456 tok)
+- `TaskScoreRepositoryImpl.java` — 任务成绩明细仓储实现。 (~569 tok)
 - `TaskTemplateRepositoryImpl.java` — 模板任务仓储实现 (~1016 tok)
 - `TaskUserRepositoryImpl.java` — 任务分配仓储实现。 (~1064 tok)
 - `UserRepositoryImpl.java` — 仓储实现 — 使用 MyBatis-Plus 操作 MySQL。 (~324 tok)
@@ -180,7 +180,7 @@
 - `HelloController.java` — RestController: HelloController (1 endpoints) (~198 tok)
 - `HomeController.java` — 首页统计控制器。 (~468 tok)
 - `LeaveRequestController.java` — 请假申请控制器 —— 学生请假、老师/班长审批。 (~812 tok)
-- `MyTaskController.java` — 我的任务控制器 —— 个人任务列表 + 完成任务。 (~646 tok)
+- `MyTaskController.java` — 我的任务控制器 —— 个人任务列表 + 详情 + 完成 + 修改 + 模板统计。 (~1172 tok)
 - `NotificationController.java` — 通知消息控制器。 (~626 tok)
 - `ProfileController.java` — 个人中心控制器。 (~657 tok)
 - `StudentCheckinController.java` — 学生打卡统计控制器。 (~424 tok)
@@ -213,8 +213,13 @@
 - `LoginResponse.java` — 登录响应 DTO (~399 tok)
 - `LowCompletedTaskVO.java` — 完成率最低任务 VO (~505 tok)
 - `MyTaskCompleteRequest.java` — 我的任务完成请求 DTO (~529 tok)
-- `MyTaskPageRequest.java` — 我的任务分页请求 DTO (~659 tok)
-- `MyTaskVO.java` — 我的任务列表项 VO (~628 tok)
+- `MyTaskDetailVO.java` — 我的任务详情 VO (~998 tok)
+- `MyTaskPageRequest.java` — 我的任务分页请求 DTO (~824 tok)
+- `MyTaskTemplateDetailVO.java` — 我的模板任务详情 VO (~888 tok)
+- `MyTaskTemplatePageRequest.java` — 我的模板任务分页请求 (~388 tok)
+- `MyTaskTemplateVO.java` — 我的模板任务列表项 VO (~438 tok)
+- `MyTaskUpdateRequest.java` — 修改我的任务请求 (~383 tok)
+- `MyTaskVO.java` — 我的任务列表项 VO (~702 tok)
 - `NearEndTaskVO.java` — 即将截止任务 VO (~227 tok)
 - `NotificationPageRequest.java` — 通知消息分页查询请求 (~570 tok)
 - `NotificationVO.java` — 通知消息列表项 VO (~518 tok)

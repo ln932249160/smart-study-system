@@ -46,6 +46,15 @@ public class MyTaskPageRequest {
     @Schema(description = "结束时间止")
     private String endTimeEnd;
 
+    @Schema(description = "完成时间起")
+    private String finishTimeStart;
+
+    @Schema(description = "完成时间止")
+    private String finishTimeEnd;
+
+    @Schema(description = "是否模板任务：1是 0否")
+    private Integer isTemplate;
+
     public Integer getPageNum() { return pageNum; }
     public void setPageNum(Integer i) { this.pageNum = i; }
     public Integer getPageSize() { return pageSize; }
@@ -68,4 +77,10 @@ public class MyTaskPageRequest {
     public void setEndTimeBegin(String s) { this.endTimeBegin = s; }
     public String getEndTimeEnd() { return endTimeEnd; }
     public void setEndTimeEnd(String s) { this.endTimeEnd = s; }
+    public String getFinishTimeStart() { return finishTimeStart; }
+    public void setFinishTimeStart(String s) { this.finishTimeStart = s; }
+    public String getFinishTimeEnd() { return finishTimeEnd; }
+    public void setFinishTimeEnd(String s) { this.finishTimeEnd = s; }
+    public Integer getIsTemplate() { return isTemplate; }
+    public void setIsTemplate(Integer v) { this.isTemplate = v; }
 }

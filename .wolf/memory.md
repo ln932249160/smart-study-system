@@ -297,3 +297,61 @@
 | 17:00 | Created src/main/java/com/kg/interfaces/controller/StudentCheckinController.java | — | ~424 |
 | 17:01 | Edited src/main/java/com/kg/config/OpenApiConfig.java | inline fix | ~29 |
 | 17:01 | Session end: 53 writes across 28 files (NotificationMessageEntity.java, NotificationVO.java, NotificationPageRequest.java, NotificationApplicationService.java, NotificationService.java) | 17 reads | ~37740 tok |
+
+## Session: 2026-06-09 20:18
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-06-09 20:28
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-06-11 20:38
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 20:53 | Created src/main/java/com/kg/interfaces/dto/MyTaskDetailVO.java | — | ~998 |
+| 20:53 | Created src/main/java/com/kg/interfaces/dto/MyTaskUpdateRequest.java | — | ~383 |
+| 20:53 | Created src/main/java/com/kg/interfaces/dto/MyTaskTemplateVO.java | — | ~438 |
+| 20:53 | Created src/main/java/com/kg/interfaces/dto/MyTaskTemplatePageRequest.java | — | ~239 |
+| 20:53 | Created src/main/java/com/kg/interfaces/dto/MyTaskTemplateDetailVO.java | — | ~888 |
+| 20:53 | Edited src/main/java/com/kg/interfaces/dto/MyTaskVO.java | expanded (+6 lines) | ~60 |
+| 20:53 | Edited src/main/java/com/kg/interfaces/dto/MyTaskVO.java | modified getForceFlag() | ~116 |
+| 20:54 | Edited src/main/java/com/kg/interfaces/dto/MyTaskPageRequest.java | expanded (+6 lines) | ~64 |
+| 20:54 | Edited src/main/java/com/kg/interfaces/dto/MyTaskPageRequest.java | modified getEndTimeEnd() | ~107 |
+| 20:54 | Edited src/main/java/com/kg/domain/repository/TaskScoreRepository.java | 2→5 lines | ~40 |
+| 20:54 | Edited src/main/java/com/kg/infrastructure/repository/TaskScoreRepositoryImpl.java | added 2 import(s) | ~24 |
+| 20:54 | Edited src/main/java/com/kg/infrastructure/repository/TaskScoreRepositoryImpl.java | added 1 condition(s) | ~144 |
+| 20:54 | Created src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java | — | ~2054 |
+| 20:55 | Created src/main/java/com/kg/application/service/MyTaskApplicationService.java | — | ~4613 |
+| 20:55 | Edited src/main/java/com/kg/application/service/MyTaskApplicationService.java | added 1 import(s) | ~42 |
+| 20:55 | Edited src/main/java/com/kg/application/service/MyTaskApplicationService.java | modified MyTaskApplicationService() | ~236 |
+| 20:55 | Edited src/main/java/com/kg/application/service/MyTaskApplicationService.java | 2→2 lines | ~32 |
+| 20:55 | Created src/main/java/com/kg/interfaces/controller/MyTaskController.java | — | ~1142 |
+| 20:56 | Edited src/main/java/com/kg/application/service/MyTaskApplicationService.java | 4→2 lines | ~32 |
+| 20:56 | Session end: 19 writes across 12 files (MyTaskDetailVO.java, MyTaskUpdateRequest.java, MyTaskTemplateVO.java, MyTaskTemplatePageRequest.java, MyTaskTemplateDetailVO.java) | 13 reads | ~21232 tok |
+| 21:58 | Edited src/main/java/com/kg/application/service/TaskTemplateApplicationService.java | inline fix | ~12 |
+| 21:58 | Edited src/main/java/com/kg/application/service/TaskTemplateApplicationService.java | requireTeacher() → requireNotStudent() | ~25 |
+| 21:59 | Edited src/main/java/com/kg/application/service/TaskTemplateApplicationService.java | requireTeacher() → requireNotStudent() | ~26 |
+| 21:59 | Edited src/main/java/com/kg/application/service/TaskTemplateApplicationService.java | requireTeacher() → requireNotStudent() | ~28 |
+| 21:59 | Edited src/main/java/com/kg/application/service/TaskTemplateApplicationService.java | requireTeacher() → requireNotStudent() | ~17 |
+| 21:59 | Edited src/main/java/com/kg/application/service/TaskTemplateApplicationService.java | modified requireNotStudent() | ~84 |
+| 21:59 | Edited src/main/java/com/kg/interfaces/dto/MyTaskTemplatePageRequest.java | modified getPageNum() | ~252 |
+| 21:59 | Edited src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java | expanded (+6 lines) | ~938 |
+| 22:00 | Edited src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java | expanded (+15 lines) | ~744 |
+| 22:00 | Edited src/main/java/com/kg/interfaces/dto/MyTaskPageRequest.java | 4→7 lines | ~47 |
+| 22:00 | Edited src/main/java/com/kg/interfaces/dto/MyTaskPageRequest.java | modified getFinishTimeEnd() | ~70 |
+| 22:00 | Edited src/main/java/com/kg/application/service/MyTaskApplicationService.java | 11→13 lines | ~212 |
+| 22:00 | Edited src/main/java/com/kg/application/service/MyTaskApplicationService.java | modified pageTemplates() | ~130 |
+| 22:01 | Session end: 32 writes across 13 files (MyTaskDetailVO.java, MyTaskUpdateRequest.java, MyTaskTemplateVO.java, MyTaskTemplatePageRequest.java, MyTaskTemplateDetailVO.java) | 16 reads | ~27401 tok |
+| 23:32 | Edited src/main/java/com/kg/application/service/MyTaskApplicationService.java | getCurrentUserId() → resolveUserId() | ~51 |
+| 23:32 | Edited src/main/java/com/kg/interfaces/controller/MyTaskController.java | 5→6 lines | ~102 |
+| 23:32 | Session end: 34 writes across 13 files (MyTaskDetailVO.java, MyTaskUpdateRequest.java, MyTaskTemplateVO.java, MyTaskTemplatePageRequest.java, MyTaskTemplateDetailVO.java) | 16 reads | ~27565 tok |
+| 00:00 | Edited src/main/java/com/kg/application/service/TaskApplicationService.java | inline fix | ~14 |
+| 00:00 | Edited src/main/java/com/kg/application/service/TaskApplicationService.java | modified requireNotStudent() | ~75 |
+| 00:00 | Edited src/main/java/com/kg/application/service/TaskApplicationService.java | inline fix | ~6 |
+| 00:00 | Edited src/main/java/com/kg/application/service/TaskApplicationService.java | inline fix | ~5 |
+| 00:00 | Edited src/main/java/com/kg/application/service/TaskApplicationService.java | inline fix | ~12 |
+| 00:00 | Session end: 39 writes across 14 files (MyTaskDetailVO.java, MyTaskUpdateRequest.java, MyTaskTemplateVO.java, MyTaskTemplatePageRequest.java, MyTaskTemplateDetailVO.java) | 17 reads | ~32112 tok |

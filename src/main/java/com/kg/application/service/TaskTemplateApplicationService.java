@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-/** 模板任务应用服务 — 仅 teacher */
+/** 模板任务应用服务 — teacher + headmaster 可管理 */
 @Service
 public class TaskTemplateApplicationService {
     private static final Logger log = LoggerFactory.getLogger(TaskTemplateApplicationService.class);
@@ -31,7 +31,7 @@ public class TaskTemplateApplicationService {
     public TaskTemplateApplicationService(TaskTemplateRepository repo) { this.repo = repo; }
 
     public Map<String, Object> page(int pageNum, int pageSize) {
-        requireTeacher();
+        requireNotStudent();
         int offset = (pageNum - 1) * pageSize;
         long total = repo.count();
         List<TaskTemplateVO> list = repo.page(offset, pageSize).stream().map(this::toVO).collect(Collectors.toList());
@@ -45,7 +45,7 @@ public class TaskTemplateApplicationService {
     }
 
     public void create(TaskTemplateCreateRequest req) {
-        Long uid = requireTeacher();
+        Long uid = requireNotStudent();
         // 模板名称唯一校验
         if (repo.existsByTemplateName(req.getTemplateName())) {
             throw new BusinessException("模板名称已存在，请重新输入");
@@ -63,7 +63,7 @@ public class TaskTemplateApplicationService {
     }
 
     public void update(Long id, TaskTemplateUpdateRequest req) {
-        Long uid = requireTeacher();
+        Long uid = requireNotStudent();
         // 模板名称唯一校验（排除自身）
         if (repo.existsByTemplateNameExcludingId(req.getTemplateName(), id)) {
             throw new BusinessException("模板名称已存在，请重新输入");
@@ -81,7 +81,7 @@ public class TaskTemplateApplicationService {
     }
 
     public void delete(Long id) {
-        requireTeacher();
+        requireNotStudent();
         repo.deleteById(id);
         log.info("删除模板: id={}", id);
     }
@@ -96,10 +96,11 @@ public class TaskTemplateApplicationService {
         }).collect(Collectors.toList());
     }
 
-    private Long requireTeacher() {
+    /** teacher + headmaster 可管理，student 无权限 */
+    private Long requireNotStudent() {
         SysUser u = UserContext.getUser();
         if (u == null) throw new BusinessException(401, "未登录");
-        if (!RoleEnum.isTeacher(u.getRole())) throw new BusinessException(403, "仅老师可操作");
+        if (RoleEnum.isStudent(u.getRole())) throw new BusinessException(403, "学生无权限");
         return u.getId();
     }
 

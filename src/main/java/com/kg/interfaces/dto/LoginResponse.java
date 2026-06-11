@@ -1,10 +1,12 @@
 package com.kg.interfaces.dto;
 
+import com.alibaba.excel.annotation.ExcelProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 /**
  * 登录响应 DTO
  */
+
 @Schema(description = "登录响应")
 public class LoginResponse {
 
@@ -20,6 +22,9 @@ public class LoginResponse {
     @Schema(description = "账号")
     private String account;
 
+    @Schema(description = "姓名")
+    private String name;
+
     /** 角色 */
     @Schema(description = "角色：teacher / headmaster / student")
     private String role;
@@ -27,14 +32,18 @@ public class LoginResponse {
     /**
      * 构建登录响应
      */
-    public static LoginResponse of(String token, Long userId, String account, String role) {
+    public static LoginResponse of(String token, Long userId, String account, String role,String name) {
         LoginResponse response = new LoginResponse();
         response.token = token;
         response.userId = userId;
         response.account = account;
         response.role = role;
+        response.name = name;
         return response;
     }
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
     public String getToken() {
         return token;

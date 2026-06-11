@@ -1,446 +1,348 @@
 {
-  "session_id": "session-2026-06-06-1254",
-  "started": "2026-06-06T04:54:52.216Z",
+  "session_id": "session-2026-06-11-2038",
+  "started": "2026-06-11T12:38:34.154Z",
   "files_read": {
-    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/entity/NotificationMessageEntity.java": {
+    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/MyTaskController.java": {
       "count": 1,
-      "tokens": 592,
-      "first_read": "2026-06-06T05:04:51.614Z"
+      "tokens": 646,
+      "first_read": "2026-06-11T12:53:00.800Z"
     },
-    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationService.java": {
+    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/MyTaskApplicationService.java": {
       "count": 1,
-      "tokens": 1357,
-      "first_read": "2026-06-06T05:04:52.316Z"
+      "tokens": 2257,
+      "first_read": "2026-06-11T12:53:01.244Z"
     },
-    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationApplicationService.java": {
-      "count": 1,
-      "tokens": 1520,
-      "first_read": "2026-06-06T05:04:52.807Z"
-    },
-    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/NotificationMessageMapper.java": {
-      "count": 1,
-      "tokens": 102,
-      "first_read": "2026-06-06T05:04:53.480Z"
-    },
-    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/NotificationVO.java": {
-      "count": 1,
-      "tokens": 470,
-      "first_read": "2026-06-06T05:04:54.066Z"
-    },
-    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/NotificationController.java": {
-      "count": 1,
-      "tokens": 626,
-      "first_read": "2026-06-06T05:04:54.713Z"
-    },
-    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/BatchTaskService.java": {
-      "count": 2,
-      "tokens": 1859,
-      "first_read": "2026-06-06T05:04:55.345Z"
-    },
-    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/NotificationPageRequest.java": {
-      "count": 1,
-      "tokens": 526,
-      "first_read": "2026-06-06T05:04:55.987Z"
-    },
-    "F:/aiProject/smart-study-system/backend/src/main/resources/schema.sql": {
+    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java": {
       "count": 3,
-      "tokens": 270,
-      "first_read": "2026-06-06T05:06:59.104Z"
+      "tokens": 2190,
+      "first_read": "2026-06-11T12:53:01.628Z"
     },
-    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/repository/SysUserRepository.java": {
+    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/MyTaskVO.java": {
+      "count": 1,
+      "tokens": 628,
+      "first_read": "2026-06-11T12:53:02.055Z"
+    },
+    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/MyTaskPageRequest.java": {
+      "count": 1,
+      "tokens": 659,
+      "first_read": "2026-06-11T12:53:02.447Z"
+    },
+    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/repository/TaskScoreRepository.java": {
+      "count": 1,
+      "tokens": 112,
+      "first_read": "2026-06-11T12:53:07.179Z"
+    },
+    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/repository/TaskUserRepository.java": {
+      "count": 1,
+      "tokens": 187,
+      "first_read": "2026-06-11T12:53:07.551Z"
+    },
+    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/model/TaskScore.java": {
+      "count": 1,
+      "tokens": 475,
+      "first_read": "2026-06-11T12:53:07.967Z"
+    },
+    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/model/TaskUser.java": {
+      "count": 1,
+      "tokens": 803,
+      "first_read": "2026-06-11T12:53:08.403Z"
+    },
+    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/entity/TaskEntity.java": {
+      "count": 1,
+      "tokens": 858,
+      "first_read": "2026-06-11T12:53:08.823Z"
+    },
+    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/MyTaskCompleteRequest.java": {
+      "count": 1,
+      "tokens": 529,
+      "first_read": "2026-06-11T12:53:09.293Z"
+    },
+    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/repository/TaskScoreRepositoryImpl.java": {
       "count": 1,
       "tokens": 456,
-      "first_read": "2026-06-06T05:12:49.642Z"
+      "first_read": "2026-06-11T12:54:18.774Z"
     },
-    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/config/OpenApiConfig.java": {
+    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/TaskTemplateMapper.java": {
       "count": 1,
-      "tokens": 574,
-      "first_read": "2026-06-06T05:16:42.504Z"
+      "tokens": 81,
+      "first_read": "2026-06-11T12:55:31.812Z"
     },
-    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/LeaveRequestApplicationService.java": {
-      "count": 5,
-      "tokens": 4510,
-      "first_read": "2026-06-06T06:18:21.910Z"
-    },
-    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/repository/SysUserRepositoryImpl.java": {
+    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskTemplateApplicationService.java": {
       "count": 1,
-      "tokens": 2203,
-      "first_read": "2026-06-06T06:19:07.986Z"
+      "tokens": 1168,
+      "first_read": "2026-06-11T13:58:42.776Z"
     },
-    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/LeaveRequestMapper.java": {
+    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/TaskTemplateController.java": {
       "count": 1,
-      "tokens": 87,
-      "first_read": "2026-06-06T06:37:36.767Z"
+      "tokens": 858,
+      "first_read": "2026-06-11T13:58:43.258Z"
     },
-    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/LeavePageRequest.java": {
+    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/MyTaskTemplatePageRequest.java": {
       "count": 1,
-      "tokens": 346,
-      "first_read": "2026-06-06T06:47:29.326Z"
+      "tokens": 239,
+      "first_read": "2026-06-11T13:59:22.096Z"
     },
-    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/scheduler/DailyCheckInScheduler.java": {
+    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java": {
       "count": 1,
-      "tokens": 278,
-      "first_read": "2026-06-06T07:49:46.518Z"
-    },
-    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/scheduler/DailyReviewScheduler.java": {
-      "count": 1,
-      "tokens": 277,
-      "first_read": "2026-06-06T07:49:47.182Z"
+      "tokens": 4426,
+      "first_read": "2026-06-11T15:59:55.814Z"
     }
   },
   "files_written": [
     {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/entity/NotificationMessageEntity.java",
-      "action": "edit",
-      "tokens": 45,
-      "at": "2026-06-06T05:05:24.965Z"
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/MyTaskDetailVO.java",
+      "action": "create",
+      "tokens": 1069,
+      "at": "2026-06-11T12:53:32.049Z"
     },
     {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/entity/NotificationMessageEntity.java",
-      "action": "edit",
-      "tokens": 67,
-      "at": "2026-06-06T05:05:29.584Z"
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/MyTaskUpdateRequest.java",
+      "action": "create",
+      "tokens": 410,
+      "at": "2026-06-11T12:53:32.478Z"
     },
     {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/NotificationVO.java",
-      "action": "edit",
-      "tokens": 52,
-      "at": "2026-06-06T05:05:33.932Z"
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/MyTaskTemplateVO.java",
+      "action": "create",
+      "tokens": 470,
+      "at": "2026-06-11T12:53:35.501Z"
     },
     {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/NotificationVO.java",
-      "action": "edit",
-      "tokens": 67,
-      "at": "2026-06-06T05:05:38.220Z"
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/MyTaskTemplatePageRequest.java",
+      "action": "create",
+      "tokens": 256,
+      "at": "2026-06-11T12:53:37.775Z"
     },
     {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/NotificationPageRequest.java",
-      "action": "edit",
-      "tokens": 37,
-      "at": "2026-06-06T05:05:43.436Z"
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/MyTaskTemplateDetailVO.java",
+      "action": "create",
+      "tokens": 952,
+      "at": "2026-06-11T12:53:44.175Z"
     },
     {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/NotificationPageRequest.java",
-      "action": "edit",
-      "tokens": 59,
-      "at": "2026-06-06T05:05:47.852Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationApplicationService.java",
-      "action": "edit",
-      "tokens": 126,
-      "at": "2026-06-06T05:05:55.785Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationApplicationService.java",
-      "action": "edit",
-      "tokens": 40,
-      "at": "2026-06-06T05:06:00.978Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationApplicationService.java",
-      "action": "edit",
-      "tokens": 142,
-      "at": "2026-06-06T05:06:06.412Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationApplicationService.java",
-      "action": "edit",
-      "tokens": 86,
-      "at": "2026-06-06T05:06:11.583Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationService.java",
-      "action": "edit",
-      "tokens": 154,
-      "at": "2026-06-06T05:06:17.944Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationService.java",
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/MyTaskVO.java",
       "action": "edit",
       "tokens": 64,
-      "at": "2026-06-06T05:06:24.256Z"
+      "at": "2026-06-11T12:53:49.772Z"
     },
     {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationService.java",
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/MyTaskVO.java",
       "action": "edit",
-      "tokens": 59,
-      "at": "2026-06-06T05:06:29.502Z"
+      "tokens": 125,
+      "at": "2026-06-11T12:53:54.570Z"
     },
     {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationService.java",
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/MyTaskPageRequest.java",
       "action": "edit",
-      "tokens": 68,
-      "at": "2026-06-06T05:06:34.079Z"
+      "tokens": 69,
+      "at": "2026-06-11T12:54:05.430Z"
     },
     {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationService.java",
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/MyTaskPageRequest.java",
       "action": "edit",
-      "tokens": 146,
-      "at": "2026-06-06T05:06:40.704Z"
+      "tokens": 114,
+      "at": "2026-06-11T12:54:11.046Z"
     },
     {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/BatchTaskService.java",
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/repository/TaskScoreRepository.java",
       "action": "edit",
-      "tokens": 40,
-      "at": "2026-06-06T05:06:50.216Z"
+      "tokens": 42,
+      "at": "2026-06-11T12:54:15.612Z"
     },
     {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/BatchTaskService.java",
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/repository/TaskScoreRepositoryImpl.java",
       "action": "edit",
-      "tokens": 134,
-      "at": "2026-06-06T05:06:55.775Z"
+      "tokens": 26,
+      "at": "2026-06-11T12:54:23.075Z"
     },
     {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/resources/schema.sql",
-      "action": "create",
-      "tokens": 289,
-      "at": "2026-06-06T05:07:23.738Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/model/LeaveRequest.java",
-      "action": "create",
-      "tokens": 1000,
-      "at": "2026-06-06T05:14:01.183Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/repository/LeaveRequestRepository.java",
-      "action": "create",
-      "tokens": 296,
-      "at": "2026-06-06T05:14:05.589Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/entity/LeaveRequestEntity.java",
-      "action": "create",
-      "tokens": 1065,
-      "at": "2026-06-06T05:14:23.907Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/LeaveRequestMapper.java",
-      "action": "create",
-      "tokens": 93,
-      "at": "2026-06-06T05:14:25.525Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/converter/LeaveRequestConverter.java",
-      "action": "create",
-      "tokens": 546,
-      "at": "2026-06-06T05:14:31.316Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/repository/LeaveRequestRepositoryImpl.java",
-      "action": "create",
-      "tokens": 1649,
-      "at": "2026-06-06T05:14:49.811Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/LeaveCreateRequest.java",
-      "action": "create",
-      "tokens": 465,
-      "at": "2026-06-06T05:14:58.113Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/LeavePageRequest.java",
-      "action": "create",
-      "tokens": 371,
-      "at": "2026-06-06T05:15:02.545Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/LeaveApproveRequest.java",
-      "action": "create",
-      "tokens": 267,
-      "at": "2026-06-06T05:15:05.996Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/LeaveVO.java",
-      "action": "create",
-      "tokens": 972,
-      "at": "2026-06-06T05:15:15.829Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/LeaveRequestApplicationService.java",
-      "action": "create",
-      "tokens": 4838,
-      "at": "2026-06-06T05:16:11.906Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/LeaveRequestController.java",
-      "action": "create",
-      "tokens": 870,
-      "at": "2026-06-06T05:16:26.345Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/resources/schema.sql",
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/repository/TaskScoreRepositoryImpl.java",
       "action": "edit",
-      "tokens": 465,
-      "at": "2026-06-06T05:16:39.238Z"
+      "tokens": 154,
+      "at": "2026-06-11T12:54:28.411Z"
     },
     {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/config/OpenApiConfig.java",
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java",
+      "action": "create",
+      "tokens": 2201,
+      "at": "2026-06-11T12:54:49.765Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+      "action": "create",
+      "tokens": 4942,
+      "at": "2026-06-11T12:55:27.104Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+      "action": "edit",
+      "tokens": 45,
+      "at": "2026-06-11T12:55:36.570Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+      "action": "edit",
+      "tokens": 253,
+      "at": "2026-06-11T12:55:43.048Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+      "action": "edit",
+      "tokens": 35,
+      "at": "2026-06-11T12:55:47.946Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/MyTaskController.java",
+      "action": "create",
+      "tokens": 1224,
+      "at": "2026-06-11T12:55:59.896Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+      "action": "edit",
+      "tokens": 35,
+      "at": "2026-06-11T12:56:22.862Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskTemplateApplicationService.java",
+      "action": "edit",
+      "tokens": 12,
+      "at": "2026-06-11T13:58:52.793Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskTemplateApplicationService.java",
+      "action": "edit",
+      "tokens": 27,
+      "at": "2026-06-11T13:58:57.564Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskTemplateApplicationService.java",
       "action": "edit",
       "tokens": 28,
-      "at": "2026-06-06T05:16:47.698Z"
+      "at": "2026-06-11T13:59:01.911Z"
     },
     {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/repository/SysUserRepository.java",
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskTemplateApplicationService.java",
       "action": "edit",
-      "tokens": 39,
-      "at": "2026-06-06T06:19:15.742Z"
+      "tokens": 30,
+      "at": "2026-06-11T13:59:06.956Z"
     },
     {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/repository/SysUserRepositoryImpl.java",
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskTemplateApplicationService.java",
       "action": "edit",
-      "tokens": 134,
-      "at": "2026-06-06T06:19:21.338Z"
+      "tokens": 18,
+      "at": "2026-06-11T13:59:11.554Z"
     },
     {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/LeaveRequestApplicationService.java",
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskTemplateApplicationService.java",
       "action": "edit",
-      "tokens": 44,
-      "at": "2026-06-06T06:19:26.428Z"
+      "tokens": 90,
+      "at": "2026-06-11T13:59:17.284Z"
     },
     {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/LeaveRequestApplicationService.java",
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/MyTaskTemplatePageRequest.java",
       "action": "edit",
-      "tokens": 16,
-      "at": "2026-06-06T06:19:31.867Z"
+      "tokens": 270,
+      "at": "2026-06-11T13:59:31.078Z"
     },
     {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/LeaveRequestApplicationService.java",
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java",
       "action": "edit",
-      "tokens": 514,
-      "at": "2026-06-06T06:19:45.924Z"
+      "tokens": 1004,
+      "at": "2026-06-11T13:59:57.138Z"
     },
     {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/repository/SysUserRepository.java",
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java",
       "action": "edit",
-      "tokens": 20,
-      "at": "2026-06-06T06:37:25.421Z"
+      "tokens": 797,
+      "at": "2026-06-11T14:00:22.947Z"
     },
     {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/repository/SysUserRepositoryImpl.java",
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/MyTaskPageRequest.java",
       "action": "edit",
-      "tokens": 20,
-      "at": "2026-06-06T06:37:30.988Z"
+      "tokens": 51,
+      "at": "2026-06-11T14:00:28.810Z"
     },
     {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/LeaveRequestMapper.java",
-      "action": "create",
-      "tokens": 1337,
-      "at": "2026-06-06T06:37:57.979Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/LeaveRequestApplicationService.java",
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/MyTaskPageRequest.java",
       "action": "edit",
-      "tokens": 1198,
-      "at": "2026-06-06T06:38:48.099Z"
+      "tokens": 74,
+      "at": "2026-06-11T14:00:34.117Z"
     },
     {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/LeaveRequestApplicationService.java",
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/MyTaskApplicationService.java",
       "action": "edit",
-      "tokens": 633,
-      "at": "2026-06-06T06:39:04.220Z"
+      "tokens": 228,
+      "at": "2026-06-11T14:00:41.913Z"
     },
     {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/LeavePageRequest.java",
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/MyTaskApplicationService.java",
       "action": "edit",
-      "tokens": 47,
-      "at": "2026-06-06T06:47:34.495Z"
+      "tokens": 140,
+      "at": "2026-06-11T14:00:48.411Z"
     },
     {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/LeavePageRequest.java",
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/MyTaskApplicationService.java",
       "action": "edit",
-      "tokens": 66,
-      "at": "2026-06-06T06:47:40.101Z"
+      "tokens": 55,
+      "at": "2026-06-11T15:32:17.383Z"
     },
     {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/LeaveRequestMapper.java",
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/MyTaskController.java",
       "action": "edit",
-      "tokens": 640,
-      "at": "2026-06-06T06:48:09.370Z"
+      "tokens": 109,
+      "at": "2026-06-11T15:32:25.155Z"
     },
     {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/LeaveRequestApplicationService.java",
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
       "action": "edit",
-      "tokens": 145,
-      "at": "2026-06-06T06:48:16.994Z"
+      "tokens": 15,
+      "at": "2026-06-11T16:00:03.336Z"
     },
     {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/BatchTaskController.java",
-      "action": "create",
-      "tokens": 392,
-      "at": "2026-06-06T07:49:59.302Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/CheckinStatVO.java",
-      "action": "create",
-      "tokens": 243,
-      "at": "2026-06-06T09:00:28.207Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/CheckinCalendarVO.java",
-      "action": "create",
-      "tokens": 108,
-      "at": "2026-06-06T09:00:29.977Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/StudentCheckinMapper.java",
-      "action": "create",
-      "tokens": 204,
-      "at": "2026-06-06T09:00:36.418Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/StudentCheckinApplicationService.java",
-      "action": "create",
-      "tokens": 802,
-      "at": "2026-06-06T09:00:47.891Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/StudentCheckinController.java",
-      "action": "create",
-      "tokens": 454,
-      "at": "2026-06-06T09:00:55.912Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/config/OpenApiConfig.java",
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
       "action": "edit",
-      "tokens": 31,
-      "at": "2026-06-06T09:01:00.724Z"
+      "tokens": 81,
+      "at": "2026-06-11T16:00:09.074Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
+      "action": "edit",
+      "tokens": 6,
+      "at": "2026-06-11T16:00:13.451Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
+      "action": "edit",
+      "tokens": 6,
+      "at": "2026-06-11T16:00:17.945Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
+      "action": "edit",
+      "tokens": 13,
+      "at": "2026-06-11T16:00:22.045Z"
     }
   ],
   "edit_counts": {
-    "src/main/java/com/kg/infrastructure/entity/NotificationMessageEntity.java": 2,
-    "src/main/java/com/kg/interfaces/dto/NotificationVO.java": 2,
-    "src/main/java/com/kg/interfaces/dto/NotificationPageRequest.java": 2,
-    "src/main/java/com/kg/application/service/NotificationApplicationService.java": 4,
-    "src/main/java/com/kg/application/service/NotificationService.java": 5,
-    "src/main/java/com/kg/application/service/BatchTaskService.java": 2,
-    "src/main/resources/schema.sql": 2,
-    "src/main/java/com/kg/domain/model/LeaveRequest.java": 1,
-    "src/main/java/com/kg/domain/repository/LeaveRequestRepository.java": 1,
-    "src/main/java/com/kg/infrastructure/entity/LeaveRequestEntity.java": 1,
-    "src/main/java/com/kg/infrastructure/mapper/LeaveRequestMapper.java": 3,
-    "src/main/java/com/kg/infrastructure/converter/LeaveRequestConverter.java": 1,
-    "src/main/java/com/kg/infrastructure/repository/LeaveRequestRepositoryImpl.java": 1,
-    "src/main/java/com/kg/interfaces/dto/LeaveCreateRequest.java": 1,
-    "src/main/java/com/kg/interfaces/dto/LeavePageRequest.java": 3,
-    "src/main/java/com/kg/interfaces/dto/LeaveApproveRequest.java": 1,
-    "src/main/java/com/kg/interfaces/dto/LeaveVO.java": 1,
-    "src/main/java/com/kg/application/service/LeaveRequestApplicationService.java": 7,
-    "src/main/java/com/kg/interfaces/controller/LeaveRequestController.java": 1,
-    "src/main/java/com/kg/config/OpenApiConfig.java": 2,
-    "src/main/java/com/kg/domain/repository/SysUserRepository.java": 2,
-    "src/main/java/com/kg/infrastructure/repository/SysUserRepositoryImpl.java": 2,
-    "src/main/java/com/kg/interfaces/controller/BatchTaskController.java": 1,
-    "src/main/java/com/kg/interfaces/dto/CheckinStatVO.java": 1,
-    "src/main/java/com/kg/interfaces/dto/CheckinCalendarVO.java": 1,
-    "src/main/java/com/kg/infrastructure/mapper/StudentCheckinMapper.java": 1,
-    "src/main/java/com/kg/application/service/StudentCheckinApplicationService.java": 1,
-    "src/main/java/com/kg/interfaces/controller/StudentCheckinController.java": 1
+    "src/main/java/com/kg/interfaces/dto/MyTaskDetailVO.java": 1,
+    "src/main/java/com/kg/interfaces/dto/MyTaskUpdateRequest.java": 1,
+    "src/main/java/com/kg/interfaces/dto/MyTaskTemplateVO.java": 1,
+    "src/main/java/com/kg/interfaces/dto/MyTaskTemplatePageRequest.java": 2,
+    "src/main/java/com/kg/interfaces/dto/MyTaskTemplateDetailVO.java": 1,
+    "src/main/java/com/kg/interfaces/dto/MyTaskVO.java": 2,
+    "src/main/java/com/kg/interfaces/dto/MyTaskPageRequest.java": 4,
+    "src/main/java/com/kg/domain/repository/TaskScoreRepository.java": 1,
+    "src/main/java/com/kg/infrastructure/repository/TaskScoreRepositoryImpl.java": 2,
+    "src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java": 3,
+    "src/main/java/com/kg/application/service/MyTaskApplicationService.java": 8,
+    "src/main/java/com/kg/interfaces/controller/MyTaskController.java": 2,
+    "src/main/java/com/kg/application/service/TaskTemplateApplicationService.java": 6,
+    "src/main/java/com/kg/application/service/TaskApplicationService.java": 5
   },
   "anatomy_hits": 17,
   "anatomy_misses": 0,
-  "repeated_reads_warned": 7,
+  "repeated_reads_warned": 2,
   "cerebrum_warnings": 0,
-  "stop_count": 8
+  "stop_count": 4
 }

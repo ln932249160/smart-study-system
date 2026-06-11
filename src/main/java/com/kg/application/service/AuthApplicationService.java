@@ -64,6 +64,6 @@ public class AuthApplicationService {
         String token = JwtUtil.generateToken(sysUser.getId(), sysUser.getRole());
         log.info("登录成功: userId={}, account={}, role={}", sysUser.getId(), account, sysUser.getRole());
 
-        return LoginResponse.of(token, sysUser.getId(), sysUser.getAccount(), sysUser.getRole());
+        return LoginResponse.of(token, sysUser.getId(), sysUser.getAccount(), sysUser.getRole(),sysUser.getName());
     }
 }

@@ -608,6 +608,118 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-06-06T09:01:00.727Z"
+    },
+    {
+      "id": "bug-039",
+      "timestamp": "2026-06-11T12:54:23.078Z",
+      "error_message": "Wrong reference: List should be Collections",
+      "file": "src/main/java/com/kg/infrastructure/repository/TaskScoreRepositoryImpl.java",
+      "root_cause": "Used \"List\" instead of \"Collections\"",
+      "fix": "Changed List → Collections",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-11T12:54:23.078Z"
+    },
+    {
+      "id": "bug-040",
+      "timestamp": "2026-06-11T12:55:36.573Z",
+      "error_message": "Wrong reference: TaskUserMapper should be TaskTemplateMapper",
+      "file": "src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+      "root_cause": "Used \"TaskUserMapper\" instead of \"TaskTemplateMapper\"",
+      "fix": "Changed TaskUserMapper → TaskTemplateMapper",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-11T12:55:36.573Z"
+    },
+    {
+      "id": "bug-041",
+      "timestamp": "2026-06-11T13:58:57.566Z",
+      "error_message": "Wrong reference: requireTeacher should be requireNotStudent",
+      "file": "src/main/java/com/kg/application/service/TaskTemplateApplicationService.java",
+      "root_cause": "Used \"requireTeacher\" instead of \"requireNotStudent\"",
+      "fix": "Changed requireTeacher → requireNotStudent",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 4,
+      "last_seen": "2026-06-11T13:59:11.556Z"
+    },
+    {
+      "id": "bug-042",
+      "timestamp": "2026-06-11T14:00:22.950Z",
+      "error_message": "Null/undefined access in ",
+      "file": "src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-11T14:00:22.950Z"
+    },
+    {
+      "id": "bug-043",
+      "timestamp": "2026-06-11T14:00:48.414Z",
+      "error_message": "Significant refactor of ",
+      "file": "src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 6→6 lines (2 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-11T14:00:48.414Z"
+    },
+    {
+      "id": "bug-044",
+      "timestamp": "2026-06-11T15:32:25.159Z",
+      "error_message": "Significant refactor of ",
+      "file": "src/main/java/com/kg/interfaces/controller/MyTaskController.java",
+      "root_cause": "3 lines replaced/restructured",
+      "fix": "Rewrote 5→6 lines (3 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-11T15:32:25.159Z"
+    },
+    {
+      "id": "bug-045",
+      "timestamp": "2026-06-11T16:00:13.454Z",
+      "error_message": "Wrong reference: requireTeacher should be requireNotStudent",
+      "file": "src/main/java/com/kg/application/service/TaskApplicationService.java",
+      "root_cause": "Used \"requireTeacher\" instead of \"requireNotStudent\"",
+      "fix": "Changed requireTeacher → requireNotStudent",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-11T16:00:13.454Z"
     }
   ]
 }

@@ -8,7 +8,9 @@ import com.kg.infrastructure.entity.TaskScoreEntity;
 import com.kg.infrastructure.mapper.TaskScoreMapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 任务成绩明细仓储实现。
@@ -28,6 +30,15 @@ public class TaskScoreRepositoryImpl implements TaskScoreRepository {
         for (TaskScore s : list) {
             taskScoreMapper.insert(TaskScoreConverter.toEntity(s));
         }
+    }
+
+    @Override
+    public List<TaskScore> findByTaskUserId(Long taskUserId) {
+        LambdaQueryWrapper<TaskScoreEntity> q = new LambdaQueryWrapper<>();
+        q.eq(TaskScoreEntity::getTaskUserId, taskUserId);
+        List<TaskScoreEntity> entities = taskScoreMapper.selectList(q);
+        if (entities == null || entities.isEmpty()) return Collections.emptyList();
+        return entities.stream().map(TaskScoreConverter::toDomain).collect(Collectors.toList());
     }
 
     @Override

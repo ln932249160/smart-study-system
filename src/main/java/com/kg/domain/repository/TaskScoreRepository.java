@@ -12,6 +12,9 @@ public interface TaskScoreRepository {
     /** 批量插入成绩明细 */
     void batchSave(List<TaskScore> list);
 
+    /** 按任务分配ID查询成绩明细 */
+    List<TaskScore> findByTaskUserId(Long taskUserId);
+
     /** 按任务分配ID删除 */
     void deleteByTaskUserId(Long taskUserId);
 

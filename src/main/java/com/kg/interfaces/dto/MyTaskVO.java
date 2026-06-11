@@ -24,6 +24,12 @@ public class MyTaskVO {
     @Schema(description = "是否强制")
     private Integer forceFlag;
 
+    @Schema(description = "任务描述")
+    private String taskDescription;
+
+    @Schema(description = "优先级")
+    private Integer priority;
+
     /** 任务开始时间 */
     @Schema(description = "开始时间")
     private String startTime;
@@ -44,6 +50,24 @@ public class MyTaskVO {
     @Schema(description = "提交时间")
     private String submitTime;
 
+
+    @Schema(description = "轮次")
+    private Integer roundNo;
+
+
+
+    @Schema(description = "分配ID") private Long taskUserId;
+
+
+    public Integer getRoundNo() {
+        return roundNo;
+    }
+
+    public void setRoundNo(Integer roundNo) {
+        this.roundNo = roundNo;
+    }
+
+
     // ======================== getters / setters ========================
 
     public Long getTaskId() { return taskId; }
@@ -54,6 +78,10 @@ public class MyTaskVO {
     public void setTaskType(String taskType) { this.taskType = taskType; }
     public Integer getForceFlag() { return forceFlag; }
     public void setForceFlag(Integer forceFlag) { this.forceFlag = forceFlag; }
+    public String getTaskDescription() { return taskDescription; }
+    public void setTaskDescription(String taskDescription) { this.taskDescription = taskDescription; }
+    public Integer getPriority() { return priority; }
+    public void setPriority(Integer priority) { this.priority = priority; }
     public String getStartTime() { return startTime; }
     public void setStartTime(String startTime) { this.startTime = startTime; }
     public String getEndTime() { return endTime; }
@@ -64,4 +92,7 @@ public class MyTaskVO {
     public void setTotalScore(java.math.BigDecimal totalScore) { this.totalScore = totalScore; }
     public String getSubmitTime() { return submitTime; }
     public void setSubmitTime(String submitTime) { this.submitTime = submitTime; }
+
+    public Long getTaskUserId() { return taskUserId; } public void setTaskUserId(Long v) { this.taskUserId = v; }
+
 }

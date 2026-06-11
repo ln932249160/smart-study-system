@@ -36,7 +36,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * 任务管理应用服务 —— 角色权限：teacher 全部、headmaster 本班、student 本人。
+ * 任务管理应用服务 —— 角色权限：teacher/headmaster 全部、student 本人。
  */
 @Service
 public class TaskApplicationService {
@@ -72,7 +72,7 @@ public class TaskApplicationService {
 
     /**
      * 分页查询任务。
-     * teacher → 全部任务 | headmaster → 本班任务 | student → 分配给我的任务
+     * teacher/headmaster → 全部任务 | student → 分配给我的任务
      */
     public Map<String, Object> page(TaskPageRequest req) {
         SysUser currentUser = requireCurrentUser();
@@ -179,11 +179,11 @@ public class TaskApplicationService {
         }
     }
 
-    // ======================== 新增（仅 teacher） ========================
+    // ======================== 新增（teacher/headmaster） ========================
 
     @Transactional(rollbackFor = Exception.class)
     public void create(TaskCreateRequest request) {
-        Long currentUserId = requireTeacher();
+        Long currentUserId = requireNotStudent();
         Task task = buildTask(request, currentUserId);
         taskRepository.save(task);
         Long taskId = task.getId();
@@ -207,11 +207,11 @@ public class TaskApplicationService {
         notificationService.regenerateForTask(task);
     }
 
-    // ======================== 编辑（仅 teacher） ========================
+    // ======================== 编辑（teacher/headmaster） ========================
 
     @Transactional(rollbackFor = Exception.class)
     public void update(Long id, TaskUpdateRequest request) {
-        Long currentUserId = requireTeacher();
+        Long currentUserId = requireNotStudent();
         Task task = buildUpdateTask(id, request, currentUserId);
         taskRepository.update(task);
 
@@ -236,11 +236,11 @@ public class TaskApplicationService {
         log.info("编辑任务成功: id={}", id);
     }
 
-    // ======================== 删除（仅 teacher） ========================
+    // ======================== 删除（teacher/headmaster） ========================
 
     @Transactional(rollbackFor = Exception.class)
     public void delete(Long id) {
-        requireTeacher();
+        requireNotStudent();
         taskScoreRepository.deleteByTaskId(id);
         taskUserRepository.deleteByTaskId(id);
         taskRepository.deleteById(id);
@@ -255,11 +255,11 @@ public class TaskApplicationService {
         return user;
     }
 
-    /** 仅老师可操作，返回当前用户ID */
-    private Long requireTeacher() {
+    /** teacher + headmaster 可操作，student 无权限 */
+    private Long requireNotStudent() {
         SysUser user = requireCurrentUser();
-        if (!RoleEnum.isTeacher(user.getRole())) {
-            throw new BusinessException(403, "仅老师可操作");
+        if (RoleEnum.isStudent(user.getRole())) {
+            throw new BusinessException(403, "学生无权限");
         }
         return user.getId();
     }
