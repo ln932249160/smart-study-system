@@ -29,19 +29,36 @@ public class LoginResponse {
     @Schema(description = "角色：teacher / headmaster / student")
     private String role;
 
+    @Schema(description = "班级")
+    private Long classId;
+
+    @Schema(description = "班级名")
+    private String className;
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
+    }
+
     /**
      * 构建登录响应
      */
-    public static LoginResponse of(String token, Long userId, String account, String role,String name) {
+    public static LoginResponse of(String token, Long userId, String account, String role,String name,Long classId,String  className) {
         LoginResponse response = new LoginResponse();
         response.token = token;
         response.userId = userId;
         response.account = account;
         response.role = role;
         response.name = name;
+        response.classId = classId;
+        response.className = className;
         return response;
     }
-
+    public Long getClassId() { return classId; }
+    public void setClassId(Long classId) { this.classId = classId; }
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 

@@ -1,6 +1,8 @@
 package com.kg.application.service;
 
+import com.kg.domain.model.ClassInfo;
 import com.kg.domain.model.SysUser;
+import com.kg.domain.repository.ClassInfoRepository;
 import com.kg.domain.repository.SysUserRepository;
 import com.kg.exception.BusinessException;
 import com.kg.interfaces.dto.LoginResponse;
@@ -9,6 +11,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 /**
  * 认证应用服务 —— 处理登录业务流程。
@@ -24,10 +28,12 @@ public class AuthApplicationService {
     private final SysUserRepository sysUserRepository;
 
     private final BCryptPasswordEncoder passwordEncoder;
+    private final ClassInfoRepository classInfoRepository;
 
-    public AuthApplicationService(SysUserRepository sysUserRepository, BCryptPasswordEncoder passwordEncoder) {
+    public AuthApplicationService(SysUserRepository sysUserRepository, BCryptPasswordEncoder passwordEncoder, ClassInfoRepository classInfoRepository) {
         this.sysUserRepository = sysUserRepository;
         this.passwordEncoder = passwordEncoder;
+        this.classInfoRepository = classInfoRepository;
     }
 
     /**
@@ -60,10 +66,17 @@ public class AuthApplicationService {
             log.warn("登录失败 — 密码错误: account={}", account);
             throw new BusinessException(401, "账号或密码错误");
         }
+        String className="";
+        if (sysUser.getClassId() != null) {
+            Optional<ClassInfo> classInfoOptional = classInfoRepository.findById(sysUser.getClassId());
+            if(classInfoOptional.isPresent()){
+                className=classInfoOptional.get().getClassName();
+            }
+        }
 
         String token = JwtUtil.generateToken(sysUser.getId(), sysUser.getRole());
         log.info("登录成功: userId={}, account={}, role={}", sysUser.getId(), account, sysUser.getRole());
 
-        return LoginResponse.of(token, sysUser.getId(), sysUser.getAccount(), sysUser.getRole(),sysUser.getName());
+        return LoginResponse.of(token, sysUser.getId(), sysUser.getAccount(), sysUser.getRole(),sysUser.getName(), sysUser.getClassId(),className);
     }
 }

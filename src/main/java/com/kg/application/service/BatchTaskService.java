@@ -1,9 +1,11 @@
 package com.kg.application.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.kg.domain.model.ClassInfo;
 import com.kg.domain.model.SysUser;
 import com.kg.domain.model.Task;
 import com.kg.domain.model.TaskUser;
+import com.kg.domain.repository.ClassInfoRepository;
 import com.kg.domain.repository.SysUserRepository;
 import com.kg.domain.repository.TaskRepository;
 import com.kg.domain.repository.TaskUserRepository;
@@ -38,15 +40,18 @@ public class BatchTaskService {
     private final TaskRepository taskRepository;
     private final TaskUserRepository taskUserRepository;
     private final SysUserRepository sysUserRepository;
+    private final ClassInfoRepository classInfoRepository;
     private final NotificationMessageMapper notificationMessageMapper;
 
     public BatchTaskService(TaskRepository taskRepository,
                             TaskUserRepository taskUserRepository,
                             SysUserRepository sysUserRepository,
+                            ClassInfoRepository classInfoRepository,
                             NotificationMessageMapper notificationMessageMapper) {
         this.taskRepository = taskRepository;
         this.taskUserRepository = taskUserRepository;
         this.sysUserRepository = sysUserRepository;
+        this.classInfoRepository = classInfoRepository;
         this.notificationMessageMapper = notificationMessageMapper;
     }
 
@@ -69,11 +74,19 @@ public class BatchTaskService {
             return;
         }
 
-        // 创建 task
+        // 获取所有班级ID
+        List<ClassInfo> classes = classInfoRepository.listActiveClasses();
+        String targetIds = classes.stream()
+                .map(c -> String.valueOf(c.getId()))
+                .reduce((a, b) -> a + "," + b).orElse("");
+
+        // 创建 task（班级任务）
         Task task = new Task();
         task.setTaskName(taskName);
         task.setTaskType(taskType);
         task.setIsMandatory(forceFlag);
+        task.setTargetType(1);
+        task.setTargetIds(targetIds);
         task.setTaskStartTime(LocalDateTime.of(today, LocalTime.of(startHour, 0)));
         task.setTaskEndTime(LocalDateTime.of(today, LocalTime.of(23, 59)));
         task.setCreateBy(SYSTEM_USER_ID);
@@ -97,7 +110,7 @@ public class BatchTaskService {
             taskUsers.add(tu);
         }
         taskUserRepository.batchSave(taskUsers);
-        log.info("{}创建成功: taskId={}, 分配{}人", taskName, task.getId(), students.size());
+        log.info("{}创建成功: taskId={}, targetType=1, 分配{}人", taskName, task.getId(), students.size());
     }
 
     /**

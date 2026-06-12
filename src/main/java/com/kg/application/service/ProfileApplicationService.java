@@ -1,7 +1,9 @@
 package com.kg.application.service;
 
 import com.kg.context.UserContext;
+import com.kg.domain.model.ClassInfo;
 import com.kg.domain.model.SysUser;
+import com.kg.domain.repository.ClassInfoRepository;
 import com.kg.domain.repository.SysUserRepository;
 import com.kg.exception.BusinessException;
 import com.kg.interfaces.dto.PasswordChangeRequest;
@@ -24,11 +26,14 @@ public class ProfileApplicationService {
     private static final DateTimeFormatter FMT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     private final SysUserRepository sysUserRepository;
+    private final ClassInfoRepository classInfoRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
     public ProfileApplicationService(SysUserRepository sysUserRepository,
+                                     ClassInfoRepository classInfoRepository,
                                      BCryptPasswordEncoder passwordEncoder) {
         this.sysUserRepository = sysUserRepository;
+        this.classInfoRepository = classInfoRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -105,6 +110,10 @@ public class ProfileApplicationService {
         vo.setPhone(user.getPhone());
         vo.setDescription(user.getDescription());
         vo.setClassId(user.getClassId());
+        if (user.getClassId() != null) {
+            classInfoRepository.findById(user.getClassId())
+                    .ifPresent(c -> vo.setClassName(c.getClassName()));
+        }
         vo.setStatus(user.getStatus());
         if (user.getCreateTime() != null) {
             vo.setCreateTime(user.getCreateTime().format(FMT));

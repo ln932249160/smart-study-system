@@ -89,6 +89,7 @@ public class MyTaskApplicationService {
             vo.setStartTime(formatTime(row.get("start_time")));
             vo.setEndTime(formatTime(row.get("end_time")));
             vo.setStatus((String) row.get("status"));
+            vo.setTaskCreateName((String) row.get("task_create_name"));
             vo.setRoundNo((Integer) row.get("round_no"));
             Object score = row.get("total_score");
             vo.setTotalScore(score instanceof BigDecimal ? (BigDecimal) score : null);

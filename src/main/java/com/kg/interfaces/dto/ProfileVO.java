@@ -17,6 +17,7 @@ public class ProfileVO {
     @Schema(description = "手机号") private String phone;
     @Schema(description = "描述") private String description;
     @Schema(description = "班级ID") private Long classId;
+    @Schema(description = "班级名称") private String className;
     @Schema(description = "状态") private Integer status;
     @Schema(description = "创建时间") private String createTime;
 
@@ -38,6 +39,8 @@ public class ProfileVO {
     public void setDescription(String description) { this.description = description; }
     public Long getClassId() { return classId; }
     public void setClassId(Long classId) { this.classId = classId; }
+    public String getClassName() { return className; }
+    public void setClassName(String className) { this.className = className; }
     public Integer getStatus() { return status; }
     public void setStatus(Integer status) { this.status = status; }
     public String getCreateTime() { return createTime; }

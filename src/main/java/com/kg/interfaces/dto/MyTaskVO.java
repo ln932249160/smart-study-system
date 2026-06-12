@@ -58,6 +58,15 @@ public class MyTaskVO {
 
     @Schema(description = "分配ID") private Long taskUserId;
 
+    @Schema(description = "任务创建人") private String taskCreateName;
+
+    public String getTaskCreateName() {
+        return taskCreateName;
+    }
+
+    public void setTaskCreateName(String taskCreateName) {
+        this.taskCreateName = taskCreateName;
+    }
 
     public Integer getRoundNo() {
         return roundNo;

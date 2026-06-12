@@ -1,6 +1,6 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-06-11T16:00:22.032Z
+> Auto-maintained by OpenWolf. Last scanned: 2026-06-12T15:09:23.007Z
 > Files: 185 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
@@ -42,7 +42,7 @@
 
 - `.gitkeep` (~0 tok)
 - `AuthApplicationService.java` — 认证应用服务 —— 处理登录业务流程。 (~684 tok)
-- `BatchTaskService.java` — 批处理任务服务 —— 定时任务的共享逻辑。 (~1859 tok)
+- `BatchTaskService.java` — 批处理任务服务 —— 定时任务的共享逻辑。 (~2023 tok)
 - `ClassApplicationService.java` — 班级管理应用服务 —— teacher 全部操作，headmaster 仅看本班，student 无权限。 (~2430 tok)
 - `DictApplicationService.java` — 字典管理应用服务 — 按 dict_code 分组管理 (~1260 tok)
 - `HomeApplicationService.java` — 首页统计应用服务 —— 基于聚合 SQL 提供 teacher / headmaster / student 三种视角的统计数据。 (~1832 tok)
@@ -50,8 +50,8 @@
 - `MyTaskApplicationService.java` — 我的任务应用服务 —— 个人任务列表 + 完成任务 + 详情 + 修改 + 模板统计。 (~4717 tok)
 - `NotificationApplicationService.java` — 通知消息应用服务 —— 查询列表 + 已读 + 未读数。 (~1594 tok)
 - `NotificationService.java` — 通知消息生成服务 —— 封装消息生成逻辑，在任务创建/编辑时调用。 (~1412 tok)
-- `ProfileApplicationService.java` — 个人中心应用服务 —— 查看/修改个人信息、修改密码。 (~1172 tok)
-- `StudentApplicationService.java` — 学生管理应用服务 —— teacher 全部操作，headmaster 看本班，student 无权限。 (~3522 tok)
+- `ProfileApplicationService.java` — 个人中心应用服务 —— 查看/修改个人信息、修改密码。 (~1218 tok)
+- `StudentApplicationService.java` — 学生管理应用服务 —— teacher 全部操作，headmaster 看本班，student 无权限。 (~4106 tok)
 - `StudentCheckinApplicationService.java` — 学生打卡统计服务 —— 连续天数 + 本月次数 + 日历。 (~749 tok)
 - `TaskApplicationService.java` — 任务管理应用服务 —— 角色权限：teacher/headmaster 全部、student 本人。 (~4439 tok)
 - `TaskTemplateApplicationService.java` — 模板任务应用服务 — teacher + headmaster 可管理 (~1188 tok)
@@ -147,7 +147,7 @@
 - `NotificationMessageMapper.java` — 通知消息 Mapper，操作 notification_message 表。 (~102 tok)
 - `StudentCheckinMapper.java` — 学生打卡 Mapper —— 查询当前学生所有已完成打卡日期。 (~190 tok)
 - `SysUserMapper.java` — 系统用户 Mapper，操作 sys_user 表。 (~88 tok)
-- `TaskMapper.java` — 任务 Mapper (~80 tok)
+- `TaskMapper.java` — 任务 Mapper (~164 tok)
 - `TaskScoreMapper.java` — 任务成绩明细 Mapper (~85 tok)
 - `TaskTemplateMapper.java` — 模板任务 Mapper (~81 tok)
 - `TaskUserMapper.java` — 任务分配 Mapper (~84 tok)
@@ -225,7 +225,7 @@
 - `NotificationVO.java` — 通知消息列表项 VO (~518 tok)
 - `PasswordChangeRequest.java` — 修改密码请求 DTO (~231 tok)
 - `ProfileUpdateRequest.java` — 修改个人资料请求 DTO (~302 tok)
-- `ProfileVO.java` — 个人信息 VO (~589 tok)
+- `ProfileVO.java` — 个人信息 VO (~602 tok)
 - `StudentCreateRequest.java` — 新增用户请求 DTO (~695 tok)
 - `StudentHomeStatVO.java` — 学生首页统计 VO (~305 tok)
 - `StudentOptionVO.java` — 学生选项 VO —— 用于班级管理中的学生复选框列表。 (~285 tok)

@@ -1,11 +1,18 @@
 package com.kg.application.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.kg.context.UserContext;
 import com.kg.domain.model.ClassInfo;
 import com.kg.domain.model.SysUser;
 import com.kg.domain.repository.ClassInfoRepository;
 import com.kg.domain.repository.SysUserRepository;
 import com.kg.enums.RoleEnum;
+import com.kg.infrastructure.entity.NotificationMessageEntity;
+import com.kg.infrastructure.entity.TaskEntity;
+import com.kg.infrastructure.entity.TaskUserEntity;
+import com.kg.infrastructure.mapper.NotificationMessageMapper;
+import com.kg.infrastructure.mapper.TaskMapper;
+import com.kg.infrastructure.mapper.TaskUserMapper;
 import com.kg.interfaces.dto.ClassOptionVO;
 import com.kg.interfaces.dto.StudentCreateRequest;
 import com.kg.interfaces.dto.StudentUpdateRequest;
@@ -46,13 +53,22 @@ public class StudentApplicationService {
     private final SysUserRepository sysUserRepository;
     private final ClassInfoRepository classInfoRepository;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final TaskMapper taskMapper;
+    private final TaskUserMapper taskUserMapper;
+    private final NotificationMessageMapper notificationMessageMapper;
 
     public StudentApplicationService(SysUserRepository sysUserRepository,
                                      ClassInfoRepository classInfoRepository,
-                                     BCryptPasswordEncoder passwordEncoder) {
+                                     BCryptPasswordEncoder passwordEncoder,
+                                     TaskMapper taskMapper,
+                                     TaskUserMapper taskUserMapper,
+                                     NotificationMessageMapper notificationMessageMapper) {
         this.sysUserRepository = sysUserRepository;
         this.classInfoRepository = classInfoRepository;
         this.passwordEncoder = passwordEncoder;
+        this.taskMapper = taskMapper;
+        this.taskUserMapper = taskUserMapper;
+        this.notificationMessageMapper = notificationMessageMapper;
     }
 
     // ======================== 分页查询 ========================
@@ -151,6 +167,11 @@ public class StudentApplicationService {
 
         sysUserRepository.save(sysUser);
         log.info("新增学生: id={}, account={}, name={}, role={}", sysUser.getId(), account, request.getName(), request.getRole());
+
+        // 补发班级任务
+        if (sysUser.getClassId() != null) {
+            assignClassTasksToNewStudent(sysUser.getId(), sysUser.getClassId());
+        }
     }
 
     // ======================== 编辑（仅 teacher） ========================
@@ -256,6 +277,10 @@ public class StudentApplicationService {
 
                 sysUserRepository.save(sysUser);
                 success++;
+                // 补发班级任务
+                if (sysUser.getClassId() != null) {
+                    assignClassTasksToNewStudent(sysUser.getId(), sysUser.getClassId());
+                }
             } catch (Exception e) {
                 log.warn("导入行 {} 失败: {}", row, e.getMessage());
                 errors.add("行" + row + ": " + e.getMessage());
@@ -269,6 +294,56 @@ public class StudentApplicationService {
         result.put("fail", fail);
         result.put("errors", errors);
         return result;
+    }
+
+    // ======================== 新学生补发班级任务 ========================
+
+    /**
+     * 新学生加入班级后，将该班级所有未结束的班级任务补发给他。
+     * 校验 task_id + user_id 避免重复分配。
+     */
+    private void assignClassTasksToNewStudent(Long studentId, Long classId) {
+        List<TaskEntity> tasks = taskMapper.findUnfinishedClassTasks(classId);
+        if (tasks == null || tasks.isEmpty()) return;
+
+        LocalDateTime now = LocalDateTime.now();
+        int assigned = 0;
+
+        for (TaskEntity task : tasks) {
+            // 幂等：检查是否已存在
+            LambdaQueryWrapper<TaskUserEntity> check = new LambdaQueryWrapper<>();
+            check.eq(TaskUserEntity::getTaskId, task.getId());
+            check.eq(TaskUserEntity::getUserId, studentId);
+            if (taskUserMapper.selectCount(check) > 0) continue;
+
+            // 插入 task_user
+            TaskUserEntity tu = new TaskUserEntity();
+            tu.setTaskId(task.getId());
+            tu.setUserId(studentId);
+            tu.setStatus("0");
+            tu.setCreateBy(0L);
+            taskUserMapper.insert(tu);
+
+            // 生成通知消息
+            NotificationMessageEntity msg = new NotificationMessageEntity();
+            msg.setUserId(studentId);
+            msg.setTitle(task.getTaskName() + "开始了");
+            msg.setContent(task.getTaskDescription() != null ? task.getTaskDescription() : "");
+            msg.setPriority(1);
+            msg.setType("TASK_START");
+            msg.setRelatedId(task.getId());
+            msg.setIsRead(0);
+            msg.setStatus("0");
+            msg.setCreatedAt(now);
+            msg.setNotifyTime(now);
+            notificationMessageMapper.insert(msg);
+
+            assigned++;
+        }
+
+        if (assigned > 0) {
+            log.info("新学生 {} 补发 {} 个班级任务 (classId={})", studentId, assigned, classId);
+        }
     }
 
     // ======================== 权限 ========================
