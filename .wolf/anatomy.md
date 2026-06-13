@@ -1,6 +1,6 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-06-12T15:09:23.007Z
+> Auto-maintained by OpenWolf. Last scanned: 2026-06-13T10:25:41.985Z
 > Files: 185 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
@@ -44,7 +44,7 @@
 - `AuthApplicationService.java` — 认证应用服务 —— 处理登录业务流程。 (~684 tok)
 - `BatchTaskService.java` — 批处理任务服务 —— 定时任务的共享逻辑。 (~2023 tok)
 - `ClassApplicationService.java` — 班级管理应用服务 —— teacher 全部操作，headmaster 仅看本班，student 无权限。 (~2430 tok)
-- `DictApplicationService.java` — 字典管理应用服务 — 按 dict_code 分组管理 (~1260 tok)
+- `DictApplicationService.java` — 字典管理应用服务 — 按 dict_code 分组管理 (~1304 tok)
 - `HomeApplicationService.java` — 首页统计应用服务 —— 基于聚合 SQL 提供 teacher / headmaster / student 三种视角的统计数据。 (~1832 tok)
 - `LeaveRequestApplicationService.java` — 请假申请应用服务 —— 学生请假、老师/班长审批。 (~4590 tok)
 - `MyTaskApplicationService.java` — 我的任务应用服务 —— 个人任务列表 + 完成任务 + 详情 + 修改 + 模板统计。 (~4717 tok)
@@ -71,7 +71,7 @@
 
 - `.gitkeep` (~0 tok)
 - `ClassInfo.java` — 班级领域模型 —— 字段来源于 class_info 表。 (~468 tok)
-- `DictItem.java` — 字典项领域模型 (~439 tok)
+- `DictItem.java` — 字典项领域模型 (~482 tok)
 - `LeaveRequest.java` — 请假申请领域模型 —— 字段来源于 leave_request 表。 (~933 tok)
 - `SysUser.java` — 系统用户领域模型 —— 纯 POJO，字段严格来源于 sys_user 表。 (~893 tok)
 - `Task.java` — 任务领域模型 —— 字段来源于 task 表（15 列，含 template_id）。 (~803 tok)
@@ -113,7 +113,7 @@
 
 - `.gitkeep` (~0 tok)
 - `ClassInfoConverter.java` — 防腐层转换器 —— domain.ClassInfo ↔ infra.ClassInfoEntity 双向映射。 (~456 tok)
-- `DictConverter.java` — DictItem ↔ DictEntity (~336 tok)
+- `DictConverter.java` — DictItem ↔ DictEntity (~362 tok)
 - `LeaveRequestConverter.java` — LeaveRequest ↔ LeaveRequestEntity (~510 tok)
 - `SysUserConverter.java` — 防腐层转换器 —— domain.SysUser ↔ infra.SysUserEntity 双向映射。 (~659 tok)
 - `TaskConverter.java` — 防腐层转换器 —— domain.Task ↔ infra.TaskEntity（14 列）。 (~517 tok)
@@ -126,7 +126,7 @@
 
 - `.gitkeep` (~0 tok)
 - `ClassInfoEntity.java` — 班级持久化实体，映射 class_info 表。 (~532 tok)
-- `DictEntity.java` — 字典持久化实体，映射 sys_dict 表。 (~545 tok)
+- `DictEntity.java` — 字典持久化实体，映射 sys_dict 表。 (~594 tok)
 - `LeaveRequestEntity.java` — 请假申请持久化实体，映射 leave_request 表。 (~994 tok)
 - `NotificationMessageEntity.java` — 通知消息持久化实体，映射 notification_message 表。 (~636 tok)
 - `SysUserEntity.java` — 系统用户持久化实体，严格映射 sys_user 表（16 列全部覆盖）。 (~912 tok)
@@ -157,7 +157,7 @@
 
 - `.gitkeep` (~0 tok)
 - `ClassInfoRepositoryImpl.java` — 班级仓储实现 —— 使用 MyBatis-Plus 操作 MySQL。 (~1414 tok)
-- `DictRepositoryImpl.java` — 字典仓储实现 (~1165 tok)
+- `DictRepositoryImpl.java` — 字典仓储实现 (~1192 tok)
 - `LeaveRequestRepositoryImpl.java` — 请假申请仓储实现 (~1539 tok)
 - `SysUserRepositoryImpl.java` — 系统用户仓储实现 —— 使用 MyBatis-Plus 操作 MySQL。 (~2056 tok)
 - `TaskRepositoryImpl.java` — 任务仓储实现。 (~1877 tok)
@@ -199,8 +199,8 @@
 - `ClassPageRequest.java` — 班级分页查询请求 DTO (~245 tok)
 - `ClassUpdateRequest.java` — 编辑班级请求 DTO (~276 tok)
 - `ClassVO.java` — 班级列表项 VO (~371 tok)
-- `DictGroupSaveRequest.java` — 字典组保存请求（新增/编辑通用） (~450 tok)
-- `DictGroupVO.java` — 字典分组 VO (~402 tok)
+- `DictGroupSaveRequest.java` — 字典组保存请求（新增/编辑通用） (~502 tok)
+- `DictGroupVO.java` — 字典分组 VO (~455 tok)
 - `DictItemCreateRequest.java` — DictItemCreateRequest: getDictCode, setDictCode, getDictName, setDictName (~288 tok)
 - `DictItemUpdateRequest.java` — DictItemUpdateRequest: getDictCode, setDictCode, getDictName, setDictName (~333 tok)
 - `DictVO.java` — 字典项 VO (~194 tok)

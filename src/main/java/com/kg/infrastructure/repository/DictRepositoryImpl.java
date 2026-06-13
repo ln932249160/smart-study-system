@@ -40,6 +40,7 @@ public class DictRepositoryImpl implements DictRepository {
         if (item.getDictName() != null) w.set(DictEntity::getDictName, item.getDictName());
         if (item.getDictLabel() != null) w.set(DictEntity::getDictLabel, item.getDictLabel());
         if (item.getDictValue() != null) w.set(DictEntity::getDictValue, item.getDictValue());
+        if (item.getDisplayColor() != null) w.set(DictEntity::getDisplayColor, item.getDisplayColor());
         if (item.getSortNo() != null) w.set(DictEntity::getSortNo, item.getSortNo());
         if (item.getStatus() != null) w.set(DictEntity::getStatus, item.getStatus());
         if (item.getUpdateBy() != null) w.set(DictEntity::getUpdateBy, item.getUpdateBy());

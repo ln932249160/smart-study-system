@@ -43,6 +43,7 @@ public class DictApplicationService {
                 iv.setDictLabel(i.getDictLabel());
                 iv.setSortNo(i.getSortNo());
                 iv.setStatus(i.getStatus());
+                iv.setDisplayColor(i.getDisplayColor());
                 return iv;
             }).collect(Collectors.toList()));
             return vo;
@@ -67,6 +68,7 @@ public class DictApplicationService {
             iv.setDictLabel(i.getDictLabel());
             iv.setSortNo(i.getSortNo());
             iv.setStatus(i.getStatus());
+            iv.setDisplayColor(i.getDisplayColor());
             return iv;
         }).collect(Collectors.toList()));
         return vo;
@@ -98,6 +100,7 @@ public class DictApplicationService {
             d.setDictName(req.getDictName());
             d.setDictValue(item.getDictValue());
             d.setDictLabel(item.getDictLabel());
+            d.setDisplayColor(item.getDisplayColor());
             d.setSortNo(item.getSortNo() != null ? item.getSortNo() : 0);
             d.setStatus(item.getStatus() != null ? item.getStatus() : 1);
             d.setCreateBy(uid);

@@ -16,6 +16,7 @@ public class DictEntity {
     private String dictName;
     private String dictLabel;
     private String dictValue;
+    private String displayColor;
     private Integer sortNo;
     private Integer status;
     private Long createBy;
@@ -33,6 +34,8 @@ public class DictEntity {
     public void setDictLabel(String dictLabel) { this.dictLabel = dictLabel; }
     public String getDictValue() { return dictValue; }
     public void setDictValue(String dictValue) { this.dictValue = dictValue; }
+    public String getDisplayColor() { return displayColor; }
+    public void setDisplayColor(String displayColor) { this.displayColor = displayColor; }
     public Integer getSortNo() { return sortNo; }
     public void setSortNo(Integer sortNo) { this.sortNo = sortNo; }
     public Integer getStatus() { return status; }

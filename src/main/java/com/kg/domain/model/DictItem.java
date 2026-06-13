@@ -9,6 +9,7 @@ public class DictItem {
     private String dictName;
     private String dictLabel;
     private String dictValue;
+    private String displayColor;
     private Integer sortNo;
     private Integer status;
     private Long createBy;
@@ -21,6 +22,7 @@ public class DictItem {
     public String getDictName() { return dictName; } public void setDictName(String s) { this.dictName = s; }
     public String getDictLabel() { return dictLabel; } public void setDictLabel(String s) { this.dictLabel = s; }
     public String getDictValue() { return dictValue; } public void setDictValue(String s) { this.dictValue = s; }
+    public String getDisplayColor() { return displayColor; } public void setDisplayColor(String s) { this.displayColor = s; }
     public Integer getSortNo() { return sortNo; } public void setSortNo(Integer i) { this.sortNo = i; }
     public Integer getStatus() { return status; } public void setStatus(Integer i) { this.status = i; }
     public Long getCreateBy() { return createBy; } public void setCreateBy(Long l) { this.createBy = l; }

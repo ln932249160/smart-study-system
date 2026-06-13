@@ -21,10 +21,12 @@ public class DictGroupVO {
         @Schema(description = "字典值中文名") private String dictLabel;
         @Schema(description = "排序") private Integer sortNo;
         @Schema(description = "状态") private Integer status;
+        @Schema(description = "展示颜色") private String displayColor;
 
         public String getDictValue() { return dictValue; } public void setDictValue(String s) { this.dictValue = s; }
         public String getDictLabel() { return dictLabel; } public void setDictLabel(String s) { this.dictLabel = s; }
         public Integer getSortNo() { return sortNo; } public void setSortNo(Integer i) { this.sortNo = i; }
         public Integer getStatus() { return status; } public void setStatus(Integer i) { this.status = i; }
+        public String getDisplayColor() { return displayColor; } public void setDisplayColor(String s) { this.displayColor = s; }
     }
 }
