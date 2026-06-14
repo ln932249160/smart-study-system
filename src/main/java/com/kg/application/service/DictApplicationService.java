@@ -80,6 +80,11 @@ public class DictApplicationService {
         Long uid = getUserId();
         String code = req.getDictCode();
 
+        // task_type 的 dictValue 与代码枚举绑定，禁止增删改
+        if ("task_type".equals(code)) {
+            throw new BusinessException("task_type 字典值由系统维护，不允许通过接口修改");
+        }
+
         if (isCreate) {
             // 新增：检查 dict_code 是否已存在
             if (!repo.findByCode(code).isEmpty()) {
@@ -114,6 +119,9 @@ public class DictApplicationService {
     /** 按 dict_code 删除整组 */
     @Transactional(rollbackFor = Exception.class)
     public void deleteByCode(String dictCode) {
+        if ("task_type".equals(dictCode)) {
+            throw new BusinessException("task_type 字典值由系统维护，不允许删除");
+        }
         repo.deleteByCode(dictCode);
         log.info("删除字典组: code={}", dictCode);
     }

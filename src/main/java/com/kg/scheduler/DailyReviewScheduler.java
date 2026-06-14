@@ -1,6 +1,7 @@
 package com.kg.scheduler;
 
 import com.kg.application.service.BatchTaskService;
+import com.kg.enums.TaskTypeEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -27,7 +28,7 @@ public class DailyReviewScheduler {
     public void execute() {
         log.info("DailyReviewScheduler 开始执行");
         try {
-            batchTaskService.createDailyTaskIfAbsent("每日复盘", "0", 8, 1);
+            batchTaskService.createDailyTaskIfAbsent("每日复盘", TaskTypeEnum.DAILY_REVIEW.getCode(), 8, 1);
         } catch (Exception e) {
             log.error("DailyReviewScheduler 执行异常", e);
         }

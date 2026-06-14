@@ -1,6 +1,7 @@
 package com.kg.interfaces.controller;
 
 import com.kg.application.service.BatchTaskService;
+import com.kg.enums.TaskTypeEnum;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,7 +27,7 @@ public class BatchTaskController {
     @Operation(summary = "手动触发每日打卡")
     @PostMapping("/batch/daily-checkin")
     public Map<String, Object> triggerCheckIn() {
-        batchTaskService.createDailyTaskIfAbsent("每日打卡", "2", 6, 1);
+        batchTaskService.createDailyTaskIfAbsent("每日打卡", TaskTypeEnum.CHECK_IN.getCode(), 6, 1);
         Map<String, Object> r = new LinkedHashMap<>();
         r.put("code", 200); r.put("message", "每日打卡已触发");
         return r;
@@ -36,7 +37,7 @@ public class BatchTaskController {
     @Operation(summary = "手动触发每日复盘")
     @PostMapping("/batch/daily-review")
     public Map<String, Object> triggerReview() {
-        batchTaskService.createDailyTaskIfAbsent("每日复盘", "3", 8, 1);
+        batchTaskService.createDailyTaskIfAbsent("每日复盘", TaskTypeEnum.DAILY_REVIEW.getCode(), 8, 1);
         Map<String, Object> r = new LinkedHashMap<>();
         r.put("code", 200); r.put("message", "每日复盘已触发");
         return r;

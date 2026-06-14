@@ -27,7 +27,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * 批处理任务服务 —— 定时任务的共享逻辑。
+ * 批处理任务服务 —— 定时任务 + 启动补偿的共享逻辑。
  */
 @Service
 public class BatchTaskService {
@@ -55,22 +55,37 @@ public class BatchTaskService {
         this.notificationMessageMapper = notificationMessageMapper;
     }
 
-    /**
-     * 创建每日自动任务（打卡/复盘），同一天同类型只创建一次。
-     */
+    // ======================== 对外入口（兼容旧调用） ========================
+
+    /** 定时任务入口：创建今天的每日任务，幂等 */
     @Transactional(rollbackFor = Exception.class)
     public void createDailyTaskIfAbsent(String taskName, String taskType,
                                         int startHour, int forceFlag) {
-        LocalDate today = LocalDate.now();
+        createDailyTaskForDate(taskName, taskType, LocalDate.now(), startHour, forceFlag);
+    }
 
-        // 今天是否已创建
-        List<Task> todayTasks = taskRepository.page(0, 100);
-        boolean exists = todayTasks.stream()
-                .anyMatch(t -> taskType.equals(t.getTaskType())
-                        && t.getCreateTime() != null
-                        && t.getCreateTime().toLocalDate().equals(today));
-        if (exists) {
-            log.info("今日{}已存在，跳过", taskName);
+    /** 启动补偿入口：检查指定日期的任务是否存在，不存在则补生成 */
+    public void ensureDailyTaskExists(String taskName, String taskType,
+                                       LocalDate date, int startHour, int forceFlag) {
+        if (existsDailyTask(date, taskType)) {
+            log.info("【启动补偿】{} ({}) 已存在，跳过", taskName, date);
+            return;
+        }
+        log.info("【启动补偿】{} ({}) 不存在，开始补生成", taskName, date);
+        createDailyTaskForDate(taskName, taskType, date, startHour, forceFlag);
+    }
+
+    // ======================== 核心：指定日期生成 ========================
+
+    /**
+     * 为指定日期创建每日任务（打卡/复盘），同一天同类型只创建一次。
+     */
+    @Transactional(rollbackFor = Exception.class)
+    public void createDailyTaskForDate(String taskName, String taskType,
+                                        LocalDate date, int startHour, int forceFlag) {
+        // 幂等校验
+        if (existsDailyTask(date, taskType)) {
+            log.info("{} ({}) 已存在，跳过", taskName, date);
             return;
         }
 
@@ -87,8 +102,8 @@ public class BatchTaskService {
         task.setIsMandatory(forceFlag);
         task.setTargetType(1);
         task.setTargetIds(targetIds);
-        task.setTaskStartTime(LocalDateTime.of(today, LocalTime.of(startHour, 0)));
-        task.setTaskEndTime(LocalDateTime.of(today, LocalTime.of(23, 59)));
+        task.setTaskStartTime(LocalDateTime.of(date, LocalTime.of(startHour, 0)));
+        task.setTaskEndTime(LocalDateTime.of(date, LocalTime.of(23, 59)));
         task.setCreateBy(SYSTEM_USER_ID);
         task.setCreateTime(LocalDateTime.now());
         taskRepository.save(task);
@@ -96,7 +111,7 @@ public class BatchTaskService {
         // 查所有学生+班长
         List<SysUser> students = sysUserRepository.listByRoles(STUDENT_ROLES);
         if (students.isEmpty()) {
-            log.info("{}创建成功(id={})，无学生需要分配", taskName, task.getId());
+            log.info("{}创建成功(id={}, date={})，无学生需要分配", taskName, task.getId(), date);
             return;
         }
 
@@ -110,18 +125,27 @@ public class BatchTaskService {
             taskUsers.add(tu);
         }
         taskUserRepository.batchSave(taskUsers);
-        log.info("{}创建成功: taskId={}, targetType=1, 分配{}人", taskName, task.getId(), students.size());
+        log.info("{}创建成功: taskId={}, date={}, targetType=1, 分配{}人",
+                taskName, task.getId(), date, students.size());
     }
 
-    /**
-     * 每分钟执行：扫描 task 表，生成通知消息（TASK_START / TASK_WARNING / TASK_END）。
-     */
+    // ======================== 存在检查 ========================
+
+    /** 检查指定日期 + 指定类型的每日任务是否已存在 */
+    public boolean existsDailyTask(LocalDate date, String taskType) {
+        List<Task> allTasks = taskRepository.page(0, 500);
+        return allTasks.stream()
+                .anyMatch(t -> taskType.equals(t.getTaskType())
+                        && t.getCreateTime() != null
+                        && t.getCreateTime().toLocalDate().equals(date));
+    }
+
+    // ======================== 通知生成 ========================
+
     @Transactional(rollbackFor = Exception.class)
     public void generateNotifications() {
         LocalDateTime now = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
-        LocalDateTime oneHourLater = now.plusHours(1);
 
-        // 查所有非模板任务
         List<Task> allTasks = taskRepository.page(0, 500);
         if (allTasks == null || allTasks.isEmpty()) return;
 
@@ -135,31 +159,22 @@ public class BatchTaskService {
             String type = null;
             String title = null;
 
-            // 任务开始
             if (truncated(start).equals(now)) {
                 type = "TASK_START";
                 title = "任务「" + task.getTaskName() + "」已开始";
-            }
-            // 1小时内截止（NOW 在 end-1h ~ end-1min 之间）
-            else if (end.minusHours(1).truncatedTo(ChronoUnit.MINUTES).equals(now)) {
+            } else if (end.minusHours(1).truncatedTo(ChronoUnit.MINUTES).equals(now)) {
                 type = "TASK_WARNING";
                 title = "任务「" + task.getTaskName() + "」即将截止";
-            }
-            // 任务结束
-            else if (truncated(end).equals(now)) {
+            } else if (truncated(end).equals(now)) {
                 type = "TASK_END";
                 title = "任务「" + task.getTaskName() + "」已结束";
             }
 
             if (type == null) continue;
 
-            // 查分配的用户
             List<TaskUser> taskUsers = taskUserRepository.findByTaskId(task.getId());
             for (TaskUser tu : taskUsers) {
-                // 防重：user_id + related_id + type
-                if (notificationExists(tu.getUserId(), task.getId(), type)) {
-                    continue;
-                }
+                if (notificationExists(tu.getUserId(), task.getId(), type)) continue;
                 NotificationMessageEntity msg = new NotificationMessageEntity();
                 msg.setUserId(tu.getUserId());
                 msg.setTitle(title);

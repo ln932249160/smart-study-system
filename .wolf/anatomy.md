@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-06-13T10:25:41.985Z
-> Files: 185 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-06-14T12:23:06.770Z
+> Files: 187 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -42,9 +42,9 @@
 
 - `.gitkeep` (~0 tok)
 - `AuthApplicationService.java` — 认证应用服务 —— 处理登录业务流程。 (~684 tok)
-- `BatchTaskService.java` — 批处理任务服务 —— 定时任务的共享逻辑。 (~2023 tok)
+- `BatchTaskService.java` — 批处理任务服务 —— 定时任务 + 启动补偿的共享逻辑。 (~2248 tok)
 - `ClassApplicationService.java` — 班级管理应用服务 —— teacher 全部操作，headmaster 仅看本班，student 无权限。 (~2430 tok)
-- `DictApplicationService.java` — 字典管理应用服务 — 按 dict_code 分组管理 (~1304 tok)
+- `DictApplicationService.java` — 字典管理应用服务 — 按 dict_code 分组管理 (~1382 tok)
 - `HomeApplicationService.java` — 首页统计应用服务 —— 基于聚合 SQL 提供 teacher / headmaster / student 三种视角的统计数据。 (~1832 tok)
 - `LeaveRequestApplicationService.java` — 请假申请应用服务 —— 学生请假、老师/班长审批。 (~4590 tok)
 - `MyTaskApplicationService.java` — 我的任务应用服务 —— 个人任务列表 + 完成任务 + 详情 + 修改 + 模板统计。 (~4717 tok)
@@ -52,7 +52,7 @@
 - `NotificationService.java` — 通知消息生成服务 —— 封装消息生成逻辑，在任务创建/编辑时调用。 (~1412 tok)
 - `ProfileApplicationService.java` — 个人中心应用服务 —— 查看/修改个人信息、修改密码。 (~1218 tok)
 - `StudentApplicationService.java` — 学生管理应用服务 —— teacher 全部操作，headmaster 看本班，student 无权限。 (~4106 tok)
-- `StudentCheckinApplicationService.java` — 学生打卡统计服务 —— 连续天数 + 本月次数 + 日历。 (~749 tok)
+- `StudentCheckinApplicationService.java` — 学生打卡统计服务 —— 连续天数 + 本月次数 + 日历。 (~776 tok)
 - `TaskApplicationService.java` — 任务管理应用服务 —— 角色权限：teacher/headmaster 全部、student 本人。 (~4439 tok)
 - `TaskTemplateApplicationService.java` — 模板任务应用服务 — teacher + headmaster 可管理 (~1188 tok)
 - `UserApplicationService.java` — 应用层服务 — 编排业务流程。 (~150 tok)
@@ -103,6 +103,7 @@
 - `ModuleNameEnum.java` — 模块名称枚举 —— 对应 sys_dict MODULE_NAME。 (~158 tok)
 - `RoleEnum.java` — 角色枚举 —— 对应 sys_dict ROLE。 (~223 tok)
 - `TaskStatusEnum.java` — 任务状态枚举 —— 对应 sys_dict TASK_STATUS。 (~121 tok)
+- `TaskTypeEnum.java` — 任务类型枚举 —— 与 sys_dict task_type 严格对应，禁止通过接口修改 (~172 tok)
 
 ## src/main/java/com/kg/exception/
 
@@ -145,7 +146,7 @@
 - `LeaveRequestMapper.java` — 请假申请 Mapper，操作 leave_request 表。 (~1332 tok)
 - `MyTaskMapper.java` — 我的任务 Mapper —— 以 task_user 为核心 JOIN task。 (~2521 tok)
 - `NotificationMessageMapper.java` — 通知消息 Mapper，操作 notification_message 表。 (~102 tok)
-- `StudentCheckinMapper.java` — 学生打卡 Mapper —— 查询当前学生所有已完成打卡日期。 (~190 tok)
+- `StudentCheckinMapper.java` — 学生打卡 Mapper —— 查询当前学生所有已完成打卡日期。 (~202 tok)
 - `SysUserMapper.java` — 系统用户 Mapper，操作 sys_user 表。 (~88 tok)
 - `TaskMapper.java` — 任务 Mapper (~164 tok)
 - `TaskScoreMapper.java` — 任务成绩明细 Mapper (~85 tok)
@@ -174,7 +175,7 @@
 
 - `.gitkeep` (~0 tok)
 - `AuthController.java` — 认证接口控制器 (~396 tok)
-- `BatchTaskController.java` — 批处理任务测试入口。 (~366 tok)
+- `BatchTaskController.java` — 批处理任务测试入口。 (~391 tok)
 - `ClassController.java` — 班级管理控制器 —— 班级的增删改查及学生分配。 (~1222 tok)
 - `DictController.java` — 字典管理控制器 (~1231 tok)
 - `HelloController.java` — RestController: HelloController (1 endpoints) (~198 tok)
@@ -246,8 +247,9 @@
 
 ## src/main/java/com/kg/scheduler/
 
-- `DailyCheckInScheduler.java` — 每日打卡任务定时器 —— 每天 06:00 创建打卡任务并分配。 (~278 tok)
-- `DailyReviewScheduler.java` — 每日复盘任务定时器 —— 每天 08:00 创建复盘任务并分配。 (~277 tok)
+- `DailyCheckInScheduler.java` — 每日打卡任务定时器 —— 每天 06:00 创建打卡任务并分配。 (~276 tok)
+- `DailyReviewScheduler.java` — 每日复盘任务定时器 —— 每天 08:00 创建复盘任务并分配。 (~276 tok)
+- `DailyTaskStartupRunner.java` — 每日任务启动补偿 —— 项目启动时检查今日打卡/复盘任务是否已生成，未生成则补生成。 (~391 tok)
 - `NotificationScheduler.java` — 消息提醒定时任务 —— 每分钟扫描 task 表生成通知。 (~274 tok)
 
 ## src/main/java/com/kg/util/

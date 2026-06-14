@@ -3,6 +3,7 @@ package com.kg.application.service;
 import com.kg.context.UserContext;
 import com.kg.domain.model.SysUser;
 import com.kg.exception.BusinessException;
+import com.kg.enums.TaskTypeEnum;
 import com.kg.infrastructure.mapper.StudentCheckinMapper;
 import com.kg.interfaces.dto.CheckinCalendarVO;
 import com.kg.interfaces.dto.CheckinStatVO;
@@ -34,7 +35,7 @@ public class StudentCheckinApplicationService {
     /** 连续打卡天数 + 本月打卡次数 + 今日是否已打卡 */
     public CheckinStatVO getStat() {
         Long userId = requireStudentId();
-        Set<String> dates = new HashSet<>(checkinMapper.findCheckinDates(userId));
+        Set<String> dates = new HashSet<>(checkinMapper.findCheckinDates(userId, TaskTypeEnum.CHECK_IN.getCode()));
         LocalDate today = LocalDate.now();
 
         // 连续打卡天数
@@ -67,7 +68,7 @@ public class StudentCheckinApplicationService {
     /** 查询指定月份已打卡日期列表 */
     public CheckinCalendarVO getCalendar(String month) {
         Long userId = requireStudentId();
-        List<String> allDates = checkinMapper.findCheckinDates(userId);
+        List<String> allDates = checkinMapper.findCheckinDates(userId, TaskTypeEnum.CHECK_IN.getCode());
         // 过滤出指定月份
         List<String> monthDates = allDates.stream()
                 .filter(d -> d.startsWith(month))

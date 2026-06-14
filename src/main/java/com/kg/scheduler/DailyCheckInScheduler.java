@@ -1,6 +1,7 @@
 package com.kg.scheduler;
 
 import com.kg.application.service.BatchTaskService;
+import com.kg.enums.TaskTypeEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -27,7 +28,7 @@ public class DailyCheckInScheduler {
     public void execute() {
         log.info("DailyCheckInScheduler 开始执行");
         try {
-            batchTaskService.createDailyTaskIfAbsent("每日打卡", "1", 6, 1);
+            batchTaskService.createDailyTaskIfAbsent("每日打卡", TaskTypeEnum.CHECK_IN.getCode(), 6, 1);
         } catch (Exception e) {
             log.error("DailyCheckInScheduler 执行异常", e);
         }

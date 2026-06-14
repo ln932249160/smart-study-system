@@ -394,3 +394,30 @@
 | 18:25 | Edited src/main/java/com/kg/application/service/DictApplicationService.java | modified getSortNo() | ~48 |
 | 18:25 | Edited src/main/java/com/kg/application/service/DictApplicationService.java | modified getByCode() | ~318 |
 | 18:25 | Session end: 11 writes across 7 files (DictEntity.java, DictItem.java, DictConverter.java, DictGroupSaveRequest.java, DictGroupVO.java) | 7 reads | ~5836 tok |
+
+## Session: 2026-06-14 18:46
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-06-14 19:07
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 19:10 | Edited src/main/java/com/kg/application/service/DictApplicationService.java | added 1 condition(s) | ~91 |
+| 19:10 | Edited src/main/java/com/kg/application/service/DictApplicationService.java | added 1 condition(s) | ~56 |
+| 19:10 | Created src/main/java/com/kg/enums/TaskTypeEnum.java | — | ~172 |
+| 19:10 | Edited src/main/java/com/kg/interfaces/controller/BatchTaskController.java | added 1 import(s) | ~36 |
+| 19:10 | Edited src/main/java/com/kg/interfaces/controller/BatchTaskController.java | inline fix | ~26 |
+| 19:10 | Edited src/main/java/com/kg/interfaces/controller/BatchTaskController.java | inline fix | ~27 |
+| 19:10 | Edited src/main/java/com/kg/infrastructure/mapper/StudentCheckinMapper.java | 5→5 lines | ~101 |
+| 19:10 | Edited src/main/java/com/kg/application/service/StudentCheckinApplicationService.java | added 1 import(s) | ~25 |
+| 19:10 | Edited src/main/java/com/kg/application/service/StudentCheckinApplicationService.java | inline fix | ~19 |
+| 19:11 | Session end: 9 writes across 5 files (DictApplicationService.java, TaskTypeEnum.java, BatchTaskController.java, StudentCheckinMapper.java, StudentCheckinApplicationService.java) | 4 reads | ~3246 tok |
+| 20:22 | Created src/main/java/com/kg/application/service/BatchTaskService.java | — | ~2248 |
+| 20:22 | Created src/main/java/com/kg/scheduler/DailyTaskStartupRunner.java | — | ~391 |
+| 20:22 | Edited src/main/java/com/kg/scheduler/DailyCheckInScheduler.java | added 1 import(s) | ~67 |
+| 20:22 | Edited src/main/java/com/kg/scheduler/DailyCheckInScheduler.java | inline fix | ~27 |
+| 20:23 | Edited src/main/java/com/kg/scheduler/DailyReviewScheduler.java | added 1 import(s) | ~67 |
+| 20:23 | Edited src/main/java/com/kg/scheduler/DailyReviewScheduler.java | inline fix | ~28 |
+| 20:23 | Session end: 15 writes across 9 files (DictApplicationService.java, TaskTypeEnum.java, BatchTaskController.java, StudentCheckinMapper.java, StudentCheckinApplicationService.java) | 7 reads | ~8854 tok |
