@@ -43,6 +43,9 @@ public class SysUserEntity {
     /** 描述 */
     private String description;
 
+    /** 教师备注 */
+    private String teacherRemark;
+
     /** 班级ID */
     private Long classId;
 
@@ -92,6 +95,8 @@ public class SysUserEntity {
 
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
+    public String getTeacherRemark() { return teacherRemark; }
+    public void setTeacherRemark(String teacherRemark) { this.teacherRemark = teacherRemark; }
 
     public Long getClassId() { return classId; }
     public void setClassId(Long classId) { this.classId = classId; }

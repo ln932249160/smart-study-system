@@ -38,6 +38,9 @@ public class StudentUpdateRequest {
     @Schema(description = "描述")
     private String description;
 
+    @Schema(description = "教师备注（仅老师可填）")
+    private String teacherRemark;
+
     /** 班级ID */
     @Schema(description = "班级ID")
     private Long classId;
@@ -68,6 +71,9 @@ public class StudentUpdateRequest {
 
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
+
+    public String getTeacherRemark() { return teacherRemark; }
+    public void setTeacherRemark(String s) { this.teacherRemark = s; }
 
     public Long getClassId() { return classId; }
     public void setClassId(Long classId) { this.classId = classId; }

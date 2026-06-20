@@ -19,6 +19,8 @@ import com.kg.interfaces.dto.StudentUpdateRequest;
 import com.kg.interfaces.dto.StudentVO;
 import com.kg.interfaces.dto.UserImportDTO;
 import com.kg.exception.BusinessException;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.util.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -26,16 +28,11 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * 学生管理应用服务 —— teacher 全部操作，headmaster 看本班，student 无权限。
+ * 学生管理应用服务 —— teacher 全部操作，headmaster/student 可看列表+详情。
  */
 @Service
 public class StudentApplicationService {
@@ -82,10 +79,6 @@ public class StudentApplicationService {
         String currentRole = currentUser.getRole();
         int offset = (pageNum - 1) * pageSize;
 
-        if (RoleEnum.isStudent(currentRole)) {
-            throw new BusinessException(403, "无权查看用户列表");
-        }
-
         // 班级名模糊匹配 → 查 class_info 获取 classIds
         List<Long> classIds = null;
         if (className != null && !className.trim().isEmpty()) {
@@ -99,23 +92,25 @@ public class StudentApplicationService {
 
         List<SysUser> users;
         long total;
-        List<String> searchRoles; // 当前角色可搜索的范围
+        List<String> searchRoles;
 
-        if (RoleEnum.isHeadmaster(currentRole)) {
-            // 班长只能看本班学生+班长
-            Long currentClassId = currentUser.getClassId();
-            if (currentClassId == null) {
-                return emptyPageResult();
-            }
-            if (classIds != null && !classIds.contains(currentClassId)) {
-                return emptyPageResult();
-            }
-            classIds = Collections.singletonList(currentClassId);
-            searchRoles = MANAGEABLE_ROLES;
-        } else {
-            // 老师能看全部角色
-            searchRoles = ALL_ROLES;
-        }
+                    searchRoles = ALL_ROLES;
+
+
+//        if (RoleEnum.isHeadmaster(currentRole)) {
+//            Long currentClassId = currentUser.getClassId();
+//            if (currentClassId == null) return emptyPageResult();
+//            if (classIds != null && !classIds.contains(currentClassId)) return emptyPageResult();
+//            classIds = Collections.singletonList(currentClassId);
+//            searchRoles = MANAGEABLE_ROLES;
+//        } else if (RoleEnum.isStudent(currentRole)) {
+//            Long currentClassId = currentUser.getClassId();
+//            if (currentClassId == null) return emptyPageResult();
+//            classIds = Collections.singletonList(currentClassId);
+//            searchRoles = ALL_ROLES;
+//        } else {
+//            searchRoles = ALL_ROLES;
+//        }
 
         total = sysUserRepository.countByFilters(name, role, phone, userId,
                 classIds, searchRoles);
@@ -160,6 +155,7 @@ public class StudentApplicationService {
         sysUser.setEmail(request.getEmail());
         sysUser.setPhone(request.getPhone());
         sysUser.setDescription(request.getDescription());
+        sysUser.setTeacherRemark(request.getTeacherRemark());
         sysUser.setClassId(request.getClassId());
         sysUser.setStatus(STATUS_ACTIVE);
         sysUser.setCreateBy(currentUserId);
@@ -181,12 +177,27 @@ public class StudentApplicationService {
         SysUser sysUser = new SysUser();
         sysUser.setId(id);
         if (request.getName() != null) sysUser.setName(request.getName().trim());
-        if (request.getAccount() != null) sysUser.setAccount(request.getAccount().trim());
+
+        String account = (request.getAccount() != null && !request.getAccount().trim().isEmpty())
+                ? request.getAccount().trim()
+                : request.getPhone();
+
+        Optional<SysUser> byAccount = sysUserRepository.findByAccount(account);
+        if (byAccount.isPresent()) {
+            SysUser user = byAccount.get();
+//            数据库里的account和现在的account不是一个用户的
+            if(!Objects.equals(user.getId(), id)){
+                throw new BusinessException("该账号已存在：" + account);
+            }
+        }
+
+        if (request.getAccount() != null) sysUser.setAccount(account);
         if (request.getPhone() != null) sysUser.setPhone(request.getPhone().trim());
         if (request.getRole() != null) sysUser.setRole(request.getRole());
         if (request.getGender() != null) sysUser.setGender(request.getGender());
         if (request.getEmail() != null) sysUser.setEmail(request.getEmail());
         if (request.getDescription() != null) sysUser.setDescription(request.getDescription());
+        if (request.getTeacherRemark() != null) sysUser.setTeacherRemark(request.getTeacherRemark());
         if (request.getClassId() != null) sysUser.setClassId(request.getClassId());
         if (request.getStatus() != null) sysUser.setStatus(request.getStatus());
         sysUser.setUpdateBy(currentUserId);
@@ -381,6 +392,9 @@ public class StudentApplicationService {
         vo.setGender(user.getGender());
         vo.setEmail(user.getEmail());
         vo.setStatus(user.getStatus());
+        if (RoleEnum.isTeacher(requireCurrentUser().getRole())) {
+            vo.setTeacherRemark(user.getTeacherRemark());
+        }
         if (user.getCreateTime() != null) {
             vo.setCreateTime(user.getCreateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
         }

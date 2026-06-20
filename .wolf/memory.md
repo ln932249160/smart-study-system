@@ -421,3 +421,46 @@
 | 20:23 | Edited src/main/java/com/kg/scheduler/DailyReviewScheduler.java | added 1 import(s) | ~67 |
 | 20:23 | Edited src/main/java/com/kg/scheduler/DailyReviewScheduler.java | inline fix | ~28 |
 | 20:23 | Session end: 15 writes across 9 files (DictApplicationService.java, TaskTypeEnum.java, BatchTaskController.java, StudentCheckinMapper.java, StudentCheckinApplicationService.java) | 7 reads | ~8854 tok |
+
+## Session: 2026-06-16 20:31
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 21:13 | Edited src/main/java/com/kg/application/service/StudentApplicationService.java | inline fix | ~14 |
+| 21:13 | Edited src/main/java/com/kg/application/service/StudentApplicationService.java | added 2 condition(s) | ~390 |
+| 21:13 | Edited src/main/java/com/kg/application/service/StudentApplicationService.java | modified if() | ~333 |
+| 21:13 | Edited src/main/java/com/kg/application/service/ClassApplicationService.java | inline fix | ~14 |
+| 21:14 | Edited src/main/java/com/kg/application/service/ClassApplicationService.java | modified page() | ~222 |
+| 21:14 | Edited src/main/java/com/kg/infrastructure/entity/SysUserEntity.java | 4→7 lines | ~31 |
+| 21:14 | Edited src/main/java/com/kg/infrastructure/entity/SysUserEntity.java | modified getDescription() | ~89 |
+| 21:14 | Edited src/main/java/com/kg/domain/model/SysUser.java | 4→7 lines | ~32 |
+| 21:15 | Edited src/main/java/com/kg/domain/model/SysUser.java | modified getDescription() | ~89 |
+| 21:15 | Edited src/main/java/com/kg/infrastructure/converter/SysUserConverter.java | 2→3 lines | ~44 |
+| 21:15 | Edited src/main/java/com/kg/infrastructure/converter/SysUserConverter.java | 2→3 lines | ~44 |
+| 21:15 | Edited src/main/java/com/kg/interfaces/dto/StudentVO.java | 7→10 lines | ~70 |
+| 21:15 | Edited src/main/java/com/kg/interfaces/dto/StudentVO.java | modified getStatus() | ~77 |
+| 21:16 | Created src/main/java/com/kg/domain/model/ClassFee.java | — | ~421 |
+| 21:16 | Created src/main/java/com/kg/infrastructure/entity/ClassFeeEntity.java | — | ~480 |
+| 21:16 | Created src/main/java/com/kg/infrastructure/mapper/ClassFeeMapper.java | — | ~78 |
+| 21:16 | Created src/main/java/com/kg/infrastructure/converter/ClassFeeConverter.java | — | ~318 |
+| 21:16 | Created src/main/java/com/kg/interfaces/dto/ClassFeeRequest.java | — | ~298 |
+| 21:16 | Created src/main/java/com/kg/interfaces/dto/ClassFeeVO.java | — | ~398 |
+| 21:16 | Created src/main/java/com/kg/interfaces/dto/ClassFeeStatVO.java | — | ~192 |
+| 21:16 | Created src/main/java/com/kg/application/service/ClassFeeApplicationService.java | — | ~1972 |
+| 21:17 | Created src/main/java/com/kg/interfaces/controller/ClassFeeController.java | — | ~800 |
+| 21:17 | Edited src/main/java/com/kg/application/service/StudentApplicationService.java | added 1 condition(s) | ~58 |
+| 21:17 | Edited src/main/java/com/kg/interfaces/dto/StudentCreateRequest.java | 6→9 lines | ~71 |
+| 21:18 | Edited src/main/java/com/kg/interfaces/dto/StudentCreateRequest.java | modified getDescription() | ~83 |
+| 21:18 | Edited src/main/java/com/kg/interfaces/dto/StudentUpdateRequest.java | 5→8 lines | ~51 |
+| 21:18 | Edited src/main/java/com/kg/interfaces/dto/StudentUpdateRequest.java | modified getDescription() | ~83 |
+| 21:18 | Edited src/main/java/com/kg/application/service/StudentApplicationService.java | 2→3 lines | ~46 |
+| 21:18 | Edited src/main/java/com/kg/application/service/StudentApplicationService.java | added 1 condition(s) | ~75 |
+| 21:18 | Edited src/main/java/com/kg/application/service/MyTaskApplicationService.java | added 1 condition(s) | ~401 |
+| 21:18 | Edited src/main/java/com/kg/interfaces/controller/MyTaskController.java | modified checkin() | ~150 |
+| 21:19 | Edited src/main/java/com/kg/application/service/ClassFeeApplicationService.java | added 2 import(s) | ~29 |
+| 21:19 | Session end: 32 writes across 19 files (StudentApplicationService.java, ClassApplicationService.java, SysUserEntity.java, SysUser.java, SysUserConverter.java) | 11 reads | ~26612 tok |
+
+## Session: 2026-06-20 22:00
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|

@@ -26,7 +26,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * 班级管理应用服务 —— teacher 全部操作，headmaster 仅看本班，student 无权限。
+ * 班级管理应用服务 —— teacher 全部操作，headmaster/student 可看列表+详情。
  */
 @Service
 public class ClassApplicationService {
@@ -46,30 +46,29 @@ public class ClassApplicationService {
     // ======================== 分页查询 ========================
 
     /**
-     * teacher → 全部班级 | headmaster → 仅本班 | student → 无权限
+     * teacher → 全部班级 | headmaster/student → 仅本班
      */
     public Map<String, Object> page(int pageNum, int pageSize) {
         SysUser currentUser = requireCurrentUser();
         String role = currentUser.getRole();
 
-        if (RoleEnum.isStudent(role)) {
-            throw new BusinessException(403, "无权查看班级列表");
-        }
-
         List<ClassInfo> classes;
         long total;
+        int offset = (pageNum - 1) * pageSize;
+        total = classInfoRepository.count();
+        classes = classInfoRepository.page(offset, pageSize);
 
-        if (RoleEnum.isHeadmaster(role)) {
-            Long classId = currentUser.getClassId();
-            if (classId == null) return emptyPageResult();
-            ClassInfo c = classInfoRepository.findById(classId).orElse(null);
-            classes = c != null ? Collections.singletonList(c) : Collections.emptyList();
-            total = classes.size();
-        } else {
-            int offset = (pageNum - 1) * pageSize;
-            total = classInfoRepository.count();
-            classes = classInfoRepository.page(offset, pageSize);
-        }
+//        if (RoleEnum.isTeacher(role)) {
+//            int offset = (pageNum - 1) * pageSize;
+//            total = classInfoRepository.count();
+//            classes = classInfoRepository.page(offset, pageSize);
+//        } else {
+//            Long classId = currentUser.getClassId();
+//            if (classId == null) return emptyPageResult();
+//            ClassInfo c = classInfoRepository.findById(classId).orElse(null);
+//            classes = c != null ? Collections.singletonList(c) : Collections.emptyList();
+//            total = classes.size();
+//        }
 
         List<ClassVO> list = classes.stream().map(c -> {
             ClassVO vo = new ClassVO();

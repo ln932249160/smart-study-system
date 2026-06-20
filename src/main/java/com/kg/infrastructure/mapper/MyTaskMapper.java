@@ -17,7 +17,7 @@ public interface MyTaskMapper {
 
     /** 分页（增加 taskDescription / priority，排序改为 priority desc + end_time asc） */
     @Select("<script>" +
-            "SELECT u.name AS task_create_name,t.round_no AS round_no,t.id AS task_id, t.task_name, t.task_type, " +
+            "SELECT u.name AS task_create_name,t.round_no AS round_no,t.template_id AS template_id,t.id AS task_id, t.task_name, t.task_type, " +
             "t.is_mandatory AS force_flag, t.task_description, t.priority, " +
             "t.task_start_time AS start_time, t.task_end_time AS end_time, " +
             "tu.id AS task_user_id, tu.status, tu.total_score, tu.submit_time " +

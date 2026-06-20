@@ -40,6 +40,9 @@ public class StudentVO {
     @Schema(description = "状态：1正常 0禁用")
     private Integer status;
 
+    @Schema(description = "教师备注（仅老师可见）")
+    private String teacherRemark;
+
     /** 创建时间 */
     @Schema(description = "创建时间")
     private String createTime;
@@ -69,6 +72,8 @@ public class StudentVO {
 
     public Integer getStatus() { return status; }
     public void setStatus(Integer status) { this.status = status; }
+    public String getTeacherRemark() { return teacherRemark; }
+    public void setTeacherRemark(String s) { this.teacherRemark = s; }
 
     public String getCreateTime() { return createTime; }
     public void setCreateTime(String createTime) { this.createTime = createTime; }

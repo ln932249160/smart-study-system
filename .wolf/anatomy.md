@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-06-14T12:23:06.770Z
-> Files: 187 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-06-16T13:19:26.351Z
+> Files: 196 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -43,15 +43,16 @@
 - `.gitkeep` (~0 tok)
 - `AuthApplicationService.java` — 认证应用服务 —— 处理登录业务流程。 (~684 tok)
 - `BatchTaskService.java` — 批处理任务服务 —— 定时任务 + 启动补偿的共享逻辑。 (~2248 tok)
-- `ClassApplicationService.java` — 班级管理应用服务 —— teacher 全部操作，headmaster 仅看本班，student 无权限。 (~2430 tok)
+- `ClassApplicationService.java` — 班级管理应用服务 —— teacher 全部操作，headmaster/student 可看列表+详情。 (~2236 tok)
+- `ClassFeeApplicationService.java` — 班费管理应用服务 (~1985 tok)
 - `DictApplicationService.java` — 字典管理应用服务 — 按 dict_code 分组管理 (~1382 tok)
 - `HomeApplicationService.java` — 首页统计应用服务 —— 基于聚合 SQL 提供 teacher / headmaster / student 三种视角的统计数据。 (~1832 tok)
 - `LeaveRequestApplicationService.java` — 请假申请应用服务 —— 学生请假、老师/班长审批。 (~4590 tok)
-- `MyTaskApplicationService.java` — 我的任务应用服务 —— 个人任务列表 + 完成任务 + 详情 + 修改 + 模板统计。 (~4717 tok)
+- `MyTaskApplicationService.java` — 我的任务应用服务 —— 个人任务列表 + 完成任务 + 详情 + 修改 + 模板统计。 (~5107 tok)
 - `NotificationApplicationService.java` — 通知消息应用服务 —— 查询列表 + 已读 + 未读数。 (~1594 tok)
 - `NotificationService.java` — 通知消息生成服务 —— 封装消息生成逻辑，在任务创建/编辑时调用。 (~1412 tok)
 - `ProfileApplicationService.java` — 个人中心应用服务 —— 查看/修改个人信息、修改密码。 (~1218 tok)
-- `StudentApplicationService.java` — 学生管理应用服务 —— teacher 全部操作，headmaster 看本班，student 无权限。 (~4106 tok)
+- `StudentApplicationService.java` — 学生管理应用服务 —— teacher 全部操作，headmaster/student 可看列表+详情。 (~4195 tok)
 - `StudentCheckinApplicationService.java` — 学生打卡统计服务 —— 连续天数 + 本月次数 + 日历。 (~776 tok)
 - `TaskApplicationService.java` — 任务管理应用服务 —— 角色权限：teacher/headmaster 全部、student 本人。 (~4439 tok)
 - `TaskTemplateApplicationService.java` — 模板任务应用服务 — teacher + headmaster 可管理 (~1188 tok)
@@ -70,10 +71,11 @@
 ## src/main/java/com/kg/domain/model/
 
 - `.gitkeep` (~0 tok)
+- `ClassFee.java` — 班费领域模型 —— 字段来源于 class_fee 表。 (~421 tok)
 - `ClassInfo.java` — 班级领域模型 —— 字段来源于 class_info 表。 (~468 tok)
 - `DictItem.java` — 字典项领域模型 (~482 tok)
 - `LeaveRequest.java` — 请假申请领域模型 —— 字段来源于 leave_request 表。 (~933 tok)
-- `SysUser.java` — 系统用户领域模型 —— 纯 POJO，字段严格来源于 sys_user 表。 (~893 tok)
+- `SysUser.java` — 系统用户领域模型 —— 纯 POJO，字段严格来源于 sys_user 表。 (~891 tok)
 - `Task.java` — 任务领域模型 —— 字段来源于 task 表（15 列，含 template_id）。 (~803 tok)
 - `TaskScore.java` — 任务成绩明细领域模型 —— 字段来源于 task_score 表。 (~475 tok)
 - `TaskTemplate.java` — 模板任务领域模型 (~492 tok)
@@ -113,10 +115,11 @@
 ## src/main/java/com/kg/infrastructure/converter/
 
 - `.gitkeep` (~0 tok)
+- `ClassFeeConverter.java` — ClassFee ↔ ClassFeeEntity (~318 tok)
 - `ClassInfoConverter.java` — 防腐层转换器 —— domain.ClassInfo ↔ infra.ClassInfoEntity 双向映射。 (~456 tok)
 - `DictConverter.java` — DictItem ↔ DictEntity (~362 tok)
 - `LeaveRequestConverter.java` — LeaveRequest ↔ LeaveRequestEntity (~510 tok)
-- `SysUserConverter.java` — 防腐层转换器 —— domain.SysUser ↔ infra.SysUserEntity 双向映射。 (~659 tok)
+- `SysUserConverter.java` — 防腐层转换器 —— domain.SysUser ↔ infra.SysUserEntity 双向映射。 (~647 tok)
 - `TaskConverter.java` — 防腐层转换器 —— domain.Task ↔ infra.TaskEntity（14 列）。 (~517 tok)
 - `TaskScoreConverter.java` — 防腐层转换器 —— domain.TaskScore ↔ infra.TaskScoreEntity (~342 tok)
 - `TaskTemplateConverter.java` — domain.TaskTemplate ↔ infra.TaskTemplateEntity (~390 tok)
@@ -126,11 +129,12 @@
 ## src/main/java/com/kg/infrastructure/entity/
 
 - `.gitkeep` (~0 tok)
+- `ClassFeeEntity.java` — 班费持久化实体，映射 class_fee 表。 (~480 tok)
 - `ClassInfoEntity.java` — 班级持久化实体，映射 class_info 表。 (~532 tok)
 - `DictEntity.java` — 字典持久化实体，映射 sys_dict 表。 (~594 tok)
 - `LeaveRequestEntity.java` — 请假申请持久化实体，映射 leave_request 表。 (~994 tok)
 - `NotificationMessageEntity.java` — 通知消息持久化实体，映射 notification_message 表。 (~636 tok)
-- `SysUserEntity.java` — 系统用户持久化实体，严格映射 sys_user 表（16 列全部覆盖）。 (~912 tok)
+- `SysUserEntity.java` — 系统用户持久化实体，严格映射 sys_user 表（16 列全部覆盖）。 (~907 tok)
 - `TaskEntity.java` — 任务持久化实体，映射 task 表（15 列）。 (~858 tok)
 - `TaskScoreEntity.java` — 任务成绩明细持久化实体，映射 task_score 表。 (~478 tok)
 - `TaskTemplateEntity.java` — 模板任务持久化实体，映射 task_template 表 (~502 tok)
@@ -140,6 +144,7 @@
 ## src/main/java/com/kg/infrastructure/mapper/
 
 - `.gitkeep` (~0 tok)
+- `ClassFeeMapper.java` — 班费 Mapper (~78 tok)
 - `ClassInfoMapper.java` — 班级 Mapper，操作 class_info 表。 (~90 tok)
 - `DictMapper.java` — 字典 Mapper (~80 tok)
 - `HomeMapper.java` — 首页统计 Mapper —— 聚合 SQL，一次查询完成统计，禁止 N+1。 (~1104 tok)
@@ -177,11 +182,12 @@
 - `AuthController.java` — 认证接口控制器 (~396 tok)
 - `BatchTaskController.java` — 批处理任务测试入口。 (~391 tok)
 - `ClassController.java` — 班级管理控制器 —— 班级的增删改查及学生分配。 (~1222 tok)
+- `ClassFeeController.java` — 班费管理控制器 (~800 tok)
 - `DictController.java` — 字典管理控制器 (~1231 tok)
 - `HelloController.java` — RestController: HelloController (1 endpoints) (~198 tok)
 - `HomeController.java` — 首页统计控制器。 (~468 tok)
 - `LeaveRequestController.java` — 请假申请控制器 —— 学生请假、老师/班长审批。 (~812 tok)
-- `MyTaskController.java` — 我的任务控制器 —— 个人任务列表 + 详情 + 完成 + 修改 + 模板统计。 (~1172 tok)
+- `MyTaskController.java` — 我的任务控制器 —— 个人任务列表 + 详情 + 完成 + 修改 + 模板统计。 (~1286 tok)
 - `NotificationController.java` — 通知消息控制器。 (~626 tok)
 - `ProfileController.java` — 个人中心控制器。 (~657 tok)
 - `StudentCheckinController.java` — 学生打卡统计控制器。 (~424 tok)
@@ -196,6 +202,9 @@
 - `CheckinCalendarVO.java` — 打卡日历 VO (~101 tok)
 - `CheckinStatVO.java` — 学生打卡统计 VO (~227 tok)
 - `ClassCreateRequest.java` — 新增班级请求 DTO (~314 tok)
+- `ClassFeeRequest.java` — 班费新增/编辑请求 (~298 tok)
+- `ClassFeeStatVO.java` — 班费统计 VO (~192 tok)
+- `ClassFeeVO.java` — 班费列表项 VO (~398 tok)
 - `ClassOptionVO.java` — 班级下拉选项 VO (~211 tok)
 - `ClassPageRequest.java` — 班级分页查询请求 DTO (~245 tok)
 - `ClassUpdateRequest.java` — 编辑班级请求 DTO (~276 tok)
@@ -227,12 +236,12 @@
 - `PasswordChangeRequest.java` — 修改密码请求 DTO (~231 tok)
 - `ProfileUpdateRequest.java` — 修改个人资料请求 DTO (~302 tok)
 - `ProfileVO.java` — 个人信息 VO (~602 tok)
-- `StudentCreateRequest.java` — 新增用户请求 DTO (~695 tok)
+- `StudentCreateRequest.java` — 新增用户请求 DTO (~705 tok)
 - `StudentHomeStatVO.java` — 学生首页统计 VO (~305 tok)
 - `StudentOptionVO.java` — 学生选项 VO —— 用于班级管理中的学生复选框列表。 (~285 tok)
 - `StudentPageRequest.java` — 用户分页查询请求 DTO (~653 tok)
-- `StudentUpdateRequest.java` — 编辑学生请求 DTO (~614 tok)
-- `StudentVO.java` — 学生列表项 VO (~565 tok)
+- `StudentUpdateRequest.java` — 编辑学生请求 DTO (~630 tok)
+- `StudentVO.java` — 学生列表项 VO (~584 tok)
 - `TaskCompleteRequest.java` — 完成任务请求 DTO (~528 tok)
 - `TaskCreateRequest.java` — 新增任务请求 (~684 tok)
 - `TaskPageRequest.java` — 任务分页查询请求 (~535 tok)

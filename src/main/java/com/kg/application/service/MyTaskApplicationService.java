@@ -8,6 +8,7 @@ import com.kg.domain.repository.TaskScoreRepository;
 import com.kg.domain.repository.TaskUserRepository;
 import com.kg.enums.RoleEnum;
 import com.kg.enums.TaskStatusEnum;
+import com.kg.enums.TaskTypeEnum;
 import com.kg.exception.BusinessException;
 import com.kg.infrastructure.entity.TaskUserEntity;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -91,6 +92,7 @@ public class MyTaskApplicationService {
             vo.setStatus((String) row.get("status"));
             vo.setTaskCreateName((String) row.get("task_create_name"));
             vo.setRoundNo((Integer) row.get("round_no"));
+            vo.setTemplateId((Long) row.get("template_id"));
             Object score = row.get("total_score");
             vo.setTotalScore(score instanceof BigDecimal ? (BigDecimal) score : null);
             vo.setSubmitTime(formatTime(row.get("submit_time")));
@@ -144,6 +146,36 @@ public class MyTaskApplicationService {
             }).collect(Collectors.toList()));
         }
         return vo;
+    }
+
+    // ======================== 一键打卡 ========================
+
+    /** 自动完成当前用户当日所有待办打卡任务 */
+    @Transactional(rollbackFor = Exception.class)
+    public int checkin() {
+        Long userId = getCurrentUserId();
+        // 查今日待办打卡：taskType=2, status=0, 开始时间在今天范围内
+        String today = LocalDateTime.now().format(FMT).substring(0, 10);
+        LambdaQueryWrapper<TaskUserEntity> q = new LambdaQueryWrapper<>();
+        q.eq(TaskUserEntity::getUserId, userId);
+        q.eq(TaskUserEntity::getStatus, TaskStatusEnum.UNFINISHED.getCode());
+        q.exists("SELECT 1 FROM task t WHERE t.id = task_user.task_id "
+                + "AND t.task_type = '"+ TaskTypeEnum.CHECK_IN.getCode() +"' "
+                + "AND t.task_start_time >= '" + today + " 00:00:00' "
+                + "AND t.task_end_time <= '" + today + " 23:59:59'");
+        List<TaskUserEntity> list = taskUserMapper.selectList(q);
+        if (list == null || list.isEmpty()) return 0;
+
+        LocalDateTime now = LocalDateTime.now();
+        for (TaskUserEntity tu : list) {
+            tu.setStatus(TaskStatusEnum.FINISHED.getCode());
+            tu.setFinishTime(now);
+            tu.setSubmitTime(now);
+            tu.setUpdateBy(userId);
+            taskUserMapper.updateById(tu);
+        }
+        log.info("一键打卡完成: userId={}, count={}", userId, list.size());
+        return list.size();
     }
 
     // ======================== 完成任务 ========================

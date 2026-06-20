@@ -784,6 +784,38 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-06-14T11:10:05.880Z"
+    },
+    {
+      "id": "bug-050",
+      "timestamp": "2026-06-16T13:13:34.168Z",
+      "error_message": "Missing guard clause",
+      "file": "src/main/java/com/kg/application/service/StudentApplicationService.java",
+      "root_cause": "No early return/throw for edge case: RoleEnum.isStudent(currentRole",
+      "fix": "Added guard clause: if (RoleEnum.isStudent(currentRole)",
+      "tags": [
+        "auto-detected",
+        "guard-clause",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-16T13:13:34.168Z"
+    },
+    {
+      "id": "bug-051",
+      "timestamp": "2026-06-16T13:17:23.296Z",
+      "error_message": "Wrong condition in logic",
+      "file": "src/main/java/com/kg/application/service/StudentApplicationService.java",
+      "root_cause": "Condition was: if (user.getCreateTime()",
+      "fix": "Changed to: if (RoleEnum.isTeacher(requireCurrentUser()",
+      "tags": [
+        "auto-detected",
+        "logic-fix",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-16T13:17:23.296Z"
     }
   ]
 }

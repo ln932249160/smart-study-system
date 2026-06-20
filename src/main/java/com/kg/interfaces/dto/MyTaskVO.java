@@ -55,6 +55,10 @@ public class MyTaskVO {
     private Integer roundNo;
 
 
+    @Schema(description = "模板ID（null=普通任务）")
+    private Long templateId;
+
+
 
     @Schema(description = "分配ID") private Long taskUserId;
 
@@ -78,7 +82,8 @@ public class MyTaskVO {
 
 
     // ======================== getters / setters ========================
-
+    public Long getTemplateId() { return templateId; }
+    public void setTemplateId(Long templateId) { this.templateId = templateId; }
     public Long getTaskId() { return taskId; }
     public void setTaskId(Long taskId) { this.taskId = taskId; }
     public String getTaskName() { return taskName; }

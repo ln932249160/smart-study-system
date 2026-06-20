@@ -31,6 +31,7 @@ public class SysUserConverter {
         domain.setPhone(entity.getPhone());
         domain.setOpenid(entity.getOpenid());
         domain.setDescription(entity.getDescription());
+        domain.setTeacherRemark(entity.getTeacherRemark());
         domain.setClassId(entity.getClassId());
         domain.setStatus(entity.getStatus());
         domain.setCreateBy(entity.getCreateBy());
@@ -58,6 +59,7 @@ public class SysUserConverter {
         entity.setPhone(domain.getPhone());
         entity.setOpenid(domain.getOpenid());
         entity.setDescription(domain.getDescription());
+        entity.setTeacherRemark(domain.getTeacherRemark());
         entity.setClassId(domain.getClassId());
         entity.setStatus(domain.getStatus());
         entity.setCreateBy(domain.getCreateBy());

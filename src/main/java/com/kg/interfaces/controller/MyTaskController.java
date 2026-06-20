@@ -59,6 +59,17 @@ public class MyTaskController {
         return result;
     }
 
+    // ======================== 一键打卡 ========================
+
+    @Operation(summary = "一键打卡（自动完成今日所有待办打卡）")
+    @PostMapping("/my-task/checkin")
+    public Map<String, Object> checkin() {
+        int count = myTaskApplicationService.checkin();
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("code", 200); result.put("message", "打卡成功"); result.put("data", count);
+        return result;
+    }
+
     // ======================== 完成任务 ========================
 
     @Operation(summary = "完成任务")
