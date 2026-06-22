@@ -1,6 +1,6 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-06-16T13:19:26.351Z
+> Auto-maintained by OpenWolf. Last scanned: 2026-06-20T16:20:54.706Z
 > Files: 196 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
@@ -44,7 +44,7 @@
 - `AuthApplicationService.java` — 认证应用服务 —— 处理登录业务流程。 (~684 tok)
 - `BatchTaskService.java` — 批处理任务服务 —— 定时任务 + 启动补偿的共享逻辑。 (~2248 tok)
 - `ClassApplicationService.java` — 班级管理应用服务 —— teacher 全部操作，headmaster/student 可看列表+详情。 (~2236 tok)
-- `ClassFeeApplicationService.java` — 班费管理应用服务 (~1985 tok)
+- `ClassFeeApplicationService.java` — 班费管理应用服务 (~2056 tok)
 - `DictApplicationService.java` — 字典管理应用服务 — 按 dict_code 分组管理 (~1382 tok)
 - `HomeApplicationService.java` — 首页统计应用服务 —— 基于聚合 SQL 提供 teacher / headmaster / student 三种视角的统计数据。 (~1832 tok)
 - `LeaveRequestApplicationService.java` — 请假申请应用服务 —— 学生请假、老师/班长审批。 (~4590 tok)
@@ -182,7 +182,7 @@
 - `AuthController.java` — 认证接口控制器 (~396 tok)
 - `BatchTaskController.java` — 批处理任务测试入口。 (~391 tok)
 - `ClassController.java` — 班级管理控制器 —— 班级的增删改查及学生分配。 (~1222 tok)
-- `ClassFeeController.java` — 班费管理控制器 (~800 tok)
+- `ClassFeeController.java` — 班费管理控制器 (~856 tok)
 - `DictController.java` — 字典管理控制器 (~1231 tok)
 - `HelloController.java` — RestController: HelloController (1 endpoints) (~198 tok)
 - `HomeController.java` — 首页统计控制器。 (~468 tok)

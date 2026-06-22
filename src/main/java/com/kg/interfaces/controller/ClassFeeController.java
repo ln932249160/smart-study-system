@@ -19,12 +19,15 @@ public class ClassFeeController {
     private final ClassFeeApplicationService service;
     public ClassFeeController(ClassFeeApplicationService service) { this.service = service; }
 
-    @Operation(summary = "班费分页查询")
+    @Operation(summary = "班费分页查询（支持按班级ID和物料模糊筛选）")
     @GetMapping("/class-fee/page")
     public Map<String, Object> page(@RequestParam(defaultValue = "1") int pageNum,
-                                     @RequestParam(defaultValue = "10") int pageSize) {
+                                     @RequestParam(defaultValue = "10") int pageSize,
+                                     @RequestParam(required = false) Long classId,
+                                     @RequestParam(required = false) String material) {
         Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "查询成功"); r.put("data", service.page(pageNum, pageSize));
+        r.put("code", 200); r.put("message", "查询成功");
+        r.put("data", service.page(pageNum, pageSize, classId, material));
         return r;
     }
 

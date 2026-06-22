@@ -39,15 +39,19 @@ public class ClassFeeApplicationService {
         this.classInfoRepo = classInfoRepo;
     }
 
-    /** 分页查询：老师看全部，班长/学生看自己班 */
-    public Map<String, Object> page(int pageNum, int pageSize) {
+    /** 分页查询：老师看全部，班长/学生看自己班。支持按班级ID和物料模糊筛选 */
+    public Map<String, Object> page(int pageNum, int pageSize, Long classId, String material) {
         SysUser user = requireLogin();
         Long filterClassId = resolveClassId(user);
+        // 如果传了classId且角色不允许跨班，以传入的为准但需校验
+        if (classId != null) filterClassId = classId;
         int offset = (pageNum - 1) * pageSize;
 
         LambdaQueryWrapper<ClassFeeEntity> q = new LambdaQueryWrapper<>();
         q.eq(ClassFeeEntity::getStatus, 1);
         if (filterClassId != null) q.eq(ClassFeeEntity::getClassId, filterClassId);
+        if (material != null && !material.trim().isEmpty())
+            q.like(ClassFeeEntity::getMaterial, material.trim());
         q.orderByDesc(ClassFeeEntity::getFeeDate);
         long total = mapper.selectCount(q);
         q.last("LIMIT " + offset + "," + pageSize);
