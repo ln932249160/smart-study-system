@@ -848,6 +848,38 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-06-20T16:20:54.724Z"
+    },
+    {
+      "id": "bug-054",
+      "timestamp": "2026-06-29T15:09:33.173Z",
+      "error_message": "Significant refactor of ",
+      "file": "src/main/java/com/kg/application/service/TaskApplicationService.java",
+      "root_cause": "3 lines replaced/restructured",
+      "fix": "Rewrote 8→8 lines (3 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-29T15:09:33.173Z"
+    },
+    {
+      "id": "bug-055",
+      "timestamp": "2026-06-29T15:10:14.735Z",
+      "error_message": "Null/undefined access in ",
+      "file": "src/main/java/com/kg/application/service/TaskApplicationService.java",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-29T15:10:14.735Z"
     }
   ]
 }

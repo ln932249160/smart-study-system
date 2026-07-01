@@ -92,13 +92,13 @@ public class TaskApplicationService {
             tasks = taskRepository.pageByIds(taskIds, offset, req.getPageSize());
             total = taskRepository.countByIds(taskIds);
         } else if (RoleEnum.isHeadmaster(role)) {
-            // 班长：查本班任务
+            // 班长：(target_type=1 AND FIND_IN_SET(classId,target_ids)) OR create_by=userId
             Long classId = currentUser.getClassId();
             if (classId == null) {
                 return emptyPageResult();
             }
-            tasks = taskRepository.pageByClassId(classId, offset, req.getPageSize());
-            total = taskRepository.countByClassId(classId);
+            tasks = taskRepository.pageByHeadmaster(classId, currentUser.getId(), offset, req.getPageSize());
+            total = taskRepository.countByHeadmaster(classId, currentUser.getId());
         } else {
             // 老师：全部 + 过滤
             tasks = taskRepository.pageWithFilters(req.getTaskType(), req.getTaskName(), req.getIsMandatory(),
@@ -184,6 +184,11 @@ public class TaskApplicationService {
     @Transactional(rollbackFor = Exception.class)
     public void create(TaskCreateRequest request) {
         Long currentUserId = requireNotStudent();
+        // 班长权限校验：只能操作本班班级或本班学生
+        SysUser currentUser = requireCurrentUser();
+        if (RoleEnum.isHeadmaster(currentUser.getRole())) {
+            validateHeadmasterScope(currentUser, request.getClassIds(), request.getStudentIds());
+        }
         Task task = buildTask(request, currentUserId);
         taskRepository.save(task);
         Long taskId = task.getId();
@@ -212,6 +217,11 @@ public class TaskApplicationService {
     @Transactional(rollbackFor = Exception.class)
     public void update(Long id, TaskUpdateRequest request) {
         Long currentUserId = requireNotStudent();
+        // 班长权限校验：只能操作本班班级或本班学生
+        SysUser currentUser = requireCurrentUser();
+        if (RoleEnum.isHeadmaster(currentUser.getRole())) {
+            validateHeadmasterScope(currentUser, request.getClassIds(), request.getStudentIds());
+        }
         Task task = buildUpdateTask(id, request, currentUserId);
         taskRepository.update(task);
 
@@ -361,6 +371,25 @@ public class TaskApplicationService {
             return r.getStudentIds();
         }
         return new ArrayList<>();
+    }
+
+    /** 班长只能操作本班班级或本班学生，越权直接抛异常 */
+    private void validateHeadmasterScope(SysUser headmaster, List<Long> classIds, List<Long> studentIds) {
+        Long ownClassId = headmaster.getClassId();
+        if (classIds != null && !classIds.isEmpty()) {
+            if (classIds.size() != 1 || !classIds.get(0).equals(ownClassId)) {
+                throw new BusinessException(403, "班长只能给自己班级布置任务");
+            }
+        }
+        if (studentIds != null && !studentIds.isEmpty()) {
+            List<SysUser> classUsers = sysUserRepository.findByClassId(ownClassId);
+            List<Long> ownClassUserIds = classUsers.stream().map(SysUser::getId).collect(Collectors.toList());
+            for (Long sid : studentIds) {
+                if (!ownClassUserIds.contains(sid)) {
+                    throw new BusinessException(403, "班长只能给本班学生布置任务");
+                }
+            }
+        }
     }
 
     private TaskVO toVO(Task t) {

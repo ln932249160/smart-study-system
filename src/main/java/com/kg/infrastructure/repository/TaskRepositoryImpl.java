@@ -78,6 +78,32 @@ public class TaskRepositoryImpl implements TaskRepository {
     public long countByClassId(Long classId) { return queryCount(classId, null); }
 
     @Override
+    public List<Task> pageByHeadmaster(Long classId, Long userId, int offset, int limit) {
+        LambdaQueryWrapper<TaskEntity> q = buildHeadmasterQuery(classId, userId);
+        q.orderByDesc(TaskEntity::getId);
+        q.last("LIMIT " + offset + "," + limit);
+        List<TaskEntity> entities = taskMapper.selectList(q);
+        if (entities == null || entities.isEmpty()) return Collections.emptyList();
+        return entities.stream().map(TaskConverter::toDomain).collect(Collectors.toList());
+    }
+
+    @Override
+    public long countByHeadmaster(Long classId, Long userId) {
+        return taskMapper.selectCount(buildHeadmasterQuery(classId, userId));
+    }
+
+    /** 班长查询条件：(target_type=1 AND FIND_IN_SET(classId,target_ids)) OR create_by=userId */
+    private LambdaQueryWrapper<TaskEntity> buildHeadmasterQuery(Long classId, Long userId) {
+        LambdaQueryWrapper<TaskEntity> q = new LambdaQueryWrapper<>();
+        q.and(w -> w
+                .and(w2 -> w2.eq(TaskEntity::getTargetType, 1)
+                        .apply("FIND_IN_SET({0}, target_ids)", classId))
+                .or()
+                .eq(TaskEntity::getCreateBy, userId));
+        return q;
+    }
+
+    @Override
     public List<Task> pageByIds(List<Long> ids, int offset, int limit) {
         if (ids == null || ids.isEmpty()) return Collections.emptyList();
         return queryPage(null, ids, offset, limit);

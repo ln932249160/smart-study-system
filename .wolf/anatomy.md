@@ -1,6 +1,6 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-06-20T16:20:54.706Z
+> Auto-maintained by OpenWolf. Last scanned: 2026-06-29T15:10:14.717Z
 > Files: 196 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
@@ -54,7 +54,7 @@
 - `ProfileApplicationService.java` — 个人中心应用服务 —— 查看/修改个人信息、修改密码。 (~1218 tok)
 - `StudentApplicationService.java` — 学生管理应用服务 —— teacher 全部操作，headmaster/student 可看列表+详情。 (~4195 tok)
 - `StudentCheckinApplicationService.java` — 学生打卡统计服务 —— 连续天数 + 本月次数 + 日历。 (~776 tok)
-- `TaskApplicationService.java` — 任务管理应用服务 —— 角色权限：teacher/headmaster 全部、student 本人。 (~4439 tok)
+- `TaskApplicationService.java` — 任务管理应用服务 —— 角色权限：teacher/headmaster 全部、student 本人。 (~4840 tok)
 - `TaskTemplateApplicationService.java` — 模板任务应用服务 — teacher + headmaster 可管理 (~1188 tok)
 - `UserApplicationService.java` — 应用层服务 — 编排业务流程。 (~150 tok)
 
@@ -89,7 +89,7 @@
 - `DictRepository.java` — sys_dict 仓储接口 (~157 tok)
 - `LeaveRequestRepository.java` — 请假申请仓储接口 (~276 tok)
 - `SysUserRepository.java` — 系统用户仓储接口 —— 定义 sys_user 的数据访问契约。 (~425 tok)
-- `TaskRepository.java` — 任务仓储接口 —— 定义 task 表的数据访问契约。 (~338 tok)
+- `TaskRepository.java` — 任务仓储接口 —— 定义 task 表的数据访问契约。 (~404 tok)
 - `TaskScoreRepository.java` — 任务成绩明细仓储接口 —— 定义 task_score 表的数据访问契约。 (~126 tok)
 - `TaskTemplateRepository.java` — 模板任务仓储接口 (~172 tok)
 - `TaskUserRepository.java` — 任务分配仓储接口 —— 定义 task_user 表的数据访问契约。 (~187 tok)
@@ -166,7 +166,7 @@
 - `DictRepositoryImpl.java` — 字典仓储实现 (~1192 tok)
 - `LeaveRequestRepositoryImpl.java` — 请假申请仓储实现 (~1539 tok)
 - `SysUserRepositoryImpl.java` — 系统用户仓储实现 —— 使用 MyBatis-Plus 操作 MySQL。 (~2056 tok)
-- `TaskRepositoryImpl.java` — 任务仓储实现。 (~1877 tok)
+- `TaskRepositoryImpl.java` — 任务仓储实现。 (~2196 tok)
 - `TaskScoreRepositoryImpl.java` — 任务成绩明细仓储实现。 (~569 tok)
 - `TaskTemplateRepositoryImpl.java` — 模板任务仓储实现 (~1016 tok)
 - `TaskUserRepositoryImpl.java` — 任务分配仓储实现。 (~1064 tok)

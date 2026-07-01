@@ -2,14 +2,14 @@
   "version": 1,
   "created_at": "2026-05-30T07:19:17.874Z",
   "lifetime": {
-    "total_tokens_estimated": 676005,
-    "total_reads": 401,
-    "total_writes": 944,
-    "total_sessions": 24,
-    "anatomy_hits": 401,
+    "total_tokens_estimated": 683817,
+    "total_reads": 404,
+    "total_writes": 950,
+    "total_sessions": 28,
+    "anatomy_hits": 404,
     "anatomy_misses": 0,
-    "repeated_reads_blocked": 166,
-    "estimated_savings_vs_bare_cli": 509636
+    "repeated_reads_blocked": 171,
+    "estimated_savings_vs_bare_cli": 527397
   },
   "sessions": [
     {
@@ -7765,6 +7765,71 @@
         "writes_count": 2,
         "repeated_reads_blocked": 1,
         "anatomy_lookups": 2
+      }
+    },
+    {
+      "id": "session-2026-06-29-2234",
+      "started": "2026-06-29T14:34:05.895Z",
+      "ended": "2026-06-29T15:10:48.565Z",
+      "reads": [
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
+          "tokens_estimated": 4469,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/repository/TaskRepositoryImpl.java",
+          "tokens_estimated": 1877,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/repository/TaskRepository.java",
+          "tokens_estimated": 338,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/repository/TaskRepository.java",
+          "tokens_estimated": 118,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/repository/TaskRepositoryImpl.java",
+          "tokens_estimated": 370,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
+          "tokens_estimated": 137,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
+          "tokens_estimated": 117,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
+          "tokens_estimated": 122,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
+          "tokens_estimated": 264,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 6684,
+        "output_tokens_estimated": 1128,
+        "reads_count": 3,
+        "writes_count": 6,
+        "repeated_reads_blocked": 5,
+        "anatomy_lookups": 3
       }
     }
   ],

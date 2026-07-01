@@ -27,6 +27,12 @@ public interface TaskRepository {
     /** 按班级ID统计任务数 */
     long countByClassId(Long classId);
 
+    /** 班长视角分页：(target_type=1 AND FIND_IN_SET(classId,target_ids)) OR create_by=userId */
+    List<Task> pageByHeadmaster(Long classId, Long userId, int offset, int limit);
+
+    /** 班长视角计数 */
+    long countByHeadmaster(Long classId, Long userId);
+
     /** 按任务ID列表分页（student 视角） */
     List<Task> pageByIds(List<Long> ids, int offset, int limit);
 
