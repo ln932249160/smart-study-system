@@ -504,3 +504,57 @@
 
 | Time | Action | File(s) | Outcome | ~Tokens |
 |------|--------|---------|---------|--------|
+| 10:52 | Created src/main/java/com/kg/domain/model/TaskPlan.java | — | ~797 |
+| 10:52 | Created src/main/java/com/kg/infrastructure/entity/TaskPlanEntity.java | — | ~850 |
+| 10:52 | Created src/main/java/com/kg/infrastructure/mapper/TaskPlanMapper.java | — | ~78 |
+| 10:52 | Created src/main/java/com/kg/infrastructure/converter/TaskPlanConverter.java | — | ~526 |
+| 10:52 | Edited src/main/java/com/kg/infrastructure/entity/TaskEntity.java | 2→6 lines | ~50 |
+| 10:52 | Edited src/main/java/com/kg/infrastructure/entity/TaskEntity.java | modified getTargetIds() | ~168 |
+| 10:52 | Edited src/main/java/com/kg/domain/model/Task.java | modified getTargetIds() | ~168 |
+| 10:53 | Edited src/main/java/com/kg/domain/model/Task.java | 3→7 lines | ~60 |
+| 10:53 | Edited src/main/java/com/kg/infrastructure/converter/TaskConverter.java | 3→5 lines | ~72 |
+| 10:53 | Edited src/main/java/com/kg/infrastructure/converter/TaskConverter.java | 3→5 lines | ~72 |
+| 10:53 | Edited src/main/java/com/kg/interfaces/dto/TaskCreateRequest.java | modified getTaskName() | ~129 |
+| 10:53 | Edited src/main/java/com/kg/interfaces/dto/TaskCreateRequest.java | modified getStudentIds() | ~190 |
+| 10:53 | Created src/main/java/com/kg/application/service/TaskPlanApplicationService.java | — | ~2643 |
+| 10:54 | Edited src/main/java/com/kg/application/service/TaskApplicationService.java | added 1 condition(s) | ~192 |
+| 10:54 | Edited src/main/java/com/kg/application/service/TaskPlanApplicationService.java | modified TaskPlanApplicationService() | ~135 |
+| 10:54 | Edited src/main/java/com/kg/application/service/TaskApplicationService.java | modified TaskApplicationService() | ~311 |
+| 10:54 | Created src/main/java/com/kg/interfaces/dto/TaskPlanDetailVO.java | — | ~562 |
+| 10:54 | Created src/main/java/com/kg/interfaces/dto/TaskPlanTaskVO.java | — | ~314 |
+| 10:54 | Created src/main/java/com/kg/interfaces/controller/TaskPlanController.java | — | ~791 |
+| 10:55 | Edited src/main/java/com/kg/infrastructure/repository/TaskRepositoryImpl.java | modified buildFilterQuery() | ~132 |
+| 10:55 | Edited src/main/java/com/kg/infrastructure/repository/TaskRepositoryImpl.java | modified buildCommonQuery() | ~85 |
+| 10:55 | Edited src/main/java/com/kg/infrastructure/repository/TaskRepositoryImpl.java | modified buildHeadmasterQuery() | ~73 |
+| 10:56 | Session end: 22 writes across 14 files (TaskPlan.java, TaskPlanEntity.java, TaskPlanMapper.java, TaskPlanConverter.java, TaskEntity.java) | 3 reads | ~15509 tok |
+| 14:58 | Edited src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java | "ORDER BY t.priority DESC," → "ORDER BY t.create_time DE" | ~9 |
+| 14:58 | Edited src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java | inline fix | ~5 |
+| 14:59 | Session end: 24 writes across 15 files (TaskPlan.java, TaskPlanEntity.java, TaskPlanMapper.java, TaskPlanConverter.java, TaskEntity.java) | 4 reads | ~18045 tok |
+| 15:30 | Edited src/main/java/com/kg/interfaces/dto/TaskVO.java | expanded (+8 lines) | ~112 |
+| 15:30 | Edited src/main/java/com/kg/interfaces/dto/TaskVO.java | modified getCreateTime() | ~155 |
+| 15:30 | Edited src/main/java/com/kg/application/service/TaskApplicationService.java | modified toString() | ~118 |
+| 15:31 | Edited src/main/java/com/kg/interfaces/dto/MyTaskVO.java | expanded (+7 lines) | ~112 |
+| 15:31 | Edited src/main/java/com/kg/interfaces/dto/MyTaskVO.java | modified getTaskUserId() | ~153 |
+| 15:31 | Edited src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java | 4→5 lines | ~132 |
+| 15:31 | Edited src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java | 3→4 lines | ~95 |
+| 15:31 | Edited src/main/java/com/kg/application/service/MyTaskApplicationService.java | modified longValue() | ~160 |
+| 15:31 | Edited src/main/java/com/kg/interfaces/dto/MyTaskDetailVO.java | 2→6 lines | ~89 |
+| 15:31 | Edited src/main/java/com/kg/interfaces/dto/MyTaskDetailVO.java | modified getTaskEndTime() | ~163 |
+| 15:31 | Edited src/main/java/com/kg/application/service/MyTaskApplicationService.java | modified longValue() | ~151 |
+| 15:32 | Edited src/main/java/com/kg/application/service/MyTaskApplicationService.java | added 2 condition(s) | ~137 |
+| 15:32 | Session end: 36 writes across 19 files (TaskPlan.java, TaskPlanEntity.java, TaskPlanMapper.java, TaskPlanConverter.java, TaskEntity.java) | 7 reads | ~22592 tok |
+
+## Session: 2026-07-02 17:12
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 20:41 | Created src/main/java/com/kg/infrastructure/entity/StudyPhaseEntity.java | — | ~530 |
+| 20:41 | Created src/main/java/com/kg/infrastructure/entity/StudyPhaseClassEntity.java | — | ~241 |
+| 20:41 | Created src/main/java/com/kg/infrastructure/mapper/StudyPhaseMapper.java | — | ~80 |
+| 20:41 | Created src/main/java/com/kg/infrastructure/mapper/StudyPhaseClassMapper.java | — | ~85 |
+| 20:41 | Created src/main/java/com/kg/interfaces/dto/StudyPhaseRequest.java | — | ~464 |
+| 20:42 | Created src/main/java/com/kg/interfaces/dto/StudyPhaseVO.java | — | ~517 |
+| 20:42 | Created src/main/java/com/kg/application/service/StudyPhaseApplicationService.java | — | ~3211 |
+| 20:42 | Created src/main/java/com/kg/interfaces/controller/StudyPhaseController.java | — | ~916 |
+| 20:42 | Edited src/main/java/com/kg/config/OpenApiConfig.java | inline fix | ~28 |
+| 20:43 | Session end: 9 writes across 9 files (StudyPhaseEntity.java, StudyPhaseClassEntity.java, StudyPhaseMapper.java, StudyPhaseClassMapper.java, StudyPhaseRequest.java) | 1 reads | ~7083 tok |

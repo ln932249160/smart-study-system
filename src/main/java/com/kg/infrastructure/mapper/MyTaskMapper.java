@@ -15,11 +15,12 @@ public interface MyTaskMapper {
 
     // ======================== 我的任务分页 ========================
 
-    /** 分页（增加 taskDescription / priority，排序改为 priority desc + end_time asc） */
+    /** 分页，按创建时间倒序 */
     @Select("<script>" +
             "SELECT u.name AS task_create_name,t.round_no AS round_no,t.template_id AS template_id,t.id AS task_id, t.task_name, t.task_type, " +
             "t.is_mandatory AS force_flag, t.task_description, t.priority, " +
             "t.task_start_time AS start_time, t.task_end_time AS end_time, " +
+            "t.plan_id AS planId, t.plan_date AS planDate, t.is_repeat_task AS isRepeatTask, t.status AS taskStatus, " +
             "tu.id AS task_user_id, tu.status, tu.total_score, tu.submit_time " +
             "FROM task_user tu JOIN task t ON t.id = tu.task_id LEFT JOIN sys_user u ON u.id = t.create_by " +
             "WHERE tu.user_id = #{userId} " +
@@ -35,7 +36,7 @@ public interface MyTaskMapper {
             "<if test='finishTimeEnd != null and finishTimeEnd != \"\"'>AND tu.finish_time &lt;= #{finishTimeEnd} </if>" +
             "<if test='isTemplate != null and isTemplate == 1'>AND t.template_id IS NOT NULL </if>" +
             "<if test='isTemplate != null and isTemplate == 0'>AND t.template_id IS NULL </if>" +
-            "ORDER BY t.priority DESC, t.task_end_time ASC " +
+            "ORDER BY t.create_time DESC " +
             "LIMIT #{offset}, #{limit}</script>")
     List<Map<String, Object>> page(
             @Param("userId") Long userId,
@@ -88,6 +89,7 @@ public interface MyTaskMapper {
     /** 查询任务完整信息（task + task_user） */
     @Select("SELECT t.id AS task_id, t.task_name, t.task_type, t.task_description, " +
             "t.priority, t.round_no, t.task_start_time, t.task_end_time, " +
+            "t.plan_id AS planId, t.plan_date AS planDate, t.is_repeat_task AS isRepeatTask, t.status AS taskStatus, " +
             "tu.id AS task_user_id, tu.status, tu.start_time, tu.finish_time, " +
             "tu.duration_minutes, tu.remark, tu.total_score, tu.submit_time " +
             "FROM task_user tu JOIN task t ON t.id = tu.task_id " +

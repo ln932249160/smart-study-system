@@ -96,6 +96,13 @@ public class MyTaskApplicationService {
             Object score = row.get("total_score");
             vo.setTotalScore(score instanceof BigDecimal ? (BigDecimal) score : null);
             vo.setSubmitTime(formatTime(row.get("submit_time")));
+            Object planId = row.get("planId");
+            vo.setPlanId(planId instanceof Number ? ((Number) planId).longValue() : null);
+            vo.setPlanDate(fmtDate(row.get("planDate")));
+            Object irt = row.get("isRepeatTask");
+            vo.setIsRepeatTask(irt instanceof Number ? ((Number) irt).intValue() : 0);
+            Object tss = row.get("taskStatus");
+            vo.setTaskStatus(tss instanceof Number ? ((Number) tss).intValue() : null);
             return vo;
         }).collect(Collectors.toList());
 
@@ -124,6 +131,13 @@ public class MyTaskApplicationService {
         vo.setRoundNo(rn instanceof Number ? ((Number) rn).intValue() : null);
         vo.setTaskStartTime(formatTime(row.get("task_start_time")));
         vo.setTaskEndTime(formatTime(row.get("task_end_time")));
+        Object planId = row.get("planId");
+        vo.setPlanId(planId instanceof Number ? ((Number) planId).longValue() : null);
+        vo.setPlanDate(fmtDate(row.get("planDate")));
+        Object irt = row.get("isRepeatTask");
+        vo.setIsRepeatTask(irt instanceof Number ? ((Number) irt).intValue() : 0);
+        Object tss = row.get("taskStatus");
+        vo.setTaskStatus(tss instanceof Number ? ((Number) tss).intValue() : null);
         vo.setTaskUserId(toLong(row.get("task_user_id")));
         vo.setStatus((String) row.get("status"));
         vo.setStartTime(formatTime(row.get("start_time")));
@@ -419,6 +433,12 @@ public class MyTaskApplicationService {
         if (val == null) return null;
         if (val instanceof Timestamp) return ((Timestamp) val).toLocalDateTime().format(FMT);
         if (val instanceof LocalDateTime) return ((LocalDateTime) val).format(FMT);
+        return val.toString();
+    }
+
+    private String fmtDate(Object val) {
+        if (val == null) return null;
+        if (val instanceof java.sql.Date) return ((java.sql.Date) val).toLocalDate().toString();
         return val.toString();
     }
 }

@@ -26,6 +26,10 @@ public class TaskEntity {
     private Long classId;
     private Integer targetType;
     private String targetIds;
+    private Long planId;
+    private java.time.LocalDate planDate;
+    private Integer isRepeatTask;
+    private Integer status;
     private Long createBy;
     private LocalDateTime createTime;
     private Long updateBy;
@@ -57,6 +61,10 @@ public class TaskEntity {
     public void setTargetType(Integer targetType) { this.targetType = targetType; }
     public String getTargetIds() { return targetIds; }
     public void setTargetIds(String targetIds) { this.targetIds = targetIds; }
+    public Long getPlanId() { return planId; } public void setPlanId(Long v) { this.planId = v; }
+    public java.time.LocalDate getPlanDate() { return planDate; } public void setPlanDate(java.time.LocalDate v) { this.planDate = v; }
+    public Integer getIsRepeatTask() { return isRepeatTask; } public void setIsRepeatTask(Integer v) { this.isRepeatTask = v; }
+    public Integer getStatus() { return status; } public void setStatus(Integer v) { this.status = v; }
     public Long getCreateBy() { return createBy; }
     public void setCreateBy(Long createBy) { this.createBy = createBy; }
     public LocalDateTime getCreateTime() { return createTime; }

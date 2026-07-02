@@ -48,6 +48,14 @@ public class TaskVO {
     private Integer completionPercent;
     @Schema(description = "创建时间")
     private String createTime;
+    @Schema(description = "计划ID（重复任务）")
+    private Long planId;
+    @Schema(description = "计划日期（重复任务）")
+    private String planDate;
+    @Schema(description = "是否重复任务：1是 0否")
+    private Integer isRepeatTask;
+    @Schema(description = "任务状态：1正常 0禁用")
+    private Integer status;
 
     // ======================== getters / setters ========================
 
@@ -89,4 +97,8 @@ public class TaskVO {
     public void setCompletionPercent(Integer completionPercent) { this.completionPercent = completionPercent; }
     public String getCreateTime() { return createTime; }
     public void setCreateTime(String createTime) { this.createTime = createTime; }
+    public Long getPlanId() { return planId; } public void setPlanId(Long v) { this.planId = v; }
+    public String getPlanDate() { return planDate; } public void setPlanDate(String v) { this.planDate = v; }
+    public Integer getIsRepeatTask() { return isRepeatTask; } public void setIsRepeatTask(Integer v) { this.isRepeatTask = v; }
+    public Integer getStatus() { return status; } public void setStatus(Integer v) { this.status = v; }
 }

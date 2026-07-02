@@ -24,6 +24,8 @@ public class TaskConverter {
         d.setClassId(e.getClassId());
         d.setTargetType(e.getTargetType());
         d.setTargetIds(e.getTargetIds());
+        d.setPlanId(e.getPlanId()); d.setPlanDate(e.getPlanDate());
+        d.setIsRepeatTask(e.getIsRepeatTask()); d.setStatus(e.getStatus());
         d.setCreateBy(e.getCreateBy());
         d.setCreateTime(e.getCreateTime());
         d.setUpdateBy(e.getUpdateBy());
@@ -47,6 +49,8 @@ public class TaskConverter {
         e.setClassId(d.getClassId());
         e.setTargetType(d.getTargetType());
         e.setTargetIds(d.getTargetIds());
+        e.setPlanId(d.getPlanId()); e.setPlanDate(d.getPlanDate());
+        e.setIsRepeatTask(d.getIsRepeatTask()); e.setStatus(d.getStatus());
         e.setCreateBy(d.getCreateBy());
         e.setCreateTime(d.getCreateTime());
         e.setUpdateBy(d.getUpdateBy());

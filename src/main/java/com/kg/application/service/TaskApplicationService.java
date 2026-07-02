@@ -51,6 +51,7 @@ public class TaskApplicationService {
     private final ClassInfoRepository classInfoRepository;
     private final SysUserRepository sysUserRepository;
     private final NotificationService notificationService;
+    private final TaskPlanApplicationService taskPlanAppService;
 
     public TaskApplicationService(TaskRepository taskRepository,
                                   TaskUserRepository taskUserRepository,
@@ -58,7 +59,8 @@ public class TaskApplicationService {
                                   TaskTemplateRepository taskTemplateRepository,
                                   ClassInfoRepository classInfoRepository,
                                   SysUserRepository sysUserRepository,
-                                  NotificationService notificationService) {
+                                  NotificationService notificationService,
+                                  TaskPlanApplicationService taskPlanAppService) {
         this.taskRepository = taskRepository;
         this.taskUserRepository = taskUserRepository;
         this.taskScoreRepository = taskScoreRepository;
@@ -66,6 +68,7 @@ public class TaskApplicationService {
         this.classInfoRepository = classInfoRepository;
         this.sysUserRepository = sysUserRepository;
         this.notificationService = notificationService;
+        this.taskPlanAppService = taskPlanAppService;
     }
 
     // ======================== 分页查询 ========================
@@ -188,6 +191,11 @@ public class TaskApplicationService {
         SysUser currentUser = requireCurrentUser();
         if (RoleEnum.isHeadmaster(currentUser.getRole())) {
             validateHeadmasterScope(currentUser, request.getClassIds(), request.getStudentIds());
+        }
+        // 重复任务模式 → 委托给 TaskPlanApplicationService
+        if ("REPEAT".equalsIgnoreCase(request.getCreateMode())) {
+            taskPlanAppService.createPlan(request, currentUserId, currentUser);
+            return;
         }
         Task task = buildTask(request, currentUserId);
         taskRepository.save(task);
@@ -407,6 +415,10 @@ public class TaskApplicationService {
         vo.setClassId(t.getClassId());
         vo.setTargetType(t.getTargetType());
         vo.setTargetIds(t.getTargetIds());
+        vo.setPlanId(t.getPlanId());
+        vo.setPlanDate(t.getPlanDate() != null ? t.getPlanDate().toString() : null);
+        vo.setIsRepeatTask(t.getIsRepeatTask() != null ? t.getIsRepeatTask() : 0);
+        vo.setStatus(t.getStatus());
         vo.setCreateTime(t.getCreateTime() != null ? t.getCreateTime().format(FMT) : null);
         return vo;
     }

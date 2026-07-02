@@ -20,6 +20,12 @@ public class TaskCreateRequest {
     @Schema(description = "优先级") private Integer priority;
     @Schema(description = "班级ID列表（多选）") private List<Long> classIds;
     @Schema(description = "指定学生ID列表") private List<Long> studentIds;
+    // 重复任务参数
+    @Schema(description = "创建模式：SINGLE单次 REPEAT重复") private String createMode;
+    @Schema(description = "重复类型：DAILY每天 WEEKLY每周") private String repeatType;
+    @Schema(description = "重复配置JSON") private String repeatConfig;
+    @Schema(description = "计划开始日期") private String startDate;
+    @Schema(description = "计划结束日期") private String endDate;
 
     public String getTaskName() { return taskName; } public void setTaskName(String s) { this.taskName = s; }
     public String getTaskType() { return taskType; } public void setTaskType(String s) { this.taskType = s; }
@@ -33,4 +39,9 @@ public class TaskCreateRequest {
     public Integer getPriority() { return priority; } public void setPriority(Integer i) { this.priority = i; }
     public List<Long> getClassIds() { return classIds; } public void setClassIds(List<Long> l) { this.classIds = l; }
     public List<Long> getStudentIds() { return studentIds; } public void setStudentIds(List<Long> l) { this.studentIds = l; }
+    public String getCreateMode() { return createMode; } public void setCreateMode(String s) { this.createMode = s; }
+    public String getRepeatType() { return repeatType; } public void setRepeatType(String s) { this.repeatType = s; }
+    public String getRepeatConfig() { return repeatConfig; } public void setRepeatConfig(String s) { this.repeatConfig = s; }
+    public String getStartDate() { return startDate; } public void setStartDate(String s) { this.startDate = s; }
+    public String getEndDate() { return endDate; } public void setEndDate(String s) { this.endDate = s; }
 }

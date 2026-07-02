@@ -95,6 +95,7 @@ public class TaskRepositoryImpl implements TaskRepository {
     /** 班长查询条件：(target_type=1 AND FIND_IN_SET(classId,target_ids)) OR create_by=userId */
     private LambdaQueryWrapper<TaskEntity> buildHeadmasterQuery(Long classId, Long userId) {
         LambdaQueryWrapper<TaskEntity> q = new LambdaQueryWrapper<>();
+        q.and(w -> w.eq(TaskEntity::getStatus, 1).or().isNull(TaskEntity::getStatus));
         q.and(w -> w
                 .and(w2 -> w2.eq(TaskEntity::getTargetType, 1)
                         .apply("FIND_IN_SET({0}, target_ids)", classId))
@@ -159,6 +160,7 @@ public class TaskRepositoryImpl implements TaskRepository {
     private LambdaQueryWrapper<TaskEntity> buildFilterQuery(String taskType, String taskName, Integer isMandatory,
                                                               String startBegin, String startEnd, String endBegin, String endEnd) {
         LambdaQueryWrapper<TaskEntity> q = new LambdaQueryWrapper<>();
+        q.and(w -> w.eq(TaskEntity::getStatus, 1).or().isNull(TaskEntity::getStatus));
         q.eq(taskType != null && !taskType.isEmpty(), TaskEntity::getTaskType, taskType);
         q.like(taskName != null && !taskName.isEmpty(), TaskEntity::getTaskName, taskName);
         q.eq(isMandatory != null, TaskEntity::getIsMandatory, isMandatory);
@@ -171,6 +173,7 @@ public class TaskRepositoryImpl implements TaskRepository {
 
     private LambdaQueryWrapper<TaskEntity> buildCommonQuery(Long classId, List<Long> ids) {
         LambdaQueryWrapper<TaskEntity> q = new LambdaQueryWrapper<>();
+        q.and(w -> w.eq(TaskEntity::getStatus, 1).or().isNull(TaskEntity::getStatus));
         if (classId != null) q.eq(TaskEntity::getClassId, classId);
         if (ids != null && !ids.isEmpty()) q.in(TaskEntity::getId, ids);
         return q;

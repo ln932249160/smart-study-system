@@ -2,14 +2,14 @@
   "version": 1,
   "created_at": "2026-05-30T07:19:17.874Z",
   "lifetime": {
-    "total_tokens_estimated": 683817,
-    "total_reads": 404,
-    "total_writes": 950,
-    "total_sessions": 28,
-    "anatomy_hits": 404,
+    "total_tokens_estimated": 747046,
+    "total_reads": 419,
+    "total_writes": 1041,
+    "total_sessions": 29,
+    "anatomy_hits": 419,
     "anatomy_misses": 0,
-    "repeated_reads_blocked": 171,
-    "estimated_savings_vs_bare_cli": 527397
+    "repeated_reads_blocked": 180,
+    "estimated_savings_vs_bare_cli": 550443
   },
   "sessions": [
     {
@@ -7830,6 +7830,619 @@
         "writes_count": 6,
         "repeated_reads_blocked": 5,
         "anatomy_lookups": 3
+      }
+    },
+    {
+      "id": "session-2026-07-01-1044",
+      "started": "2026-07-01T02:44:05.732Z",
+      "ended": "2026-07-01T02:56:09.872Z",
+      "reads": [
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/model/Task.java",
+          "tokens_estimated": 927,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/TaskCreateRequest.java",
+          "tokens_estimated": 684,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
+          "tokens_estimated": 4901,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/model/TaskPlan.java",
+          "tokens_estimated": 854,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/entity/TaskPlanEntity.java",
+          "tokens_estimated": 911,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/TaskPlanMapper.java",
+          "tokens_estimated": 84,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/converter/TaskPlanConverter.java",
+          "tokens_estimated": 563,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/entity/TaskEntity.java",
+          "tokens_estimated": 53,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/entity/TaskEntity.java",
+          "tokens_estimated": 180,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/model/Task.java",
+          "tokens_estimated": 180,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/model/Task.java",
+          "tokens_estimated": 64,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/converter/TaskConverter.java",
+          "tokens_estimated": 77,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/converter/TaskConverter.java",
+          "tokens_estimated": 77,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/TaskCreateRequest.java",
+          "tokens_estimated": 138,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/TaskCreateRequest.java",
+          "tokens_estimated": 203,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskPlanApplicationService.java",
+          "tokens_estimated": 2832,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
+          "tokens_estimated": 206,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskPlanApplicationService.java",
+          "tokens_estimated": 144,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
+          "tokens_estimated": 333,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/TaskPlanDetailVO.java",
+          "tokens_estimated": 602,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/TaskPlanTaskVO.java",
+          "tokens_estimated": 337,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/TaskPlanController.java",
+          "tokens_estimated": 848,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/repository/TaskRepositoryImpl.java",
+          "tokens_estimated": 142,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/repository/TaskRepositoryImpl.java",
+          "tokens_estimated": 91,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/repository/TaskRepositoryImpl.java",
+          "tokens_estimated": 78,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 6512,
+        "output_tokens_estimated": 8997,
+        "reads_count": 3,
+        "writes_count": 22,
+        "repeated_reads_blocked": 2,
+        "anatomy_lookups": 3
+      }
+    },
+    {
+      "id": "session-2026-07-01-1044",
+      "started": "2026-07-01T02:44:05.732Z",
+      "ended": "2026-07-01T06:59:05.873Z",
+      "reads": [
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/model/Task.java",
+          "tokens_estimated": 927,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/TaskCreateRequest.java",
+          "tokens_estimated": 684,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
+          "tokens_estimated": 4901,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java",
+          "tokens_estimated": 2521,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/model/TaskPlan.java",
+          "tokens_estimated": 854,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/entity/TaskPlanEntity.java",
+          "tokens_estimated": 911,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/TaskPlanMapper.java",
+          "tokens_estimated": 84,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/converter/TaskPlanConverter.java",
+          "tokens_estimated": 563,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/entity/TaskEntity.java",
+          "tokens_estimated": 53,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/entity/TaskEntity.java",
+          "tokens_estimated": 180,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/model/Task.java",
+          "tokens_estimated": 180,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/model/Task.java",
+          "tokens_estimated": 64,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/converter/TaskConverter.java",
+          "tokens_estimated": 77,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/converter/TaskConverter.java",
+          "tokens_estimated": 77,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/TaskCreateRequest.java",
+          "tokens_estimated": 138,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/TaskCreateRequest.java",
+          "tokens_estimated": 203,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskPlanApplicationService.java",
+          "tokens_estimated": 2832,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
+          "tokens_estimated": 206,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskPlanApplicationService.java",
+          "tokens_estimated": 144,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
+          "tokens_estimated": 333,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/TaskPlanDetailVO.java",
+          "tokens_estimated": 602,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/TaskPlanTaskVO.java",
+          "tokens_estimated": 337,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/TaskPlanController.java",
+          "tokens_estimated": 848,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/repository/TaskRepositoryImpl.java",
+          "tokens_estimated": 142,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/repository/TaskRepositoryImpl.java",
+          "tokens_estimated": 91,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/repository/TaskRepositoryImpl.java",
+          "tokens_estimated": 78,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java",
+          "tokens_estimated": 10,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java",
+          "tokens_estimated": 5,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 9033,
+        "output_tokens_estimated": 9012,
+        "reads_count": 4,
+        "writes_count": 24,
+        "repeated_reads_blocked": 2,
+        "anatomy_lookups": 4
+      }
+    },
+    {
+      "id": "session-2026-07-01-1044",
+      "started": "2026-07-01T02:44:05.732Z",
+      "ended": "2026-07-01T07:32:25.752Z",
+      "reads": [
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/model/Task.java",
+          "tokens_estimated": 927,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/TaskCreateRequest.java",
+          "tokens_estimated": 684,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
+          "tokens_estimated": 4901,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java",
+          "tokens_estimated": 2521,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/TaskVO.java",
+          "tokens_estimated": 1158,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/MyTaskVO.java",
+          "tokens_estimated": 702,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/MyTaskDetailVO.java",
+          "tokens_estimated": 998,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/model/TaskPlan.java",
+          "tokens_estimated": 854,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/entity/TaskPlanEntity.java",
+          "tokens_estimated": 911,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/TaskPlanMapper.java",
+          "tokens_estimated": 84,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/converter/TaskPlanConverter.java",
+          "tokens_estimated": 563,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/entity/TaskEntity.java",
+          "tokens_estimated": 53,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/entity/TaskEntity.java",
+          "tokens_estimated": 180,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/model/Task.java",
+          "tokens_estimated": 180,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/model/Task.java",
+          "tokens_estimated": 64,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/converter/TaskConverter.java",
+          "tokens_estimated": 77,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/converter/TaskConverter.java",
+          "tokens_estimated": 77,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/TaskCreateRequest.java",
+          "tokens_estimated": 138,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/TaskCreateRequest.java",
+          "tokens_estimated": 203,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskPlanApplicationService.java",
+          "tokens_estimated": 2832,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
+          "tokens_estimated": 206,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskPlanApplicationService.java",
+          "tokens_estimated": 144,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
+          "tokens_estimated": 333,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/TaskPlanDetailVO.java",
+          "tokens_estimated": 602,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/TaskPlanTaskVO.java",
+          "tokens_estimated": 337,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/TaskPlanController.java",
+          "tokens_estimated": 848,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/repository/TaskRepositoryImpl.java",
+          "tokens_estimated": 142,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/repository/TaskRepositoryImpl.java",
+          "tokens_estimated": 91,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/repository/TaskRepositoryImpl.java",
+          "tokens_estimated": 78,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java",
+          "tokens_estimated": 10,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java",
+          "tokens_estimated": 5,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/TaskVO.java",
+          "tokens_estimated": 120,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/TaskVO.java",
+          "tokens_estimated": 166,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
+          "tokens_estimated": 126,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/MyTaskVO.java",
+          "tokens_estimated": 120,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/MyTaskVO.java",
+          "tokens_estimated": 164,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java",
+          "tokens_estimated": 142,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java",
+          "tokens_estimated": 102,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+          "tokens_estimated": 171,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/MyTaskDetailVO.java",
+          "tokens_estimated": 95,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/MyTaskDetailVO.java",
+          "tokens_estimated": 174,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+          "tokens_estimated": 162,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+          "tokens_estimated": 147,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 11891,
+        "output_tokens_estimated": 10701,
+        "reads_count": 7,
+        "writes_count": 36,
+        "repeated_reads_blocked": 5,
+        "anatomy_lookups": 7
+      }
+    },
+    {
+      "id": "session-2026-07-02-1712",
+      "started": "2026-07-02T09:12:58.960Z",
+      "ended": "2026-07-02T12:43:36.859Z",
+      "reads": [
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/config/OpenApiConfig.java",
+          "tokens_estimated": 578,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/entity/StudyPhaseEntity.java",
+          "tokens_estimated": 568,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/entity/StudyPhaseClassEntity.java",
+          "tokens_estimated": 258,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/StudyPhaseMapper.java",
+          "tokens_estimated": 85,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/StudyPhaseClassMapper.java",
+          "tokens_estimated": 91,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/StudyPhaseRequest.java",
+          "tokens_estimated": 497,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/StudyPhaseVO.java",
+          "tokens_estimated": 554,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/StudyPhaseApplicationService.java",
+          "tokens_estimated": 3440,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/StudyPhaseController.java",
+          "tokens_estimated": 982,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/config/OpenApiConfig.java",
+          "tokens_estimated": 30,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 578,
+        "output_tokens_estimated": 6505,
+        "reads_count": 1,
+        "writes_count": 9,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 1
       }
     }
   ],

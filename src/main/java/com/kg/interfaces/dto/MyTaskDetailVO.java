@@ -17,6 +17,10 @@ public class MyTaskDetailVO {
     @Schema(description = "轮次") private Integer roundNo;
     @Schema(description = "任务开始时间") private String taskStartTime;
     @Schema(description = "任务结束时间") private String taskEndTime;
+    @Schema(description = "计划ID") private Long planId;
+    @Schema(description = "计划日期") private String planDate;
+    @Schema(description = "是否重复任务") private Integer isRepeatTask;
+    @Schema(description = "任务启用状态") private Integer taskStatus;
     // ---- 任务分配信息 ----
     @Schema(description = "分配ID") private Long taskUserId;
     @Schema(description = "状态") private String status;
@@ -45,6 +49,10 @@ public class MyTaskDetailVO {
     public Integer getRoundNo() { return roundNo; } public void setRoundNo(Integer v) { this.roundNo = v; }
     public String getTaskStartTime() { return taskStartTime; } public void setTaskStartTime(String v) { this.taskStartTime = v; }
     public String getTaskEndTime() { return taskEndTime; } public void setTaskEndTime(String v) { this.taskEndTime = v; }
+    public Long getPlanId() { return planId; } public void setPlanId(Long v) { this.planId = v; }
+    public String getPlanDate() { return planDate; } public void setPlanDate(String v) { this.planDate = v; }
+    public Integer getIsRepeatTask() { return isRepeatTask; } public void setIsRepeatTask(Integer v) { this.isRepeatTask = v; }
+    public Integer getTaskStatus() { return taskStatus; } public void setTaskStatus(Integer v) { this.taskStatus = v; }
     public Long getTaskUserId() { return taskUserId; } public void setTaskUserId(Long v) { this.taskUserId = v; }
     public String getStatus() { return status; } public void setStatus(String v) { this.status = v; }
     public String getStartTime() { return startTime; } public void setStartTime(String v) { this.startTime = v; }
