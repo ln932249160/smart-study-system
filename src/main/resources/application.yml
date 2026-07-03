@@ -9,8 +9,12 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   sql:
     init:
-      mode: always
-      schema-locations: classpath:schema.sql
+      mode: never
+  mvc:
+    throw-exception-if-no-handler-found: true
+  web:
+    resources:
+      add-mappings: false
 
 mybatis-plus:
   configuration:
@@ -23,3 +27,9 @@ mybatis-plus:
 logging:
   level:
     com.kg: debug
+
+springdoc:
+  writer-with-order-by-keys: true
+  paths-to-exclude:
+    - /hello
+    - /user/**

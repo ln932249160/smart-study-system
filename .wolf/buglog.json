@@ -1,0 +1,917 @@
+{
+  "version": 1,
+  "bugs": [
+    {
+      "id": "bug-001",
+      "timestamp": "2026-05-30T08:01:10.726Z",
+      "error_message": "Wrong return value",
+      "file": "src/main/java/com/kg/infrastructure/entity/TaskEntity.java",
+      "root_cause": "Was returning: isTemplate; }",
+      "fix": "Now returns: templateId; }",
+      "tags": [
+        "auto-detected",
+        "return-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-30T08:01:10.726Z"
+    },
+    {
+      "id": "bug-002",
+      "timestamp": "2026-05-30T08:05:21.186Z",
+      "error_message": "Wrong return value",
+      "file": "src/main/java/com/kg/interfaces/dto/TaskVO.java",
+      "root_cause": "Was returning: isTemplate; }",
+      "fix": "Now returns: templateId; }",
+      "tags": [
+        "auto-detected",
+        "return-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-30T08:05:21.186Z"
+    },
+    {
+      "id": "bug-003",
+      "timestamp": "2026-05-30T08:05:53.354Z",
+      "error_message": "Wrong return value",
+      "file": "src/main/java/com/kg/interfaces/dto/TaskUpdateRequest.java",
+      "root_cause": "Was returning: isTemplate; }",
+      "fix": "Now returns: templateId; }",
+      "tags": [
+        "auto-detected",
+        "return-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-30T08:05:53.354Z"
+    },
+    {
+      "id": "bug-004",
+      "timestamp": "2026-05-30T08:06:51.594Z",
+      "error_message": "Significant refactor of ",
+      "file": "src/main/java/com/kg/application/service/TaskApplicationService.java",
+      "root_cause": "7 lines replaced/restructured",
+      "fix": "Rewrote 40→47 lines (7 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-30T08:06:51.594Z"
+    },
+    {
+      "id": "bug-005",
+      "timestamp": "2026-05-30T08:07:14.766Z",
+      "error_message": "Wrong reference: TaskUserRepository should be TaskTemplateRepository",
+      "file": "src/main/java/com/kg/application/service/TaskApplicationService.java",
+      "root_cause": "Used \"TaskUserRepository\" instead of \"TaskTemplateRepository\"",
+      "fix": "Changed TaskUserRepository → TaskTemplateRepository",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-30T08:07:14.766Z"
+    },
+    {
+      "id": "bug-006",
+      "timestamp": "2026-05-30T08:07:57.591Z",
+      "error_message": "Wrong reference: setIsTemplate should be setTaskStartTime",
+      "file": "src/main/java/com/kg/application/service/BatchTaskService.java",
+      "root_cause": "Used \"setIsTemplate\" instead of \"setTaskStartTime\"",
+      "fix": "Changed setIsTemplate → setTaskStartTime",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-30T08:07:57.591Z"
+    },
+    {
+      "id": "bug-007",
+      "timestamp": "2026-05-30T08:08:09.079Z",
+      "error_message": "Incorrect value in code",
+      "file": "src/main/java/com/kg/infrastructure/mapper/HomeMapper.java",
+      "root_cause": "Had \"SELECT COUNT(*) FROM task WHERE is_template = 0\"",
+      "fix": "Changed to \"SELECT COUNT(*) FROM task\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-30T08:08:21.975Z"
+    },
+    {
+      "id": "bug-008",
+      "timestamp": "2026-05-30T08:08:27.321Z",
+      "error_message": "Incorrect value in code",
+      "file": "src/main/java/com/kg/config/OpenApiConfig.java",
+      "root_cause": "Had \"任务管理\"",
+      "fix": "Changed to \"模板任务管理\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-30T08:08:27.321Z"
+    },
+    {
+      "id": "bug-009",
+      "timestamp": "2026-06-01T09:21:41.358Z",
+      "error_message": "Incorrect value in code",
+      "file": "src/main/java/com/kg/interfaces/dto/TaskCreateRequest.java",
+      "root_cause": "Had \"班级ID\"",
+      "fix": "Changed to \"班级ID列表（多选）\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-01T09:21:41.358Z"
+    },
+    {
+      "id": "bug-010",
+      "timestamp": "2026-06-01T09:21:47.950Z",
+      "error_message": "Wrong return value",
+      "file": "src/main/java/com/kg/interfaces/dto/TaskCreateRequest.java",
+      "root_cause": "Was returning: classId; } public void setClassId(Long l) { this.c",
+      "fix": "Now returns: classIds; } public void setClassIds(List<Long> l) ",
+      "tags": [
+        "auto-detected",
+        "return-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-01T09:21:47.950Z"
+    },
+    {
+      "id": "bug-011",
+      "timestamp": "2026-06-01T09:21:59.291Z",
+      "error_message": "Incorrect value in code",
+      "file": "src/main/java/com/kg/interfaces/dto/TaskUpdateRequest.java",
+      "root_cause": "Had \"班级ID\"",
+      "fix": "Changed to \"班级ID列表（多选）\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-01T09:21:59.291Z"
+    },
+    {
+      "id": "bug-012",
+      "timestamp": "2026-06-01T09:22:05.511Z",
+      "error_message": "Wrong return value",
+      "file": "src/main/java/com/kg/interfaces/dto/TaskUpdateRequest.java",
+      "root_cause": "Was returning: classId; }",
+      "fix": "Now returns: classIds; } public void setClassIds(List<Long> l) ",
+      "tags": [
+        "auto-detected",
+        "return-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-01T09:22:05.511Z"
+    },
+    {
+      "id": "bug-013",
+      "timestamp": "2026-06-01T09:22:52.655Z",
+      "error_message": "Null/undefined access in ",
+      "file": "src/main/java/com/kg/application/service/TaskApplicationService.java",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-01T09:22:52.655Z"
+    },
+    {
+      "id": "bug-014",
+      "timestamp": "2026-06-01T09:23:11.908Z",
+      "error_message": "Significant refactor of ",
+      "file": "src/main/java/com/kg/application/service/TaskApplicationService.java",
+      "root_cause": "5 lines replaced/restructured",
+      "fix": "Rewrote 25→40 lines (5 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-01T09:23:11.908Z"
+    },
+    {
+      "id": "bug-015",
+      "timestamp": "2026-06-01T09:24:01.467Z",
+      "error_message": "Missing error handling in unknown",
+      "file": "src/main/java/com/kg/application/service/TaskApplicationService.java",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-01T09:24:01.467Z"
+    },
+    {
+      "id": "bug-016",
+      "timestamp": "2026-06-01T15:14:22.327Z",
+      "error_message": "Null/undefined access in ",
+      "file": "src/main/java/com/kg/infrastructure/repository/TaskRepositoryImpl.java",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-01T15:14:22.327Z"
+    },
+    {
+      "id": "bug-017",
+      "timestamp": "2026-06-01T15:14:48.180Z",
+      "error_message": "Incorrect value in code",
+      "file": "src/main/java/com/kg/interfaces/controller/TaskController.java",
+      "root_cause": "Had \"任务管理\"",
+      "fix": "Changed to \"任务列表\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-01T15:14:48.180Z"
+    },
+    {
+      "id": "bug-018",
+      "timestamp": "2026-06-01T15:15:11.693Z",
+      "error_message": "Significant refactor of ",
+      "file": "src/main/java/com/kg/application/service/TaskApplicationService.java",
+      "root_cause": "3 lines replaced/restructured",
+      "fix": "Rewrote 5→8 lines (3 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-01T15:15:11.693Z"
+    },
+    {
+      "id": "bug-019",
+      "timestamp": "2026-06-01T15:15:23.814Z",
+      "error_message": "Wrong reference: TaskUpdateRequest should be TaskPageRequest",
+      "file": "src/main/java/com/kg/application/service/TaskApplicationService.java",
+      "root_cause": "Used \"TaskUpdateRequest\" instead of \"TaskPageRequest\"",
+      "fix": "Changed TaskUpdateRequest → TaskPageRequest",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-06-01T15:16:09.629Z"
+    },
+    {
+      "id": "bug-020",
+      "timestamp": "2026-06-01T15:15:29.288Z",
+      "error_message": "Incorrect value in code",
+      "file": "src/main/java/com/kg/config/OpenApiConfig.java",
+      "root_cause": "Had \"字典\"",
+      "fix": "Changed to \"用户管理\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-01T15:15:29.288Z"
+    },
+    {
+      "id": "bug-021",
+      "timestamp": "2026-06-01T16:24:10.092Z",
+      "error_message": "Incorrect value in code",
+      "file": "src/main/java/com/kg/application/service/DictApplicationService.java",
+      "root_cause": "Had \"dictValue\"",
+      "fix": "Changed to \"dictLabel\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-01T16:24:10.092Z"
+    },
+    {
+      "id": "bug-022",
+      "timestamp": "2026-06-01T16:25:03.300Z",
+      "error_message": "Null/undefined access in ",
+      "file": "src/main/java/com/kg/interfaces/controller/DictController.java",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-01T16:25:03.300Z"
+    },
+    {
+      "id": "bug-023",
+      "timestamp": "2026-06-02T12:45:45.061Z",
+      "error_message": "Incorrect value in code",
+      "file": "src/main/java/com/kg/interfaces/dto/NotificationVO.java",
+      "root_cause": "Had \"创建时间\"",
+      "fix": "Changed to \"优先级\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-02T12:45:45.061Z"
+    },
+    {
+      "id": "bug-024",
+      "timestamp": "2026-06-02T12:46:13.556Z",
+      "error_message": "Wrong operator: <= should be &&",
+      "file": "src/main/java/com/kg/application/service/NotificationApplicationService.java",
+      "root_cause": "Used \"<=\" instead of \"&&\"",
+      "fix": "Changed operator <= → &&",
+      "tags": [
+        "auto-detected",
+        "operator-fix",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-02T12:46:13.556Z"
+    },
+    {
+      "id": "bug-025",
+      "timestamp": "2026-06-02T13:04:09.093Z",
+      "error_message": "Wrong reference: MyTaskVO should be MyTaskPageRequest",
+      "file": "src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+      "root_cause": "Used \"MyTaskVO\" instead of \"MyTaskPageRequest\"",
+      "fix": "Changed MyTaskVO → MyTaskPageRequest",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-02T13:04:09.093Z"
+    },
+    {
+      "id": "bug-026",
+      "timestamp": "2026-06-02T13:04:15.986Z",
+      "error_message": "Significant refactor of ",
+      "file": "src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+      "root_cause": "9 lines replaced/restructured",
+      "fix": "Rewrote 13→15 lines (9 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-02T13:04:15.986Z"
+    },
+    {
+      "id": "bug-027",
+      "timestamp": "2026-06-02T16:10:10.745Z",
+      "error_message": "Wrong return value",
+      "file": "src/main/java/com/kg/interfaces/dto/MyTaskPageRequest.java",
+      "root_cause": "Was returning: status; }",
+      "fix": "Now returns: userId; }",
+      "tags": [
+        "auto-detected",
+        "return-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-02T16:10:10.745Z"
+    },
+    {
+      "id": "bug-028",
+      "timestamp": "2026-06-02T16:10:20.946Z",
+      "error_message": "Wrong reference: getCurrentUserId should be resolveUserId",
+      "file": "src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+      "root_cause": "Used \"getCurrentUserId\" instead of \"resolveUserId\"",
+      "fix": "Changed getCurrentUserId → resolveUserId",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-02T16:10:20.946Z"
+    },
+    {
+      "id": "bug-029",
+      "timestamp": "2026-06-02T16:10:26.508Z",
+      "error_message": "Significant refactor of ",
+      "file": "src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+      "root_cause": "3 lines replaced/restructured",
+      "fix": "Rewrote 5→6 lines (3 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-02T16:10:26.508Z"
+    },
+    {
+      "id": "bug-030",
+      "timestamp": "2026-06-02T16:10:31.709Z",
+      "error_message": "Null/undefined access in ",
+      "file": "src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-02T16:10:31.709Z"
+    },
+    {
+      "id": "bug-031",
+      "timestamp": "2026-06-06T05:05:29.587Z",
+      "error_message": "Wrong return value",
+      "file": "src/main/java/com/kg/infrastructure/entity/NotificationMessageEntity.java",
+      "root_cause": "Was returning: isRead; }",
+      "fix": "Now returns: status; }",
+      "tags": [
+        "auto-detected",
+        "return-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-06T05:05:29.587Z"
+    },
+    {
+      "id": "bug-032",
+      "timestamp": "2026-06-06T05:05:33.934Z",
+      "error_message": "Incorrect value in code",
+      "file": "src/main/java/com/kg/interfaces/dto/NotificationVO.java",
+      "root_cause": "Had \"是否已读\"",
+      "fix": "Changed to \"状态：0有效 1失效\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-06T05:05:33.934Z"
+    },
+    {
+      "id": "bug-033",
+      "timestamp": "2026-06-06T05:05:38.223Z",
+      "error_message": "Wrong return value",
+      "file": "src/main/java/com/kg/interfaces/dto/NotificationVO.java",
+      "root_cause": "Was returning: isRead; }",
+      "fix": "Now returns: status; }",
+      "tags": [
+        "auto-detected",
+        "return-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-06T05:05:38.223Z"
+    },
+    {
+      "id": "bug-034",
+      "timestamp": "2026-06-06T05:05:43.438Z",
+      "error_message": "Incorrect value in code",
+      "file": "src/main/java/com/kg/interfaces/dto/NotificationPageRequest.java",
+      "root_cause": "Had \"是否已读：0未读 1已读\"",
+      "fix": "Changed to \"状态：0有效 1失效\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-06T05:05:43.438Z"
+    },
+    {
+      "id": "bug-035",
+      "timestamp": "2026-06-06T05:05:47.854Z",
+      "error_message": "Wrong return value",
+      "file": "src/main/java/com/kg/interfaces/dto/NotificationPageRequest.java",
+      "root_cause": "Was returning: isRead; } public void setIsRead(Integer i) { this.",
+      "fix": "Now returns: status; } public void setStatus(String s) { this.s",
+      "tags": [
+        "auto-detected",
+        "return-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-06T05:05:47.854Z"
+    },
+    {
+      "id": "bug-036",
+      "timestamp": "2026-06-06T05:16:47.700Z",
+      "error_message": "Incorrect value in code",
+      "file": "src/main/java/com/kg/config/OpenApiConfig.java",
+      "root_cause": "Had \"用户管理\"",
+      "fix": "Changed to \"请假管理\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-06T05:16:47.700Z"
+    },
+    {
+      "id": "bug-037",
+      "timestamp": "2026-06-06T06:38:48.102Z",
+      "error_message": "Missing guard clause",
+      "file": "src/main/java/com/kg/application/service/LeaveRequestApplicationService.java",
+      "root_cause": "No early return/throw for edge case: RoleEnum.isTeacher(role",
+      "fix": "Added guard clause: if (RoleEnum.isTeacher(role)",
+      "tags": [
+        "auto-detected",
+        "guard-clause",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-06-06T06:39:04.223Z"
+    },
+    {
+      "id": "bug-038",
+      "timestamp": "2026-06-06T09:01:00.727Z",
+      "error_message": "Incorrect value in code",
+      "file": "src/main/java/com/kg/config/OpenApiConfig.java",
+      "root_cause": "Had \"我的任务\"",
+      "fix": "Changed to \"打卡统计\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-06T09:01:00.727Z"
+    },
+    {
+      "id": "bug-039",
+      "timestamp": "2026-06-11T12:54:23.078Z",
+      "error_message": "Wrong reference: List should be Collections",
+      "file": "src/main/java/com/kg/infrastructure/repository/TaskScoreRepositoryImpl.java",
+      "root_cause": "Used \"List\" instead of \"Collections\"",
+      "fix": "Changed List → Collections",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-11T12:54:23.078Z"
+    },
+    {
+      "id": "bug-040",
+      "timestamp": "2026-06-11T12:55:36.573Z",
+      "error_message": "Wrong reference: TaskUserMapper should be TaskTemplateMapper",
+      "file": "src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+      "root_cause": "Used \"TaskUserMapper\" instead of \"TaskTemplateMapper\"",
+      "fix": "Changed TaskUserMapper → TaskTemplateMapper",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-11T12:55:36.573Z"
+    },
+    {
+      "id": "bug-041",
+      "timestamp": "2026-06-11T13:58:57.566Z",
+      "error_message": "Wrong reference: requireTeacher should be requireNotStudent",
+      "file": "src/main/java/com/kg/application/service/TaskTemplateApplicationService.java",
+      "root_cause": "Used \"requireTeacher\" instead of \"requireNotStudent\"",
+      "fix": "Changed requireTeacher → requireNotStudent",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 4,
+      "last_seen": "2026-06-11T13:59:11.556Z"
+    },
+    {
+      "id": "bug-042",
+      "timestamp": "2026-06-11T14:00:22.950Z",
+      "error_message": "Null/undefined access in ",
+      "file": "src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-11T14:00:22.950Z"
+    },
+    {
+      "id": "bug-043",
+      "timestamp": "2026-06-11T14:00:48.414Z",
+      "error_message": "Significant refactor of ",
+      "file": "src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 6→6 lines (2 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-11T14:00:48.414Z"
+    },
+    {
+      "id": "bug-044",
+      "timestamp": "2026-06-11T15:32:25.159Z",
+      "error_message": "Significant refactor of ",
+      "file": "src/main/java/com/kg/interfaces/controller/MyTaskController.java",
+      "root_cause": "3 lines replaced/restructured",
+      "fix": "Rewrote 5→6 lines (3 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-11T15:32:25.159Z"
+    },
+    {
+      "id": "bug-045",
+      "timestamp": "2026-06-11T16:00:13.454Z",
+      "error_message": "Wrong reference: requireTeacher should be requireNotStudent",
+      "file": "src/main/java/com/kg/application/service/TaskApplicationService.java",
+      "root_cause": "Used \"requireTeacher\" instead of \"requireNotStudent\"",
+      "fix": "Changed requireTeacher → requireNotStudent",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-11T16:00:13.454Z"
+    },
+    {
+      "id": "bug-046",
+      "timestamp": "2026-06-12T14:19:00.819Z",
+      "error_message": "Null/undefined access in ",
+      "file": "src/main/java/com/kg/application/service/StudentApplicationService.java",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check) | Also: // 补发班级任务; if (sysUser.getClassId() != null) { | Also: // ======================== 新学生补发班级任务 ======================; /**",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 3,
+      "last_seen": "2026-06-12T14:19:14.217Z"
+    },
+    {
+      "id": "bug-047",
+      "timestamp": "2026-06-12T14:35:37.661Z",
+      "error_message": "Incorrect value in code",
+      "file": "src/main/java/com/kg/interfaces/dto/ProfileVO.java",
+      "root_cause": "Had \"状态\"",
+      "fix": "Changed to \"班级名称\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-12T14:35:37.661Z"
+    },
+    {
+      "id": "bug-048",
+      "timestamp": "2026-06-12T14:36:00.373Z",
+      "error_message": "Null/undefined access in ",
+      "file": "src/main/java/com/kg/application/service/ProfileApplicationService.java",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-12T14:36:00.373Z"
+    },
+    {
+      "id": "bug-049",
+      "timestamp": "2026-06-14T11:10:05.880Z",
+      "error_message": "Wrong condition in logic",
+      "file": "src/main/java/com/kg/application/service/DictApplicationService.java",
+      "root_cause": "Condition was: if (isCreate)",
+      "fix": "Changed to: if (\"task_type\".equals(code)",
+      "tags": [
+        "auto-detected",
+        "logic-fix",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-14T11:10:05.880Z"
+    },
+    {
+      "id": "bug-050",
+      "timestamp": "2026-06-16T13:13:34.168Z",
+      "error_message": "Missing guard clause",
+      "file": "src/main/java/com/kg/application/service/StudentApplicationService.java",
+      "root_cause": "No early return/throw for edge case: RoleEnum.isStudent(currentRole",
+      "fix": "Added guard clause: if (RoleEnum.isStudent(currentRole)",
+      "tags": [
+        "auto-detected",
+        "guard-clause",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-16T13:13:34.168Z"
+    },
+    {
+      "id": "bug-051",
+      "timestamp": "2026-06-16T13:17:23.296Z",
+      "error_message": "Wrong condition in logic",
+      "file": "src/main/java/com/kg/application/service/StudentApplicationService.java",
+      "root_cause": "Condition was: if (user.getCreateTime()",
+      "fix": "Changed to: if (RoleEnum.isTeacher(requireCurrentUser()",
+      "tags": [
+        "auto-detected",
+        "logic-fix",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-16T13:17:23.296Z"
+    },
+    {
+      "id": "bug-052",
+      "timestamp": "2026-06-20T16:20:42.044Z",
+      "error_message": "Significant refactor of ",
+      "file": "src/main/java/com/kg/application/service/ClassFeeApplicationService.java",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 10→14 lines (2 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-20T16:20:42.044Z"
+    },
+    {
+      "id": "bug-053",
+      "timestamp": "2026-06-20T16:20:54.724Z",
+      "error_message": "Significant refactor of ",
+      "file": "src/main/java/com/kg/interfaces/controller/ClassFeeController.java",
+      "root_cause": "3 lines replaced/restructured",
+      "fix": "Rewrote 8→11 lines (3 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-20T16:20:54.724Z"
+    },
+    {
+      "id": "bug-054",
+      "timestamp": "2026-06-29T15:09:33.173Z",
+      "error_message": "Significant refactor of ",
+      "file": "src/main/java/com/kg/application/service/TaskApplicationService.java",
+      "root_cause": "3 lines replaced/restructured",
+      "fix": "Rewrote 8→8 lines (3 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-29T15:09:33.173Z"
+    },
+    {
+      "id": "bug-055",
+      "timestamp": "2026-06-29T15:10:14.735Z",
+      "error_message": "Null/undefined access in ",
+      "file": "src/main/java/com/kg/application/service/TaskApplicationService.java",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-29T15:10:14.735Z"
+    },
+    {
+      "id": "bug-056",
+      "timestamp": "2026-07-01T06:58:30.226Z",
+      "error_message": "Incorrect value in code",
+      "file": "src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java",
+      "root_cause": "Had \"ORDER BY t.priority DESC, t.task_end_time ASC \"",
+      "fix": "Changed to \"ORDER BY t.create_time DESC \"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-01T06:58:30.226Z"
+    },
+    {
+      "id": "bug-057",
+      "timestamp": "2026-07-02T12:42:55.464Z",
+      "error_message": "Incorrect value in code",
+      "file": "src/main/java/com/kg/config/OpenApiConfig.java",
+      "root_cause": "Had \"系统管理\"",
+      "fix": "Changed to \"学习阶段\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-02T12:42:55.464Z"
+    }
+  ]
+}

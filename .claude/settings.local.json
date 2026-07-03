@@ -8,7 +8,11 @@
       "Bash(powershell *)",
       "Bash(npm info *)",
       "Bash(mvn validate *)",
-      "Bash(mvn compile *)"
+      "Bash(mvn compile *)",
+      "Bash(echo \"EXIT: $?\")",
+      "Bash(mysql *)",
+      "Bash(claude plugins *)",
+      "WebFetch(domain:raw.githubusercontent.com)"
     ]
   }
 }
