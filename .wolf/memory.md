@@ -558,3 +558,36 @@
 | 20:42 | Created src/main/java/com/kg/interfaces/controller/StudyPhaseController.java | — | ~916 |
 | 20:42 | Edited src/main/java/com/kg/config/OpenApiConfig.java | inline fix | ~28 |
 | 20:43 | Session end: 9 writes across 9 files (StudyPhaseEntity.java, StudyPhaseClassEntity.java, StudyPhaseMapper.java, StudyPhaseClassMapper.java, StudyPhaseRequest.java) | 1 reads | ~7083 tok |
+
+## Session: 2026-07-03 15:38
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 15:52 | Created src/main/java/com/kg/interceptor/TraceIdFilter.java | — | ~398 |
+| 15:52 | Created src/main/resources/logback-spring.xml | — | ~634 |
+| 15:52 | Edited src/main/java/com/kg/exception/GlobalExceptionHandler.java | added 1 import(s) | ~21 |
+| 15:52 | Edited src/main/java/com/kg/exception/GlobalExceptionHandler.java | modified handleException() | ~64 |
+| 15:52 | Edited src/main/resources/application.yml | 13→8 lines | ~38 |
+| 15:53 | Session end: 5 writes across 4 files (TraceIdFilter.java, logback-spring.xml, GlobalExceptionHandler.java, application.yml) | 2 reads | ~2767 tok |
+| 16:04 | Created src/main/java/com/kg/interceptor/TraceIdFilter.java | — | ~1044 |
+| 16:04 | Edited src/main/java/com/kg/interceptor/JwtInterceptor.java | added 1 import(s) | ~121 |
+| 16:05 | Edited src/main/java/com/kg/interceptor/JwtInterceptor.java | 4→7 lines | ~47 |
+| 16:05 | Edited src/main/resources/logback-spring.xml | inline fix | ~15 |
+| 16:05 | Session end: 9 writes across 5 files (TraceIdFilter.java, logback-spring.xml, GlobalExceptionHandler.java, application.yml, JwtInterceptor.java) | 4 reads | ~5710 tok |
+| 16:13 | Created src/main/java/com/kg/config/LogHttpProperties.java | — | ~213 |
+| 16:13 | Created src/main/java/com/kg/util/SensitiveMaskUtils.java | — | ~427 |
+| 16:13 | Created src/main/java/com/kg/interceptor/TraceIdFilter.java | — | ~2130 |
+| 16:13 | Edited src/main/resources/application.yml | expanded (+6 lines) | ~50 |
+| 16:14 | Session end: 13 writes across 7 files (TraceIdFilter.java, logback-spring.xml, GlobalExceptionHandler.java, application.yml, JwtInterceptor.java) | 4 reads | ~8700 tok |
+| 16:18 | Created src/main/java/com/kg/interceptor/TraceIdFilter.java | — | ~1916 |
+| 16:19 | Session end: 14 writes across 7 files (TraceIdFilter.java, logback-spring.xml, GlobalExceptionHandler.java, application.yml, JwtInterceptor.java) | 5 reads | ~12882 tok |
+| 16:27 | Edited src/main/java/com/kg/interceptor/TraceIdFilter.java | added 3 condition(s) | ~491 |
+| 16:27 | Session end: 15 writes across 7 files (TraceIdFilter.java, logback-spring.xml, GlobalExceptionHandler.java, application.yml, JwtInterceptor.java) | 5 reads | ~13194 tok |
+| 16:29 | Edited src/main/java/com/kg/interceptor/TraceIdFilter.java | modified if() | ~365 |
+| 16:30 | Session end: 16 writes across 7 files (TraceIdFilter.java, logback-spring.xml, GlobalExceptionHandler.java, application.yml, JwtInterceptor.java) | 5 reads | ~13627 tok |
+| 16:40 | Created src/main/java/com/kg/interceptor/CachedBodyRequestWrapper.java | — | ~338 |
+| 16:41 | Created src/main/java/com/kg/interceptor/TraceIdFilter.java | — | ~1914 |
+| 16:41 | Session end: 18 writes across 8 files (TraceIdFilter.java, logback-spring.xml, GlobalExceptionHandler.java, application.yml, JwtInterceptor.java) | 5 reads | ~16040 tok |
+| 18:03 | Edited src/main/java/com/kg/application/service/TaskApplicationService.java | 25→25 lines | ~414 |
+| 18:03 | Edited src/main/java/com/kg/application/service/TaskApplicationService.java | added 10 condition(s) | ~556 |
+| 18:03 | Session end: 20 writes across 9 files (TraceIdFilter.java, logback-spring.xml, GlobalExceptionHandler.java, application.yml, JwtInterceptor.java) | 6 reads | ~22097 tok |

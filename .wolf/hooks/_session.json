@@ -1,83 +1,174 @@
 {
-  "session_id": "session-2026-07-02-1712",
-  "started": "2026-07-02T09:12:58.960Z",
+  "session_id": "session-2026-07-03-1538",
+  "started": "2026-07-03T07:38:42.718Z",
   "files_read": {
-    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/config/OpenApiConfig.java": {
+    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/exception/GlobalExceptionHandler.java": {
       "count": 1,
-      "tokens": 578,
-      "first_read": "2026-07-02T12:42:48.339Z"
+      "tokens": 1325,
+      "first_read": "2026-07-03T07:50:18.563Z"
+    },
+    "F:/aiProject/smart-study-system/backend/src/main/resources/application.yml": {
+      "count": 2,
+      "tokens": 180,
+      "first_read": "2026-07-03T07:52:42.682Z"
+    },
+    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interceptor/JwtInterceptor.java": {
+      "count": 1,
+      "tokens": 995,
+      "first_read": "2026-07-03T08:04:29.390Z"
+    },
+    "F:/aiProject/smart-study-system/backend/src/main/resources/logback-spring.xml": {
+      "count": 1,
+      "tokens": 634,
+      "first_read": "2026-07-03T08:05:08.577Z"
+    },
+    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interceptor/TraceIdFilter.java": {
+      "count": 4,
+      "tokens": 1958,
+      "first_read": "2026-07-03T08:18:26.317Z"
+    },
+    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java": {
+      "count": 1,
+      "tokens": 5019,
+      "first_read": "2026-07-03T10:02:37.883Z"
     }
   },
   "files_written": [
     {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/entity/StudyPhaseEntity.java",
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interceptor/TraceIdFilter.java",
       "action": "create",
-      "tokens": 568,
-      "at": "2026-07-02T12:41:44.903Z"
+      "tokens": 426,
+      "at": "2026-07-03T07:52:20.218Z"
     },
     {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/entity/StudyPhaseClassEntity.java",
+      "file": "F:/aiProject/smart-study-system/backend/src/main/resources/logback-spring.xml",
       "action": "create",
-      "tokens": 258,
-      "at": "2026-07-02T12:41:45.432Z"
+      "tokens": 679,
+      "at": "2026-07-03T07:52:20.904Z"
     },
     {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/StudyPhaseMapper.java",
-      "action": "create",
-      "tokens": 85,
-      "at": "2026-07-02T12:41:46.089Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/StudyPhaseClassMapper.java",
-      "action": "create",
-      "tokens": 91,
-      "at": "2026-07-02T12:41:46.825Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/StudyPhaseRequest.java",
-      "action": "create",
-      "tokens": 497,
-      "at": "2026-07-02T12:41:56.490Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/StudyPhaseVO.java",
-      "action": "create",
-      "tokens": 554,
-      "at": "2026-07-02T12:42:02.325Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/StudyPhaseApplicationService.java",
-      "action": "create",
-      "tokens": 3440,
-      "at": "2026-07-02T12:42:34.524Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/StudyPhaseController.java",
-      "action": "create",
-      "tokens": 982,
-      "at": "2026-07-02T12:42:43.101Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/config/OpenApiConfig.java",
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/exception/GlobalExceptionHandler.java",
       "action": "edit",
-      "tokens": 30,
-      "at": "2026-07-02T12:42:55.461Z"
+      "tokens": 23,
+      "at": "2026-07-03T07:52:28.867Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/exception/GlobalExceptionHandler.java",
+      "action": "edit",
+      "tokens": 69,
+      "at": "2026-07-03T07:52:35.455Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/resources/application.yml",
+      "action": "edit",
+      "tokens": 38,
+      "at": "2026-07-03T07:52:54.037Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interceptor/TraceIdFilter.java",
+      "action": "create",
+      "tokens": 1119,
+      "at": "2026-07-03T08:04:49.256Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interceptor/JwtInterceptor.java",
+      "action": "edit",
+      "tokens": 129,
+      "at": "2026-07-03T08:04:56.305Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interceptor/JwtInterceptor.java",
+      "action": "edit",
+      "tokens": 50,
+      "at": "2026-07-03T08:05:02.731Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/resources/logback-spring.xml",
+      "action": "edit",
+      "tokens": 16,
+      "at": "2026-07-03T08:05:14.731Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/config/LogHttpProperties.java",
+      "action": "create",
+      "tokens": 228,
+      "at": "2026-07-03T08:13:05.313Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/util/SensitiveMaskUtils.java",
+      "action": "create",
+      "tokens": 457,
+      "at": "2026-07-03T08:13:11.767Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interceptor/TraceIdFilter.java",
+      "action": "create",
+      "tokens": 2282,
+      "at": "2026-07-03T08:13:32.867Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/resources/application.yml",
+      "action": "edit",
+      "tokens": 50,
+      "at": "2026-07-03T08:13:46.365Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interceptor/TraceIdFilter.java",
+      "action": "create",
+      "tokens": 2052,
+      "at": "2026-07-03T08:18:51.759Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interceptor/TraceIdFilter.java",
+      "action": "edit",
+      "tokens": 526,
+      "at": "2026-07-03T08:27:03.319Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interceptor/TraceIdFilter.java",
+      "action": "edit",
+      "tokens": 391,
+      "at": "2026-07-03T08:29:40.444Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interceptor/CachedBodyRequestWrapper.java",
+      "action": "create",
+      "tokens": 362,
+      "at": "2026-07-03T08:40:53.900Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interceptor/TraceIdFilter.java",
+      "action": "create",
+      "tokens": 2051,
+      "at": "2026-07-03T08:41:22.861Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
+      "action": "edit",
+      "tokens": 443,
+      "at": "2026-07-03T10:03:04.169Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
+      "action": "edit",
+      "tokens": 595,
+      "at": "2026-07-03T10:03:16.624Z"
     }
   ],
   "edit_counts": {
-    "src/main/java/com/kg/infrastructure/entity/StudyPhaseEntity.java": 1,
-    "src/main/java/com/kg/infrastructure/entity/StudyPhaseClassEntity.java": 1,
-    "src/main/java/com/kg/infrastructure/mapper/StudyPhaseMapper.java": 1,
-    "src/main/java/com/kg/infrastructure/mapper/StudyPhaseClassMapper.java": 1,
-    "src/main/java/com/kg/interfaces/dto/StudyPhaseRequest.java": 1,
-    "src/main/java/com/kg/interfaces/dto/StudyPhaseVO.java": 1,
-    "src/main/java/com/kg/application/service/StudyPhaseApplicationService.java": 1,
-    "src/main/java/com/kg/interfaces/controller/StudyPhaseController.java": 1,
-    "src/main/java/com/kg/config/OpenApiConfig.java": 1
+    "src/main/java/com/kg/interceptor/TraceIdFilter.java": 7,
+    "src/main/resources/logback-spring.xml": 2,
+    "src/main/java/com/kg/exception/GlobalExceptionHandler.java": 2,
+    "src/main/resources/application.yml": 2,
+    "src/main/java/com/kg/interceptor/JwtInterceptor.java": 2,
+    "src/main/java/com/kg/config/LogHttpProperties.java": 1,
+    "src/main/java/com/kg/util/SensitiveMaskUtils.java": 1,
+    "src/main/java/com/kg/interceptor/CachedBodyRequestWrapper.java": 1,
+    "src/main/java/com/kg/application/service/TaskApplicationService.java": 2
   },
-  "anatomy_hits": 1,
+  "anatomy_hits": 6,
   "anatomy_misses": 0,
-  "repeated_reads_warned": 0,
+  "repeated_reads_warned": 4,
   "cerebrum_warnings": 0,
-  "stop_count": 1
+  "stop_count": 8
 }

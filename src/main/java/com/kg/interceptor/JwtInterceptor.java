@@ -7,6 +7,7 @@ import com.kg.domain.repository.SysUserRepository;
 import com.kg.util.JwtUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -93,6 +94,9 @@ public class JwtInterceptor implements HandlerInterceptor {
             return false;
         }
         UserContext.setUser(byId.get());
+        // 放入 MDC 供日志输出
+        MDC.put("userId", String.valueOf(userId));
+        MDC.put("role", role);
 
         return true;
     }

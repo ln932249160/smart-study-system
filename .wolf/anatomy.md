@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-07-02T12:42:55.448Z
-> Files: 212 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-07-03T10:03:16.609Z
+> Files: 217 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -55,7 +55,7 @@
 - `StudentApplicationService.java` — 学生管理应用服务 —— teacher 全部操作，headmaster/student 可看列表+详情。 (~4195 tok)
 - `StudentCheckinApplicationService.java` — 学生打卡统计服务 —— 连续天数 + 本月次数 + 日历。 (~776 tok)
 - `StudyPhaseApplicationService.java` — 学习阶段应用服务 —— 老师增删改，班长/学生只读本班 (~3211 tok)
-- `TaskApplicationService.java` — 任务管理应用服务 —— 角色权限：teacher/headmaster 全部、student 本人。 (~5019 tok)
+- `TaskApplicationService.java` — 任务管理应用服务 —— 角色权限：teacher/headmaster 全部、student 本人。 (~5557 tok)
 - `TaskPlanApplicationService.java` — 根据计划生成日期列表 (~2606 tok)
 - `TaskTemplateApplicationService.java` — 模板任务应用服务 — teacher + headmaster 可管理 (~1188 tok)
 - `UserApplicationService.java` — 应用层服务 — 编排业务流程。 (~150 tok)
@@ -63,6 +63,7 @@
 ## src/main/java/com/kg/config/
 
 - `DataInitializer.java` — 数据初始化器 —— 启动时检查并创建默认管理员账号。 (~626 tok)
+- `LogHttpProperties.java` — HTTP 日志配置 (~213 tok)
 - `OpenApiConfig.java` — OpenAPI 配置 —— 声明 JWT Bearer Token 认证方式与标签展示顺序。 (~580 tok)
 - `WebMvcConfig.java` — Web MVC 配置 —— 注册 JWT 认证拦截器。 (~310 tok)
 
@@ -113,7 +114,7 @@
 ## src/main/java/com/kg/exception/
 
 - `BusinessException.java` — 业务异常 —— 用于向调用方返回可读的错误信息。 (~120 tok)
-- `GlobalExceptionHandler.java` — 全局异常处理器 —— 所有异常统一返回 {code, message}。 (~1325 tok)
+- `GlobalExceptionHandler.java` — 全局异常处理器 —— 所有异常统一返回 {code, message}。 (~1268 tok)
 
 ## src/main/java/com/kg/infrastructure/converter/
 
@@ -184,7 +185,9 @@
 
 ## src/main/java/com/kg/interceptor/
 
-- `JwtInterceptor.java` — JWT 认证拦截器。 (~995 tok)
+- `CachedBodyRequestWrapper.java` — 构造时立即缓存请求体，后续可重复读取。 (~338 tok)
+- `JwtInterceptor.java` — JWT 认证拦截器。 (~1041 tok)
+- `TraceIdFilter.java` — TraceId + 请求/响应日志。 (~1914 tok)
 
 ## src/main/java/com/kg/interfaces/controller/
 
@@ -280,12 +283,14 @@
 ## src/main/java/com/kg/util/
 
 - `JwtUtil.java` — JWT 工具类 —— 负责 Token 的生成、解析与校验。 (~753 tok)
+- `SensitiveMaskUtils.java` — 敏感数据脱敏工具。 (~427 tok)
 
 ## src/main/resources/
 
 - `1.json` (~58 tok)
 - `2.json` (~91 tok)
-- `application.yml` (~207 tok)
+- `application.yml` (~203 tok)
+- `logback-spring.xml` (~660 tok)
 - `schema.sql` — Database schema (~688 tok)
 
 ## src/main/resources/static/

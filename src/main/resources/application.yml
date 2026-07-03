@@ -19,14 +19,15 @@ spring:
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     db-config:
       id-type: auto
 
-logging:
-  level:
-    com.kg: debug
+log:
+  http:
+    enabled: true
+    body-enabled: true
+    max-body-length: 5000
 
 springdoc:
   writer-with-order-by-keys: true

@@ -86,24 +86,24 @@ public class TaskApplicationService {
         long total;
 
         if (RoleEnum.isStudent(role)) {
-            // 学生：查我分配的任务
+            // 学生：查我分配的任务 → 内存过滤 → 分页
             List<TaskUser> myTaskUsers = taskUserRepository.findByUserId(currentUser.getId());
             List<Long> taskIds = myTaskUsers.stream().map(TaskUser::getTaskId).distinct().collect(Collectors.toList());
-            if (taskIds.isEmpty()) {
-                return emptyPageResult();
-            }
-            tasks = taskRepository.pageByIds(taskIds, offset, req.getPageSize());
-            total = taskRepository.countByIds(taskIds);
+            if (taskIds.isEmpty()) return emptyPageResult();
+            List<Task> all = taskRepository.pageByIds(taskIds, 0, 10000);
+            all = applyFilters(all, req);
+            total = all.size();
+            tasks = paginate(all, offset, req.getPageSize());
         } else if (RoleEnum.isHeadmaster(role)) {
-            // 班长：(target_type=1 AND FIND_IN_SET(classId,target_ids)) OR create_by=userId
+            // 班长：查本班+自己创建 → 内存过滤 → 分页
             Long classId = currentUser.getClassId();
-            if (classId == null) {
-                return emptyPageResult();
-            }
-            tasks = taskRepository.pageByHeadmaster(classId, currentUser.getId(), offset, req.getPageSize());
-            total = taskRepository.countByHeadmaster(classId, currentUser.getId());
+            if (classId == null) return emptyPageResult();
+            List<Task> all = taskRepository.pageByHeadmaster(classId, currentUser.getId(), 0, 10000);
+            all = applyFilters(all, req);
+            total = all.size();
+            tasks = paginate(all, offset, req.getPageSize());
         } else {
-            // 老师：全部 + 过滤
+            // 老师：数据库过滤
             tasks = taskRepository.pageWithFilters(req.getTaskType(), req.getTaskName(), req.getIsMandatory(),
                     req.getStartTimeBegin(), req.getStartTimeEnd(), req.getEndTimeBegin(), req.getEndTimeEnd(),
                     offset, req.getPageSize());
@@ -379,6 +379,34 @@ public class TaskApplicationService {
             return r.getStudentIds();
         }
         return new ArrayList<>();
+    }
+
+    /** 内存过滤（taskType/taskName/isMandatory/时间范围），供学生/班长使用 */
+    private List<Task> applyFilters(List<Task> tasks, TaskPageRequest req) {
+        if (tasks == null || tasks.isEmpty()) return Collections.emptyList();
+        return tasks.stream().filter(t -> {
+            if (req.getTaskType() != null && !req.getTaskType().isEmpty()
+                    && !req.getTaskType().equals(t.getTaskType())) return false;
+            if (req.getTaskName() != null && !req.getTaskName().isEmpty()
+                    && (t.getTaskName() == null || !t.getTaskName().contains(req.getTaskName()))) return false;
+            if (req.getIsMandatory() != null && !req.getIsMandatory().equals(t.getIsMandatory())) return false;
+            if (req.getStartTimeBegin() != null && !req.getStartTimeBegin().isEmpty()
+                    && (t.getTaskStartTime() == null || t.getTaskStartTime().isBefore(parseDateTime(req.getStartTimeBegin() + " 00:00:00")))) return false;
+            if (req.getStartTimeEnd() != null && !req.getStartTimeEnd().isEmpty()
+                    && (t.getTaskStartTime() == null || t.getTaskStartTime().isAfter(parseDateTime(req.getStartTimeEnd() + " 23:59:59")))) return false;
+            if (req.getEndTimeBegin() != null && !req.getEndTimeBegin().isEmpty()
+                    && (t.getTaskEndTime() == null || t.getTaskEndTime().isBefore(parseDateTime(req.getEndTimeBegin() + " 00:00:00")))) return false;
+            if (req.getEndTimeEnd() != null && !req.getEndTimeEnd().isEmpty()
+                    && (t.getTaskEndTime() == null || t.getTaskEndTime().isAfter(parseDateTime(req.getEndTimeEnd() + " 23:59:59")))) return false;
+            return true;
+        }).collect(Collectors.toList());
+    }
+
+    private List<Task> paginate(List<Task> all, int offset, int limit) {
+        if (all == null || all.isEmpty()) return Collections.emptyList();
+        int to = Math.min(offset + limit, all.size());
+        if (offset >= all.size()) return Collections.emptyList();
+        return all.subList(offset, to);
     }
 
     /** 班长只能操作本班班级或本班学生，越权直接抛异常 */

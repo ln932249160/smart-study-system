@@ -2,6 +2,7 @@ package com.kg.exception;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -109,7 +110,9 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public Map<String, Object> handleException(Exception e) {
         log.error("系统内部错误", e);
-        return build(500, "系统内部错误，请联系管理员");
+        Map<String, Object> result = build(500, "系统内部错误，请联系管理员");
+        result.put("traceId", MDC.get("traceId"));
+        return result;
     }
 
     // ==================== 工具 ====================
