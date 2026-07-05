@@ -9,6 +9,10 @@ import com.kg.domain.repository.TaskUserRepository;
 import com.kg.enums.RoleEnum;
 import com.kg.enums.TaskStatusEnum;
 import com.kg.enums.TaskTypeEnum;
+import com.kg.enums.TaskUserStatusEnum;
+import com.kg.infrastructure.entity.TaskEntity;
+import com.kg.infrastructure.mapper.TaskMapper;
+import com.kg.enums.TaskTypeEnum;
 import com.kg.exception.BusinessException;
 import com.kg.infrastructure.entity.TaskUserEntity;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -40,17 +44,20 @@ public class MyTaskApplicationService {
     private final MyTaskMapper myTaskMapper;
     private final TaskUserMapper taskUserMapper;
     private final TaskTemplateMapper taskTemplateMapper;
+    private final TaskMapper taskMapper;
     private final TaskUserRepository taskUserRepository;
     private final TaskScoreRepository taskScoreRepository;
 
     public MyTaskApplicationService(MyTaskMapper myTaskMapper,
                                     TaskUserMapper taskUserMapper,
                                     TaskTemplateMapper taskTemplateMapper,
+                                    TaskMapper taskMapper,
                                     TaskUserRepository taskUserRepository,
                                     TaskScoreRepository taskScoreRepository) {
         this.myTaskMapper = myTaskMapper;
         this.taskUserMapper = taskUserMapper;
         this.taskTemplateMapper = taskTemplateMapper;
+        this.taskMapper = taskMapper;
         this.taskUserRepository = taskUserRepository;
         this.taskScoreRepository = taskScoreRepository;
     }
@@ -182,7 +189,13 @@ public class MyTaskApplicationService {
 
         LocalDateTime now = LocalDateTime.now();
         for (TaskUserEntity tu : list) {
-            tu.setStatus(TaskStatusEnum.FINISHED.getCode());
+            // 逾期判断
+            TaskEntity t = taskMapper.selectById(tu.getTaskId());
+            if (t != null && t.getTaskEndTime() != null && now.isAfter(t.getTaskEndTime())) {
+                tu.setStatus(TaskUserStatusEnum.OVERDUE_FINISHED.getCode());
+            } else {
+                tu.setStatus(TaskUserStatusEnum.FINISHED.getCode());
+            }
             tu.setFinishTime(now);
             tu.setSubmitTime(now);
             tu.setUpdateBy(userId);
@@ -201,10 +214,18 @@ public class MyTaskApplicationService {
 
         TaskUser taskUser = taskUserRepository.findByTaskIdAndUserId(taskId, currentUserId);
         if (taskUser == null) throw new BusinessException("未找到您的任务分配记录");
+        if (TaskUserStatusEnum.isFinished(taskUser.getStatus())) throw new BusinessException("任务已完成，无需重复提交");
 
-        taskUser.setStatus(TaskStatusEnum.FINISHED.getCode());
-        taskUser.setFinishTime(LocalDateTime.now());
-        taskUser.setSubmitTime(LocalDateTime.now());
+        // 逾期判断：now > task_end_time → 逾期完成(status=2)，否则正常完成(status=1)
+        TaskEntity task = taskMapper.selectById(taskId);
+        LocalDateTime now = LocalDateTime.now();
+        if (task != null && task.getTaskEndTime() != null && now.isAfter(task.getTaskEndTime())) {
+            taskUser.setStatus(TaskUserStatusEnum.OVERDUE_FINISHED.getCode());
+        } else {
+            taskUser.setStatus(TaskUserStatusEnum.FINISHED.getCode());
+        }
+        taskUser.setFinishTime(now);
+        taskUser.setSubmitTime(now);
         taskUser.setDurationMinutes(request.getDurationMinutes());
         taskUser.setRemark(request.getRemark());
         taskUser.setUpdateBy(currentUserId);
@@ -235,7 +256,24 @@ public class MyTaskApplicationService {
                 taskUserRepository.update(taskUser);
             }
         }
-        log.info("完成任务成功: taskId={}, userId={}", taskId, currentUserId);
+
+        // 重新计算 task.status
+        refreshTaskStatus(taskId);
+
+        log.info("完成任务成功: taskId={}, userId={}, status={}", taskId, currentUserId, taskUser.getStatus());
+    }
+
+    /** 重算 task.status：该任务下所有 task_user 都已完成(1或2) → task.status=1，否则 0 */
+    private void refreshTaskStatus(Long taskId) {
+        LambdaQueryWrapper<TaskUserEntity> q = new LambdaQueryWrapper<>();
+        q.eq(TaskUserEntity::getTaskId, taskId);
+        q.eq(TaskUserEntity::getStatus, TaskUserStatusEnum.UNFINISHED.getCode());
+        long unfinished = taskUserMapper.selectCount(q);
+        com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper<TaskEntity> uw =
+                new com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper<>();
+        uw.eq(TaskEntity::getId, taskId);
+        uw.set(TaskEntity::getStatus, unfinished == 0 ? TaskStatusEnum.FINISHED.getCode() : TaskStatusEnum.UNFINISHED.getCode());
+        taskMapper.update(null, uw);
     }
 
     // ======================== 修改已完成任务 ========================
@@ -287,12 +325,12 @@ public class MyTaskApplicationService {
         Long userId = resolveUserId(reqUserId);
         LambdaQueryWrapper<TaskUserEntity> q = new LambdaQueryWrapper<>();
         q.eq(TaskUserEntity::getUserId, userId);
-        q.eq(TaskUserEntity::getStatus, TaskStatusEnum.UNFINISHED.getCode());
+        q.eq(TaskUserEntity::getStatus, TaskUserStatusEnum.UNFINISHED.getCode());
         long unfinished = taskUserMapper.selectCount(q);
 
         LambdaQueryWrapper<TaskUserEntity> q2 = new LambdaQueryWrapper<>();
         q2.eq(TaskUserEntity::getUserId, userId);
-        q2.eq(TaskUserEntity::getStatus, TaskStatusEnum.FINISHED.getCode());
+        q2.in(TaskUserEntity::getStatus, TaskUserStatusEnum.FINISHED_CODES);
         long finished = taskUserMapper.selectCount(q2);
 
         Map<String, Object> result = new LinkedHashMap<>();

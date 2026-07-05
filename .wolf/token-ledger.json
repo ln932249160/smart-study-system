@@ -2,14 +2,14 @@
   "version": 1,
   "created_at": "2026-05-30T07:19:17.874Z",
   "lifetime": {
-    "total_tokens_estimated": 842063,
-    "total_reads": 455,
-    "total_writes": 1151,
-    "total_sessions": 30,
-    "anatomy_hits": 455,
+    "total_tokens_estimated": 850709,
+    "total_reads": 458,
+    "total_writes": 1164,
+    "total_sessions": 31,
+    "anatomy_hits": 458,
     "anatomy_misses": 0,
-    "repeated_reads_blocked": 197,
-    "estimated_savings_vs_bare_cli": 580177
+    "repeated_reads_blocked": 198,
+    "estimated_savings_vs_bare_cli": 586219
   },
   "sessions": [
     {
@@ -9345,6 +9345,106 @@
         "writes_count": 20,
         "repeated_reads_blocked": 4,
         "anatomy_lookups": 6
+      }
+    },
+    {
+      "id": "session-2026-07-05-1811",
+      "started": "2026-07-05T10:11:32.808Z",
+      "ended": "2026-07-05T12:56:28.390Z",
+      "reads": [
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/enums/TaskStatusEnum.java",
+          "tokens_estimated": 121,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/HomeMapper.java",
+          "tokens_estimated": 1104,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+          "tokens_estimated": 5442,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/enums/TaskUserStatusEnum.java",
+          "tokens_estimated": 231,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/HomeMapper.java",
+          "tokens_estimated": 7,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/StudentCheckinMapper.java",
+          "tokens_estimated": 7,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java",
+          "tokens_estimated": 7,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java",
+          "tokens_estimated": 7,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+          "tokens_estimated": 68,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+          "tokens_estimated": 292,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+          "tokens_estimated": 932,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+          "tokens_estimated": 139,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+          "tokens_estimated": 179,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
+          "tokens_estimated": 34,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/HomeMapper.java",
+          "tokens_estimated": 46,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
+          "tokens_estimated": 30,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 6667,
+        "output_tokens_estimated": 1979,
+        "reads_count": 3,
+        "writes_count": 13,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 3
       }
     }
   ],

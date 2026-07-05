@@ -14,6 +14,7 @@ import com.kg.domain.repository.TaskTemplateRepository;
 import com.kg.domain.repository.TaskUserRepository;
 import com.kg.enums.RoleEnum;
 import com.kg.enums.TaskStatusEnum;
+import com.kg.enums.TaskUserStatusEnum;
 import com.kg.exception.BusinessException;
 import com.kg.interfaces.dto.ClassOptionVO;
 import com.kg.interfaces.dto.StudentOptionVO;
@@ -114,7 +115,7 @@ public class TaskApplicationService {
         List<TaskVO> list = tasks.stream().map(t -> {
             TaskVO vo = toVO(t);
             List<TaskUser> taskUsers = taskUserRepository.findByTaskId(t.getId());
-            long completed = taskUsers.stream().filter(tu -> TaskStatusEnum.FINISHED.getCode().equals(tu.getStatus())).count();
+            long completed = taskUsers.stream().filter(tu -> TaskUserStatusEnum.isFinished(tu.getStatus())).count();
             long uncompleted = taskUsers.size() - completed;
             vo.setCompletedCount((int) completed);
             vo.setUncompletedCount((int) uncompleted);

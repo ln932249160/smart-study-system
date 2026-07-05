@@ -591,3 +591,22 @@
 | 18:03 | Edited src/main/java/com/kg/application/service/TaskApplicationService.java | 25→25 lines | ~414 |
 | 18:03 | Edited src/main/java/com/kg/application/service/TaskApplicationService.java | added 10 condition(s) | ~556 |
 | 18:03 | Session end: 20 writes across 9 files (TraceIdFilter.java, logback-spring.xml, GlobalExceptionHandler.java, application.yml, JwtInterceptor.java) | 6 reads | ~22097 tok |
+
+## Session: 2026-07-05 18:11
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 20:53 | Created src/main/java/com/kg/enums/TaskUserStatusEnum.java | — | ~215 |
+| 20:54 | Edited src/main/java/com/kg/infrastructure/mapper/HomeMapper.java | inline fix | ~6 |
+| 20:54 | Edited src/main/java/com/kg/infrastructure/mapper/StudentCheckinMapper.java | inline fix | ~6 |
+| 20:54 | Edited src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java | inline fix | ~7 |
+| 20:54 | Edited src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java | inline fix | ~6 |
+| 20:54 | Edited src/main/java/com/kg/application/service/MyTaskApplicationService.java | added 4 import(s) | ~63 |
+| 20:54 | Edited src/main/java/com/kg/application/service/MyTaskApplicationService.java | modified MyTaskApplicationService() | ~273 |
+| 20:55 | Edited src/main/java/com/kg/application/service/MyTaskApplicationService.java | added 2 condition(s) | ~870 |
+| 20:55 | Edited src/main/java/com/kg/application/service/MyTaskApplicationService.java | added 1 condition(s) | ~130 |
+| 20:55 | Edited src/main/java/com/kg/application/service/MyTaskApplicationService.java | modified stats() | ~167 |
+| 20:55 | Edited src/main/java/com/kg/application/service/TaskApplicationService.java | inline fix | ~31 |
+| 20:55 | Edited src/main/java/com/kg/infrastructure/mapper/HomeMapper.java | 2→2 lines | ~43 |
+| 20:56 | Edited src/main/java/com/kg/application/service/TaskApplicationService.java | added 1 import(s) | ~28 |
+| 20:56 | Session end: 13 writes across 6 files (TaskUserStatusEnum.java, HomeMapper.java, StudentCheckinMapper.java, MyTaskMapper.java, MyTaskApplicationService.java) | 3 reads | ~8646 tok |

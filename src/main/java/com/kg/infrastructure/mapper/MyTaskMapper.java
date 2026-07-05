@@ -106,12 +106,12 @@ public interface MyTaskMapper {
             "MIN(tu.total_score) AS min_score, " +
             "AVG(tu.total_score) AS avg_score, " +
             "(SELECT tu2.total_score FROM task_user tu2 JOIN task t2 ON t2.id = tu2.task_id " +
-            " WHERE t2.template_id = tt.id AND tu2.user_id = #{userId} AND tu2.status = '1' " +
+            " WHERE t2.template_id = tt.id AND tu2.user_id = #{userId} AND tu2.status IN ('1','2') " +
             " ORDER BY t2.round_no DESC LIMIT 1) AS latest_score " +
             "FROM task t " +
             "JOIN task_user tu ON tu.task_id = t.id " +
             "JOIN task_template tt ON tt.id = t.template_id " +
-            "WHERE tu.user_id = #{userId} AND tu.status = '1' AND t.template_id IS NOT NULL " +
+            "WHERE tu.user_id = #{userId} AND tu.status IN ('1','2') AND t.template_id IS NOT NULL " +
             "<if test='templateName != null and templateName != \"\"'>AND tt.template_name LIKE CONCAT('%', #{templateName}, '%') </if>" +
             "<if test='taskType != null and taskType != \"\"'>AND tt.task_type = #{taskType} </if>" +
             "<if test='isMandatory != null'>AND t.is_mandatory = #{isMandatory} </if>" +
@@ -131,7 +131,7 @@ public interface MyTaskMapper {
             "FROM task t " +
             "JOIN task_user tu ON tu.task_id = t.id " +
             "JOIN task_template tt ON tt.id = t.template_id " +
-            "WHERE tu.user_id = #{userId} AND tu.status = '1' AND t.template_id IS NOT NULL " +
+            "WHERE tu.user_id = #{userId} AND tu.status IN ('1','2') AND t.template_id IS NOT NULL " +
             "<if test='templateName != null and templateName != \"\"'>AND tt.template_name LIKE CONCAT('%', #{templateName}, '%') </if>" +
             "<if test='taskType != null and taskType != \"\"'>AND tt.task_type = #{taskType} </if>" +
             "<if test='isMandatory != null'>AND t.is_mandatory = #{isMandatory} </if>" +
