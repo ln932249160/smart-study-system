@@ -41,6 +41,31 @@
       "count": 1,
       "tokens": 74,
       "first_read": "2026-07-14T15:56:46.714Z"
+    },
+    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/entity/SysUserEntity.java": {
+      "count": 1,
+      "tokens": 907,
+      "first_read": "2026-07-14T16:32:28.700Z"
+    },
+    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/model/SysUser.java": {
+      "count": 1,
+      "tokens": 891,
+      "first_read": "2026-07-14T16:32:29.429Z"
+    },
+    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/repository/SysUserRepositoryImpl.java": {
+      "count": 1,
+      "tokens": 2056,
+      "first_read": "2026-07-14T16:33:35.633Z"
+    },
+    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ProfileApplicationService.java": {
+      "count": 2,
+      "tokens": 1218,
+      "first_read": "2026-07-14T16:33:47.140Z"
+    },
+    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interceptor/JwtInterceptor.java": {
+      "count": 1,
+      "tokens": 1052,
+      "first_read": "2026-07-14T16:34:17.917Z"
     }
   },
   "files_written": [
@@ -151,6 +176,78 @@
       "action": "edit",
       "tokens": 44,
       "at": "2026-07-14T15:56:58.826Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/entity/SysUserEntity.java",
+      "action": "edit",
+      "tokens": 49,
+      "at": "2026-07-14T16:32:35.711Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/entity/SysUserEntity.java",
+      "action": "edit",
+      "tokens": 99,
+      "at": "2026-07-14T16:32:53.331Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/model/SysUser.java",
+      "action": "edit",
+      "tokens": 43,
+      "at": "2026-07-14T16:32:59.153Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/domain/model/SysUser.java",
+      "action": "edit",
+      "tokens": 108,
+      "at": "2026-07-14T16:33:05.574Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/converter/SysUserConverter.java",
+      "action": "edit",
+      "tokens": 51,
+      "at": "2026-07-14T16:33:11.352Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/converter/SysUserConverter.java",
+      "action": "edit",
+      "tokens": 51,
+      "at": "2026-07-14T16:33:17.237Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/StudentApplicationService.java",
+      "action": "edit",
+      "tokens": 85,
+      "at": "2026-07-14T16:33:24.986Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/repository/SysUserRepositoryImpl.java",
+      "action": "edit",
+      "tokens": 96,
+      "at": "2026-07-14T16:33:41.973Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ProfileApplicationService.java",
+      "action": "edit",
+      "tokens": 95,
+      "at": "2026-07-14T16:34:00.501Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ProfileApplicationService.java",
+      "action": "edit",
+      "tokens": 22,
+      "at": "2026-07-14T16:34:12.219Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interceptor/JwtInterceptor.java",
+      "action": "edit",
+      "tokens": 247,
+      "at": "2026-07-14T16:34:27.848Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/util/JwtUtil.java",
+      "action": "edit",
+      "tokens": 19,
+      "at": "2026-07-14T16:34:34.463Z"
     }
   ],
   "edit_counts": {
@@ -160,15 +257,20 @@
     "src/main/resources/application.yml": 1,
     "src/main/resources/application-dev.yml": 2,
     "src/main/resources/application-prod.yml": 2,
-    "src/main/java/com/kg/application/service/StudentApplicationService.java": 1,
+    "src/main/java/com/kg/application/service/StudentApplicationService.java": 2,
     "src/main/java/com/kg/interfaces/controller/StudentController.java": 1,
-    "src/main/java/com/kg/util/JwtUtil.java": 1,
+    "src/main/java/com/kg/util/JwtUtil.java": 2,
     "src/main/java/com/kg/application/service/AuthApplicationService.java": 2,
-    "src/main/java/com/kg/interceptor/JwtInterceptor.java": 2
+    "src/main/java/com/kg/interceptor/JwtInterceptor.java": 3,
+    "src/main/java/com/kg/infrastructure/entity/SysUserEntity.java": 2,
+    "src/main/java/com/kg/domain/model/SysUser.java": 2,
+    "src/main/java/com/kg/infrastructure/converter/SysUserConverter.java": 2,
+    "src/main/java/com/kg/infrastructure/repository/SysUserRepositoryImpl.java": 1,
+    "src/main/java/com/kg/application/service/ProfileApplicationService.java": 2
   },
-  "anatomy_hits": 8,
+  "anatomy_hits": 13,
   "anatomy_misses": 0,
-  "repeated_reads_warned": 2,
+  "repeated_reads_warned": 3,
   "cerebrum_warnings": 0,
-  "stop_count": 5
+  "stop_count": 6
 }

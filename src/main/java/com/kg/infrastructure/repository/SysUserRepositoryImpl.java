@@ -115,6 +115,9 @@ public class SysUserRepositoryImpl implements SysUserRepository {
         if (user.getTeacherRemark() != null) {
             wrapper.set(SysUserEntity::getTeacherRemark, user.getTeacherRemark());
         }
+        if (user.getPasswordUpdateTime() != null) {
+            wrapper.set(SysUserEntity::getPasswordUpdateTime, user.getPasswordUpdateTime());
+        }
         if (user.getUpdateBy() != null) {
             wrapper.set(SysUserEntity::getUpdateBy, user.getUpdateBy());
         }

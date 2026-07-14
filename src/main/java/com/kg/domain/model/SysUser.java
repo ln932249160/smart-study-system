@@ -40,6 +40,9 @@ public class SysUser {
     /** 教师备注（仅老师可见） */
     private String teacherRemark;
 
+    /** 密码最后修改时间 */
+    private java.time.LocalDateTime passwordUpdateTime;
+
     /** 班级ID */
     private Long classId;
 
@@ -91,6 +94,8 @@ public class SysUser {
     public void setDescription(String description) { this.description = description; }
     public String getTeacherRemark() { return teacherRemark; }
     public void setTeacherRemark(String teacherRemark) { this.teacherRemark = teacherRemark; }
+    public java.time.LocalDateTime getPasswordUpdateTime() { return passwordUpdateTime; }
+    public void setPasswordUpdateTime(java.time.LocalDateTime t) { this.passwordUpdateTime = t; }
 
     public Long getClassId() { return classId; }
     public void setClassId(Long classId) { this.classId = classId; }

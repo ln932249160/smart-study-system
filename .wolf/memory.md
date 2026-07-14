@@ -654,3 +654,16 @@
 | 23:56 | Edited src/main/resources/application-dev.yml | 2→6 lines | ~31 |
 | 23:56 | Edited src/main/resources/application-prod.yml | 2→6 lines | ~44 |
 | 23:57 | Session end: 18 writes across 11 files (BatchTaskService.java, StudentCheckinMapper.java, DataInitializer.java, application.yml, application-dev.yml) | 8 reads | ~13094 tok |
+| 00:32 | Edited src/main/java/com/kg/infrastructure/entity/SysUserEntity.java | 5→8 lines | ~46 |
+| 00:32 | Edited src/main/java/com/kg/infrastructure/entity/SysUserEntity.java | modified getTeacherRemark() | ~92 |
+| 00:32 | Edited src/main/java/com/kg/domain/model/SysUser.java | 4→7 lines | ~40 |
+| 00:33 | Edited src/main/java/com/kg/domain/model/SysUser.java | modified getTeacherRemark() | ~100 |
+| 00:33 | Edited src/main/java/com/kg/infrastructure/converter/SysUserConverter.java | 2→3 lines | ~48 |
+| 00:33 | Edited src/main/java/com/kg/infrastructure/converter/SysUserConverter.java | 2→3 lines | ~48 |
+| 00:33 | Edited src/main/java/com/kg/application/service/StudentApplicationService.java | 4→5 lines | ~79 |
+| 00:33 | Edited src/main/java/com/kg/infrastructure/repository/SysUserRepositoryImpl.java | added 1 condition(s) | ~90 |
+| 00:34 | Edited src/main/java/com/kg/application/service/ProfileApplicationService.java | 6→7 lines | ~89 |
+| 00:34 | Edited src/main/java/com/kg/application/service/ProfileApplicationService.java | added 1 import(s) | ~20 |
+| 00:34 | Edited src/main/java/com/kg/interceptor/JwtInterceptor.java | added 2 condition(s) | ~231 |
+| 00:34 | Edited src/main/java/com/kg/util/JwtUtil.java | modified parseToken() | ~18 |
+| 00:34 | Session end: 30 writes across 16 files (BatchTaskService.java, StudentCheckinMapper.java, DataInitializer.java, application.yml, application-dev.yml) | 13 reads | ~20183 tok |

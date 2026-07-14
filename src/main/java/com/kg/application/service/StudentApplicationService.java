@@ -223,6 +223,7 @@ public class StudentApplicationService {
         SysUser update = new SysUser();
         update.setId(userId);
         update.setPassword(passwordEncoder.encode(DEFAULT_PASSWORD));
+        update.setPasswordUpdateTime(LocalDateTime.now());
         update.setUpdateBy(currentUserId);
         sysUserRepository.update(update);
         log.info("重置密码成功: targetUserId={}, operatorId={}", userId, currentUserId);

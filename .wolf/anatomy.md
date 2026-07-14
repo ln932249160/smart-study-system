@@ -1,6 +1,6 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-07-14T15:56:58.813Z
+> Auto-maintained by OpenWolf. Last scanned: 2026-07-14T16:34:34.450Z
 > Files: 220 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
@@ -51,8 +51,8 @@
 - `MyTaskApplicationService.java` — 我的任务应用服务 —— 个人任务列表 + 完成任务 + 详情 + 修改 + 模板统计。 (~5966 tok)
 - `NotificationApplicationService.java` — 通知消息应用服务 —— 查询列表 + 已读 + 未读数。 (~1594 tok)
 - `NotificationService.java` — 通知消息生成服务 —— 封装消息生成逻辑，在任务创建/编辑时调用。 (~1412 tok)
-- `ProfileApplicationService.java` — 个人中心应用服务 —— 查看/修改个人信息、修改密码。 (~1218 tok)
-- `StudentApplicationService.java` — 学生管理应用服务 —— teacher 全部操作，headmaster/student 可看列表+详情。 (~4507 tok)
+- `ProfileApplicationService.java` — 个人中心应用服务 —— 查看/修改个人信息、修改密码。 (~1242 tok)
+- `StudentApplicationService.java` — 学生管理应用服务 —— teacher 全部操作，headmaster/student 可看列表+详情。 (~4523 tok)
 - `StudentCheckinApplicationService.java` — 学生打卡统计服务 —— 连续天数 + 本月次数 + 日历。 (~776 tok)
 - `StudyPhaseApplicationService.java` — 学习阶段应用服务 —— 老师增删改，班长/学生只读本班 (~3211 tok)
 - `TaskApplicationService.java` — 任务管理应用服务 —— 角色权限：teacher/headmaster 全部、student 本人。 (~5572 tok)
@@ -78,7 +78,7 @@
 - `ClassInfo.java` — 班级领域模型 —— 字段来源于 class_info 表。 (~468 tok)
 - `DictItem.java` — 字典项领域模型 (~482 tok)
 - `LeaveRequest.java` — 请假申请领域模型 —— 字段来源于 leave_request 表。 (~933 tok)
-- `SysUser.java` — 系统用户领域模型 —— 纯 POJO，字段严格来源于 sys_user 表。 (~891 tok)
+- `SysUser.java` — 系统用户领域模型 —— 纯 POJO，字段严格来源于 sys_user 表。 (~962 tok)
 - `Task.java` — 任务领域模型 —— 字段来源于 task 表（15 列，含 template_id）。 (~962 tok)
 - `TaskPlan.java` — 重复任务计划领域模型 —— 字段来源于 task_plan 表。 (~797 tok)
 - `TaskScore.java` — 任务成绩明细领域模型 —— 字段来源于 task_score 表。 (~475 tok)
@@ -124,7 +124,7 @@
 - `ClassInfoConverter.java` — 防腐层转换器 —— domain.ClassInfo ↔ infra.ClassInfoEntity 双向映射。 (~456 tok)
 - `DictConverter.java` — DictItem ↔ DictEntity (~362 tok)
 - `LeaveRequestConverter.java` — LeaveRequest ↔ LeaveRequestEntity (~510 tok)
-- `SysUserConverter.java` — 防腐层转换器 —— domain.SysUser ↔ infra.SysUserEntity 双向映射。 (~647 tok)
+- `SysUserConverter.java` — 防腐层转换器 —— domain.SysUser ↔ infra.SysUserEntity 双向映射。 (~684 tok)
 - `TaskConverter.java` — 防腐层转换器 —— domain.Task ↔ infra.TaskEntity（14 列）。 (~594 tok)
 - `TaskPlanConverter.java` — TaskPlan ↔ TaskPlanEntity (~526 tok)
 - `TaskScoreConverter.java` — 防腐层转换器 —— domain.TaskScore ↔ infra.TaskScoreEntity (~342 tok)
@@ -142,7 +142,7 @@
 - `NotificationMessageEntity.java` — 通知消息持久化实体，映射 notification_message 表。 (~636 tok)
 - `StudyPhaseClassEntity.java` — 学习阶段班级关联实体，映射 study_phase_class 表。 (~241 tok)
 - `StudyPhaseEntity.java` — 学习阶段持久化实体，映射 study_phase 表。 (~530 tok)
-- `SysUserEntity.java` — 系统用户持久化实体，严格映射 sys_user 表（16 列全部覆盖）。 (~907 tok)
+- `SysUserEntity.java` — 系统用户持久化实体，严格映射 sys_user 表（16 列全部覆盖）。 (~977 tok)
 - `TaskEntity.java` — 任务持久化实体，映射 task 表（15 列）。 (~1017 tok)
 - `TaskPlanEntity.java` — 重复任务计划持久化实体，映射 task_plan 表。 (~850 tok)
 - `TaskScoreEntity.java` — 任务成绩明细持久化实体，映射 task_score 表。 (~478 tok)
@@ -177,7 +177,7 @@
 - `ClassInfoRepositoryImpl.java` — 班级仓储实现 —— 使用 MyBatis-Plus 操作 MySQL。 (~1414 tok)
 - `DictRepositoryImpl.java` — 字典仓储实现 (~1192 tok)
 - `LeaveRequestRepositoryImpl.java` — 请假申请仓储实现 (~1539 tok)
-- `SysUserRepositoryImpl.java` — 系统用户仓储实现 —— 使用 MyBatis-Plus 操作 MySQL。 (~2056 tok)
+- `SysUserRepositoryImpl.java` — 系统用户仓储实现 —— 使用 MyBatis-Plus 操作 MySQL。 (~2135 tok)
 - `TaskRepositoryImpl.java` — 任务仓储实现。 (~2266 tok)
 - `TaskScoreRepositoryImpl.java` — 任务成绩明细仓储实现。 (~569 tok)
 - `TaskTemplateRepositoryImpl.java` — 模板任务仓储实现 (~1016 tok)
@@ -187,7 +187,7 @@
 ## src/main/java/com/kg/interceptor/
 
 - `CachedBodyRequestWrapper.java` — 构造时立即缓存请求体，后续可重复读取。 (~338 tok)
-- `JwtInterceptor.java` — JWT 认证拦截器。 (~1052 tok)
+- `JwtInterceptor.java` — JWT 认证拦截器。 (~1184 tok)
 - `TraceIdFilter.java` — TraceId + 请求/响应日志。 (~1914 tok)
 
 ## src/main/java/com/kg/interfaces/controller/

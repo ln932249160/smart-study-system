@@ -95,7 +95,19 @@ public class JwtInterceptor implements HandlerInterceptor {
             writeUnauthorized(response, "用户有误");
             return false;
         }
-        UserContext.setUser(byId.get());
+        SysUser loginUser = byId.get();
+
+        // 6.1 校验 token 是否早于密码修改时间（密码被重置后旧 token 失效）
+        if (loginUser.getPasswordUpdateTime() != null) {
+            java.util.Date iat = jwtUtil.parseToken(token).getIssuedAt();
+            java.util.Date pwdTime = java.sql.Timestamp.valueOf(loginUser.getPasswordUpdateTime());
+            if (iat != null && iat.before(pwdTime)) {
+                writeUnauthorized(response, "密码已修改，请重新登录");
+                return false;
+            }
+        }
+
+        UserContext.setUser(loginUser);
         // 放入 MDC 供日志输出
         MDC.put("userId", String.valueOf(userId));
         MDC.put("role", role);

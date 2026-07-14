@@ -32,6 +32,7 @@ public class SysUserConverter {
         domain.setOpenid(entity.getOpenid());
         domain.setDescription(entity.getDescription());
         domain.setTeacherRemark(entity.getTeacherRemark());
+        domain.setPasswordUpdateTime(entity.getPasswordUpdateTime());
         domain.setClassId(entity.getClassId());
         domain.setStatus(entity.getStatus());
         domain.setCreateBy(entity.getCreateBy());
@@ -60,6 +61,7 @@ public class SysUserConverter {
         entity.setOpenid(domain.getOpenid());
         entity.setDescription(domain.getDescription());
         entity.setTeacherRemark(domain.getTeacherRemark());
+        entity.setPasswordUpdateTime(domain.getPasswordUpdateTime());
         entity.setClassId(domain.getClassId());
         entity.setStatus(domain.getStatus());
         entity.setCreateBy(domain.getCreateBy());

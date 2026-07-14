@@ -47,7 +47,7 @@ public class JwtUtil {
     }
 
     /** 解析 Token */
-    private Claims parseToken(String token) {
+    public Claims parseToken(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(secretKey)
                 .build()

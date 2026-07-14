@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -80,6 +81,7 @@ public class ProfileApplicationService {
         SysUser update = new SysUser();
         update.setId(userId);
         update.setPassword(passwordEncoder.encode(request.getNewPassword()));
+        update.setPasswordUpdateTime(LocalDateTime.now());
         update.setUpdateBy(userId);
         sysUserRepository.update(update);
         log.info("修改密码成功: userId={}", userId);
