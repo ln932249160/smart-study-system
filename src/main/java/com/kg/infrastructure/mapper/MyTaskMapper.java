@@ -24,7 +24,8 @@ public interface MyTaskMapper {
             "tu.id AS task_user_id, tu.status, tu.total_score, tu.submit_time " +
             "FROM task_user tu JOIN task t ON t.id = tu.task_id LEFT JOIN sys_user u ON u.id = t.create_by " +
             "WHERE tu.user_id = #{userId} " +
-            "<if test='status != null and status != \"\"'>AND tu.status = #{status} </if>" +
+            "<if test='status == \"0\"'>AND tu.status = '0' </if>" +
+            "<if test='status == \"1\"'>AND tu.status IN ('1','2') </if>" +
             "<if test='taskName != null and taskName != \"\"'>AND t.task_name LIKE CONCAT('%', #{taskName}, '%') </if>" +
             "<if test='taskType != null and taskType != \"\"'>AND t.task_type = #{taskType} </if>" +
             "<if test='forceFlag != null'>AND t.is_mandatory = #{forceFlag} </if>" +
@@ -58,7 +59,8 @@ public interface MyTaskMapper {
     @Select("<script>" +
             "SELECT COUNT(*) FROM task_user tu JOIN task t ON t.id = tu.task_id " +
             "WHERE tu.user_id = #{userId} " +
-            "<if test='status != null and status != \"\"'>AND tu.status = #{status} </if>" +
+            "<if test='status == \"0\"'>AND tu.status = '0' </if>" +
+            "<if test='status == \"1\"'>AND tu.status IN ('1','2') </if>" +
             "<if test='taskName != null and taskName != \"\"'>AND t.task_name LIKE CONCAT('%', #{taskName}, '%') </if>" +
             "<if test='taskType != null and taskType != \"\"'>AND t.task_type = #{taskType} </if>" +
             "<if test='forceFlag != null'>AND t.is_mandatory = #{forceFlag} </if>" +

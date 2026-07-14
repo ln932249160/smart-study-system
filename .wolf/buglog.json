@@ -1040,6 +1040,22 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-07-05T12:55:42.325Z"
+    },
+    {
+      "id": "bug-066",
+      "timestamp": "2026-07-06T06:22:52.577Z",
+      "error_message": "Incorrect value in code",
+      "file": "src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java",
+      "root_cause": "Had '>AND tu.status = #{status} </if>\"",
+      "fix": "Changed to \"0\\\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-06T06:22:52.577Z"
     }
   ]
 }

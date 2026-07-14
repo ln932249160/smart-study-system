@@ -1,16 +1,16 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-07-05T12:56:07.055Z
+> Auto-maintained by OpenWolf. Last scanned: 2026-07-06T08:18:18.576Z
 > Files: 218 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
 - `.gitignore` — Git ignore rules (~3 tok)
 - `business.md` — 业务流程文档 (~2455 tok)
-- `CLAUDE.md` — CLAUDE.md (~1094 tok)
+- `CLAUDE.md` — CLAUDE.md (~1113 tok)
 - `hello.html` — Hello World (~211 tok)
 - `pom.xml` — Maven project configuration (~977 tok)
-- `README.md` — Project documentation (~1800 tok)
+- `README.md` — Project documentation (~2548 tok)
 
 ## .claude/
 
@@ -158,7 +158,7 @@
 - `DictMapper.java` — 字典 Mapper (~80 tok)
 - `HomeMapper.java` — 首页统计 Mapper —— 聚合 SQL，一次查询完成统计，禁止 N+1。 (~1110 tok)
 - `LeaveRequestMapper.java` — 请假申请 Mapper，操作 leave_request 表。 (~1332 tok)
-- `MyTaskMapper.java` — 我的任务 Mapper —— 以 task_user 为核心 JOIN task。 (~2603 tok)
+- `MyTaskMapper.java` — 我的任务 Mapper —— 以 task_user 为核心 JOIN task。 (~2631 tok)
 - `NotificationMessageMapper.java` — 通知消息 Mapper，操作 notification_message 表。 (~102 tok)
 - `StudentCheckinMapper.java` — 学生打卡 Mapper —— 查询当前学生所有已完成打卡日期。 (~204 tok)
 - `StudyPhaseClassMapper.java` — 学习阶段班级关联 Mapper (~85 tok)

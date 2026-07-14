@@ -17,76 +17,68 @@ Full protocol at `.wolf/OPENWOLF.md`.
 ## Build & Run
 
 ```bash
-# Start (requires MySQL kg_db running on localhost:3306)
 mvn spring-boot:run
-
-# Swagger UI
-# http://localhost:8080/swagger-ui/index.html
-
+# Swagger: http://localhost:8080/swagger-ui/index.html
 # Default login: account=root, password=000000
-
-# Compile check (no tests yet)
-mvn compile
+mvn compile     # Compile check
 ```
 
 ## Tech Stack
 
-- **Java 8** — non-negotiable. No `var`, no `List.of()`, no text blocks.
+- **Java 8** — no `var`, no `List.of()`, no text blocks.
 - **Spring Boot 2.7.18** — no 3.x (requires Java 17).
 - **MyBatis-Plus 3.5.3.1** — LambdaQueryWrapper/LambdaUpdateWrapper for all queries.
-- **springdoc-openapi 1.6.15** — not 2.x (2.x requires Java 17). Use `@Tag`, `@Operation`, `@Schema`.
-- **jjwt 0.11.5** — JWT auth.
+- **springdoc-openapi 1.6.15** — not 2.x. Use `@Tag`, `@Operation`, `@Schema`.
+- **jjwt 0.11.5** — JWT auth (24h expiration, HS256).
 - **spring-security-crypto 5.7.11** — BCrypt only (no full Spring Security).
 - **EasyExcel 3.3.2** — Alibaba, for Excel import/export.
 
 ## Architecture: DDD 4-Layer
 
 ```
-interfaces/   → Controller + DTO         (HTTP layer, no business logic)
-application/  → Service                   (orchestration, transactions)
+interfaces/   → Controller + DTO         (HTTP, no business logic)
+application/  → Service                   (orchestration, @Transactional)
 domain/       → Model + Repository interface  (pure POJOs, zero framework deps)
-infrastructure/ → Entity + Mapper + Converter + RepositoryImpl  (MyBatis-Plus, DB mapping)
+infrastructure/ → Entity + Mapper + Converter + RepositoryImpl  (MyBatis-Plus)
 ```
 
 Cross-cutting:
-- `enums/` — RoleEnum (1=teacher, 2=headmaster, 3=student), TaskStatusEnum, ModuleNameEnum
-- `interceptor/` — JwtInterceptor (extracts Bearer token, sets UserContext, clears after)
-- `context/` — UserContext (ThreadLocal holding current user)
-- `exception/` — GlobalExceptionHandler returns `{code, message}` for all exceptions
-- `scheduler/` — @Scheduled tasks (daily check-in 06:00, daily review 08:00, notifications every minute)
+- `enums/` — RoleEnum(1/2/3), TaskStatusEnum(0/1), TaskUserStatusEnum(0/1/2), TaskTypeEnum(0/1/2/3), ModuleNameEnum
+- `interceptor/` — TraceIdFilter(HIGHEST_PRECEDENCE, MDC), JwtInterceptor(UserContext)
+- `context/` — UserContext(ThreadLocal)
+- `exception/` — GlobalExceptionHandler → `{code, message}`, 5xx 含 traceId
+- `scheduler/` — DailyCheckInScheduler(06:00), DailyReviewScheduler(08:00), NotificationScheduler(every min), DailyTaskStartupRunner(启动补偿)
 
 **Rule:** Controller never calls Mapper directly. Always Controller → Service → Repository interface → RepositoryImpl → Mapper.
 
 ## Database
 
-MySQL `kg_db` on `localhost:3306`. Tables: `sys_user`, `task`, `task_user`, `task_score`, `task_template`, `class_info`, `notification_message`, `sys_dict`.
-
-Schema at `src/main/resources/schema.sql` (reference only, `spring.sql.init.mode=never`).
-
-MyBatis-Plus config: `map-underscore-to-camel-case: true`, `id-type: auto`.
+13 tables in `kg_db`: sys_user, task, task_user, task_score, task_template, task_plan, class_info, leave_request, class_fee, study_phase, study_phase_class, notification_message, sys_dict.
 
 ## Auth Flow
 
 ```
 POST /auth/login → BCrypt verify → JwtUtil.generateToken(userId, role)
-→ Client sends: Authorization: Bearer <token>
-→ JwtInterceptor parses token, stores user in UserContext
-→ Controller/Service reads UserContext.getUser()
-→ afterCompletion → UserContext.clear()
+→ Header: Authorization: Bearer <token>
+→ TraceIdFilter → MDC.put(traceId)
+→ JwtInterceptor → UserContext.setUser() + MDC.put(userId, role)
+→ afterCompletion → UserContext.clear() + MDC.clear()
 ```
-
-JWT expiration: 24 hours. Key field: `role` (stored as String "1"/"2"/"3").
 
 ## Key Conventions
 
 - **Unified response:** `{ "code": 200, "message": "...", "data": {...} }`. Pagination: `{ "total": N, "list": [...] }`.
-- **Role checks:** Use `RoleEnum` helpers — `user.isTeacher()`, `user.isHeadmaster()`, `user.isStudent()`. Never compare raw strings.
-- **Account vs Name:** `account` = login (unique, defaults to phone). `name` = display name (non-unique).
-- **Single-class:** Each student belongs to at most one class (`class_id` in sys_user).
-- **Task completion stats:** Always computed live from `task_user` table via `GROUP BY`, never stored redundantly.
-- **Notification visibility:** Controlled by `notify_time` field — query filters `notify_time <= NOW()`.
-- **Template tasks:** `task_template` table. Creating task from template auto-fills fields and auto-increments `round_no`.
-- **Task.target_type:** 1=class, 2=student. `target_ids` = comma-separated IDs.
-- **BusinessException:** Throw with code+message. `GlobalExceptionHandler` catches and formats.
-- **Enum values live in sys_dict** but are also mirrored as Java enums in `com.kg.enums` for type safety.
-- **DDD converter pattern:** Every entity has a matching Converter class (e.g., `SysUserConverter.toDomain()`, `.toEntity()`). Always use converters, never map manually.
+- **Role checks:** Use `RoleEnum` helpers (`isTeacher()`, `isHeadmaster()`, `isStudent()`).
+- **Task status:** `task.status` = overall (0/1), `task_user.status` = per-student (0/1/2). Completion always `IN ('1','2')`.
+- **Task assignment:** `target_type` 1=class 2=student. `target_ids` = comma-separated. Headmaster query uses `FIND_IN_SET + create_by`.
+- **BusinessException:** Throw with code+message. Never catch silently.
+- **DDD converter:** Every entity has Converter class. Use converters, never map manually.
+- **New field rule:** When adding a DB field, sync Entity → Domain Model → Converter (both directions) → DTO/VO → all manual `new DomainModel()` sites → Repository update methods.
+- **User-given SQL:** When the user provides reference SQL, implement it directly. Don't substitute with a different approach.
+- **Query interfaces:** All page/list endpoints must expose meaningful DB fields as filter params.
+- **Enum values:** Mirror `sys_dict` entries as Java enums. Never scatter magic strings.
+- **Notification visibility:** `notify_time <= NOW()`. Status: 0=active, 1=invalidated (logical delete).
+- **Learning phases:** Max 2 per class per day. Validated server-side.
+- **Leave approval:** Teacher approval invalidates notifications for all teachers. Headmaster approval does not.
+- **Repeat tasks:** `task_plan` → date generation → `task` per date → `task_user` per student.
+- **File upload logging:** Skip binary/multipart body. `CachedBodyRequestWrapper` for JSON body.

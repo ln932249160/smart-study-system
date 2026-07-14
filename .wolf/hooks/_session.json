@@ -1,114 +1,12 @@
 {
-  "session_id": "session-2026-07-05-1811",
-  "started": "2026-07-05T10:11:32.808Z",
-  "files_read": {
-    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/enums/TaskStatusEnum.java": {
-      "count": 1,
-      "tokens": 121,
-      "first_read": "2026-07-05T12:53:17.601Z"
-    },
-    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/HomeMapper.java": {
-      "count": 1,
-      "tokens": 1104,
-      "first_read": "2026-07-05T12:53:55.138Z"
-    },
-    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/MyTaskApplicationService.java": {
-      "count": 2,
-      "tokens": 5442,
-      "first_read": "2026-07-05T12:54:32.209Z"
-    }
-  },
-  "files_written": [
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/enums/TaskUserStatusEnum.java",
-      "action": "create",
-      "tokens": 231,
-      "at": "2026-07-05T12:53:49.347Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/HomeMapper.java",
-      "action": "edit",
-      "tokens": 7,
-      "at": "2026-07-05T12:54:01.497Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/StudentCheckinMapper.java",
-      "action": "edit",
-      "tokens": 7,
-      "at": "2026-07-05T12:54:06.676Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java",
-      "action": "edit",
-      "tokens": 7,
-      "at": "2026-07-05T12:54:11.900Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java",
-      "action": "edit",
-      "tokens": 7,
-      "at": "2026-07-05T12:54:17.304Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/MyTaskApplicationService.java",
-      "action": "edit",
-      "tokens": 68,
-      "at": "2026-07-05T12:54:51.217Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/MyTaskApplicationService.java",
-      "action": "edit",
-      "tokens": 292,
-      "at": "2026-07-05T12:54:59.439Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/MyTaskApplicationService.java",
-      "action": "edit",
-      "tokens": 932,
-      "at": "2026-07-05T12:55:14.014Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/MyTaskApplicationService.java",
-      "action": "edit",
-      "tokens": 139,
-      "at": "2026-07-05T12:55:23.185Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/MyTaskApplicationService.java",
-      "action": "edit",
-      "tokens": 179,
-      "at": "2026-07-05T12:55:30.435Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
-      "action": "edit",
-      "tokens": 34,
-      "at": "2026-07-05T12:55:36.379Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/infrastructure/mapper/HomeMapper.java",
-      "action": "edit",
-      "tokens": 46,
-      "at": "2026-07-05T12:55:42.319Z"
-    },
-    {
-      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
-      "action": "edit",
-      "tokens": 30,
-      "at": "2026-07-05T12:56:07.074Z"
-    }
-  ],
-  "edit_counts": {
-    "src/main/java/com/kg/enums/TaskUserStatusEnum.java": 1,
-    "src/main/java/com/kg/infrastructure/mapper/HomeMapper.java": 2,
-    "src/main/java/com/kg/infrastructure/mapper/StudentCheckinMapper.java": 1,
-    "src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java": 2,
-    "src/main/java/com/kg/application/service/MyTaskApplicationService.java": 5,
-    "src/main/java/com/kg/application/service/TaskApplicationService.java": 2
-  },
-  "anatomy_hits": 3,
+  "session_id": "session-2026-07-14-2139",
+  "started": "2026-07-14T13:39:43.751Z",
+  "files_read": {},
+  "files_written": [],
+  "edit_counts": {},
+  "anatomy_hits": 0,
   "anatomy_misses": 0,
-  "repeated_reads_warned": 1,
+  "repeated_reads_warned": 0,
   "cerebrum_warnings": 0,
-  "stop_count": 1
+  "stop_count": 0
 }

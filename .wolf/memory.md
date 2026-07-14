@@ -610,3 +610,24 @@
 | 20:55 | Edited src/main/java/com/kg/infrastructure/mapper/HomeMapper.java | 2→2 lines | ~43 |
 | 20:56 | Edited src/main/java/com/kg/application/service/TaskApplicationService.java | added 1 import(s) | ~28 |
 | 20:56 | Session end: 13 writes across 6 files (TaskUserStatusEnum.java, HomeMapper.java, StudentCheckinMapper.java, MyTaskMapper.java, MyTaskApplicationService.java) | 3 reads | ~8646 tok |
+
+## Session: 2026-07-06 09:45
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-07-06 10:50
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 14:22 | Edited src/main/java/com/kg/infrastructure/mapper/MyTaskMapper.java | 1→2 lines | ~36 |
+| 14:23 | Session end: 1 writes across 1 files (MyTaskMapper.java) | 1 reads | ~2641 tok |
+| 16:17 | Created README.md | — | ~2718 |
+| 16:18 | Created CLAUDE.md | — | ~1188 |
+| 16:18 | Session end: 3 writes across 3 files (MyTaskMapper.java, README.md, CLAUDE.md) | 21 reads | ~23729 tok |
+| 16:33 | Session end: 3 writes across 3 files (MyTaskMapper.java, README.md, CLAUDE.md) | 21 reads | ~23729 tok |
+
+## Session: 2026-07-14 21:39
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
