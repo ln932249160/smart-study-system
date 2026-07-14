@@ -20,6 +20,7 @@ import com.kg.infrastructure.mapper.MyTaskMapper;
 import com.kg.infrastructure.mapper.TaskTemplateMapper;
 import com.kg.infrastructure.mapper.TaskUserMapper;
 import com.kg.interfaces.dto.*;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -75,9 +77,15 @@ public class MyTaskApplicationService {
                 req.getEndTimeBegin(), req.getEndTimeEnd(),
                 req.getFinishTimeStart(), req.getFinishTimeEnd(),
                 req.getIsTemplate());
+
+        LocalDateTime taskStartTimeEnd=null;
+        if(StringUtils.isNotBlank(req.getStartTimeEnd())){
+            LocalDate date = LocalDate.parse(req.getStartTimeEnd());
+            taskStartTimeEnd = date.plusDays(1).atStartOfDay();
+        }
         List<Map<String, Object>> rows = myTaskMapper.page(userId,
                 req.getStatus(), req.getTaskName(), req.getTaskType(),
-                req.getForceFlag(), req.getStartTimeBegin(), req.getStartTimeEnd(),
+                req.getForceFlag(), req.getStartTimeBegin(), taskStartTimeEnd,
                 req.getEndTimeBegin(), req.getEndTimeEnd(),
                 req.getFinishTimeStart(), req.getFinishTimeEnd(),
                 req.getIsTemplate(),

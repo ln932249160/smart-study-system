@@ -94,6 +94,18 @@ public class StudentController {
         return result;
     }
 
+    // ======================== 重置密码 ========================
+
+    /** 老师将指定用户密码重置为默认密码 123456 */
+    @Operation(summary = "重置密码")
+    @PutMapping("/user/reset-password/{userId}")
+    public Map<String, Object> resetPassword(@PathVariable Long userId) {
+        studentApplicationService.resetPassword(userId);
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("code", 200); result.put("message", "密码已重置为123456");
+        return result;
+    }
+
     // ======================== 删除 ========================
 
     @Operation(summary = "删除用户")

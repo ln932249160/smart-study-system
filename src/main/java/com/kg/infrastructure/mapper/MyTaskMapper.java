@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +31,7 @@ public interface MyTaskMapper {
             "<if test='taskType != null and taskType != \"\"'>AND t.task_type = #{taskType} </if>" +
             "<if test='forceFlag != null'>AND t.is_mandatory = #{forceFlag} </if>" +
             "<if test='startTimeBegin != null and startTimeBegin != \"\"'>AND t.task_start_time &gt;= #{startTimeBegin} </if>" +
-            "<if test='startTimeEnd != null and startTimeEnd != \"\"'>AND t.task_start_time &lt;= #{startTimeEnd} </if>" +
+            "<if test='startTimeEnd != null '>AND t.task_start_time &lt;= #{startTimeEnd} </if>" +
             "<if test='endTimeBegin != null and endTimeBegin != \"\"'>AND t.task_end_time &gt;= #{endTimeBegin} </if>" +
             "<if test='endTimeEnd != null and endTimeEnd != \"\"'>AND t.task_end_time &lt;= #{endTimeEnd} </if>" +
             "<if test='finishTimeStart != null and finishTimeStart != \"\"'>AND tu.finish_time &gt;= #{finishTimeStart} </if>" +
@@ -46,7 +47,7 @@ public interface MyTaskMapper {
             @Param("taskType") String taskType,
             @Param("forceFlag") Integer forceFlag,
             @Param("startTimeBegin") String startTimeBegin,
-            @Param("startTimeEnd") String startTimeEnd,
+            @Param("startTimeEnd") LocalDateTime startTimeEnd,
             @Param("endTimeBegin") String endTimeBegin,
             @Param("endTimeEnd") String endTimeEnd,
             @Param("finishTimeStart") String finishTimeStart,

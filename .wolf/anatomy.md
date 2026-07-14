@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-07-06T08:18:18.576Z
-> Files: 218 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-07-14T15:17:40.570Z
+> Files: 220 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -42,7 +42,7 @@
 
 - `.gitkeep` (~0 tok)
 - `AuthApplicationService.java` — 认证应用服务 —— 处理登录业务流程。 (~684 tok)
-- `BatchTaskService.java` — 批处理任务服务 —— 定时任务 + 启动补偿的共享逻辑。 (~2248 tok)
+- `BatchTaskService.java` — 批处理任务服务 —— 定时任务 + 启动补偿的共享逻辑。 (~2288 tok)
 - `ClassApplicationService.java` — 班级管理应用服务 —— teacher 全部操作，headmaster/student 可看列表+详情。 (~2236 tok)
 - `ClassFeeApplicationService.java` — 班费管理应用服务 (~2056 tok)
 - `DictApplicationService.java` — 字典管理应用服务 — 按 dict_code 分组管理 (~1382 tok)
@@ -52,7 +52,7 @@
 - `NotificationApplicationService.java` — 通知消息应用服务 —— 查询列表 + 已读 + 未读数。 (~1594 tok)
 - `NotificationService.java` — 通知消息生成服务 —— 封装消息生成逻辑，在任务创建/编辑时调用。 (~1412 tok)
 - `ProfileApplicationService.java` — 个人中心应用服务 —— 查看/修改个人信息、修改密码。 (~1218 tok)
-- `StudentApplicationService.java` — 学生管理应用服务 —— teacher 全部操作，headmaster/student 可看列表+详情。 (~4195 tok)
+- `StudentApplicationService.java` — 学生管理应用服务 —— teacher 全部操作，headmaster/student 可看列表+详情。 (~4507 tok)
 - `StudentCheckinApplicationService.java` — 学生打卡统计服务 —— 连续天数 + 本月次数 + 日历。 (~776 tok)
 - `StudyPhaseApplicationService.java` — 学习阶段应用服务 —— 老师增删改，班长/学生只读本班 (~3211 tok)
 - `TaskApplicationService.java` — 任务管理应用服务 —— 角色权限：teacher/headmaster 全部、student 本人。 (~5572 tok)
@@ -62,7 +62,7 @@
 
 ## src/main/java/com/kg/config/
 
-- `DataInitializer.java` — 数据初始化器 —— 启动时检查并创建默认管理员账号。 (~626 tok)
+- `DataInitializer.java` — 数据初始化器 —— 启动时检查并创建默认管理员账号。 (~620 tok)
 - `LogHttpProperties.java` — HTTP 日志配置 (~213 tok)
 - `OpenApiConfig.java` — OpenAPI 配置 —— 声明 JWT Bearer Token 认证方式与标签展示顺序。 (~580 tok)
 - `WebMvcConfig.java` — Web MVC 配置 —— 注册 JWT 认证拦截器。 (~310 tok)
@@ -160,7 +160,7 @@
 - `LeaveRequestMapper.java` — 请假申请 Mapper，操作 leave_request 表。 (~1332 tok)
 - `MyTaskMapper.java` — 我的任务 Mapper —— 以 task_user 为核心 JOIN task。 (~2631 tok)
 - `NotificationMessageMapper.java` — 通知消息 Mapper，操作 notification_message 表。 (~102 tok)
-- `StudentCheckinMapper.java` — 学生打卡 Mapper —— 查询当前学生所有已完成打卡日期。 (~204 tok)
+- `StudentCheckinMapper.java` — 学生打卡 Mapper —— 查询当前学生所有已完成打卡日期。 (~202 tok)
 - `StudyPhaseClassMapper.java` — 学习阶段班级关联 Mapper (~85 tok)
 - `StudyPhaseMapper.java` — 学习阶段 Mapper (~80 tok)
 - `SysUserMapper.java` — 系统用户 Mapper，操作 sys_user 表。 (~88 tok)
@@ -205,7 +205,7 @@
 - `NotificationController.java` — 通知消息控制器。 (~626 tok)
 - `ProfileController.java` — 个人中心控制器。 (~657 tok)
 - `StudentCheckinController.java` — 学生打卡统计控制器。 (~424 tok)
-- `StudentController.java` — 用户管理控制器 —— 管理 student / headmaster 角色用户。 (~1856 tok)
+- `StudentController.java` — 用户管理控制器 —— 管理 student / headmaster 角色用户。 (~1859 tok)
 - `StudyPhaseController.java` — 学习阶段控制器 (~916 tok)
 - `TaskController.java` — 任务管理控制器。 (~792 tok)
 - `TaskPlanController.java` — 任务计划控制器 (~791 tok)
@@ -290,7 +290,9 @@
 
 - `1.json` (~58 tok)
 - `2.json` (~91 tok)
-- `application.yml` (~203 tok)
+- `application-dev.yml` (~74 tok)
+- `application-prod.yml` (~76 tok)
+- `application.yml` (~141 tok)
 - `logback-spring.xml` (~660 tok)
 - `schema.sql` — Database schema (~688 tok)
 

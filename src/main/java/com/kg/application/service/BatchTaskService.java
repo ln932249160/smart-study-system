@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -102,6 +103,7 @@ public class BatchTaskService {
         task.setIsMandatory(forceFlag);
         task.setTargetType(1);
         task.setTargetIds(targetIds);
+        task.setTaskDescription(date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         task.setTaskStartTime(LocalDateTime.of(date, LocalTime.of(startHour, 0)));
         task.setTaskEndTime(LocalDateTime.of(date, LocalTime.of(23, 59)));
         task.setCreateBy(SYSTEM_USER_ID);

@@ -18,7 +18,7 @@ public interface StudentCheckinMapper {
      */
     @Select("SELECT DISTINCT DATE(t.task_start_time) AS checkinDate " +
             "FROM task_user tu JOIN task t ON t.id = tu.task_id " +
-            "WHERE tu.user_id = #{userId} AND t.task_type = #{taskType} AND tu.status IN ('1','2') " +
+            "WHERE tu.user_id = #{userId} AND t.task_type = #{taskType} AND tu.status = '1' " +
             "ORDER BY checkinDate DESC")
     List<String> findCheckinDates(@Param("userId") Long userId, @Param("taskType") String taskType);
 }

@@ -213,6 +213,21 @@ public class StudentApplicationService {
         log.info("删除学生成功: id={}", id);
     }
 
+    // ======================== 重置密码（仅老师） ========================
+
+    /** 老师将指定用户密码重置为默认密码 123456 */
+    public void resetPassword(Long userId) {
+        Long currentUserId = requireTeacher();
+        SysUser existing = sysUserRepository.findById(userId)
+                .orElseThrow(() -> new BusinessException("用户不存在"));
+        SysUser update = new SysUser();
+        update.setId(userId);
+        update.setPassword(passwordEncoder.encode(DEFAULT_PASSWORD));
+        update.setUpdateBy(currentUserId);
+        sysUserRepository.update(update);
+        log.info("重置密码成功: targetUserId={}, operatorId={}", userId, currentUserId);
+    }
+
     // ======================== 班级下拉 ========================
 
     public List<ClassOptionVO> listClassOptions() {
