@@ -26,6 +26,21 @@
       "count": 1,
       "tokens": 1856,
       "first_read": "2026-07-14T15:17:33.891Z"
+    },
+    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/util/JwtUtil.java": {
+      "count": 1,
+      "tokens": 753,
+      "first_read": "2026-07-14T15:55:32.834Z"
+    },
+    "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/AuthApplicationService.java": {
+      "count": 2,
+      "tokens": 684,
+      "first_read": "2026-07-14T15:55:54.280Z"
+    },
+    "F:/aiProject/smart-study-system/backend/src/main/resources/application-dev.yml": {
+      "count": 1,
+      "tokens": 74,
+      "first_read": "2026-07-14T15:56:46.714Z"
     }
   },
   "files_written": [
@@ -94,6 +109,48 @@
       "action": "edit",
       "tokens": 172,
       "at": "2026-07-14T15:17:40.583Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/util/JwtUtil.java",
+      "action": "create",
+      "tokens": 621,
+      "at": "2026-07-14T15:55:48.853Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/AuthApplicationService.java",
+      "action": "edit",
+      "tokens": 174,
+      "at": "2026-07-14T15:56:25.386Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/AuthApplicationService.java",
+      "action": "edit",
+      "tokens": 24,
+      "at": "2026-07-14T15:56:30.661Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interceptor/JwtInterceptor.java",
+      "action": "edit",
+      "tokens": 50,
+      "at": "2026-07-14T15:56:36.723Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interceptor/JwtInterceptor.java",
+      "action": "edit",
+      "tokens": 3,
+      "at": "2026-07-14T15:56:41.600Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/resources/application-dev.yml",
+      "action": "edit",
+      "tokens": 31,
+      "at": "2026-07-14T15:56:52.916Z"
+    },
+    {
+      "file": "F:/aiProject/smart-study-system/backend/src/main/resources/application-prod.yml",
+      "action": "edit",
+      "tokens": 44,
+      "at": "2026-07-14T15:56:58.826Z"
     }
   ],
   "edit_counts": {
@@ -101,14 +158,17 @@
     "src/main/java/com/kg/infrastructure/mapper/StudentCheckinMapper.java": 1,
     "src/main/java/com/kg/config/DataInitializer.java": 3,
     "src/main/resources/application.yml": 1,
-    "src/main/resources/application-dev.yml": 1,
-    "src/main/resources/application-prod.yml": 1,
+    "src/main/resources/application-dev.yml": 2,
+    "src/main/resources/application-prod.yml": 2,
     "src/main/java/com/kg/application/service/StudentApplicationService.java": 1,
-    "src/main/java/com/kg/interfaces/controller/StudentController.java": 1
+    "src/main/java/com/kg/interfaces/controller/StudentController.java": 1,
+    "src/main/java/com/kg/util/JwtUtil.java": 1,
+    "src/main/java/com/kg/application/service/AuthApplicationService.java": 2,
+    "src/main/java/com/kg/interceptor/JwtInterceptor.java": 2
   },
-  "anatomy_hits": 5,
+  "anatomy_hits": 8,
   "anatomy_misses": 0,
-  "repeated_reads_warned": 1,
+  "repeated_reads_warned": 2,
   "cerebrum_warnings": 0,
-  "stop_count": 4
+  "stop_count": 5
 }

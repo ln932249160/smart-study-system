@@ -1,6 +1,6 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-07-14T15:17:40.570Z
+> Auto-maintained by OpenWolf. Last scanned: 2026-07-14T15:56:58.813Z
 > Files: 220 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
@@ -41,7 +41,7 @@
 ## src/main/java/com/kg/application/service/
 
 - `.gitkeep` (~0 tok)
-- `AuthApplicationService.java` — 认证应用服务 —— 处理登录业务流程。 (~684 tok)
+- `AuthApplicationService.java` — 认证应用服务 —— 处理登录业务流程。 (~841 tok)
 - `BatchTaskService.java` — 批处理任务服务 —— 定时任务 + 启动补偿的共享逻辑。 (~2288 tok)
 - `ClassApplicationService.java` — 班级管理应用服务 —— teacher 全部操作，headmaster/student 可看列表+详情。 (~2236 tok)
 - `ClassFeeApplicationService.java` — 班费管理应用服务 (~2056 tok)
@@ -187,7 +187,7 @@
 ## src/main/java/com/kg/interceptor/
 
 - `CachedBodyRequestWrapper.java` — 构造时立即缓存请求体，后续可重复读取。 (~338 tok)
-- `JwtInterceptor.java` — JWT 认证拦截器。 (~1041 tok)
+- `JwtInterceptor.java` — JWT 认证拦截器。 (~1052 tok)
 - `TraceIdFilter.java` — TraceId + 请求/响应日志。 (~1914 tok)
 
 ## src/main/java/com/kg/interfaces/controller/
@@ -283,15 +283,15 @@
 
 ## src/main/java/com/kg/util/
 
-- `JwtUtil.java` — JWT 工具类 —— 负责 Token 的生成、解析与校验。 (~753 tok)
+- `JwtUtil.java` — JWT 工具类 —— 负责 Token 的生成、解析与校验。 (~579 tok)
 - `SensitiveMaskUtils.java` — 敏感数据脱敏工具。 (~427 tok)
 
 ## src/main/resources/
 
 - `1.json` (~58 tok)
 - `2.json` (~91 tok)
-- `application-dev.yml` (~74 tok)
-- `application-prod.yml` (~76 tok)
+- `application-dev.yml` (~95 tok)
+- `application-prod.yml` (~111 tok)
 - `application.yml` (~141 tok)
 - `logback-spring.xml` (~660 tok)
 - `schema.sql` — Database schema (~688 tok)

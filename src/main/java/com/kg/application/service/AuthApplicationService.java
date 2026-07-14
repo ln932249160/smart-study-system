@@ -29,11 +29,14 @@ public class AuthApplicationService {
 
     private final BCryptPasswordEncoder passwordEncoder;
     private final ClassInfoRepository classInfoRepository;
+    private final JwtUtil jwtUtil;
 
-    public AuthApplicationService(SysUserRepository sysUserRepository, BCryptPasswordEncoder passwordEncoder, ClassInfoRepository classInfoRepository) {
+    public AuthApplicationService(SysUserRepository sysUserRepository, BCryptPasswordEncoder passwordEncoder,
+                                   ClassInfoRepository classInfoRepository, JwtUtil jwtUtil) {
         this.sysUserRepository = sysUserRepository;
         this.passwordEncoder = passwordEncoder;
         this.classInfoRepository = classInfoRepository;
+        this.jwtUtil = jwtUtil;
     }
 
     /**
@@ -74,7 +77,7 @@ public class AuthApplicationService {
             }
         }
 
-        String token = JwtUtil.generateToken(sysUser.getId(), sysUser.getRole());
+        String token = jwtUtil.generateToken(sysUser.getId(), sysUser.getRole());
         log.info("登录成功: userId={}, account={}, role={}", sysUser.getId(), account, sysUser.getRole());
 
         return LoginResponse.of(token, sysUser.getId(), sysUser.getAccount(), sysUser.getRole(),sysUser.getName(), sysUser.getClassId(),className);

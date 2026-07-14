@@ -41,6 +41,8 @@ public class JwtInterceptor implements HandlerInterceptor {
 
     @Autowired
     private SysUserRepository sysUserRepository;
+    @Autowired
+    private JwtUtil jwtUtil;
 
     /**
      * 请求前置处理：提取 Token → 校验 → 解析 → 存入 UserContext。
@@ -70,7 +72,7 @@ public class JwtInterceptor implements HandlerInterceptor {
         }
 
         // 4. 校验 Token 有效性
-        if (!JwtUtil.validateToken(token)) {
+        if (!jwtUtil.validateToken(token)) {
             writeUnauthorized(response, "Token 无效或已过期");
             return false;
         }
@@ -79,8 +81,8 @@ public class JwtInterceptor implements HandlerInterceptor {
         Long userId;
         String role;
         try {
-            userId = JwtUtil.getUserId(token);
-            role = JwtUtil.getRole(token);
+            userId = jwtUtil.getUserId(token);
+            role = jwtUtil.getRole(token);
         } catch (Exception e) {
             log.warn("JWT 解析失败: {}", e.getMessage());
             writeUnauthorized(response, "Token 解析失败");

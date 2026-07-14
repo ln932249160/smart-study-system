@@ -5,5 +5,9 @@ spring:
     password: 'mghllszc6@'
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+jwt:
+  secret: 7RckYKQr6eSY73RKnx00CuA2NyDg0sxOxQTwosw6_QqulPtobTfz9uUmFN_qoqTO463Mlz62gBvRg3AdCQHfMQ
+  expire: 86400
+
 system:
   init-root-enabled: false

@@ -1088,6 +1088,38 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-07-14T14:49:23.265Z"
+    },
+    {
+      "id": "bug-069",
+      "timestamp": "2026-07-14T15:56:30.664Z",
+      "error_message": "Wrong reference: JwtUtil should be jwtUtil",
+      "file": "src/main/java/com/kg/application/service/AuthApplicationService.java",
+      "root_cause": "Used \"JwtUtil\" instead of \"jwtUtil\"",
+      "fix": "Changed JwtUtil → jwtUtil",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-14T15:56:30.664Z"
+    },
+    {
+      "id": "bug-070",
+      "timestamp": "2026-07-14T15:56:41.603Z",
+      "error_message": "Wrong reference: JwtUtil should be jwtUtil",
+      "file": "src/main/java/com/kg/interceptor/JwtInterceptor.java",
+      "root_cause": "Used \"JwtUtil\" instead of \"jwtUtil\"",
+      "fix": "Changed JwtUtil → jwtUtil",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-14T15:56:41.603Z"
     }
   ]
 }
