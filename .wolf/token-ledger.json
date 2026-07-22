@@ -2,14 +2,14 @@
   "version": 1,
   "created_at": "2026-05-30T07:19:17.874Z",
   "lifetime": {
-    "total_tokens_estimated": 954966,
-    "total_reads": 533,
-    "total_writes": 1246,
-    "total_sessions": 34,
-    "anatomy_hits": 533,
+    "total_tokens_estimated": 959577,
+    "total_reads": 535,
+    "total_writes": 1257,
+    "total_sessions": 36,
+    "anatomy_hits": 535,
     "anatomy_misses": 0,
     "repeated_reads_blocked": 207,
-    "estimated_savings_vs_bare_cli": 617293
+    "estimated_savings_vs_bare_cli": 617693
   },
   "sessions": [
     {
@@ -10458,6 +10458,90 @@
         "writes_count": 30,
         "repeated_reads_blocked": 3,
         "anatomy_lookups": 13
+      }
+    },
+    {
+      "id": "session-2026-07-20-2224",
+      "started": "2026-07-20T14:24:12.081Z",
+      "ended": "2026-07-20T14:27:48.596Z",
+      "reads": [
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/config/WebMvcConfig.java",
+          "tokens_estimated": 310,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/resources/application-prod.yml",
+          "tokens_estimated": 111,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/config/WebMvcConfig.java",
+          "tokens_estimated": 70,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/config/WechatMiniappProperties.java",
+          "tokens_estimated": 152,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/WechatMiniappService.java",
+          "tokens_estimated": 1341,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/MiniappLoginRequest.java",
+          "tokens_estimated": 130,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/MiniappPhoneLoginRequest.java",
+          "tokens_estimated": 203,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/MiniappLoginVO.java",
+          "tokens_estimated": 488,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/MiniappLoginService.java",
+          "tokens_estimated": 1225,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/MiniappLoginController.java",
+          "tokens_estimated": 494,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/MiniappLoginController.java",
+          "tokens_estimated": 26,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/resources/application-dev.yml",
+          "tokens_estimated": 29,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/resources/application-prod.yml",
+          "tokens_estimated": 32,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 421,
+        "output_tokens_estimated": 4190,
+        "reads_count": 2,
+        "writes_count": 11,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 2
       }
     }
   ],

@@ -1152,6 +1152,22 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-07-14T16:34:34.466Z"
+    },
+    {
+      "id": "bug-073",
+      "timestamp": "2026-07-20T14:27:04.611Z",
+      "error_message": "Wrong reference: MiniAppLoginService should be MiniappLoginService",
+      "file": "src/main/java/com/kg/interfaces/controller/MiniappLoginController.java",
+      "root_cause": "Used \"MiniAppLoginService\" instead of \"MiniappLoginService\"",
+      "fix": "Changed MiniAppLoginService → MiniappLoginService",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "java"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-20T14:27:04.611Z"
     }
   ]
 }

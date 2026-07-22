@@ -1,64 +1,9 @@
-http://localhost:8080/swagger-ui.html
-http://localhost:8080/swagger-ui/index.html
-
-
-
-要求：
-1. 所有类必须有类注释
-2. 所有字段必须有字段注释
-3. 所有接口必须有 Swagger 注释
-4. 所有方法必须有方法注释
-5. DTO/VO 必须写 @Schema
-6. Controller 必须写 @Tag
-7. 接口必须写 @Operation
-8. 所有代码符合 AI 可读性
-9. 所有变量名语义化
-10. 不要省略业务注释
-
-
-
-
-微信 code → openid → 查 user → 发 JWT
-
-
-
-
-
-CREATE TABLE `task_template` (
-`id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-`template_name` varchar(200) NOT NULL COMMENT '模板名称',
-`task_type` varchar(50) NOT NULL COMMENT '任务类型',
-`is_mandatory` tinyint(4) DEFAULT '0' COMMENT '是否强制',
-`task_description` text COMMENT '模板描述',
-`default_priority` int(11) DEFAULT '0' COMMENT '默认优先级',
-`create_by` bigint(20) DEFAULT NULL COMMENT '创建人',
-`create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-`update_by` bigint(20) DEFAULT NULL COMMENT '修改人',
-`update_time` datetime DEFAULT CURRENT_TIMESTAMP
-ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
-PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='任务模板表';
-
-1.任务管理下面拆成两个子菜单，一个任务管理，一个模板任务管理
-2.模板任务管理新增，参数就是表里面的参数。
-3.任务管理，新增的时候先选，是否模板任务，选择是，使用模板任务的名称，任务类型，是否强制，模板描述，默认优先级作为任务优先级。轮次为模板任务表中的已有轮次+1
-        新增任务后，模板任务的轮次+1，任务新增和模板任务的修改放到一个事务里面。
-
-
-
--- kg_db.task definition
-
-CREATE TABLE `task` (
-`id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-`is_template` tinyint(4) DEFAULT '0' COMMENT '是否模板：1是 0否',
-`template_task_id` bigint(20) DEFAULT NULL COMMENT '模板任务ID',
-`round_no` int(11) DEFAULT '0' COMMENT '轮次，模板为0',
-`task_start_time` datetime DEFAULT NULL COMMENT '任务开始时间',
-`task_end_time` datetime DEFAULT NULL COMMENT '任务结束时间',
-`class_id` bigint(20) DEFAULT NULL COMMENT '班级ID',
-`create_by` bigint(20) DEFAULT NULL COMMENT '创建人',
-`create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-`update_by` bigint(20) DEFAULT NULL COMMENT '修改人',
-`update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
-PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COMMENT='任务表';
+2026-07-22 21:49:19.343 [http-nio-8080-exec-6] INFO  [traceId=bc92b662173046b492de08cf75bd6c22 userId= role=] com.kg.interceptor.TraceIdFilter - HTTP_REQUEST_START method=POST uri=/my-task/list query=null
+requestBody={"pageNum":1,"pageSize":10,"status":"0"}
+ip=0:0:0:0:0:0:0:1 userAgent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)
+Chrome/123.0.0.0 Safari/537.36
+2026-07-22 21:50:32.558 [http-nio-8080-exec-8] INFO  [traceId=6327da237cea4a2db77c4f66fa8e2934 userId= role=] com.kg.interceptor.TraceIdFilter - HTTP_REQUEST_START method=POST uri=/my-task/list query=null
+requestBody={"pageNo":1,"pageSize":10,"status":"0"}
+ip=0:0:0:0:0:0:0:1 userAgent=Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko)
+Version/15.0 Mobile/15E148 Safari/604.1 wechatdevtools/2.01.2510290 MicroMessenger/8.0.5
+Language/zh_CN webview/ hash/597225176 sid/jAVCl7QYrr

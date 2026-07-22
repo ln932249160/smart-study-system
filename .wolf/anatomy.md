@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-07-14T16:34:34.450Z
-> Files: 220 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-07-20T14:27:23.651Z
+> Files: 227 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -48,6 +48,7 @@
 - `DictApplicationService.java` — 字典管理应用服务 — 按 dict_code 分组管理 (~1382 tok)
 - `HomeApplicationService.java` — 首页统计应用服务 —— 基于聚合 SQL 提供 teacher / headmaster / student 三种视角的统计数据。 (~1832 tok)
 - `LeaveRequestApplicationService.java` — 请假申请应用服务 —— 学生请假、老师/班长审批。 (~4590 tok)
+- `MiniappLoginService.java` — 小程序登录服务 (~1144 tok)
 - `MyTaskApplicationService.java` — 我的任务应用服务 —— 个人任务列表 + 完成任务 + 详情 + 修改 + 模板统计。 (~5966 tok)
 - `NotificationApplicationService.java` — 通知消息应用服务 —— 查询列表 + 已读 + 未读数。 (~1594 tok)
 - `NotificationService.java` — 通知消息生成服务 —— 封装消息生成逻辑，在任务创建/编辑时调用。 (~1412 tok)
@@ -59,13 +60,15 @@
 - `TaskPlanApplicationService.java` — 根据计划生成日期列表 (~2606 tok)
 - `TaskTemplateApplicationService.java` — 模板任务应用服务 — teacher + headmaster 可管理 (~1188 tok)
 - `UserApplicationService.java` — 应用层服务 — 编排业务流程。 (~150 tok)
+- `WechatMiniappService.java` — 微信小程序服务 —— code2Session + 手机号 + access_token 缓存 (~1251 tok)
 
 ## src/main/java/com/kg/config/
 
 - `DataInitializer.java` — 数据初始化器 —— 启动时检查并创建默认管理员账号。 (~620 tok)
 - `LogHttpProperties.java` — HTTP 日志配置 (~213 tok)
 - `OpenApiConfig.java` — OpenAPI 配置 —— 声明 JWT Bearer Token 认证方式与标签展示顺序。 (~580 tok)
-- `WebMvcConfig.java` — Web MVC 配置 —— 注册 JWT 认证拦截器。 (~310 tok)
+- `WebMvcConfig.java` — Web MVC 配置 —— 注册 JWT 认证拦截器。 (~325 tok)
+- `WechatMiniappProperties.java` — 微信小程序配置 (~142 tok)
 
 ## src/main/java/com/kg/context/
 
@@ -201,6 +204,7 @@
 - `HelloController.java` — RestController: HelloController (1 endpoints) (~198 tok)
 - `HomeController.java` — 首页统计控制器。 (~468 tok)
 - `LeaveRequestController.java` — 请假申请控制器 —— 学生请假、老师/班长审批。 (~812 tok)
+- `MiniappLoginController.java` — 小程序登录控制器 (~461 tok)
 - `MyTaskController.java` — 我的任务控制器 —— 个人任务列表 + 详情 + 完成 + 修改 + 模板统计。 (~1286 tok)
 - `NotificationController.java` — 通知消息控制器。 (~626 tok)
 - `ProfileController.java` — 个人中心控制器。 (~657 tok)
@@ -238,6 +242,9 @@
 - `LoginRequest.java` — 登录请求 DTO (~246 tok)
 - `LoginResponse.java` — 登录响应 DTO (~399 tok)
 - `LowCompletedTaskVO.java` — 完成率最低任务 VO (~505 tok)
+- `MiniappLoginRequest.java` — MiniappLoginRequest: getLoginCode, setLoginCode (~122 tok)
+- `MiniappLoginVO.java` — MiniappLoginVO: getId, setId, getAccount, setAccount (~455 tok)
+- `MiniappPhoneLoginRequest.java` — MiniappPhoneLoginRequest: getLoginCode, setLoginCode, getPhoneCode, setPhoneCode (~189 tok)
 - `MyTaskCompleteRequest.java` — 我的任务完成请求 DTO (~529 tok)
 - `MyTaskDetailVO.java` — 我的任务详情 VO (~1184 tok)
 - `MyTaskPageRequest.java` — 我的任务分页请求 DTO (~824 tok)
@@ -290,8 +297,8 @@
 
 - `1.json` (~58 tok)
 - `2.json` (~91 tok)
-- `application-dev.yml` (~95 tok)
-- `application-prod.yml` (~111 tok)
+- `application-dev.yml` (~114 tok)
+- `application-prod.yml` (~133 tok)
 - `application.yml` (~141 tok)
 - `logback-spring.xml` (~660 tok)
 - `schema.sql` — Database schema (~688 tok)

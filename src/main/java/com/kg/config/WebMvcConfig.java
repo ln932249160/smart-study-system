@@ -26,6 +26,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .addPathPatterns("/**")
                 .excludePathPatterns(
                         "/auth/login",
+                        "/miniapp/**",
                         "/batch/daily-checkin",
                         "/batch/daily-review",
                         "/hello",

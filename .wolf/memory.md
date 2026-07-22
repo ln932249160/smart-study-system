@@ -667,3 +667,25 @@
 | 00:34 | Edited src/main/java/com/kg/interceptor/JwtInterceptor.java | added 2 condition(s) | ~231 |
 | 00:34 | Edited src/main/java/com/kg/util/JwtUtil.java | modified parseToken() | ~18 |
 | 00:34 | Session end: 30 writes across 16 files (BatchTaskService.java, StudentCheckinMapper.java, DataInitializer.java, application.yml, application-dev.yml) | 13 reads | ~20183 tok |
+
+## Session: 2026-07-20 22:24
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 22:26 | Edited src/main/java/com/kg/config/WebMvcConfig.java | 5→6 lines | ~66 |
+| 22:26 | Created src/main/java/com/kg/config/WechatMiniappProperties.java | — | ~142 |
+| 22:26 | Created src/main/java/com/kg/application/service/WechatMiniappService.java | — | ~1251 |
+| 22:26 | Created src/main/java/com/kg/interfaces/dto/MiniappLoginRequest.java | — | ~122 |
+| 22:26 | Created src/main/java/com/kg/interfaces/dto/MiniappPhoneLoginRequest.java | — | ~189 |
+| 22:26 | Created src/main/java/com/kg/interfaces/dto/MiniappLoginVO.java | — | ~455 |
+| 22:26 | Created src/main/java/com/kg/application/service/MiniappLoginService.java | — | ~1144 |
+| 22:26 | Created src/main/java/com/kg/interfaces/controller/MiniappLoginController.java | — | ~461 |
+| 22:27 | Edited src/main/java/com/kg/interfaces/controller/MiniappLoginController.java | inline fix | ~24 |
+| 22:27 | Edited src/main/resources/application-dev.yml | 2→7 lines | ~29 |
+| 22:27 | Edited src/main/resources/application-prod.yml | 2→7 lines | ~32 |
+| 22:27 | Session end: 11 writes across 10 files (WebMvcConfig.java, WechatMiniappProperties.java, WechatMiniappService.java, MiniappLoginRequest.java, MiniappPhoneLoginRequest.java) | 2 reads | ~4611 tok |
+
+## Session: 2026-07-22 22:08
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
