@@ -1,7 +1,12 @@
 package com.kg.interfaces.controller;
 
+import com.kg.interfaces.dto.AjaxResult;
+import com.kg.interfaces.dto.PageVO;
+import com.kg.interfaces.dto.NotificationVO;
 import com.kg.application.service.NotificationApplicationService;
 import com.kg.interfaces.dto.NotificationPageRequest;
+import com.kg.interfaces.dto.PageVO;
+import com.kg.interfaces.dto.NotificationVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,12 +38,8 @@ public class NotificationController {
     @Operation(summary = "消息列表")
     @PostMapping("/notification/list")
     public Map<String, Object> list(@Valid @RequestBody NotificationPageRequest req) {
-        Map<String, Object> data = notificationApplicationService.page(req);
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("code", 200);
-        result.put("message", "查询成功");
-        result.put("data", data);
-        return result;
+        PageVO<NotificationVO> data = notificationApplicationService.page(req);
+        return AjaxResult.success("查询成功", data);
     }
 
     /**
@@ -49,20 +50,13 @@ public class NotificationController {
     public Map<String, Object> markRead(@RequestBody Map<String, Long> body) {
         Long messageId = body.get("id");
         notificationApplicationService.markRead(messageId);
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("code", 200);
-        result.put("message", "已读");
-        return result;
+        return AjaxResult.success("已读");
     }
 
     @Operation(summary = "未读消息数")
     @GetMapping("/notification/unread-count")
     public Map<String, Object> unreadCount() {
         long count = notificationApplicationService.unreadCount();
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("code", 200);
-        result.put("message", "查询成功");
-        result.put("data", count);
-        return result;
+        return AjaxResult.success("查询成功", count);
     }
 }

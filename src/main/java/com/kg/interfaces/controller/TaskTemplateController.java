@@ -1,5 +1,6 @@
 package com.kg.interfaces.controller;
 
+import com.kg.interfaces.dto.AjaxResult;
 import com.kg.application.service.TaskTemplateApplicationService;
 import com.kg.interfaces.dto.TaskTemplateCreateRequest;
 import com.kg.interfaces.dto.TaskTemplatePageRequest;
@@ -32,53 +33,40 @@ public class TaskTemplateController {
     @Operation(summary = "分页查询模板")
     @PostMapping("/task-template/page")
     public Map<String, Object> page(@Valid @RequestBody TaskTemplatePageRequest req) {
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "查询成功");
-        r.put("data", service.page(req.getPageNum(), req.getPageSize()));
-        return r;
+        return AjaxResult.success("查询成功", service.page(req.getPageNum(), req.getPageSize()));
     }
 
     @Operation(summary = "模板详情")
     @GetMapping("/task-template/{id}")
     public Map<String, Object> getById(@PathVariable Long id) {
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "查询成功"); r.put("data", service.getById(id));
-        return r;
+        return AjaxResult.success("查询成功", service.getById(id));
     }
 
     @Operation(summary = "新增模板")
     @PostMapping("/task-template")
     public Map<String, Object> create(@Valid @RequestBody TaskTemplateCreateRequest req) {
         service.create(req);
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "新增成功");
-        return r;
+        return AjaxResult.success("新增成功");
     }
 
     @Operation(summary = "编辑模板")
     @PutMapping("/task-template/{id}")
     public Map<String, Object> update(@PathVariable Long id, @Valid @RequestBody TaskTemplateUpdateRequest req) {
         service.update(id, req);
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "编辑成功");
-        return r;
+        return AjaxResult.success("编辑成功");
     }
 
     @Operation(summary = "删除模板")
     @DeleteMapping("/task-template/{id}")
     public Map<String, Object> delete(@PathVariable Long id) {
         service.delete(id);
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "删除成功");
-        return r;
+        return AjaxResult.success("删除成功");
     }
 
     @Operation(summary = "模板下拉")
     @GetMapping("/task-template/options")
     public Map<String, Object> listOptions() {
         List<TaskTemplateVO> list = service.listOptions();
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "查询成功"); r.put("data", list);
-        return r;
+        return AjaxResult.success("查询成功", list);
     }
 }

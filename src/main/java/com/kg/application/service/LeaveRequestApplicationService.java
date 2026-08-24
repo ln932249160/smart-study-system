@@ -14,6 +14,7 @@ import com.kg.interfaces.dto.LeaveApproveRequest;
 import com.kg.interfaces.dto.LeaveCreateRequest;
 import com.kg.interfaces.dto.LeavePageRequest;
 import com.kg.interfaces.dto.LeaveVO;
+import com.kg.interfaces.dto.PageVO;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -175,7 +176,7 @@ public class LeaveRequestApplicationService {
     // ======================== 学生：查询自己的请假 ========================
 
     /** 分页查询当前用户的请假申请 */
-    public Map<String, Object> pageMine(LeavePageRequest req) {
+    public PageVO<LeaveVO> pageMine(LeavePageRequest req) {
         SysUser user = requireLogin();
         int offset = (req.getPageNum() - 1) * req.getPageSize();
         long total = leaveMapper.countMyLeaves(user.getId(), req.getLeaveType(), req.getStatus(), req.getStartDateBegin(), req.getStartDateEnd());
@@ -190,7 +191,7 @@ public class LeaveRequestApplicationService {
      * LEFT JOIN sys_user 查出 userName。
      * tab 参数：pending=待办(status=0) done=已办(status=1,2)
      */
-    public Map<String, Object> pageApprove(String tab, int pageNum, int pageSize) {
+    public PageVO<LeaveVO> pageApprove(String tab, int pageNum, int pageSize) {
         SysUser user = requireLogin();
         String role = user.getRole();
 
@@ -204,7 +205,7 @@ public class LeaveRequestApplicationService {
     }
 
     /** 老师审批列表：按审批角色查 */
-    private Map<String, Object> pageApproveForTeacher(String tab, int pageNum, int pageSize) {
+    private PageVO<LeaveVO> pageApproveForTeacher(String tab, int pageNum, int pageSize) {
         int offset = (pageNum - 1) * pageSize;
         if ("done".equals(tab)) {
             // 已办：1+2，查询全部再合并排序分页
@@ -224,7 +225,7 @@ public class LeaveRequestApplicationService {
     }
 
     /** 班长审批列表：按审批人ID查 */
-    private Map<String, Object> pageApproveForHeadmaster(Long headmasterId, String tab, int pageNum, int pageSize) {
+    private PageVO<LeaveVO> pageApproveForHeadmaster(Long headmasterId, String tab, int pageNum, int pageSize) {
         int offset = (pageNum - 1) * pageSize;
         if ("done".equals(tab)) {
             List<Map<String, Object>> all = new ArrayList<>();
@@ -384,10 +385,7 @@ public class LeaveRequestApplicationService {
         return val.toString();
     }
 
-    private Map<String, Object> buildPageResult(long total, List<LeaveVO> list) {
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("total", total);
-        result.put("list", list);
-        return result;
+    private PageVO<LeaveVO> buildPageResult(long total, List<LeaveVO> list) {
+        return PageVO.of(total, list);
     }
 }

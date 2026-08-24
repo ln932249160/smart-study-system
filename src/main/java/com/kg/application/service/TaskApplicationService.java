@@ -22,6 +22,7 @@ import com.kg.interfaces.dto.TaskCreateRequest;
 import com.kg.interfaces.dto.TaskPageRequest;
 import com.kg.interfaces.dto.TaskUpdateRequest;
 import com.kg.interfaces.dto.TaskVO;
+import com.kg.interfaces.dto.PageVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -78,7 +79,7 @@ public class TaskApplicationService {
      * 分页查询任务。
      * teacher/headmaster → 全部任务 | student → 分配给我的任务
      */
-    public Map<String, Object> page(TaskPageRequest req) {
+    public PageVO<TaskVO> page(TaskPageRequest req) {
         SysUser currentUser = requireCurrentUser();
         String role = currentUser.getRole();
         int offset = (req.getPageNum() - 1) * req.getPageSize();
@@ -128,10 +129,7 @@ public class TaskApplicationService {
             return vo;
         }).collect(Collectors.toList());
 
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("total", total);
-        result.put("list", list);
-        return result;
+        return PageVO.of(total, list);
     }
 
     // ======================== 详情 ========================
@@ -285,11 +283,8 @@ public class TaskApplicationService {
 
     // ======================== 私有方法 ========================
 
-    private Map<String, Object> emptyPageResult() {
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("total", 0);
-        r.put("list", Collections.emptyList());
-        return r;
+    private PageVO<TaskVO> emptyPageResult() {
+        return PageVO.empty();
     }
 
     private Task buildTask(TaskCreateRequest r, Long createBy) {

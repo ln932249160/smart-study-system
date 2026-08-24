@@ -1,5 +1,6 @@
 package com.kg.interfaces.controller;
 
+import com.kg.interfaces.dto.AjaxResult;
 import com.kg.application.service.ClassFeeApplicationService;
 import com.kg.interfaces.dto.ClassFeeRequest;
 import com.kg.interfaces.dto.ClassFeeVO;
@@ -25,60 +26,45 @@ public class ClassFeeController {
                                      @RequestParam(defaultValue = "10") int pageSize,
                                      @RequestParam(required = false) Long classId,
                                      @RequestParam(required = false) String material) {
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "查询成功");
-        r.put("data", service.page(pageNum, pageSize, classId, material));
-        return r;
+        return AjaxResult.success("查询成功", service.page(pageNum, pageSize, classId, material));
     }
 
     @Operation(summary = "班费详情")
     @GetMapping("/class-fee/{id}")
     public Map<String, Object> getById(@PathVariable Long id) {
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "查询成功"); r.put("data", service.getById(id));
-        return r;
+        return AjaxResult.success("查询成功", service.getById(id));
     }
 
     @Operation(summary = "新增班费")
     @PostMapping("/class-fee")
     public Map<String, Object> create(@Valid @RequestBody ClassFeeRequest req) {
         service.create(req);
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "新增成功");
-        return r;
+        return AjaxResult.success("新增成功");
     }
 
     @Operation(summary = "编辑班费")
     @PutMapping("/class-fee/{id}")
     public Map<String, Object> update(@PathVariable Long id, @Valid @RequestBody ClassFeeRequest req) {
         service.update(id, req);
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "编辑成功");
-        return r;
+        return AjaxResult.success("编辑成功");
     }
 
     @Operation(summary = "删除班费")
     @DeleteMapping("/class-fee/{id}")
     public Map<String, Object> delete(@PathVariable Long id) {
         service.delete(id);
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "删除成功");
-        return r;
+        return AjaxResult.success("删除成功");
     }
 
     @Operation(summary = "班费统计（按班级汇总）")
     @GetMapping("/class-fee/statistics")
     public Map<String, Object> statistics() {
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "查询成功"); r.put("data", service.statistics());
-        return r;
+        return AjaxResult.success("查询成功", service.statistics());
     }
 
     @Operation(summary = "班级费用明细")
     @GetMapping("/class-fee/detail/{classId}")
     public Map<String, Object> detail(@PathVariable Long classId) {
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "查询成功"); r.put("data", service.detail(classId));
-        return r;
+        return AjaxResult.success("查询成功", service.detail(classId));
     }
 }

@@ -2,14 +2,14 @@
   "version": 1,
   "created_at": "2026-05-30T07:19:17.874Z",
   "lifetime": {
-    "total_tokens_estimated": 959577,
-    "total_reads": 535,
-    "total_writes": 1257,
-    "total_sessions": 36,
-    "anatomy_hits": 535,
+    "total_tokens_estimated": 1294727,
+    "total_reads": 738,
+    "total_writes": 1367,
+    "total_sessions": 51,
+    "anatomy_hits": 738,
     "anatomy_misses": 0,
-    "repeated_reads_blocked": 207,
-    "estimated_savings_vs_bare_cli": 617693
+    "repeated_reads_blocked": 279,
+    "estimated_savings_vs_bare_cli": 787042
   },
   "sessions": [
     {
@@ -10542,6 +10542,1893 @@
         "writes_count": 11,
         "repeated_reads_blocked": 0,
         "anatomy_lookups": 2
+      }
+    },
+    {
+      "id": "session-2026-07-22-2208",
+      "started": "2026-07-22T14:08:11.135Z",
+      "ended": "2026-07-22T14:19:04.095Z",
+      "reads": [
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/BatchTaskController.java",
+          "tokens_estimated": 391,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ClassController.java",
+          "tokens_estimated": 1222,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ClassFeeController.java",
+          "tokens_estimated": 856,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/DictController.java",
+          "tokens_estimated": 1231,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/HomeController.java",
+          "tokens_estimated": 468,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/AuthController.java",
+          "tokens_estimated": 396,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/LeaveRequestController.java",
+          "tokens_estimated": 812,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/MiniappLoginController.java",
+          "tokens_estimated": 461,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/MyTaskController.java",
+          "tokens_estimated": 1286,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/NotificationController.java",
+          "tokens_estimated": 626,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ProfileController.java",
+          "tokens_estimated": 657,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/StudentCheckinController.java",
+          "tokens_estimated": 424,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/StudentController.java",
+          "tokens_estimated": 1859,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/StudyPhaseController.java",
+          "tokens_estimated": 916,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/TaskController.java",
+          "tokens_estimated": 792,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/TaskPlanController.java",
+          "tokens_estimated": 791,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/TaskTemplateController.java",
+          "tokens_estimated": 858,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/UserController.java",
+          "tokens_estimated": 230,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/HelloController.java",
+          "tokens_estimated": 198,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 2236,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassFeeApplicationService.java",
+          "tokens_estimated": 2043,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/DictApplicationService.java",
+          "tokens_estimated": 1382,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/LeaveRequestApplicationService.java",
+          "tokens_estimated": 4590,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+          "tokens_estimated": 5966,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationApplicationService.java",
+          "tokens_estimated": 1594,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/StudentApplicationService.java",
+          "tokens_estimated": 4523,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/StudyPhaseApplicationService.java",
+          "tokens_estimated": 3211,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
+          "tokens_estimated": 5572,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskTemplateApplicationService.java",
+          "tokens_estimated": 1188,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/PageVO.java",
+          "tokens_estimated": 234,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/ImportResultVO.java",
+          "tokens_estimated": 190,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/MyTaskStatsVO.java",
+          "tokens_estimated": 143,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 63,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 18,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 13,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 24,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ClassController.java",
+          "tokens_estimated": 93,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassFeeApplicationService.java",
+          "tokens_estimated": 24,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassFeeApplicationService.java",
+          "tokens_estimated": 27,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassFeeApplicationService.java",
+          "tokens_estimated": 11,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 46779,
+        "output_tokens_estimated": 840,
+        "reads_count": 29,
+        "writes_count": 11,
+        "repeated_reads_blocked": 9,
+        "anatomy_lookups": 29
+      }
+    },
+    {
+      "id": "session-2026-07-22-2208",
+      "started": "2026-07-22T14:08:11.135Z",
+      "ended": "2026-07-22T14:20:02.610Z",
+      "reads": [
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/BatchTaskController.java",
+          "tokens_estimated": 391,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ClassController.java",
+          "tokens_estimated": 1161,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ClassFeeController.java",
+          "tokens_estimated": 856,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/DictController.java",
+          "tokens_estimated": 1231,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/HomeController.java",
+          "tokens_estimated": 468,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/AuthController.java",
+          "tokens_estimated": 396,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/LeaveRequestController.java",
+          "tokens_estimated": 812,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/MiniappLoginController.java",
+          "tokens_estimated": 461,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/MyTaskController.java",
+          "tokens_estimated": 1286,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/NotificationController.java",
+          "tokens_estimated": 626,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ProfileController.java",
+          "tokens_estimated": 657,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/StudentCheckinController.java",
+          "tokens_estimated": 424,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/StudentController.java",
+          "tokens_estimated": 1859,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/StudyPhaseController.java",
+          "tokens_estimated": 916,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/TaskController.java",
+          "tokens_estimated": 792,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/TaskPlanController.java",
+          "tokens_estimated": 791,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/TaskTemplateController.java",
+          "tokens_estimated": 858,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/UserController.java",
+          "tokens_estimated": 230,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/HelloController.java",
+          "tokens_estimated": 198,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 2236,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassFeeApplicationService.java",
+          "tokens_estimated": 2043,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/DictApplicationService.java",
+          "tokens_estimated": 1382,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/LeaveRequestApplicationService.java",
+          "tokens_estimated": 4590,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+          "tokens_estimated": 5966,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationApplicationService.java",
+          "tokens_estimated": 1594,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/StudentApplicationService.java",
+          "tokens_estimated": 4523,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/StudyPhaseApplicationService.java",
+          "tokens_estimated": 3211,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
+          "tokens_estimated": 5572,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskTemplateApplicationService.java",
+          "tokens_estimated": 1188,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/PageVO.java",
+          "tokens_estimated": 234,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/ImportResultVO.java",
+          "tokens_estimated": 190,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/MyTaskStatsVO.java",
+          "tokens_estimated": 143,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 63,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 18,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 13,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 24,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ClassController.java",
+          "tokens_estimated": 93,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassFeeApplicationService.java",
+          "tokens_estimated": 24,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassFeeApplicationService.java",
+          "tokens_estimated": 27,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassFeeApplicationService.java",
+          "tokens_estimated": 11,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ClassController.java",
+          "tokens_estimated": 19,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 46718,
+        "output_tokens_estimated": 859,
+        "reads_count": 29,
+        "writes_count": 12,
+        "repeated_reads_blocked": 10,
+        "anatomy_lookups": 29
+      }
+    },
+    {
+      "id": "session-2026-07-22-2208",
+      "started": "2026-07-22T14:08:11.135Z",
+      "ended": "2026-07-22T14:28:46.711Z",
+      "reads": [
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/BatchTaskController.java",
+          "tokens_estimated": 391,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ClassController.java",
+          "tokens_estimated": 1161,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ClassFeeController.java",
+          "tokens_estimated": 856,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/DictController.java",
+          "tokens_estimated": 1231,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/HomeController.java",
+          "tokens_estimated": 468,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/AuthController.java",
+          "tokens_estimated": 396,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/LeaveRequestController.java",
+          "tokens_estimated": 812,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/MiniappLoginController.java",
+          "tokens_estimated": 461,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/MyTaskController.java",
+          "tokens_estimated": 1286,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/NotificationController.java",
+          "tokens_estimated": 626,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ProfileController.java",
+          "tokens_estimated": 657,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/StudentCheckinController.java",
+          "tokens_estimated": 424,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/StudentController.java",
+          "tokens_estimated": 1859,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/StudyPhaseController.java",
+          "tokens_estimated": 916,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/TaskController.java",
+          "tokens_estimated": 792,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/TaskPlanController.java",
+          "tokens_estimated": 791,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/TaskTemplateController.java",
+          "tokens_estimated": 858,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/UserController.java",
+          "tokens_estimated": 230,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/HelloController.java",
+          "tokens_estimated": 198,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 2236,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassFeeApplicationService.java",
+          "tokens_estimated": 2043,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/DictApplicationService.java",
+          "tokens_estimated": 1382,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/LeaveRequestApplicationService.java",
+          "tokens_estimated": 4590,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+          "tokens_estimated": 5966,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationApplicationService.java",
+          "tokens_estimated": 1594,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/StudentApplicationService.java",
+          "tokens_estimated": 4523,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/StudyPhaseApplicationService.java",
+          "tokens_estimated": 3211,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
+          "tokens_estimated": 5572,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskTemplateApplicationService.java",
+          "tokens_estimated": 1188,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/PageVO.java",
+          "tokens_estimated": 234,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/ImportResultVO.java",
+          "tokens_estimated": 190,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/MyTaskStatsVO.java",
+          "tokens_estimated": 143,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 63,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 18,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 13,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 24,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ClassController.java",
+          "tokens_estimated": 93,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassFeeApplicationService.java",
+          "tokens_estimated": 24,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassFeeApplicationService.java",
+          "tokens_estimated": 27,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassFeeApplicationService.java",
+          "tokens_estimated": 11,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ClassController.java",
+          "tokens_estimated": 19,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/NotificationController.java",
+          "tokens_estimated": 39,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/TaskController.java",
+          "tokens_estimated": 21,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/StudentController.java",
+          "tokens_estimated": 121,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 46718,
+        "output_tokens_estimated": 1040,
+        "reads_count": 29,
+        "writes_count": 15,
+        "repeated_reads_blocked": 10,
+        "anatomy_lookups": 29
+      }
+    },
+    {
+      "id": "session-2026-07-22-2208",
+      "started": "2026-07-22T14:08:11.135Z",
+      "ended": "2026-07-22T14:32:14.312Z",
+      "reads": [
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/BatchTaskController.java",
+          "tokens_estimated": 391,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ClassController.java",
+          "tokens_estimated": 1161,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ClassFeeController.java",
+          "tokens_estimated": 856,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/DictController.java",
+          "tokens_estimated": 1231,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/HomeController.java",
+          "tokens_estimated": 468,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/AuthController.java",
+          "tokens_estimated": 396,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/LeaveRequestController.java",
+          "tokens_estimated": 812,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/MiniappLoginController.java",
+          "tokens_estimated": 461,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/MyTaskController.java",
+          "tokens_estimated": 1286,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/NotificationController.java",
+          "tokens_estimated": 626,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ProfileController.java",
+          "tokens_estimated": 657,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/StudentCheckinController.java",
+          "tokens_estimated": 424,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/StudentController.java",
+          "tokens_estimated": 1859,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/StudyPhaseController.java",
+          "tokens_estimated": 916,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/TaskController.java",
+          "tokens_estimated": 792,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/TaskPlanController.java",
+          "tokens_estimated": 791,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/TaskTemplateController.java",
+          "tokens_estimated": 858,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/UserController.java",
+          "tokens_estimated": 230,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/HelloController.java",
+          "tokens_estimated": 198,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 2236,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassFeeApplicationService.java",
+          "tokens_estimated": 2043,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/DictApplicationService.java",
+          "tokens_estimated": 1382,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/LeaveRequestApplicationService.java",
+          "tokens_estimated": 4590,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+          "tokens_estimated": 5966,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationApplicationService.java",
+          "tokens_estimated": 1594,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/StudentApplicationService.java",
+          "tokens_estimated": 4523,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/StudyPhaseApplicationService.java",
+          "tokens_estimated": 3211,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
+          "tokens_estimated": 5572,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskTemplateApplicationService.java",
+          "tokens_estimated": 1188,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/PageVO.java",
+          "tokens_estimated": 234,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/ImportResultVO.java",
+          "tokens_estimated": 190,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/MyTaskStatsVO.java",
+          "tokens_estimated": 143,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 63,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 18,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 13,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 24,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ClassController.java",
+          "tokens_estimated": 93,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassFeeApplicationService.java",
+          "tokens_estimated": 24,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassFeeApplicationService.java",
+          "tokens_estimated": 27,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassFeeApplicationService.java",
+          "tokens_estimated": 11,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ClassController.java",
+          "tokens_estimated": 19,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/NotificationController.java",
+          "tokens_estimated": 39,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/TaskController.java",
+          "tokens_estimated": 21,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/StudentController.java",
+          "tokens_estimated": 121,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 46718,
+        "output_tokens_estimated": 1040,
+        "reads_count": 29,
+        "writes_count": 15,
+        "repeated_reads_blocked": 10,
+        "anatomy_lookups": 29
+      }
+    },
+    {
+      "id": "session-2026-07-22-2208",
+      "started": "2026-07-22T14:08:11.135Z",
+      "ended": "2026-07-22T14:38:42.102Z",
+      "reads": [
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/BatchTaskController.java",
+          "tokens_estimated": 391,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ClassController.java",
+          "tokens_estimated": 1161,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ClassFeeController.java",
+          "tokens_estimated": 856,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/DictController.java",
+          "tokens_estimated": 1231,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/HomeController.java",
+          "tokens_estimated": 468,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/AuthController.java",
+          "tokens_estimated": 396,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/LeaveRequestController.java",
+          "tokens_estimated": 812,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/MiniappLoginController.java",
+          "tokens_estimated": 461,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/MyTaskController.java",
+          "tokens_estimated": 1286,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/NotificationController.java",
+          "tokens_estimated": 626,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ProfileController.java",
+          "tokens_estimated": 657,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/StudentCheckinController.java",
+          "tokens_estimated": 424,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/StudentController.java",
+          "tokens_estimated": 1859,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/StudyPhaseController.java",
+          "tokens_estimated": 916,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/TaskController.java",
+          "tokens_estimated": 792,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/TaskPlanController.java",
+          "tokens_estimated": 791,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/TaskTemplateController.java",
+          "tokens_estimated": 858,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/UserController.java",
+          "tokens_estimated": 230,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/HelloController.java",
+          "tokens_estimated": 198,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 2236,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassFeeApplicationService.java",
+          "tokens_estimated": 2043,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/DictApplicationService.java",
+          "tokens_estimated": 1382,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/LeaveRequestApplicationService.java",
+          "tokens_estimated": 4590,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+          "tokens_estimated": 5966,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationApplicationService.java",
+          "tokens_estimated": 1594,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/StudentApplicationService.java",
+          "tokens_estimated": 4523,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/StudyPhaseApplicationService.java",
+          "tokens_estimated": 3211,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
+          "tokens_estimated": 5572,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskTemplateApplicationService.java",
+          "tokens_estimated": 1188,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/PageVO.java",
+          "tokens_estimated": 234,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/ImportResultVO.java",
+          "tokens_estimated": 190,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/MyTaskStatsVO.java",
+          "tokens_estimated": 143,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 63,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 18,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 13,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 24,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ClassController.java",
+          "tokens_estimated": 93,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassFeeApplicationService.java",
+          "tokens_estimated": 24,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassFeeApplicationService.java",
+          "tokens_estimated": 27,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassFeeApplicationService.java",
+          "tokens_estimated": 11,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ClassController.java",
+          "tokens_estimated": 19,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/NotificationController.java",
+          "tokens_estimated": 39,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/TaskController.java",
+          "tokens_estimated": 21,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/StudentController.java",
+          "tokens_estimated": 121,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/AjaxResult.java",
+          "tokens_estimated": 285,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/MiniappLoginController.java",
+          "tokens_estimated": 70,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/MiniappLoginController.java",
+          "tokens_estimated": 24,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/MiniappLoginController.java",
+          "tokens_estimated": 9,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 46718,
+        "output_tokens_estimated": 1428,
+        "reads_count": 29,
+        "writes_count": 19,
+        "repeated_reads_blocked": 11,
+        "anatomy_lookups": 29
+      }
+    },
+    {
+      "id": "session-2026-07-22-2208",
+      "started": "2026-07-22T14:08:11.135Z",
+      "ended": "2026-07-22T14:40:02.885Z",
+      "reads": [
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/BatchTaskController.java",
+          "tokens_estimated": 391,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ClassController.java",
+          "tokens_estimated": 1161,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ClassFeeController.java",
+          "tokens_estimated": 856,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/DictController.java",
+          "tokens_estimated": 1231,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/HomeController.java",
+          "tokens_estimated": 468,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/AuthController.java",
+          "tokens_estimated": 396,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/LeaveRequestController.java",
+          "tokens_estimated": 812,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/MiniappLoginController.java",
+          "tokens_estimated": 461,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/MyTaskController.java",
+          "tokens_estimated": 1286,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/NotificationController.java",
+          "tokens_estimated": 626,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ProfileController.java",
+          "tokens_estimated": 657,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/StudentCheckinController.java",
+          "tokens_estimated": 424,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/StudentController.java",
+          "tokens_estimated": 1859,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/StudyPhaseController.java",
+          "tokens_estimated": 916,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/TaskController.java",
+          "tokens_estimated": 792,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/TaskPlanController.java",
+          "tokens_estimated": 791,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/TaskTemplateController.java",
+          "tokens_estimated": 858,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/UserController.java",
+          "tokens_estimated": 230,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/HelloController.java",
+          "tokens_estimated": 198,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 2236,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassFeeApplicationService.java",
+          "tokens_estimated": 2043,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/DictApplicationService.java",
+          "tokens_estimated": 1382,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/LeaveRequestApplicationService.java",
+          "tokens_estimated": 4590,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+          "tokens_estimated": 5966,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationApplicationService.java",
+          "tokens_estimated": 1594,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/StudentApplicationService.java",
+          "tokens_estimated": 4523,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/StudyPhaseApplicationService.java",
+          "tokens_estimated": 3211,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
+          "tokens_estimated": 5572,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskTemplateApplicationService.java",
+          "tokens_estimated": 1188,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/PageVO.java",
+          "tokens_estimated": 234,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/ImportResultVO.java",
+          "tokens_estimated": 190,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/MyTaskStatsVO.java",
+          "tokens_estimated": 143,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 63,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 18,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 13,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 24,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ClassController.java",
+          "tokens_estimated": 93,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassFeeApplicationService.java",
+          "tokens_estimated": 24,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassFeeApplicationService.java",
+          "tokens_estimated": 27,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassFeeApplicationService.java",
+          "tokens_estimated": 11,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ClassController.java",
+          "tokens_estimated": 19,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/NotificationController.java",
+          "tokens_estimated": 39,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/TaskController.java",
+          "tokens_estimated": 21,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/StudentController.java",
+          "tokens_estimated": 121,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/AjaxResult.java",
+          "tokens_estimated": 285,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/MiniappLoginController.java",
+          "tokens_estimated": 70,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/MiniappLoginController.java",
+          "tokens_estimated": 24,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/MiniappLoginController.java",
+          "tokens_estimated": 9,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 46718,
+        "output_tokens_estimated": 1428,
+        "reads_count": 29,
+        "writes_count": 19,
+        "repeated_reads_blocked": 11,
+        "anatomy_lookups": 29
+      }
+    },
+    {
+      "id": "session-2026-07-22-2208",
+      "started": "2026-07-22T14:08:11.135Z",
+      "ended": "2026-07-22T14:41:02.979Z",
+      "reads": [
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/BatchTaskController.java",
+          "tokens_estimated": 391,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ClassController.java",
+          "tokens_estimated": 1161,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ClassFeeController.java",
+          "tokens_estimated": 856,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/DictController.java",
+          "tokens_estimated": 1231,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/HomeController.java",
+          "tokens_estimated": 468,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/AuthController.java",
+          "tokens_estimated": 396,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/LeaveRequestController.java",
+          "tokens_estimated": 812,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/MiniappLoginController.java",
+          "tokens_estimated": 461,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/MyTaskController.java",
+          "tokens_estimated": 1286,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/NotificationController.java",
+          "tokens_estimated": 626,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ProfileController.java",
+          "tokens_estimated": 657,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/StudentCheckinController.java",
+          "tokens_estimated": 424,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/StudentController.java",
+          "tokens_estimated": 1859,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/StudyPhaseController.java",
+          "tokens_estimated": 916,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/TaskController.java",
+          "tokens_estimated": 792,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/TaskPlanController.java",
+          "tokens_estimated": 791,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/TaskTemplateController.java",
+          "tokens_estimated": 858,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/UserController.java",
+          "tokens_estimated": 230,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/HelloController.java",
+          "tokens_estimated": 198,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 2236,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassFeeApplicationService.java",
+          "tokens_estimated": 2043,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/DictApplicationService.java",
+          "tokens_estimated": 1382,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/LeaveRequestApplicationService.java",
+          "tokens_estimated": 4590,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/MyTaskApplicationService.java",
+          "tokens_estimated": 5966,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/NotificationApplicationService.java",
+          "tokens_estimated": 1594,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/StudentApplicationService.java",
+          "tokens_estimated": 4523,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/StudyPhaseApplicationService.java",
+          "tokens_estimated": 3211,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskApplicationService.java",
+          "tokens_estimated": 5572,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/TaskTemplateApplicationService.java",
+          "tokens_estimated": 1188,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/PageVO.java",
+          "tokens_estimated": 234,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/ImportResultVO.java",
+          "tokens_estimated": 190,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/MyTaskStatsVO.java",
+          "tokens_estimated": 143,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 63,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 18,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 13,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassApplicationService.java",
+          "tokens_estimated": 24,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ClassController.java",
+          "tokens_estimated": 93,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassFeeApplicationService.java",
+          "tokens_estimated": 24,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassFeeApplicationService.java",
+          "tokens_estimated": 27,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/application/service/ClassFeeApplicationService.java",
+          "tokens_estimated": 11,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/ClassController.java",
+          "tokens_estimated": 19,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/NotificationController.java",
+          "tokens_estimated": 39,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/TaskController.java",
+          "tokens_estimated": 21,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/StudentController.java",
+          "tokens_estimated": 121,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/dto/AjaxResult.java",
+          "tokens_estimated": 285,
+          "action": "create"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/MiniappLoginController.java",
+          "tokens_estimated": 70,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/MiniappLoginController.java",
+          "tokens_estimated": 24,
+          "action": "edit"
+        },
+        {
+          "file": "F:/aiProject/smart-study-system/backend/src/main/java/com/kg/interfaces/controller/MiniappLoginController.java",
+          "tokens_estimated": 9,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 46718,
+        "output_tokens_estimated": 1428,
+        "reads_count": 29,
+        "writes_count": 19,
+        "repeated_reads_blocked": 11,
+        "anatomy_lookups": 29
       }
     }
   ],

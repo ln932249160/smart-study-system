@@ -1,10 +1,21 @@
 package com.kg.interfaces.controller;
 
+import com.kg.interfaces.dto.AjaxResult;
+import com.kg.interfaces.dto.PageVO;
+import com.kg.interfaces.dto.ClassVO;
 import com.kg.application.service.ClassApplicationService;
 import com.kg.interfaces.dto.ClassCreateRequest;
+import com.kg.interfaces.dto.PageVO;
+import com.kg.interfaces.dto.ClassVO;
 import com.kg.interfaces.dto.ClassPageRequest;
+import com.kg.interfaces.dto.PageVO;
+import com.kg.interfaces.dto.ClassVO;
 import com.kg.interfaces.dto.ClassUpdateRequest;
+import com.kg.interfaces.dto.PageVO;
+import com.kg.interfaces.dto.ClassVO;
 import com.kg.interfaces.dto.StudentOptionVO;
+import com.kg.interfaces.dto.PageVO;
+import com.kg.interfaces.dto.ClassVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -41,14 +52,10 @@ public class ClassController {
     @Operation(summary = "分页查询班级")
     @PostMapping("/class/page")
     public Map<String, Object> page(@Valid @RequestBody ClassPageRequest request) {
-        Map<String, Object> pageResult = classApplicationService.page(
+        PageVO<ClassVO> pageResult = classApplicationService.page(
                 request.getPageNum(), request.getPageSize());
 
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("code", 200);
-        result.put("message", "查询成功");
-        result.put("data", pageResult);
-        return result;
+        return AjaxResult.success("查询成功", pageResult);
     }
 
     // ======================== 详情 ========================
@@ -56,11 +63,7 @@ public class ClassController {
     @Operation(summary = "班级详情")
     @GetMapping("/class/{id}")
     public Map<String, Object> getById(@PathVariable Long id) {
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("code", 200);
-        result.put("message", "查询成功");
-        result.put("data", classApplicationService.getById(id));
-        return result;
+        return AjaxResult.success("查询成功", classApplicationService.getById(id));
     }
 
     // ======================== 新增班级 ========================
@@ -73,10 +76,7 @@ public class ClassController {
     public Map<String, Object> create(@Valid @RequestBody ClassCreateRequest request) {
         classApplicationService.create(request);
 
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("code", 200);
-        result.put("message", "新增成功");
-        return result;
+        return AjaxResult.success("新增成功");
     }
 
     // ======================== 编辑班级 ========================
@@ -90,10 +90,7 @@ public class ClassController {
                                       @Valid @RequestBody ClassUpdateRequest request) {
         classApplicationService.update(id, request);
 
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("code", 200);
-        result.put("message", "编辑成功");
-        return result;
+        return AjaxResult.success("编辑成功");
     }
 
     // ======================== 删除班级 ========================
@@ -106,10 +103,7 @@ public class ClassController {
     public Map<String, Object> delete(@PathVariable Long id) {
         classApplicationService.delete(id);
 
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("code", 200);
-        result.put("message", "删除成功");
-        return result;
+        return AjaxResult.success("删除成功");
     }
 
     // ======================== 学生选项 ========================
@@ -123,10 +117,6 @@ public class ClassController {
     public Map<String, Object> listStudentOptions() {
         List<StudentOptionVO> options = classApplicationService.listStudentOptions();
 
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("code", 200);
-        result.put("message", "查询成功");
-        result.put("data", options);
-        return result;
+        return AjaxResult.success("查询成功", options);
     }
 }

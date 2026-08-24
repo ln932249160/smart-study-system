@@ -9,6 +9,7 @@ import com.kg.infrastructure.entity.NotificationMessageEntity;
 import com.kg.infrastructure.mapper.NotificationMessageMapper;
 import com.kg.interfaces.dto.NotificationPageRequest;
 import com.kg.interfaces.dto.NotificationVO;
+import com.kg.interfaces.dto.PageVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -42,7 +43,7 @@ public class NotificationApplicationService {
     /**
      * 分页查询当前用户消息，支持多条件筛选。
      */
-    public Map<String, Object> page(NotificationPageRequest req) {
+    public PageVO<NotificationVO> page(NotificationPageRequest req) {
         Long userId = requireUserId();
         int offset = (req.getPageNum() - 1) * req.getPageSize();
 
@@ -99,10 +100,7 @@ public class NotificationApplicationService {
             }).collect(Collectors.toList());
         }
 
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("total", total);
-        result.put("list", list);
-        return result;
+        return PageVO.of(total, list);
     }
 
     /** 未读消息数（仅已生效的有效消息） */

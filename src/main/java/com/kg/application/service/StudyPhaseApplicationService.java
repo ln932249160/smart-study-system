@@ -12,6 +12,7 @@ import com.kg.infrastructure.mapper.StudyPhaseClassMapper;
 import com.kg.infrastructure.mapper.StudyPhaseMapper;
 import com.kg.interfaces.dto.StudyPhaseRequest;
 import com.kg.interfaces.dto.StudyPhaseVO;
+import com.kg.interfaces.dto.PageVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -123,7 +124,7 @@ public class StudyPhaseApplicationService {
 
     // ======================== 分页列表 ========================
 
-    public Map<String, Object> page(String phaseTitle, Long classId, String startDate, String endDate,
+    public PageVO<StudyPhaseVO> page(String phaseTitle, Long classId, String startDate, String endDate,
                                      Integer status, int pageNum, int pageSize) {
         SysUser user = requireLogin();
         // 权限：班长/学生只能查自己班级
@@ -158,9 +159,7 @@ public class StudyPhaseApplicationService {
         List<StudyPhaseEntity> entities = phaseMapper.selectList(q);
 
         List<StudyPhaseVO> list = entities.stream().map(this::toVO).collect(Collectors.toList());
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("total", total); r.put("list", list);
-        return r;
+        return PageVO.of(total, list);
     }
 
     // ======================== 日历查询 ========================
@@ -263,9 +262,7 @@ public class StudyPhaseApplicationService {
         return u.getId();
     }
 
-    private Map<String, Object> emptyPage() {
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("total", 0L); r.put("list", Collections.emptyList());
-        return r;
+    private PageVO<StudyPhaseVO> emptyPage() {
+        return PageVO.empty();
     }
 }

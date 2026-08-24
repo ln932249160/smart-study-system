@@ -1,5 +1,6 @@
 package com.kg.interfaces.controller;
 
+import com.kg.interfaces.dto.AjaxResult;
 import com.kg.application.service.LeaveRequestApplicationService;
 import com.kg.interfaces.dto.LeaveApproveRequest;
 import com.kg.interfaces.dto.LeaveCreateRequest;
@@ -36,9 +37,7 @@ public class LeaveRequestController {
     @PostMapping("/leave")
     public Map<String, Object> create(@Valid @RequestBody LeaveCreateRequest req) {
         service.create(req);
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "申请成功");
-        return r;
+        return AjaxResult.success("申请成功");
     }
 
     /**
@@ -47,10 +46,7 @@ public class LeaveRequestController {
     @Operation(summary = "我的请假列表")
     @PostMapping("/leave/page")
     public Map<String, Object> pageMine(@Valid @RequestBody LeavePageRequest req) {
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "查询成功");
-        r.put("data", service.pageMine(req));
-        return r;
+        return AjaxResult.success("查询成功", service.pageMine(req));
     }
 
     // ======================== 审批列表 ========================
@@ -64,10 +60,7 @@ public class LeaveRequestController {
     public Map<String, Object> approveList(@RequestParam(defaultValue = "pending") String tab,
                                            @RequestParam(defaultValue = "1") int pageNum,
                                            @RequestParam(defaultValue = "10") int pageSize) {
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "查询成功");
-        r.put("data", service.pageApprove(tab, pageNum, pageSize));
-        return r;
+        return AjaxResult.success("查询成功", service.pageApprove(tab, pageNum, pageSize));
     }
 
     // ======================== 审批操作 ========================
@@ -79,8 +72,6 @@ public class LeaveRequestController {
     @PostMapping("/leave/approve")
     public Map<String, Object> approve(@Valid @RequestBody LeaveApproveRequest req) {
         service.approve(req);
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "操作成功");
-        return r;
+        return AjaxResult.success("操作成功");
     }
 }

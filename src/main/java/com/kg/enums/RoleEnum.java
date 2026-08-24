@@ -17,13 +17,30 @@ public enum RoleEnum {
         this.label = label;
     }
 
-    public String getCode() { return code; }
-    public String getLabel() { return label; }
+    public String getCode() {
+        return code;
+    }
 
-    public boolean eq(String code) { return this.code.equals(code); }
+    public String getLabel() {
+        return label;
+    }
 
-    /** 是否为指定角色 */
-    public static boolean isTeacher(String role) { return TEACHER.code.equals(role); }
-    public static boolean isHeadmaster(String role) { return HEADMASTER.code.equals(role); }
-    public static boolean isStudent(String role) { return STUDENT.code.equals(role); }
+    public boolean eq(String code) {
+        return this.code.equals(code);
+    }
+
+    /**
+     * 是否为指定角色
+     */
+    public static boolean isTeacher(String role) {
+        return TEACHER.code.equals(role);
+    }
+
+    public static boolean isHeadmaster(String role) {
+        return HEADMASTER.code.equals(role);
+    }
+
+    public static boolean isStudent(String role) {
+        return STUDENT.code.equals(role);
+    }
 }

@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-07-20T14:27:23.651Z
-> Files: 227 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-07-22T14:38:17.711Z
+> Files: 231 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -43,8 +43,8 @@
 - `.gitkeep` (~0 tok)
 - `AuthApplicationService.java` — 认证应用服务 —— 处理登录业务流程。 (~841 tok)
 - `BatchTaskService.java` — 批处理任务服务 —— 定时任务 + 启动补偿的共享逻辑。 (~2288 tok)
-- `ClassApplicationService.java` — 班级管理应用服务 —— teacher 全部操作，headmaster/student 可看列表+详情。 (~2236 tok)
-- `ClassFeeApplicationService.java` — 班费管理应用服务 (~2056 tok)
+- `ClassApplicationService.java` — 班级管理应用服务 —— teacher 全部操作，headmaster/student 可看列表+详情。 (~2229 tok)
+- `ClassFeeApplicationService.java` — 班费管理应用服务 (~2043 tok)
 - `DictApplicationService.java` — 字典管理应用服务 — 按 dict_code 分组管理 (~1382 tok)
 - `HomeApplicationService.java` — 首页统计应用服务 —— 基于聚合 SQL 提供 teacher / headmaster / student 三种视角的统计数据。 (~1832 tok)
 - `LeaveRequestApplicationService.java` — 请假申请应用服务 —— 学生请假、老师/班长审批。 (~4590 tok)
@@ -198,20 +198,20 @@
 - `.gitkeep` (~0 tok)
 - `AuthController.java` — 认证接口控制器 (~396 tok)
 - `BatchTaskController.java` — 批处理任务测试入口。 (~391 tok)
-- `ClassController.java` — 班级管理控制器 —— 班级的增删改查及学生分配。 (~1222 tok)
+- `ClassController.java` — 班级管理控制器 —— 班级的增删改查及学生分配。 (~1160 tok)
 - `ClassFeeController.java` — 班费管理控制器 (~856 tok)
 - `DictController.java` — 字典管理控制器 (~1231 tok)
 - `HelloController.java` — RestController: HelloController (1 endpoints) (~198 tok)
 - `HomeController.java` — 首页统计控制器。 (~468 tok)
 - `LeaveRequestController.java` — 请假申请控制器 —— 学生请假、老师/班长审批。 (~812 tok)
-- `MiniappLoginController.java` — 小程序登录控制器 (~461 tok)
+- `MiniappLoginController.java` — 小程序登录控制器 (~398 tok)
 - `MyTaskController.java` — 我的任务控制器 —— 个人任务列表 + 详情 + 完成 + 修改 + 模板统计。 (~1286 tok)
-- `NotificationController.java` — 通知消息控制器。 (~626 tok)
+- `NotificationController.java` — 通知消息控制器。 (~649 tok)
 - `ProfileController.java` — 个人中心控制器。 (~657 tok)
 - `StudentCheckinController.java` — 学生打卡统计控制器。 (~424 tok)
-- `StudentController.java` — 用户管理控制器 —— 管理 student / headmaster 角色用户。 (~1859 tok)
+- `StudentController.java` — 用户管理控制器 —— 管理 student / headmaster 角色用户。 (~1890 tok)
 - `StudyPhaseController.java` — 学习阶段控制器 (~916 tok)
-- `TaskController.java` — 任务管理控制器。 (~792 tok)
+- `TaskController.java` — 任务管理控制器。 (~801 tok)
 - `TaskPlanController.java` — 任务计划控制器 (~791 tok)
 - `TaskTemplateController.java` — 模板任务管理控制器 (~858 tok)
 - `UserController.java` — RestController: UserController (1 endpoints) (~230 tok)
@@ -219,6 +219,7 @@
 ## src/main/java/com/kg/interfaces/dto/
 
 - `.gitkeep` (~0 tok)
+- `AjaxResult.java` — 统一响应体。继承 LinkedHashMap 保持现有 JSON 结构 {code, message, data}。 (~266 tok)
 - `CheckinCalendarVO.java` — 打卡日历 VO (~101 tok)
 - `CheckinStatVO.java` — 学生打卡统计 VO (~227 tok)
 - `ClassCreateRequest.java` — 新增班级请求 DTO (~314 tok)
@@ -235,6 +236,7 @@
 - `DictItemUpdateRequest.java` — DictItemUpdateRequest: getDictCode, setDictCode, getDictName, setDictName (~333 tok)
 - `DictVO.java` — 字典项 VO (~194 tok)
 - `HomeStatVO.java` — 首页统计 VO（teacher / headmaster） (~644 tok)
+- `ImportResultVO.java` — Excel 导入结果 VO (~178 tok)
 - `LeaveApproveRequest.java` — 请假审批请求（支持批量） (~249 tok)
 - `LeaveCreateRequest.java` — 请假申请新增请求 (~434 tok)
 - `LeavePageRequest.java` — 请假申请分页查询请求 (~392 tok)
@@ -248,6 +250,7 @@
 - `MyTaskCompleteRequest.java` — 我的任务完成请求 DTO (~529 tok)
 - `MyTaskDetailVO.java` — 我的任务详情 VO (~1184 tok)
 - `MyTaskPageRequest.java` — 我的任务分页请求 DTO (~824 tok)
+- `MyTaskStatsVO.java` — 我的任务统计 VO (~134 tok)
 - `MyTaskTemplateDetailVO.java` — 我的模板任务详情 VO (~888 tok)
 - `MyTaskTemplatePageRequest.java` — 我的模板任务分页请求 (~388 tok)
 - `MyTaskTemplateVO.java` — 我的模板任务列表项 VO (~438 tok)
@@ -256,6 +259,7 @@
 - `NearEndTaskVO.java` — 即将截止任务 VO (~227 tok)
 - `NotificationPageRequest.java` — 通知消息分页查询请求 (~570 tok)
 - `NotificationVO.java` — 通知消息列表项 VO (~518 tok)
+- `PageVO.java` — 统一分页响应 VO (~218 tok)
 - `PasswordChangeRequest.java` — 修改密码请求 DTO (~231 tok)
 - `ProfileUpdateRequest.java` — 修改个人资料请求 DTO (~302 tok)
 - `ProfileVO.java` — 个人信息 VO (~602 tok)

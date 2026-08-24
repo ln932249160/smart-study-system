@@ -1,5 +1,6 @@
 package com.kg.interfaces.controller;
 
+import com.kg.interfaces.dto.AjaxResult;
 import com.kg.application.service.MiniappLoginService;
 import com.kg.interfaces.dto.MiniappLoginRequest;
 import com.kg.interfaces.dto.MiniappLoginVO;
@@ -11,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 /** 小程序登录控制器 */
 @Tag(name = "认证", description = "登录相关接口")
@@ -23,20 +22,15 @@ public class MiniappLoginController {
 
     @Operation(summary = "小程序快捷登录（openid）")
     @PostMapping("/miniapp/login")
-    public Map<String, Object> login(@Valid @RequestBody MiniappLoginRequest req) {
+    public AjaxResult login(@Valid @RequestBody MiniappLoginRequest req) {
         MiniappLoginVO data = service.loginByOpenid(req.getLoginCode());
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", data.isNeedPhoneAuth() ? "请授权手机号完成绑定" : "登录成功");
-        r.put("data", data);
-        return r;
+        return AjaxResult.success(data.isNeedPhoneAuth() ? "请授权手机号完成绑定" : "登录成功", data);
     }
 
     @Operation(summary = "小程序手机号登录并绑定openid")
     @PostMapping("/miniapp/phone-login")
-    public Map<String, Object> phoneLogin(@Valid @RequestBody MiniappPhoneLoginRequest req) {
+    public AjaxResult phoneLogin(@Valid @RequestBody MiniappPhoneLoginRequest req) {
         MiniappLoginVO data = service.loginByPhone(req.getLoginCode(), req.getPhoneCode());
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "登录成功"); r.put("data", data);
-        return r;
+        return AjaxResult.success("登录成功", data);
     }
 }

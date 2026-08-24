@@ -1,5 +1,6 @@
 package com.kg.interfaces.controller;
 
+import com.kg.interfaces.dto.AjaxResult;
 import com.kg.application.service.TaskPlanApplicationService;
 import com.kg.infrastructure.entity.TaskEntity;
 import com.kg.infrastructure.entity.TaskPlanEntity;
@@ -48,17 +49,13 @@ public class TaskPlanController {
             return tv;
         }).collect(Collectors.toList()));
 
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "查询成功"); r.put("data", vo);
-        return r;
+        return AjaxResult.success("查询成功", vo);
     }
 
     @Operation(summary = "停止任务计划")
     @PostMapping("/task-plan/stop/{planId}")
     public Map<String, Object> stop(@PathVariable Long planId) {
         planService.stop(planId);
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "已停止");
-        return r;
+        return AjaxResult.success("已停止");
     }
 }

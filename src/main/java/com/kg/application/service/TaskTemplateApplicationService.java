@@ -9,6 +9,7 @@ import com.kg.exception.BusinessException;
 import com.kg.interfaces.dto.TaskTemplateCreateRequest;
 import com.kg.interfaces.dto.TaskTemplateUpdateRequest;
 import com.kg.interfaces.dto.TaskTemplateVO;
+import com.kg.interfaces.dto.PageVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -30,14 +31,12 @@ public class TaskTemplateApplicationService {
 
     public TaskTemplateApplicationService(TaskTemplateRepository repo) { this.repo = repo; }
 
-    public Map<String, Object> page(int pageNum, int pageSize) {
+    public PageVO<TaskTemplateVO> page(int pageNum, int pageSize) {
         requireNotStudent();
         int offset = (pageNum - 1) * pageSize;
         long total = repo.count();
         List<TaskTemplateVO> list = repo.page(offset, pageSize).stream().map(this::toVO).collect(Collectors.toList());
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("total", total); r.put("list", list);
-        return r;
+        return PageVO.of(total, list);
     }
 
     public TaskTemplateVO getById(Long id) {

@@ -82,7 +82,7 @@ public interface HomeMapper {
     long countCompletedForStudent(@Param("userId") Long userId);
 
     /** 即将截止 TOP3 */
-    @Select("SELECT t.id AS task_id, t.task_name, t.task_end_time AS end_time " +
+    @Select("SELECT t.id AS task_id,tu.id AS task_user_id, t.task_name, t.task_end_time AS end_time " +
             "FROM task_user tu JOIN task t ON t.id = tu.task_id " +
             "WHERE tu.user_id = #{userId} AND tu.status = '0' " +
             "ORDER BY t.task_end_time ASC LIMIT 3")

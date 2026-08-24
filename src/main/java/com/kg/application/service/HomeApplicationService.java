@@ -62,9 +62,11 @@ public class HomeApplicationService {
      */
     public StudentHomeStatVO getStudentStats() {
         SysUser user = requireUser();
-        if (!RoleEnum.isStudent(user.getRole())) {
-            throw new BusinessException(403, "请使用老师/班长首页接口");
-        }
+
+        if (!RoleEnum.isHeadmaster(user.getRole())
+                && !RoleEnum.isStudent(user.getRole()))
+            throw new BusinessException(403, "无权访问");
+
 
         StudentHomeStatVO vo = new StudentHomeStatVO();
         Long userId = user.getId();
@@ -78,6 +80,7 @@ public class HomeApplicationService {
             for (Map<String, Object> row : rows) {
                 NearEndTaskVO item = new NearEndTaskVO();
                 item.setTaskId(toLong(row.get("task_id")));
+                item.setTaskUserId(toLong(row.get("task_user_id")));
                 item.setTaskName((String) row.get("task_name"));
                 item.setEndTime(formatTime(row.get("end_time")));
                 nearEndTasks.add(item);

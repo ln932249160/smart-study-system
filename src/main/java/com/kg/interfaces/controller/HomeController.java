@@ -1,5 +1,6 @@
 package com.kg.interfaces.controller;
 
+import com.kg.interfaces.dto.AjaxResult;
 import com.kg.application.service.HomeApplicationService;
 import com.kg.interfaces.dto.HomeStatVO;
 import com.kg.interfaces.dto.StudentHomeStatVO;
@@ -31,11 +32,7 @@ public class HomeController {
     @GetMapping("/home/stat")
     public Map<String, Object> getStats() {
         HomeStatVO data = homeApplicationService.getStats();
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("code", 200);
-        result.put("message", "查询成功");
-        result.put("data", data);
-        return result;
+        return AjaxResult.success("查询成功", data);
     }
 
     /**
@@ -45,10 +42,6 @@ public class HomeController {
     @GetMapping("/home/student/stat")
     public Map<String, Object> getStudentStats() {
         StudentHomeStatVO data = homeApplicationService.getStudentStats();
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("code", 200);
-        result.put("message", "查询成功");
-        result.put("data", data);
-        return result;
+        return AjaxResult.success("查询成功", data);
     }
 }

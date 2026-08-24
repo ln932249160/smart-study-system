@@ -94,9 +94,6 @@ public class MiniappLoginService {
         if (user.getStatus() == null || user.getStatus() != 1) {
             throw new BusinessException("账号已禁用，请联系老师");
         }
-        if (RoleEnum.TEACHER.getCode().equals(user.getRole())) {
-            throw new BusinessException("老师请使用 PC 端登录");
-        }
         // student / headmaster 允许登录
     }
 

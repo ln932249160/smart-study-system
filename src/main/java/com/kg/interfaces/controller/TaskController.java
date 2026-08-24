@@ -1,10 +1,16 @@
 package com.kg.interfaces.controller;
 
+import com.kg.interfaces.dto.AjaxResult;
+import com.kg.interfaces.dto.PageVO;
 import com.kg.application.service.TaskApplicationService;
 import com.kg.interfaces.dto.TaskCreateRequest;
+import com.kg.interfaces.dto.PageVO;
 import com.kg.interfaces.dto.TaskPageRequest;
+import com.kg.interfaces.dto.PageVO;
 import com.kg.interfaces.dto.TaskUpdateRequest;
+import com.kg.interfaces.dto.PageVO;
 import com.kg.interfaces.dto.TaskVO;
+import com.kg.interfaces.dto.PageVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -37,19 +43,15 @@ public class TaskController {
     @Operation(summary = "分页查询任务")
     @PostMapping("/task/page")
     public Map<String, Object> page(@Valid @RequestBody TaskPageRequest req) {
-        Map<String, Object> data = taskApplicationService.page(req);
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "查询成功"); r.put("data", data);
-        return r;
+        PageVO<TaskVO> data = taskApplicationService.page(req);
+        return AjaxResult.success("查询成功", data);
     }
 
     /** 任务详情 */
     @Operation(summary = "任务详情")
     @GetMapping("/task/{id}")
     public Map<String, Object> getById(@PathVariable Long id) {
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "查询成功"); r.put("data", taskApplicationService.getById(id));
-        return r;
+        return AjaxResult.success("查询成功", taskApplicationService.getById(id));
     }
 
     /** 新增任务 */
@@ -57,9 +59,7 @@ public class TaskController {
     @PostMapping("/task")
     public Map<String, Object> create(@Valid @RequestBody TaskCreateRequest req) {
         taskApplicationService.create(req);
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "新增成功");
-        return r;
+        return AjaxResult.success("新增成功");
     }
 
     /** 编辑任务 */
@@ -67,9 +67,7 @@ public class TaskController {
     @PutMapping("/task/{id}")
     public Map<String, Object> update(@PathVariable Long id, @Valid @RequestBody TaskUpdateRequest req) {
         taskApplicationService.update(id, req);
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "编辑成功");
-        return r;
+        return AjaxResult.success("编辑成功");
     }
 
     /** 删除任务 */
@@ -77,9 +75,7 @@ public class TaskController {
     @DeleteMapping("/task/{id}")
     public Map<String, Object> delete(@PathVariable Long id) {
         taskApplicationService.delete(id);
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "删除成功");
-        return r;
+        return AjaxResult.success("删除成功");
     }
 
 }

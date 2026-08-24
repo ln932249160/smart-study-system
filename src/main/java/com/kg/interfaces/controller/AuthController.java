@@ -1,5 +1,6 @@
 package com.kg.interfaces.controller;
 
+import com.kg.interfaces.dto.AjaxResult;
 import com.kg.application.service.AuthApplicationService;
 import com.kg.interfaces.dto.LoginRequest;
 import com.kg.interfaces.dto.LoginResponse;
@@ -35,10 +36,6 @@ public class AuthController {
         LoginResponse loginResponse = authApplicationService.login(
                 request.getAccount(), request.getPassword());
 
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("code", 200);
-        result.put("message", "登录成功");
-        result.put("data", loginResponse);
-        return result;
+        return AjaxResult.success("登录成功", loginResponse);
     }
 }

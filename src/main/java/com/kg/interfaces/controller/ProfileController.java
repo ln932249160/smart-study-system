@@ -1,5 +1,6 @@
 package com.kg.interfaces.controller;
 
+import com.kg.interfaces.dto.AjaxResult;
 import com.kg.application.service.ProfileApplicationService;
 import com.kg.interfaces.dto.PasswordChangeRequest;
 import com.kg.interfaces.dto.ProfileUpdateRequest;
@@ -35,11 +36,7 @@ public class ProfileController {
     @GetMapping("/profile")
     public Map<String, Object> getProfile() {
         ProfileVO data = profileApplicationService.getProfile();
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("code", 200);
-        result.put("message", "查询成功");
-        result.put("data", data);
-        return result;
+        return AjaxResult.success("查询成功", data);
     }
 
     /**
@@ -49,10 +46,7 @@ public class ProfileController {
     @PutMapping("/profile")
     public Map<String, Object> updateProfile(@Valid @RequestBody ProfileUpdateRequest request) {
         profileApplicationService.updateProfile(request);
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("code", 200);
-        result.put("message", "修改成功");
-        return result;
+        return AjaxResult.success("修改成功");
     }
 
     /**
@@ -62,9 +56,6 @@ public class ProfileController {
     @PutMapping("/profile/password")
     public Map<String, Object> changePassword(@Valid @RequestBody PasswordChangeRequest request) {
         profileApplicationService.changePassword(request);
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("code", 200);
-        result.put("message", "密码修改成功");
-        return result;
+        return AjaxResult.success("密码修改成功");
     }
 }

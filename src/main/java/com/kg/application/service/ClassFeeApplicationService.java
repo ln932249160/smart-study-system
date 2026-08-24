@@ -11,6 +11,7 @@ import com.kg.infrastructure.entity.ClassFeeEntity;
 import com.kg.infrastructure.mapper.ClassFeeMapper;
 import com.kg.interfaces.dto.ClassFeeRequest;
 import com.kg.interfaces.dto.ClassFeeStatVO;
+import com.kg.interfaces.dto.PageVO;
 import com.kg.interfaces.dto.ClassFeeVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,7 +41,7 @@ public class ClassFeeApplicationService {
     }
 
     /** 分页查询：老师看全部，班长/学生看自己班。支持按班级ID和物料模糊筛选 */
-    public Map<String, Object> page(int pageNum, int pageSize, Long classId, String material) {
+    public PageVO<ClassFeeVO> page(int pageNum, int pageSize, Long classId, String material) {
         SysUser user = requireLogin();
         Long filterClassId = resolveClassId(user);
         // 如果传了classId且角色不允许跨班，以传入的为准但需校验
@@ -68,9 +69,7 @@ public class ClassFeeApplicationService {
             return vo;
         }).collect(Collectors.toList());
 
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("total", total); r.put("list", list);
-        return r;
+        return PageVO.of(total, list);
     }
 
     /** 详情 */

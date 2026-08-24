@@ -16,8 +16,10 @@ import com.kg.infrastructure.mapper.TaskUserMapper;
 import com.kg.interfaces.dto.ClassOptionVO;
 import com.kg.interfaces.dto.StudentCreateRequest;
 import com.kg.interfaces.dto.StudentUpdateRequest;
+import com.kg.interfaces.dto.ImportResultVO;
 import com.kg.interfaces.dto.StudentVO;
 import com.kg.interfaces.dto.UserImportDTO;
+import com.kg.interfaces.dto.PageVO;
 import com.kg.exception.BusinessException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.util.StringUtil;
@@ -73,7 +75,7 @@ public class StudentApplicationService {
     /**
      * teacher → 全部角色 | headmaster → 本班学生+班长 | student → 无权限
      */
-    public Map<String, Object> page(String name, String role, String phone, Long userId,
+    public PageVO<StudentVO> page(String name, String role, String phone, Long userId,
                                      Long classId, String className, int pageNum, int pageSize) {
         SysUser currentUser = requireCurrentUser();
         String currentRole = currentUser.getRole();
@@ -118,10 +120,7 @@ public class StudentApplicationService {
                 classIds, searchRoles, offset, pageSize);
 
         List<StudentVO> list = users.stream().map(this::toVO).collect(Collectors.toList());
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("total", total);
-        result.put("list", list);
-        return result;
+        return PageVO.of(total, list);
     }
 
     // ======================== 详情 ========================
@@ -245,7 +244,7 @@ public class StudentApplicationService {
      * @param list Excel 解析后的用户列表
      * @return { success: 成功数, fail: 失败数, errors: ["行2: 手机号为空", ...] }
      */
-    public Map<String, Object> importUsers(List<UserImportDTO> list) {
+    public ImportResultVO importUsers(List<UserImportDTO> list) {
         Long currentUserId = requireTeacher();
         int success = 0;
         int fail = 0;
@@ -316,10 +315,8 @@ public class StudentApplicationService {
         }
 
         log.info("批量导入完成: 成功{}人, 失败{}人", success, fail);
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("success", success);
-        result.put("fail", fail);
-        result.put("errors", errors);
+        ImportResultVO result = new ImportResultVO();
+        result.setSuccess(success); result.setFail(fail); result.setErrors(errors);
         return result;
     }
 
@@ -391,11 +388,8 @@ public class StudentApplicationService {
 
     // ======================== 私有 ========================
 
-    private Map<String, Object> emptyPageResult() {
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("total", 0);
-        r.put("list", Collections.emptyList());
-        return r;
+    private PageVO<StudentVO> emptyPageResult() {
+        return PageVO.empty();
     }
 
     private StudentVO toVO(SysUser user) {

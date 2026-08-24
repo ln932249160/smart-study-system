@@ -1,5 +1,6 @@
 package com.kg.interfaces.controller;
 
+import com.kg.interfaces.dto.AjaxResult;
 import com.kg.application.service.StudyPhaseApplicationService;
 import com.kg.interfaces.dto.StudyPhaseRequest;
 import com.kg.interfaces.dto.StudyPhaseVO;
@@ -23,35 +24,27 @@ public class StudyPhaseController {
     @PostMapping("/study-phase/add")
     public Map<String, Object> add(@Valid @RequestBody StudyPhaseRequest req) {
         service.add(req);
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "新增成功");
-        return r;
+        return AjaxResult.success("新增成功");
     }
 
     @Operation(summary = "编辑学习阶段")
     @PutMapping("/study-phase/update")
     public Map<String, Object> update(@Valid @RequestBody StudyPhaseRequest req) {
         service.update(req);
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "编辑成功");
-        return r;
+        return AjaxResult.success("编辑成功");
     }
 
     @Operation(summary = "删除学习阶段（逻辑删除）")
     @DeleteMapping("/study-phase/delete/{id}")
     public Map<String, Object> delete(@PathVariable Long id) {
         service.delete(id);
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "删除成功");
-        return r;
+        return AjaxResult.success("删除成功");
     }
 
     @Operation(summary = "学习阶段详情")
     @GetMapping("/study-phase/detail/{id}")
     public Map<String, Object> detail(@PathVariable Long id) {
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "查询成功"); r.put("data", service.detail(id));
-        return r;
+        return AjaxResult.success("查询成功", service.detail(id));
     }
 
     @Operation(summary = "学习阶段分页列表")
@@ -63,10 +56,7 @@ public class StudyPhaseController {
                                      @RequestParam(required = false) String startDate,
                                      @RequestParam(required = false) String endDate,
                                      @RequestParam(required = false) Integer status) {
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "查询成功");
-        r.put("data", service.page(phaseTitle, classId, startDate, endDate, status, pageNum, pageSize));
-        return r;
+        return AjaxResult.success("查询成功", service.page(phaseTitle, classId, startDate, endDate, status, pageNum, pageSize));
     }
 
     @Operation(summary = "学习阶段日历查询")
@@ -75,8 +65,6 @@ public class StudyPhaseController {
                                          @RequestParam String endDate,
                                          @RequestParam(required = false) Long classId) {
         List<StudyPhaseVO> data = service.calendar(startDate, endDate, classId);
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "查询成功"); r.put("data", data);
-        return r;
+        return AjaxResult.success("查询成功", data);
     }
 }

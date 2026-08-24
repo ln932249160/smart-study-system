@@ -1,5 +1,6 @@
 package com.kg.interfaces.controller;
 
+import com.kg.interfaces.dto.AjaxResult;
 import com.kg.application.service.StudentCheckinApplicationService;
 import com.kg.interfaces.dto.CheckinCalendarVO;
 import com.kg.interfaces.dto.CheckinStatVO;
@@ -30,9 +31,7 @@ public class StudentCheckinController {
     @GetMapping("/student/checkin/stat")
     public Map<String, Object> stat() {
         CheckinStatVO data = service.getStat();
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "查询成功"); r.put("data", data);
-        return r;
+        return AjaxResult.success("查询成功", data);
     }
 
     /** 打卡日历：指定月份已打卡日期列表 */
@@ -40,8 +39,6 @@ public class StudentCheckinController {
     @GetMapping("/student/checkin/calendar")
     public Map<String, Object> calendar(@RequestParam String month) {
         CheckinCalendarVO data = service.getCalendar(month);
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "查询成功"); r.put("data", data);
-        return r;
+        return AjaxResult.success("查询成功", data);
     }
 }

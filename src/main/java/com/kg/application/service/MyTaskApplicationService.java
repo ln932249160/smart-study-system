@@ -67,7 +67,7 @@ public class MyTaskApplicationService {
     // ======================== 任务列表 ========================
 
     /** 分页查询，增加 taskDescription / priority / finishTime 筛选，排序改为 priority DESC + end_time ASC */
-    public Map<String, Object> page(MyTaskPageRequest req) {
+    public PageVO<MyTaskVO> page(MyTaskPageRequest req) {
         Long userId = resolveUserId(req.getUserId());
         int offset = (req.getPageNum() - 1) * req.getPageSize();
 
@@ -121,10 +121,7 @@ public class MyTaskApplicationService {
             return vo;
         }).collect(Collectors.toList());
 
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("total", total);
-        result.put("list", list);
-        return result;
+        return PageVO.of(total, list);
     }
 
     // ======================== 任务详情 ========================
@@ -329,7 +326,7 @@ public class MyTaskApplicationService {
 
     // ======================== 待办/已办统计 ========================
 
-    public Map<String, Object> stats(Long reqUserId) {
+    public MyTaskStatsVO stats(Long reqUserId) {
         Long userId = resolveUserId(reqUserId);
         LambdaQueryWrapper<TaskUserEntity> q = new LambdaQueryWrapper<>();
         q.eq(TaskUserEntity::getUserId, userId);
@@ -341,16 +338,15 @@ public class MyTaskApplicationService {
         q2.in(TaskUserEntity::getStatus, TaskUserStatusEnum.FINISHED_CODES);
         long finished = taskUserMapper.selectCount(q2);
 
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("unfinished", unfinished);
-        result.put("finished", finished);
+        MyTaskStatsVO result = new MyTaskStatsVO();
+        result.setUnfinished(unfinished); result.setFinished(finished);
         return result;
     }
 
     // ======================== 我的模板任务 ========================
 
     /** 分页查询用户做过的模板任务训练记录（汇总统计） */
-    public Map<String, Object> pageTemplates(MyTaskTemplatePageRequest req) {
+    public PageVO<MyTaskTemplateVO> pageTemplates(MyTaskTemplatePageRequest req) {
         Long userId = resolveUserId(req.getUserId());
         int offset = (req.getPageNum() - 1) * req.getPageSize();
 
@@ -376,10 +372,7 @@ public class MyTaskApplicationService {
             return vo;
         }).collect(Collectors.toList());
 
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("total", total);
-        result.put("list", list);
-        return result;
+        return PageVO.of(total, list);
     }
 
     /** 模板任务详情：模板信息 + 各轮次记录 + 成绩明细 */

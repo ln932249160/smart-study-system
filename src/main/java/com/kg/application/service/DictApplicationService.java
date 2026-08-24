@@ -6,6 +6,7 @@ import com.kg.domain.repository.DictRepository;
 import com.kg.exception.BusinessException;
 import com.kg.interfaces.dto.DictGroupSaveRequest;
 import com.kg.interfaces.dto.DictGroupVO;
+import com.kg.interfaces.dto.PageVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,7 @@ public class DictApplicationService {
     public DictApplicationService(DictRepository repo) { this.repo = repo; }
 
     /** 分组列表：按 dict_code 去重，支持 dict_name 模糊筛选 */
-    public Map<String, Object> pageGroups(String dictNameFilter, int pageNum, int pageSize) {
+    public PageVO<DictGroupVO> pageGroups(String dictNameFilter, int pageNum, int pageSize) {
         int offset = (pageNum - 1) * pageSize;
         long total = repo.countDistinctCodes(dictNameFilter);
         List<DictItem> codes = repo.listDistinctCodes(dictNameFilter, offset, pageSize);
@@ -49,10 +50,7 @@ public class DictApplicationService {
             return vo;
         }).collect(Collectors.toList());
 
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("total", total);
-        r.put("list", list);
-        return r;
+        return PageVO.of(total, list);
     }
 
     /** 根据 dict_code 查询详情（整组 items） */

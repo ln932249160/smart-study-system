@@ -1,5 +1,6 @@
 package com.kg.interfaces.controller;
 
+import com.kg.interfaces.dto.AjaxResult;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.kg.application.service.DictApplicationService;
 import com.kg.infrastructure.entity.DictEntity;
@@ -51,9 +52,7 @@ public class DictController {
                 .map(e -> DictVO.of(e.getDictValue(),
                         e.getDictLabel() != null ? e.getDictLabel() : e.getDictName()))
                 .collect(Collectors.toList());
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "查询成功"); r.put("data", list);
-        return r;
+        return AjaxResult.success("查询成功", list);
     }
 
     // ======================== 分组列表 ========================
@@ -63,10 +62,7 @@ public class DictController {
     public Map<String, Object> pageGroups(@RequestParam(required = false) String dictName,
                                           @RequestParam(defaultValue = "1") int pageNum,
                                           @RequestParam(defaultValue = "10") int pageSize) {
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "查询成功");
-        r.put("data", service.pageGroups(dictName, pageNum, pageSize));
-        return r;
+        return AjaxResult.success("查询成功", service.pageGroups(dictName, pageNum, pageSize));
     }
 
     // ======================== 详情（按 dict_code） ========================
@@ -74,10 +70,7 @@ public class DictController {
     @Operation(summary = "字典组详情")
     @GetMapping("/dict/group/{dictCode}")
     public Map<String, Object> getGroup(@PathVariable String dictCode) {
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "查询成功");
-        r.put("data", service.getByCode(dictCode));
-        return r;
+        return AjaxResult.success("查询成功", service.getByCode(dictCode));
     }
 
     // ======================== 新增/编辑（整体保存） ========================
@@ -86,9 +79,7 @@ public class DictController {
     @PostMapping("/dict/group")
     public Map<String, Object> createGroup(@Valid @RequestBody DictGroupSaveRequest req) {
         service.saveGroup(req, true);
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "新增成功");
-        return r;
+        return AjaxResult.success("新增成功");
     }
 
     @Operation(summary = "编辑字典组（整体替换）")
@@ -97,9 +88,7 @@ public class DictController {
                                            @Valid @RequestBody DictGroupSaveRequest req) {
         req.setDictCode(dictCode);
         service.saveGroup(req, false);
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "编辑成功");
-        return r;
+        return AjaxResult.success("编辑成功");
     }
 
     // ======================== 删除整组 ========================
@@ -108,8 +97,6 @@ public class DictController {
     @DeleteMapping("/dict/group/{dictCode}")
     public Map<String, Object> deleteGroup(@PathVariable String dictCode) {
         service.deleteByCode(dictCode);
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("code", 200); r.put("message", "删除成功");
-        return r;
+        return AjaxResult.success("删除成功");
     }
 }

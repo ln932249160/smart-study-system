@@ -1,12 +1,55 @@
 package com.kg.interfaces.controller;
 
+import com.kg.interfaces.dto.AjaxResult;
+import com.kg.interfaces.dto.ImportResultVO;
+import com.kg.interfaces.dto.StudentVO;
+import com.kg.interfaces.dto.ImportResultVO;
+import com.kg.interfaces.dto.PageVO;
+import com.kg.interfaces.dto.ImportResultVO;
+import com.kg.interfaces.dto.StudentVO;
+import com.kg.interfaces.dto.ImportResultVO;
 import com.alibaba.excel.EasyExcel;
 import com.kg.application.service.StudentApplicationService;
 import com.kg.interfaces.dto.ClassOptionVO;
+import com.kg.interfaces.dto.ImportResultVO;
+import com.kg.interfaces.dto.StudentVO;
+import com.kg.interfaces.dto.ImportResultVO;
+import com.kg.interfaces.dto.PageVO;
+import com.kg.interfaces.dto.ImportResultVO;
+import com.kg.interfaces.dto.StudentVO;
+import com.kg.interfaces.dto.ImportResultVO;
 import com.kg.interfaces.dto.StudentCreateRequest;
+import com.kg.interfaces.dto.ImportResultVO;
+import com.kg.interfaces.dto.StudentVO;
+import com.kg.interfaces.dto.ImportResultVO;
+import com.kg.interfaces.dto.PageVO;
+import com.kg.interfaces.dto.ImportResultVO;
+import com.kg.interfaces.dto.StudentVO;
+import com.kg.interfaces.dto.ImportResultVO;
 import com.kg.interfaces.dto.StudentPageRequest;
+import com.kg.interfaces.dto.ImportResultVO;
+import com.kg.interfaces.dto.StudentVO;
+import com.kg.interfaces.dto.ImportResultVO;
+import com.kg.interfaces.dto.PageVO;
+import com.kg.interfaces.dto.ImportResultVO;
+import com.kg.interfaces.dto.StudentVO;
+import com.kg.interfaces.dto.ImportResultVO;
 import com.kg.interfaces.dto.StudentUpdateRequest;
+import com.kg.interfaces.dto.ImportResultVO;
+import com.kg.interfaces.dto.StudentVO;
+import com.kg.interfaces.dto.ImportResultVO;
+import com.kg.interfaces.dto.PageVO;
+import com.kg.interfaces.dto.ImportResultVO;
+import com.kg.interfaces.dto.StudentVO;
+import com.kg.interfaces.dto.ImportResultVO;
 import com.kg.interfaces.dto.UserImportDTO;
+import com.kg.interfaces.dto.ImportResultVO;
+import com.kg.interfaces.dto.StudentVO;
+import com.kg.interfaces.dto.ImportResultVO;
+import com.kg.interfaces.dto.PageVO;
+import com.kg.interfaces.dto.ImportResultVO;
+import com.kg.interfaces.dto.StudentVO;
+import com.kg.interfaces.dto.ImportResultVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpHeaders;
@@ -50,13 +93,11 @@ public class StudentController {
     @Operation(summary = "分页查询用户")
     @PostMapping("/student/page")
     public Map<String, Object> page(@Valid @RequestBody StudentPageRequest request) {
-        Map<String, Object> pageResult = studentApplicationService.page(
+        PageVO<StudentVO> pageResult = studentApplicationService.page(
                 request.getName(), request.getRole(), request.getPhone(),
                 request.getUserId(), request.getClassId(), request.getClassName(),
                 request.getPageNum(), request.getPageSize());
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("code", 200); result.put("message", "查询成功"); result.put("data", pageResult);
-        return result;
+        return AjaxResult.success("查询成功", pageResult);
     }
 
     // ======================== 详情 ========================
@@ -64,11 +105,7 @@ public class StudentController {
     @Operation(summary = "用户详情")
     @GetMapping("/student/{id}")
     public Map<String, Object> getById(@PathVariable Long id) {
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("code", 200);
-        result.put("message", "查询成功");
-        result.put("data", studentApplicationService.getById(id));
-        return result;
+        return AjaxResult.success("查询成功", studentApplicationService.getById(id));
     }
 
     // ======================== 新增 ========================
@@ -77,9 +114,7 @@ public class StudentController {
     @PostMapping("/student")
     public Map<String, Object> create(@Valid @RequestBody StudentCreateRequest request) {
         studentApplicationService.create(request);
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("code", 200); result.put("message", "新增成功");
-        return result;
+        return AjaxResult.success("新增成功");
     }
 
     // ======================== 编辑 ========================
@@ -89,9 +124,7 @@ public class StudentController {
     public Map<String, Object> update(@PathVariable Long id,
                                       @Valid @RequestBody StudentUpdateRequest request) {
         studentApplicationService.update(id, request);
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("code", 200); result.put("message", "编辑成功");
-        return result;
+        return AjaxResult.success("编辑成功");
     }
 
     // ======================== 重置密码 ========================
@@ -101,9 +134,7 @@ public class StudentController {
     @PutMapping("/user/reset-password/{userId}")
     public Map<String, Object> resetPassword(@PathVariable Long userId) {
         studentApplicationService.resetPassword(userId);
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("code", 200); result.put("message", "密码已重置为123456");
-        return result;
+        return AjaxResult.success("密码已重置为123456");
     }
 
     // ======================== 删除 ========================
@@ -112,9 +143,7 @@ public class StudentController {
     @DeleteMapping("/student/{id}")
     public Map<String, Object> delete(@PathVariable Long id) {
         studentApplicationService.delete(id);
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("code", 200); result.put("message", "删除成功");
-        return result;
+        return AjaxResult.success("删除成功");
     }
 
     // ======================== 班级下拉 ========================
@@ -123,9 +152,7 @@ public class StudentController {
     @GetMapping("/class/options")
     public Map<String, Object> listClassOptions() {
         List<ClassOptionVO> options = studentApplicationService.listClassOptions();
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("code", 200); result.put("message", "查询成功"); result.put("data", options);
-        return result;
+        return AjaxResult.success("查询成功", options);
     }
 
     // ======================== Excel 模板下载 ========================
@@ -166,12 +193,8 @@ public class StudentController {
                 .sheet()
                 .doReadSync();
 
-        Map<String, Object> data = studentApplicationService.importUsers(list);
+        ImportResultVO data = studentApplicationService.importUsers(list);
 
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("code", 200);
-        result.put("message", "导入完成");
-        result.put("data", data);
-        return result;
+        return AjaxResult.success("导入完成", data);
     }
 }

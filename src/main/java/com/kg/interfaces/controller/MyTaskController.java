@@ -1,5 +1,6 @@
 package com.kg.interfaces.controller;
 
+import com.kg.interfaces.dto.AjaxResult;
 import com.kg.application.service.MyTaskApplicationService;
 import com.kg.interfaces.dto.*;
 import io.swagger.v3.oas.annotations.Operation;
@@ -29,10 +30,8 @@ public class MyTaskController {
     @Operation(summary = "我的任务列表")
     @PostMapping("/my-task/list")
     public Map<String, Object> list(@Valid @RequestBody MyTaskPageRequest request) {
-        Map<String, Object> data = myTaskApplicationService.page(request);
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("code", 200); result.put("message", "查询成功"); result.put("data", data);
-        return result;
+        PageVO<MyTaskVO> data = myTaskApplicationService.page(request);
+        return AjaxResult.success("查询成功", data);
     }
 
     // ======================== 任务详情 ========================
@@ -43,9 +42,7 @@ public class MyTaskController {
     public Map<String, Object> detail(@RequestParam Long taskUserId,
                                        @RequestParam(required = false) Long userId) {
         MyTaskDetailVO data = myTaskApplicationService.getDetail(taskUserId, userId);
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("code", 200); result.put("message", "查询成功"); result.put("data", data);
-        return result;
+        return AjaxResult.success("查询成功", data);
     }
 
     // ======================== 待办/已办统计 ========================
@@ -53,10 +50,8 @@ public class MyTaskController {
     @Operation(summary = "待办已办统计")
     @PostMapping("/my-task/stats")
     public Map<String, Object> stats(@RequestBody MyTaskPageRequest request) {
-        Map<String, Object> data = myTaskApplicationService.stats(request.getUserId());
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("code", 200); result.put("message", "查询成功"); result.put("data", data);
-        return result;
+        MyTaskStatsVO data = myTaskApplicationService.stats(request.getUserId());
+        return AjaxResult.success("查询成功", data);
     }
 
     // ======================== 一键打卡 ========================
@@ -65,9 +60,7 @@ public class MyTaskController {
     @PostMapping("/my-task/checkin")
     public Map<String, Object> checkin() {
         int count = myTaskApplicationService.checkin();
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("code", 200); result.put("message", "打卡成功"); result.put("data", count);
-        return result;
+        return AjaxResult.success("打卡成功", count);
     }
 
     // ======================== 完成任务 ========================
@@ -76,9 +69,7 @@ public class MyTaskController {
     @PostMapping("/my-task/complete")
     public Map<String, Object> complete(@Valid @RequestBody MyTaskCompleteRequest request) {
         myTaskApplicationService.complete(request);
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("code", 200); result.put("message", "提交成功");
-        return result;
+        return AjaxResult.success("提交成功");
     }
 
     // ======================== 修改已完成任务 ========================
@@ -88,9 +79,7 @@ public class MyTaskController {
     @PutMapping("/my-task")
     public Map<String, Object> update(@Valid @RequestBody MyTaskUpdateRequest request) {
         myTaskApplicationService.updateMyTask(request);
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("code", 200); result.put("message", "修改成功");
-        return result;
+        return AjaxResult.success("修改成功");
     }
 
     // ======================== 我的模板任务 ========================
@@ -99,10 +88,8 @@ public class MyTaskController {
     @Operation(summary = "我的模板任务列表")
     @PostMapping("/my-task/template/page")
     public Map<String, Object> templatePage(@Valid @RequestBody MyTaskTemplatePageRequest req) {
-        Map<String, Object> data = myTaskApplicationService.pageTemplates(req);
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("code", 200); result.put("message", "查询成功"); result.put("data", data);
-        return result;
+        PageVO<MyTaskTemplateVO> data = myTaskApplicationService.pageTemplates(req);
+        return AjaxResult.success("查询成功", data);
     }
 
     /** 模板任务详情：模板信息 + 各轮次记录 + 成绩明细 */
@@ -111,8 +98,6 @@ public class MyTaskController {
     public Map<String, Object> templateDetail(@RequestParam Long templateId,
                                                @RequestParam(required = false) Long userId) {
         MyTaskTemplateDetailVO data = myTaskApplicationService.getTemplateDetail(templateId, userId);
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("code", 200); result.put("message", "查询成功"); result.put("data", data);
-        return result;
+        return AjaxResult.success("查询成功", data);
     }
 }

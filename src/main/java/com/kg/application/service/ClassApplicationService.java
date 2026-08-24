@@ -10,6 +10,7 @@ import com.kg.exception.BusinessException;
 import com.kg.interfaces.dto.ClassCreateRequest;
 import com.kg.interfaces.dto.ClassUpdateRequest;
 import com.kg.interfaces.dto.ClassVO;
+import com.kg.interfaces.dto.PageVO;
 import com.kg.interfaces.dto.StudentOptionVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,7 +49,7 @@ public class ClassApplicationService {
     /**
      * teacher → 全部班级 | headmaster/student → 仅本班
      */
-    public Map<String, Object> page(int pageNum, int pageSize) {
+    public PageVO<ClassVO> page(int pageNum, int pageSize) {
         SysUser currentUser = requireCurrentUser();
         String role = currentUser.getRole();
 
@@ -82,10 +83,7 @@ public class ClassApplicationService {
             return vo;
         }).collect(Collectors.toList());
 
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("total", total);
-        result.put("list", list);
-        return result;
+        return PageVO.of(total, list);
     }
 
     // ======================== 详情 ========================
@@ -220,10 +218,7 @@ public class ClassApplicationService {
         return user.getId();
     }
 
-    private Map<String, Object> emptyPageResult() {
-        Map<String, Object> r = new LinkedHashMap<>();
-        r.put("total", 0);
-        r.put("list", Collections.emptyList());
-        return r;
+    private PageVO<ClassVO> emptyPageResult() {
+        return PageVO.empty();
     }
 }
